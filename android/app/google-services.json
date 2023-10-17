@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984173260563",
+    "project_id": "kakapp-713a1",
+    "storage_bucket": "kakapp-713a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984173260563:android:7012d93b36d2efd135b4e6",
+        "android_client_info": {
+          "package_name": "com.example.kak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaRsCqUokwHoMvt_H1m5I_AlIVXVXLT2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
