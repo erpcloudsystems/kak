@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -10,10 +11,12 @@ import 'core/resources/theme_manager.dart';
 import 'core/resources/colors_manager.dart';
 import 'core/resources/strings_manager.dart';
 import 'core/global/dependencies_container.dart' as di;
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());

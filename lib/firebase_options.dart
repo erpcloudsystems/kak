@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '984173260563',
     projectId: 'kakapp-713a1',
     storageBucket: 'kakapp-713a1.appspot.com',
+    androidClientId: '984173260563-anb7q83eb89l8ti0olf5musiapi30s3b.apps.googleusercontent.com',
+    iosClientId: '984173260563-ue2d9thqfrfik0uh0tqrnmoul6pc9b2k.apps.googleusercontent.com',
     iosBundleId: 'com.example.kak',
   );
 }
