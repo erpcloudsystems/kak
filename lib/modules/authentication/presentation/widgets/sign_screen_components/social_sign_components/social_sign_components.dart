@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../bloc/social_sign/social_sign_bloc.dart';
 
-
 class SocialSignComponent extends StatelessWidget {
   final IconData authIcon;
   final SocialSignEvent signEvent;
@@ -34,7 +33,7 @@ class SocialSignComponent extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(DoubleManager.d_12.sp),
-            color: Colors.white.withOpacity(DoubleManager.d_003),
+            color: Colors.black.withOpacity(DoubleManager.d_003),
           ),
           height: DoubleManager.d_7.h,
           width: DoubleManager.d_18.w,

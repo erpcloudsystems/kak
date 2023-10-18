@@ -15,7 +15,10 @@ abstract class AppTheme {
         
 
         // Scaffold
-        // scaffoldBackgroundColor: ColorsManager.gWhite,
+        scaffoldBackgroundColor: Colors.transparent,
+        
+        // Canvas
+        canvasColor: Colors.transparent,
 
         // AppBar
         appBarTheme: AppBarTheme(
