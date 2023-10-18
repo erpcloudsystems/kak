@@ -31,14 +31,6 @@ abstract class AppTheme {
 
         // Text Themes
         textTheme: TextTheme(
-          // Arabic texts
-          titleLarge: getBoldStyle(
-              fontName: FontsName.arabicFont, fontSize: FontsSize.s18),
-          titleMedium: getSemiBoldStyle(
-              fontName: FontsName.arabicFont, fontSize: FontsSize.s14),
-          titleSmall: getMediumStyle(
-              fontName: FontsName.arabicFont, fontSize: FontsSize.s12),
-
           // Details text
           bodyLarge: getRegularStyle(
               fontName: FontsName.detailsFont, fontSize: FontsSize.s16),

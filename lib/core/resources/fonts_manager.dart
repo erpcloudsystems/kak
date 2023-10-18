@@ -4,7 +4,7 @@ import 'values_manager.dart';
 
 class FontsName {
   static const String arabicFont = 'Lateef';
-  static const String headlinesFont = 'Teko';
+  static const String headlinesFont = 'Blocklyn';
   static const String detailsFont = 'IBMPlexSans';
 }
 

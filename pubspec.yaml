@@ -66,18 +66,10 @@ flutter:
         - asset: assets/fonts/Lateef-Bold.ttf
           weight: 700
 
-    - family: Teko
+    - family: Blocklyn
       fonts:
-        - asset: assets/fonts/Teko-Light.ttf
+        - asset: assets/fonts/Blocklyn.ttf
           weight: 300
-        - asset: assets/fonts/Teko-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Teko-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Teko-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Teko-Bold.ttf
-          weight: 700
 
     - family: IBMPlexSans
       fonts:
