@@ -1,5 +1,6 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../network/dio_helper.dart';
@@ -46,7 +47,8 @@ Future<void> init() async {
   final sharedPref = await SharedPreferences.getInstance(); 
 
   sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
-  sl.registerLazySingleton<BaseNetworkInfo>(() => NetworkInfo(sl()));
+  sl.registerLazySingleton(() => FirebaseAuth);
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
+  sl.registerLazySingleton<BaseNetworkInfo>(() => NetworkInfo(sl()));
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 
 class AuthenticationDivider extends StatelessWidget {
@@ -36,7 +35,7 @@ class DividerLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        color: ColorsManager.gGrey.withOpacity(DoubleManager.d_02),
+        color: Colors.grey.withOpacity(DoubleManager.d_02),
         height: DoubleManager.d_02.h,
       ),
     );

@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: IntManager.i_6)).whenComplete(() =>
         // BlocProvider.of<CachingBloc>(context).add(GetCachedApiKeysEvent()),
-       Navigator.of(context)
+        Navigator.of(context)
             .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false));
   }
 
@@ -49,12 +49,11 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-              child: Image(
-            image: const AssetImage(ImagesPath.logoPath),
-            height: DoubleManager.d_50.h,
-            width: DoubleManager.d_70.w,
-          )),
+          Image.asset(
+            ImagesPath.logoPath,
+            width: DoubleManager.d_100.w,
+            height: DoubleManager.d_18.h,
+          ),
           const LoadingIndicatorUtil(),
         ],
       ),

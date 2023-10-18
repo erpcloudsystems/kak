@@ -17,11 +17,8 @@ class LoadingIndicatorUtil extends StatelessWidget {
         height: DoubleManager.d_40.h,
         width: DoubleManager.d_60.w,
         child: const LoadingIndicator(
-            indicatorType: Indicator.ballClipRotatePulse,
-            colors: [
-              ColorsManager.mainColor,
-              ColorsManager.secondaryColor,
-            ]),
+            indicatorType: Indicator.ballSpinFadeLoader,
+            colors: [ColorsManager.mainColor]),
       ),
     );
   }

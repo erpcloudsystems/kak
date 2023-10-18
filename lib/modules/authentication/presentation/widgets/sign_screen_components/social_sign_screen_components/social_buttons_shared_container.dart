@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/resources/fonts_manager.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../../core/resources/colors_manager.dart';
-import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/resources/fonts_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
 
 class SocialButtonsSharedContainer extends StatelessWidget {
   const SocialButtonsSharedContainer({
@@ -24,7 +23,7 @@ class SocialButtonsSharedContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(DoubleManager.d_10.sp),
         border: Border.all(
           width: DoubleManager.d_05,
-          color: ColorsManager.gGrey.withOpacity(
+          color: Colors.grey.withOpacity(
             DoubleManager.d_05,
           ),
         ),

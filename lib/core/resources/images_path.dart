@@ -6,7 +6,7 @@ class ImagesPath {
   static const String verificationPath = '$imagePath/verification.png';
   static const String socialSignPath = '$imagePath/social_sign.png';
   static const String errorPath = '$imagePath/error.png';
-  static const String logoPath = '$imagePath/logo.jpg';
+  static const String logoPath = '$imagePath/logo.png';
   static const String verificationSuccessPath =
       '$imagePath/verification_success.png';
 }

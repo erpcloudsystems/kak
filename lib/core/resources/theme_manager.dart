@@ -15,7 +15,7 @@ abstract class AppTheme {
         
 
         // Scaffold
-        scaffoldBackgroundColor: ColorsManager.gWhite,
+        // scaffoldBackgroundColor: ColorsManager.gWhite,
 
         // AppBar
         appBarTheme: AppBarTheme(
@@ -66,7 +66,6 @@ abstract class AppTheme {
           contentPadding: const EdgeInsets.all(DoubleManager.d_8),
           hintStyle: getSemiBoldStyle(
             fontName: FontsName.detailsFont,
-            color: ColorsManager.gGrey,
             fontSize: FontsSize.s14,
           ),
           labelStyle: getRegularStyle(
