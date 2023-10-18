@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'colors_manager.dart';
+
 import 'values_manager.dart';
 import 'fonts_manager.dart';
 
@@ -15,7 +15,7 @@ TextStyle _getTextStyle(
 
 TextStyle getLightStyle({
   double fontSize = DoubleManager.d_2,
-  Color color = ColorsManager.secondaryColor,
+  Color color = Colors.black,
   required String fontName,
 }) {
   return _getTextStyle(fontSize, FontsWeightManager.light, color, fontName);
@@ -23,7 +23,7 @@ TextStyle getLightStyle({
 
 TextStyle getRegularStyle({
   double fontSize = DoubleManager.d_2,
-  Color color = ColorsManager.mainColor,
+  Color color = Colors.black,
   required String fontName,
 }) {
   return _getTextStyle(fontSize, FontsWeightManager.regular, color, fontName);
@@ -31,7 +31,7 @@ TextStyle getRegularStyle({
 
 TextStyle getMediumStyle({
   double fontSize = DoubleManager.d_2,
-  Color color = ColorsManager.mainColor,
+  Color color = Colors.black,
   required String fontName,
 }) {
   return _getTextStyle(fontSize, FontsWeightManager.medium, color, fontName);
@@ -39,7 +39,7 @@ TextStyle getMediumStyle({
 
 TextStyle getSemiBoldStyle({
   double fontSize = DoubleManager.d_2,
-  Color color = ColorsManager.mainColor,
+  Color color = Colors.black,
   required String fontName,
 }) {
   return _getTextStyle(fontSize, FontsWeightManager.semiBold, color, fontName);
@@ -47,7 +47,7 @@ TextStyle getSemiBoldStyle({
 
 TextStyle getBoldStyle({
   double fontSize = DoubleManager.d_2,
-  Color color = ColorsManager.mainColor,
+  Color color = Colors.black,
   required String fontName,
 }) {
   return _getTextStyle(fontSize, FontsWeightManager.bold, color, fontName);

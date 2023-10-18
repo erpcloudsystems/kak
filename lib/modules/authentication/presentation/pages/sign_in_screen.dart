@@ -5,7 +5,6 @@ import '../../../../core/resources/routes.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/main_gradient_container.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';
@@ -44,8 +43,7 @@ class SignInScreen extends StatelessWidget {
             //     }
             //   },
             //   child:
-            MainGradientContainer(
-          child: Padding(
+        Padding(
             padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
             child: CustomScrollView(
               slivers: [
@@ -77,7 +75,6 @@ class SignInScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
       // ),
     );
   }

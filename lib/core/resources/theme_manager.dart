@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'colors_manager.dart';
+
 import 'fonts_manager.dart';
 import 'styles_manager.dart';
+import 'colors_manager.dart';
 import 'values_manager.dart';
 
 abstract class AppTheme {
@@ -12,13 +13,9 @@ abstract class AppTheme {
 
         // Swatch color
         colorSchemeSeed: ColorsManager.swatchRed,
-        
 
         // Scaffold
-        scaffoldBackgroundColor: Colors.transparent,
-        
-        // Canvas
-        canvasColor: Colors.transparent,
+        scaffoldBackgroundColor: ColorsManager.scaffoldColor,
 
         // AppBar
         appBarTheme: AppBarTheme(
@@ -27,7 +24,7 @@ abstract class AppTheme {
             statusBarBrightness: Brightness.dark,
           ),
           backgroundColor: ColorsManager.swatchRed,
-          iconTheme: const IconThemeData(color: ColorsManager.secondaryColor),
+          iconTheme: const IconThemeData(color: ColorsManager.mainColor),
           titleTextStyle: getSemiBoldStyle(
               fontName: FontsName.headlinesFont, fontSize: FontsSize.s18),
         ),
@@ -90,8 +87,8 @@ abstract class AppTheme {
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DoubleManager.d_8),
           ),
-          prefixIconColor: ColorsManager.secondaryColor,
-          suffixIconColor: ColorsManager.secondaryColor,
+          prefixIconColor: ColorsManager.mainColor,
+          suffixIconColor: ColorsManager.mainColor,
           errorStyle: getMediumStyle(
             fontName: FontsName.detailsFont,
             color: ColorsManager.mainColor,
@@ -102,7 +99,7 @@ abstract class AppTheme {
         // Icons
         iconTheme: const IconThemeData(
           size: DoubleManager.d_18,
-          color: ColorsManager.secondaryColor,
+          color: ColorsManager.mainColor,
         ),
 
         // Checkbox
@@ -111,7 +108,7 @@ abstract class AppTheme {
               borderRadius: BorderRadius.circular(DoubleManager.d_5)),
           side: BorderSide(
             style: BorderStyle.solid,
-            color: ColorsManager.secondaryColor,
+            color: ColorsManager.mainColor,
             width: DoubleManager.d_05.w,
           ),
         ),
@@ -137,7 +134,7 @@ abstract class AppTheme {
         ),
 
         // Dialogs
-        dialogBackgroundColor: ColorsManager.secondaryColor,
+        dialogBackgroundColor: ColorsManager.mainColor,
         dialogTheme: DialogTheme(
           titleTextStyle: getRegularStyle(
             fontName: FontsName.detailsFont,
