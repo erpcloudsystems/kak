@@ -8,6 +8,7 @@ import '../../../bloc/social_sign/social_sign_bloc.dart';
 class SocialSignComponent extends StatelessWidget {
   final IconData authIcon;
   final SocialSignEvent signEvent;
+  
   const SocialSignComponent({
     Key? key,
     required this.authIcon,

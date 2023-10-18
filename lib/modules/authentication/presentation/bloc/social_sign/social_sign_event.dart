@@ -11,4 +11,6 @@ class SignWithFacebookEvent extends SocialSignEvent {}
 
 class SignWithGoogleEvent extends SocialSignEvent {}
 
+class SignWithAppleEvent extends SocialSignEvent {}
+
 

@@ -1,52 +1,55 @@
-// import 'package:dartz/dartz.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dartz/dartz.dart';
 
-// import '../../../../core/global/type_def.dart';
-// import '../../../../core/network/failure.dart';
-// import '../../../../core/network/network_info.dart';
-// import '../../../../core/resources/strings_manager.dart';
-// import '../../domain/entities/user.dart';
-// import '../../domain/repositories/base_social_sign_repository.dart';
-// import '../datasources/base_authentication_remote_data_source.dart';
+import '../../domain/entities/user.dart';
+import '../../../../core/network/failure.dart';
+import '../../../../core/global/type_def.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
+import '../../domain/repositories/base_social_sign_repository.dart';
 
-// class SocialSignRepository implements BaseSocialSignRepository {
-//   final BaseNetworkInfo _deviceStatus;
-//   final BaseAuthenticationRemoteDataSource _dataSource;
+class SocialSignRepository implements BaseSocialSignRepository {
+  final BaseAuthenticationRemoteDataSource _dataSource;
+  final BaseNetworkInfo _deviceStatus;
 
-//   const SocialSignRepository(
-//       this._deviceStatus, this._dataSource);
+  const SocialSignRepository(
+    this._deviceStatus,
+    this._dataSource,
+  );
 
-//   //_________________________Sign with Facebook__________________________________
-//   @override
-//   Future<Either<Failure, UserEntity>> signWithFacebook() async {
-//     return await _socialSignMethod(() => _dataSource.signWithFacebook());
-//   }
+  //_________________________Sign with Facebook__________________________________
+  // @override
+  // Future<Either<Failure, UserEntity>> signWithFacebook() async {
+  //   return await _socialSignMethod(() => _dataSource.signWithFacebook());
+  // }
 
-//   //___________________________Sign with Google__________________________________
-//   @override
-//   Future<Either<Failure, UserEntity>> signWithGoogle() async {
-//     return await _socialSignMethod(() => _dataSource.signWithGoogle());
-//   }
+  //___________________________Sign with Google__________________________________
+  @override
+  Future<Either<Failure, UserEntity>> signWithGoogle() async {
+    return await _socialSignMethod(() => _dataSource.signWithGoogle());
+  }
 
-//   //________________________common social sign method_____________________________
-//   Future<Either<Failure, UserEntity>> _socialSignMethod(
-//       SocialFunction socialSignFunction) async {
-//     if (await _deviceStatus.isConnected) {
-//       try {
-//         final response = await socialSignFunction();
-//         return Right(response);
-//       } on FirebaseAuthException catch (error) {
-//         return Left(ServerFailure(
-//             errorMessage:
-//                 error.message ?? StringsManager.serverFailureMessage),
-//                 );
-//       } catch (error) {
-//         return const Left(
-//             ServerFailure(errorMessage: StringsManager.serverFailureMessage));
-//       }
-//     } else {
-//       return const Left(
-//           OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
-//     }
-//   }
-// }
+  //________________________common social sign method_____________________________
+  Future<Either<Failure, UserEntity>> _socialSignMethod(
+      SocialFunction socialSignFunction) async {
+    if (await _deviceStatus.isConnected) {
+      try {
+        final response = await socialSignFunction();
+        return Right(response);
+      } on FirebaseAuthException catch (error) {
+        return Left(
+          ServerFailure(
+              errorMessage:
+                  error.message ?? StringsManager.serverFailureMessage),
+        );
+      } catch (error) {
+        return const Left(
+            ServerFailure(errorMessage: StringsManager.serverFailureMessage));
+      }
+    } else {
+      return const Left(
+          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+    }
+  }
+}

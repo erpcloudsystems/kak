@@ -30,9 +30,13 @@ class SocialSignWidget extends StatelessWidget {
               authIcon: FontAwesomeIcons.google,
               signEvent: SignWithGoogleEvent(),
             )),
-            const SignWithPhoneNumberWidget(
-              phoneNumberSignView: PhoneSignComponentForSignUpScreen(),
-            ),
+            SocialSignComponent(
+              authIcon: FontAwesomeIcons.apple,
+              signEvent: SignWithAppleEvent(),
+            )
+            // const SignWithPhoneNumberWidget(
+            //   phoneNumberSignView: PhoneSignComponentForSignUpScreen(),
+            // ),
           ],
         ));
   }
