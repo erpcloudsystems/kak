@@ -1,13 +1,9 @@
-// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-// import 'request_state.dart';
-// import '../global/global_varibles.dart';
-import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/images_path.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../../core/resources/routes.dart';
+import '../resources/values_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,48 +12,71 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: IntManager.i_6)).whenComplete(() =>
-        // BlocProvider.of<CachingBloc>(context).add(GetCachedApiKeysEvent()),
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false));
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: IntManager.i_3),
+    )..forward();
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.of(context).pushReplacementNamed(Routes.homeScreenKey);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-        // BlocListener<CachingBloc, CachingState>(
-        //   listener: (context, state) {
-        //     if (state.getCachedApiKeysState == RequestState.success) {
-        //       final globalVariables = GlobalVariables();
-        //       globalVariables.setApiSecret = state.apiKeys.apiSecret;
-        //       globalVariables.setApiKey = state.apiKeys.apiKey;
-        //       Navigator.of(context)
-        //           .pushNamedAndRemoveUntil(Routes.homeScreenKey, (route) => false);
-        //     }
-        //     if (state.getCachedApiKeysState == RequestState.error) {
-        //       Navigator.of(context)
-        //           .pushNamedAndRemoveUntil(Routes.loginScreenKey, (route) => false);
-        //     }
-        //   },
-        //   child:
-        Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            ImagesPath.logoPath,
-            width: DoubleManager.d_100.w,
-            height: DoubleManager.d_18.h,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: ScaleTransition(
+          scale: _animationController,
+          child: Image.asset(
+            ImagesPath.splashLogoPath,
+            width: DoubleManager.d_50.w,
+            height: DoubleManager.d_25.h,
           ),
-          const LoadingIndicatorUtil(),
-        ],
+        ),
       ),
-      // ),
     );
   }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 }
+
+/// We refactor this code to handle auth and caching.
+
+// @override
+//   // void initState() {
+//   //   super.initState();
+//   //   Future.delayed(const Duration(seconds: IntManager.i_6)).whenComplete(() =>
+//   //       // BlocProvider.of<CachingBloc>(context).add(GetCachedApiKeysEvent()),
+//   //       Navigator.of(context)
+//   //           .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false));
+//   // }
+
+ // BlocListener<CachingBloc, CachingState>(
+//         //   listener: (context, state) {
+//         //     if (state.getCachedApiKeysState == RequestState.success) {
+//         //       final globalVariables = GlobalVariables();
+//         //       globalVariables.setApiSecret = state.apiKeys.apiSecret;
+//         //       globalVariables.setApiKey = state.apiKeys.apiKey;
+//         //       Navigator.of(context)
+//         //           .pushNamedAndRemoveUntil(Routes.homeScreenKey, (route) => false);
+//         //     }
+//         //     if (state.getCachedApiKeysState == RequestState.error) {
+//         //       Navigator.of(context)
+//         //           .pushNamedAndRemoveUntil(Routes.loginScreenKey, (route) => false);
+//         //     }
+//         //   },
