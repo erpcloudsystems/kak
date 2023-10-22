@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/global/base_use_case.dart';
-import '../../../../../core/utils/request_state.dart';
+import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/user.dart';
 import '../../../domain/usecases/sign_with_google.dart';
 

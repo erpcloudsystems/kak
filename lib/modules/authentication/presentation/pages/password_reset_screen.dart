@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/resources/routes.dart';
-import '../../../../core/utils/request_state.dart';
+import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../core/resources/values_manager.dart';

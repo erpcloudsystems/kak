@@ -9,7 +9,6 @@ import 'core/utils/splash_screen.dart';
 import 'core/global/bloc_observer.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/global/state_management.dart';
-import 'core/resources/colors_manager.dart';
 import 'core/resources/strings_manager.dart';
 import 'core/global/dependencies_container.dart' as di;
 
@@ -36,30 +35,6 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.getApplicationLightTheme(),
           routes: Routes.routes,
           home: const SplashScreen(),
-        ),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'This is a test screen for home',
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(color: ColorsManager.mainColor),
         ),
       ),
     );

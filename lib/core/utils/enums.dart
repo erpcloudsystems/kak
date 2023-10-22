@@ -4,3 +4,8 @@ enum RequestState {
   success,
   error,
 }
+
+enum MealType {
+  regular,
+  spicy,
+}

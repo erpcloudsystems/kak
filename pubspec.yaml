@@ -12,10 +12,13 @@ dependencies:
 
   # Design
   font_awesome_flutter: ^10.6.0
+  smooth_page_indicator: ^1.1.0
+  cached_network_image: ^3.3.0
   loading_indicator: ^3.1.1
   intl_phone_field: ^3.2.0
   cupertino_icons: ^1.0.2
   country_picker: ^2.0.21
+  carousel_slider: ^4.2.1
 
   # State management
   flutter_bloc: ^8.1.3

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
 import '../utils/error_screen.dart';
-import '../../modules/authentication/presentation/pages/password_reset_screen.dart';
-import '../../modules/authentication/presentation/pages/sign_in_screen.dart';
+import '../../modules/meals/presentation/pages/home_page.dart';
 import '../../modules/authentication/presentation/pages/sign_up_screen.dart';
+import '../../modules/authentication/presentation/pages/sign_in_screen.dart';
+import '../../modules/authentication/presentation/pages/password_reset_screen.dart';
 
 class Routes {
     static const String passwordResetScreenKey = '/password_reset';
@@ -16,10 +16,10 @@ class Routes {
   static Map<String, WidgetBuilder> get routes {
     return {
       passwordResetScreenKey: (context) => const PasswordResetScreen(),
-      homeScreenKey: (_) => const MyHomePage(title: 'Kak'),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),
+      homeScreenKey: (_) => const HomePage(),
     };
   }
 }

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import '../../../domain/usecases/delete_user_cached_data_use_case.dart';
 
 import '../../../../../core/global/base_use_case.dart';
-import '../../../../../core/utils/request_state.dart';
+import '../../../../../core/utils/enums.dart';
 import '../../../domain/usecases/cache_user_use_case.dart';
 import '../../../domain/usecases/get_cached_user_use_case.dart';
 

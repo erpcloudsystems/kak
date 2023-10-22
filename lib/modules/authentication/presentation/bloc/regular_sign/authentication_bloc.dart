@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../../core/global/base_use_case.dart';
-import '../../../../../core/utils/request_state.dart';
+import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/user.dart';
 import '../../../domain/usecases/reset_password_use_case.dart';
 import '../../../domain/usecases/sign_in_use_case.dart';

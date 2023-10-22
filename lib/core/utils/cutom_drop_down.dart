@@ -9,13 +9,13 @@ class CustomDropDownFormField extends StatefulWidget {
     super.key,
     required this.selectedValue,
     required this.dropDownList,
-    required this.prefixIcon,
     required this.hint,
+    this.prefixIcon,
   });
 
   final List<String> dropDownList;
   final Function selectedValue;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final String hint;
 
   @override

@@ -15,6 +15,8 @@ class StringsManager {
       'A verification email has been sent to your email address, Please open your inbox and verify your email';
   static const String createdAccountSuccessfully =
       'You have created your account successfully ';
+  static const String clickHereToDetermineYourOrderType =
+      'Click here to determine your order type';
   static const String emptyCacheFailureMessage = 'There is no cached user data';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
@@ -28,6 +30,7 @@ class StringsManager {
   static const String loginToUrAccount = 'Login To Your Account?';
   static const String userCachedEmailKey = 'user cached email';
   static const String forgotPassword = 'Forgot The Password';
+  static const String chooseOrderType = 'Choose order type';
   static const String enterCode = 'Please, Enter the code';
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
@@ -66,6 +69,7 @@ class StringsManager {
   static const String sort = 'Sort';
   static const String save = 'Save';
   static const String okay = 'Okay';
+  static const String menu = 'Menu';
   static const String male = 'Male';
   static const String all = 'All';
   static const String or = 'Or';

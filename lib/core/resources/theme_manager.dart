@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,14 +18,14 @@ abstract class AppTheme {
 
         // AppBar
         appBarTheme: AppBarTheme(
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarBrightness: Brightness.dark,
-          ),
-          backgroundColor: ColorsManager.swatchRed,
           iconTheme: const IconThemeData(color: ColorsManager.mainColor),
+          backgroundColor: ColorsManager.swatchRed,
+          centerTitle: true,
           titleTextStyle: getSemiBoldStyle(
-              fontName: FontsName.headlinesFont, fontSize: FontsSize.s18),
+            fontName: FontsName.headlinesFont,
+            fontSize: FontsSize.s25,
+            color: Colors.white,
+          ),
         ),
 
         // Text Themes
