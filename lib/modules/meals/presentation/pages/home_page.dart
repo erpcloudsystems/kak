@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
-import 'package:kak/core/utils/enums.dart';
-import 'package:kak/modules/meals/domain/entities/meal_entity.dart';
-import 'package:kak/modules/meals/presentation/widgets/offers.dart';
+
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../domain/entities/meal_entity.dart';
+import '../../../../core/utils/enums.dart';
+import '../widgets/offers.dart';
+
+import '../widgets/appetizers_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +17,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text(StringsManager.menu)),
       body: ListView(
         shrinkWrap: true,
-        children: const [Offers(itemList: dummyMealsData)],
+        children: const [
+          Offers(itemList: dummyMealsData),
+          SizedBox(height: DoubleManager.d_60),
+          AppetizersSection(),
+        ],
       ),
     );
   }
