@@ -35,7 +35,9 @@ class DoubleManager {
   static const double d_120 = 120;
   static const double d_130 = 130;
   static const double d_150 = 150;
+  static const double d_170 = 170;
   static const double d_500 = 500;
+  static const double d_700 = 700;
 }
 
 class IntManager {
@@ -47,4 +49,5 @@ class IntManager {
   static const int i_30 = 30;
   static const int i_300 = 300;
   static const int i_500 = 500;
+  static const int i_700 = 700;
 }

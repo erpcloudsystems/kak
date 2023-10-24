@@ -7,6 +7,7 @@ import '../../domain/entities/meal_entity.dart';
 import '../widgets/featured_meals_section.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/utils/custom_scrolling_animated_template.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(StringsManager.menu)),
-      body: const Column(
+      body: const CustomScrollingAnimatedTemplate(
         children: [
           Offers(itemList: dummyMealsData),
           SizedBox(height: DoubleManager.d_60),
@@ -37,7 +38,8 @@ const List<MealEntity> dummyMealsData = [
       description: '',
       mealType: MealType.regular,
       quantity: 1,
-      imageUrl: testImage,
+      imageUrl:
+          'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/fried-chicken-promo-design-template-77d37eb3a58ba753f502774abd21dbae_screen.jpg?ts=1655303745',
       price: 175,
       name: 'Family Meal'),
   MealEntity(
@@ -46,7 +48,8 @@ const List<MealEntity> dummyMealsData = [
       description: '',
       mealType: MealType.regular,
       quantity: 1,
-      imageUrl: testImage,
+      imageUrl:
+          'https://img.pikbest.com/origin/05/92/09/85zpIkbEsTZKx.jpg!w700wp',
       price: 10,
       name: 'test'),
   MealEntity(

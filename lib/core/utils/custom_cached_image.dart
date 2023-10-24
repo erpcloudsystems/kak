@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../resources/images_path.dart';
-import 'loading_indicator_util.dart';
+import '../resources/values_manager.dart';
 
 class CustomCachedImage extends StatelessWidget {
   const CustomCachedImage({
     super.key,
-    required this.url, this.height, this.width,
+    required this.url,
+    this.height,
+    this.width,
   });
 
   final String url;
@@ -20,8 +23,16 @@ class CustomCachedImage extends StatelessWidget {
       height: height,
       width: width,
       fit: BoxFit.cover,
-      progressIndicatorBuilder: (context, url, progress) => const LoadingIndicatorUtil(),
-      errorWidget:(context, url, error) => Image.asset(ImagesPath.logoPath),
+      placeholder: (context, url) => Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Container(
+          height: DoubleManager.d_170,
+          width: DoubleManager.d_120,
+          decoration: const BoxDecoration(color: Colors.white),
+        ),
+      ),
+      errorWidget: (context, url, error) => Image.asset(ImagesPath.logoPath),
     );
   }
 }

@@ -9,16 +9,14 @@ import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_cached_image.dart';
 
 class FeaturedMeals extends StatelessWidget {
-  const FeaturedMeals({
-    super.key,
-    required this.featuredMeals,
-  });
+  const FeaturedMeals({super.key, required this.featuredMeals});
 
   final List<MealEntity> featuredMeals;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 33.h,
       child: ListView.separated(
         shrinkWrap: true,
         itemCount: featuredMeals.length,
@@ -43,11 +41,12 @@ class FeaturedMealsElement extends StatelessWidget {
     return Card(
         elevation: DoubleManager.d_8,
         margin: const EdgeInsets.symmetric(horizontal: DoubleManager.d_10),
-        shape: const ContinuousRectangleBorder(
-            borderRadius:
-                BorderRadius.all(Radius.circular(DoubleManager.d_20))),
-        child: SizedBox(
+        child: Container(
           height: DoubleManager.d_15.h,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(DoubleManager.d_20),
+          ),
           child: Row(
             children: [
               Padding(
