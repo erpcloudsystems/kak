@@ -132,5 +132,5 @@ abstract class AppTheme {
             fontSize: FontsSize.s12,
           ),
         ),
-      );
+      );      
 }

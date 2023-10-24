@@ -16,7 +16,7 @@ class FeaturedMeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 33.h,
+      height: 25.h,
       child: ListView.separated(
         shrinkWrap: true,
         itemCount: featuredMeals.length,

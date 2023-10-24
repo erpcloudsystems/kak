@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacementNamed(Routes.homeScreenKey);
+        Navigator.of(context).pushReplacementNamed(Routes.navigationBarScreenKey);
       }
     });
   }

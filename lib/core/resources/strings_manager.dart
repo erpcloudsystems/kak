@@ -54,6 +54,7 @@ class StringsManager {
   static const String total = 'Total Price';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
+  static const String profile = 'Profile';
   static const String seeAll = 'See all';
   static const String signIn = 'Sign in';
   static const String signUp = 'Sign up';
@@ -69,8 +70,10 @@ class StringsManager {
   static const String sort = 'Sort';
   static const String save = 'Save';
   static const String okay = 'Okay';
+  static const String cart = 'Cart';
   static const String menu = 'Menu';
   static const String male = 'Male';
+  static const String home = 'Home';
   static const String all = 'All';
   static const String or = 'Or';
 }
