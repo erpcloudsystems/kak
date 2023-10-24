@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../domain/entities/meal_entity.dart';
-import '../../../../core/utils/enums.dart';
 import '../widgets/offers.dart';
-
+import '../../../../core/utils/enums.dart';
 import '../widgets/appetizers_section.dart';
+import '../../domain/entities/meal_entity.dart';
+import '../widgets/featured_meals_section.dart';
+import '../../../../core/resources/values_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,12 +15,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(StringsManager.menu)),
-      body: ListView(
-        shrinkWrap: true,
-        children: const [
+      body: const Column(
+        children: [
           Offers(itemList: dummyMealsData),
           SizedBox(height: DoubleManager.d_60),
-          AppetizersSection(),
+          Appetizers(),
+          SizedBox(height: DoubleManager.d_20),
+          FeaturedMeals(featuredMeals: dummyMealsData),
         ],
       ),
     );
@@ -37,8 +38,8 @@ const List<MealEntity> dummyMealsData = [
       mealType: MealType.regular,
       quantity: 1,
       imageUrl: testImage,
-      price: 10,
-      name: 'test'),
+      price: 175,
+      name: 'Family Meal'),
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],

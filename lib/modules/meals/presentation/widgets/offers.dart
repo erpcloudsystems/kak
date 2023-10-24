@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,7 @@ import 'dots_indicator.dart';
 import 'choose_ur_order.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../../core/utils/custom_cached_image.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key, required this.itemList});
@@ -41,30 +40,26 @@ class _OffersState extends State<Offers> {
             //   arguments: item,
             // ),
             child: ShaderMask(
-              shaderCallback: (rect) {
-                return const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black,
-                    Colors.black,
-                    Colors.black,
-                    Colors.black,
-                  ],
-                  stops: [0, 0.3, 0.5, 1],
-                ).createShader(
-                  Rect.fromLTRB(0, 0, rect.width, rect.height),
-                );
-              },
-              blendMode: BlendMode.dstIn,
-              child: CachedNetworkImage(
-                progressIndicatorBuilder: (context, url, progress) =>
-                    const LoadingIndicatorUtil(),
-                imageUrl: widget.itemList[index].imageUrl,
-                fit: BoxFit.fill,
-                width: double.infinity,
-              ),
-            ),
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black,
+                      Colors.black,
+                      Colors.black,
+                      Colors.black,
+                    ],
+                    stops: [0, 0.3, 0.5, 1],
+                  ).createShader(
+                    Rect.fromLTRB(0, 0, rect.width, rect.height),
+                  );
+                },
+                blendMode: BlendMode.dstIn,
+                child: CustomCachedImage(
+                  url: widget.itemList[index].imageUrl,
+                  width: double.infinity,
+                )),
           ),
         ),
         const ChooseYourOrder(),
