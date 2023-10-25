@@ -16,33 +16,13 @@ class CustomNavigationBar extends StatefulWidget {
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   int _selectedIndex = IntManager.i_1;
-  static const List<Widget> _widgetOptions = [
-    CartPage(),
-    HomePage(),
-    ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) => setState(() => _selectedIndex = index);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: StringsManager.cart,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: StringsManager.home,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: StringsManager.profile,
-          ),
-        ],
+        items: navigationBarIcons,
         type: BottomNavigationBarType.shifting,
         currentIndex: _selectedIndex,
         selectedItemColor: ColorsManager.mainColor,
@@ -53,4 +33,27 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       ),
     );
   }
+
+  void _onItemTapped(int index) => setState(() => _selectedIndex = index);
+
+  static const List<Widget> _widgetOptions = [
+    CartPage(),
+    HomePage(),
+    ProfilePage(),
+  ];
+
+  static const List<BottomNavigationBarItem> navigationBarIcons = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_cart),
+      label: StringsManager.cart,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: StringsManager.home,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person),
+      label: StringsManager.profile,
+    ),
+  ];
 }

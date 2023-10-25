@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/resources/fonts_manager.dart';
-import '../../../../core/resources/images_path.dart';
+import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/resources/values_manager.dart';

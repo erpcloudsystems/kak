@@ -1,62 +1,14 @@
+import 'dart:async';
+
+import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter/services.dart';
 
-import '../../../../core/resources/images_path.dart';
-import '../../../../core/resources/routes.dart';
+import '../resources/assetss_path.dart';
 import '../resources/values_manager.dart';
-
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: IntManager.i_3),
-    )..forward();
-
-    _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacementNamed(Routes.navigationBarScreenKey);
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: ScaleTransition(
-          scale: _animationController,
-          child: Image.asset(
-            ImagesPath.splashLogoPath,
-            width: DoubleManager.d_50.w,
-            height: DoubleManager.d_25.h,
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-}
+import '../../../../core/resources/routes.dart';
 
 /// We refactor this code to handle auth and caching.
-
 // @override
 //   // void initState() {
 //   //   super.initState();
@@ -66,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
 //   //           .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false));
 //   // }
 
- // BlocListener<CachingBloc, CachingState>(
+// BlocListener<CachingBloc, CachingState>(
 //         //   listener: (context, state) {
 //         //     if (state.getCachedApiKeysState == RequestState.success) {
 //         //       final globalVariables = GlobalVariables();
@@ -80,3 +32,66 @@ class _SplashScreenState extends State<SplashScreen>
 //         //           .pushNamedAndRemoveUntil(Routes.loginScreenKey, (route) => false);
 //         //     }
 //         //   },
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  late VideoPlayerController _controller;
+  bool _visible = false;
+
+  void _initializeVideoController() async {
+    _controller = VideoPlayerController.asset(VideosPaths.splashPath);
+    await _controller.initialize();
+    _controller.setLooping(false);
+
+    Timer(
+        const Duration(milliseconds: IntManager.i_200),
+        () => setState(() {
+              _controller.play();
+              _visible = true;
+            }));
+  }
+
+  void _navigateToHomeScreen() =>
+      Navigator.of(context).pushReplacementNamed(Routes.navigationBarScreenKey);
+
+  void _whenVideoIntroEnd() {
+    if (_controller.value.position >= _controller.value.duration) {
+      _navigateToHomeScreen();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    _initializeVideoController();
+    _controller.addListener(_whenVideoIntroEnd);
+  }
+
+  Widget _buildVideoPlayer() => AnimatedOpacity(
+        opacity: _visible ? 1.0 : 0.0,
+        duration: const Duration(milliseconds: 1000),
+        child: VideoPlayer(_controller),
+      );
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        body: Center(
+          child: Stack(
+            children: [_buildVideoPlayer()],
+          ),
+        ),
+      );
+}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/resources/images_path.dart';
+import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/utils/top_screen_back_arrow.dart';
 import 'package:sizer/sizer.dart';
 

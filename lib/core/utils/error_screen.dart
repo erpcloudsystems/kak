@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../resources/images_path.dart';
+import '../resources/assetss_path.dart';
 import '../resources/values_manager.dart';
 
 class ErrorScreen extends StatelessWidget {
