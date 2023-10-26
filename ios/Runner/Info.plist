@@ -22,6 +22,8 @@
 		<string>????</string>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Kas needs access to your photo library to allow you to select and upload photos for your profile photo.</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>UILaunchStoryboardName</key>
