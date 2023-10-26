@@ -22,6 +22,7 @@ class FontsSize {
   static double s12 = DoubleManager.d_12.sp;
   static double s13 = DoubleManager.d_13.sp;
   static double s14 = DoubleManager.d_14.sp;
+  static double s15 = DoubleManager.d_15.sp;
   static double s16 = DoubleManager.d_16.sp;
   static double s18 = DoubleManager.d_18.sp;
   static double s20 = DoubleManager.d_20.sp;

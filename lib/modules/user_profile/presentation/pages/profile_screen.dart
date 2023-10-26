@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/options_list.dart';
 import '../widgets/photo_widget.dart';
 import '../widgets/user_name_section.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -15,6 +16,7 @@ class ProfilePage extends StatelessWidget {
       body: const CustomScrollingAnimatedTemplate(children: [
         UserPhotoWidget(),
         UserNameSection(),
+        OptionsList(),
       ]),
     );
   }

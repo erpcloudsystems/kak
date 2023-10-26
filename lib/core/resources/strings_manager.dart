@@ -35,6 +35,7 @@ class StringsManager {
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
   static const String letsDiveInText = 'Let\'s dive in';
+  static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
   static const String continueWith = 'Continue with';
   static const String apiKeyCachingKey = 'API-KEY';
@@ -48,7 +49,10 @@ class StringsManager {
   static const String categories = 'Categories';
   static const String firstName = 'First Name';
   static const String birthDate = 'Birth Date';
+  static const String myAccount = 'My Account';
+  static const String myAddress = 'My Address';
   static const String territory = 'Territory';
+  static const String myOrders = 'My Orders';
   static const String lastName = 'Last Name';
   static const String allItems = 'All Items';
   static const String userName = 'User Name';
@@ -59,6 +63,7 @@ class StringsManager {
   static const String seeAll = 'See all';
   static const String signIn = 'Sign in';
   static const String signUp = 'Sign up';
+  static const String logout = 'Logout';
   static const String filter = 'Filter';
   static const String gender = 'Gender';
   static const String female = 'Female';
