@@ -38,6 +38,7 @@ class StringsManager {
   static const String create = 'Create Your Account';
   static const String continueWith = 'Continue with';
   static const String apiKeyCachingKey = 'API-KEY';
+  static const String createOrder = 'Create Order';
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String rememberMe = 'Remember me';

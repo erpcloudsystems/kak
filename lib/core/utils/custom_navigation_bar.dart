@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../resources/strings_manager.dart';
-import '../../modules/test_screens/cart_screen.dart';
 import '../../modules/test_screens/profile_screen.dart';
+import '../../modules/Cart/presentation/pages/cart.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
 
 class CustomNavigationBar extends StatefulWidget {
@@ -37,7 +37,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
 
   static const List<Widget> _widgetOptions = [
-    CartPage(),
+    CartScreen(),
     HomePage(),
     ProfilePage(),
   ];
