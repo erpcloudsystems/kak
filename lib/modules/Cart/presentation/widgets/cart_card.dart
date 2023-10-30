@@ -10,6 +10,7 @@ class CartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         elevation: DoubleManager.d_5,
+        clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.symmetric(
             horizontal: DoubleManager.d_30, vertical: DoubleManager.d_10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

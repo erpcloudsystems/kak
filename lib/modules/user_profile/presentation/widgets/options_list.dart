@@ -37,6 +37,7 @@ class ProfileListElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      tileColor: Colors.transparent,
       leading: Icon(icon, size: DoubleManager.d_30),
       title: Padding(
         padding: const EdgeInsets.only(left: DoubleManager.d_8),

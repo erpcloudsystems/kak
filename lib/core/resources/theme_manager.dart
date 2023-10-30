@@ -115,7 +115,6 @@ abstract class AppTheme {
             ),
           ),
         ),
-
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
               textStyle: getBoldStyle(
@@ -132,5 +131,11 @@ abstract class AppTheme {
             fontSize: FontsSize.s12,
           ),
         ),
-      );      
+
+        // Cards
+        cardColor: Colors.white,
+
+        // List tile
+        listTileTheme: const ListTileThemeData(tileColor: Colors.white),
+      );
 }

@@ -33,6 +33,7 @@ class CartList extends StatelessWidget {
                   itemBuilder: (context, index) => CartCard(
                     key: ValueKey(cartItems[index].productId),
                     child: ListTile(
+                      tileColor: Colors.white,
                       contentPadding: const EdgeInsets.all(DoubleManager.d_8),
                       leading: CartListTileImage(
                           imageUrl: cartItems[index].productImage),
