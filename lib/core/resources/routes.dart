@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/custom_navigation_bar.dart';
 
 import '../utils/error_screen.dart';
+import '../utils/custom_navigation_bar.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
+import '../../modules/meals/presentation/pages/meal_content_page.dart';
 import '../../modules/authentication/presentation/pages/sign_up_screen.dart';
 import '../../modules/authentication/presentation/pages/sign_in_screen.dart';
 import '../../modules/authentication/presentation/pages/password_reset_screen.dart';
@@ -10,6 +11,7 @@ import '../../modules/authentication/presentation/pages/password_reset_screen.da
 class Routes {
   static const String passwordResetScreenKey = '/password_reset';
   static const String navigationBarScreenKey = '/navigation-bar';
+  static const String mealContentsScreenKey = '/meal-contents';
   static const String signUpScreenKey = '/sign-up';
   static const String signInScreenKey = '/sign-in';
   static const String errorScreenKey = '/error';
@@ -19,6 +21,7 @@ class Routes {
     return {
       passwordResetScreenKey: (context) => const PasswordResetScreen(),
       navigationBarScreenKey: (_) => const CustomNavigationBar(),
+      mealContentsScreenKey: (_) =>  MealsContentsScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),

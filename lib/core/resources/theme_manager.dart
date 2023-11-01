@@ -31,7 +31,7 @@ abstract class AppTheme {
         // Text Themes
         textTheme: TextTheme(
           // Details text
-          bodyLarge: getRegularStyle(
+          bodyLarge: getBoldStyle(
               fontName: FontsName.detailsFont, fontSize: FontsSize.s16),
           bodyMedium: getMediumStyle(
               fontName: FontsName.detailsFont, fontSize: FontsSize.s14),

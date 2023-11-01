@@ -6,6 +6,7 @@ import 'choose_ur_order.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/custom_cached_image.dart';
+import 'upper_screen_meal_image.dart';
 
 class Offers extends StatefulWidget {
   const Offers({super.key, required this.itemList});
@@ -39,27 +40,8 @@ class _OffersState extends State<Offers> {
             //   Routes.productDetails,
             //   arguments: item,
             // ),
-            child: ShaderMask(
-                shaderCallback: (rect) {
-                  return const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black,
-                      Colors.black,
-                      Colors.black,
-                      Colors.black,
-                    ],
-                    stops: [0, 0.3, 0.5, 1],
-                  ).createShader(
-                    Rect.fromLTRB(0, 0, rect.width, rect.height),
-                  );
-                },
-                blendMode: BlendMode.dstIn,
-                child: CustomCachedImage(
-                  url: widget.itemList[index].imageUrl,
-                  width: double.infinity,
-                )),
+            child:
+                UpperScreenMealImage(imageUrl: widget.itemList[index].imageUrl),
           ),
         ),
         const ChooseYourOrder(),
@@ -71,7 +53,6 @@ class _OffersState extends State<Offers> {
     );
   }
 }
-
 
 // TODO: complete late.
 // class ChooseYourMealDropDownFormField extends StatefulWidget {
