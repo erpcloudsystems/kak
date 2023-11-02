@@ -10,23 +10,20 @@ class CustomScrollingAnimatedTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverFillRemaining(
-          child: AnimationLimiter(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: AnimationConfiguration.toStaggeredList(
-                  duration: const Duration(milliseconds: IntManager.i_700),
-                  childAnimationBuilder: (widget) => SlideAnimation(
-                        horizontalOffset: DoubleManager.d_25,
-                        child: FadeInAnimation(child: widget),
-                      ),
-                  children: children),
+    return SingleChildScrollView(
+      child: AnimationLimiter(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(milliseconds: IntManager.i_700),
+            childAnimationBuilder: (widget) => SlideAnimation(
+              horizontalOffset: DoubleManager.d_25,
+              child: FadeInAnimation(child: widget),
             ),
+            children: children,
           ),
         ),
-      ],
+      ),
     );
   }
 }

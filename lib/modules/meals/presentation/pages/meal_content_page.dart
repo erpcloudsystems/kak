@@ -5,9 +5,9 @@ import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../widgets/custom_meals/choices_section.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../widgets/custom_meals/custom_bottom_button.dart';
 import '../widgets/custom_meals/meal_custom_app_bar.dart';
 import '../widgets/custom_meals/description_section.dart';
+import '../widgets/custom_meals/custom_bottom_button.dart';
 
 const List<String> additionalList = ['Coleslaw', 'Rizo', 'Bread'];
 const List<String> drinksList = ['Pepsi', 'Cokacola', '7 UP'];

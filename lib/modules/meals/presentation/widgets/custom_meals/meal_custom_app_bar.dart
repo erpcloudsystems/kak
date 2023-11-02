@@ -22,8 +22,9 @@ class MealsCustomSliverAppBar extends StatelessWidget {
       pinned: true,
       floating: false,
       centerTitle: false,
-      leading:
-          isScrolledTo25Percent ? const BackButton() : const SizedBox.shrink(),
+      leading: isScrolledTo25Percent
+          ? const BackButton(color: Colors.black)
+          : const SizedBox.shrink(),
       expandedHeight: DoubleManager.d_25.h,
       backgroundColor: Colors.white,
       shadowColor: Colors.grey,

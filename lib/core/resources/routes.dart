@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kak/modules/user_profile/presentation/pages/my_orders_screen.dart';
 
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
@@ -12,6 +13,7 @@ class Routes {
   static const String passwordResetScreenKey = '/password_reset';
   static const String navigationBarScreenKey = '/navigation-bar';
   static const String mealContentsScreenKey = '/meal-contents';
+  static const String myOrdersScreenKey = '/my-orders';
   static const String signUpScreenKey = '/sign-up';
   static const String signInScreenKey = '/sign-in';
   static const String errorScreenKey = '/error';
@@ -21,7 +23,8 @@ class Routes {
     return {
       passwordResetScreenKey: (context) => const PasswordResetScreen(),
       navigationBarScreenKey: (_) => const CustomNavigationBar(),
-      mealContentsScreenKey: (_) =>  MealsContentsScreen(),
+      mealContentsScreenKey: (_) => const MealsContentsScreen(),
+      myOrdersScreenKey:(_) => const MyOrdersScreen(), 
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),

@@ -18,7 +18,7 @@ abstract class AppTheme {
 
         // AppBar
         appBarTheme: AppBarTheme(
-          iconTheme: const IconThemeData(color: ColorsManager.mainColor),
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: ColorsManager.swatchRed,
           centerTitle: true,
           titleTextStyle: getSemiBoldStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/routes.dart';
 import 'package:kak/core/resources/strings_manager.dart';
 
 import '../../../../core/resources/fonts_manager.dart';
@@ -26,13 +27,14 @@ class OptionsList extends StatelessWidget {
 
 class ProfileListElement extends StatelessWidget {
   const ProfileListElement({
+    required this.routeName,
     required this.icon,
     required this.text,
     super.key,
   });
 
   final IconData icon;
-  final String text;
+  final String text, routeName;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ProfileListElement extends StatelessWidget {
           .textTheme
           .bodyMedium!
           .copyWith(fontSize: FontsSize.s15),
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(routeName),
     );
   }
 }
@@ -57,21 +59,26 @@ const List<ProfileListElement> profileList = [
   ProfileListElement(
     icon: Icons.person_2_outlined,
     text: StringsManager.myAccount,
+    routeName: Routes.myOrdersScreenKey,
   ),
   ProfileListElement(
     icon: Icons.shopping_bag_outlined,
     text: StringsManager.myOrders,
+    routeName: Routes.myOrdersScreenKey,
   ),
   ProfileListElement(
     icon: Icons.home_outlined,
     text: StringsManager.myAddress,
+    routeName: Routes.myOrdersScreenKey,
   ),
   ProfileListElement(
     icon: Icons.payment_outlined,
     text: StringsManager.paymentMethod,
+    routeName: Routes.myOrdersScreenKey,
   ),
   ProfileListElement(
     icon: Icons.logout,
     text: StringsManager.logout,
+    routeName: Routes.myOrdersScreenKey,
   ),
 ];

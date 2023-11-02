@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:kak/core/resources/routes.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/colors_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_cached_image.dart';
+import '../../../../core/resources/strings_manager.dart';
 
 class FeaturedMeals extends StatelessWidget {
   const FeaturedMeals({super.key, required this.featuredMeals});
@@ -16,16 +16,14 @@ class FeaturedMeals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 25.h,
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemCount: featuredMeals.length,
-        separatorBuilder: (context, index) =>
-            const SizedBox(height: DoubleManager.d_20),
-        itemBuilder: (context, index) =>
-            FeaturedMealsElement(meal: featuredMeals[index]),
-      ),
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: featuredMeals.length,
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: DoubleManager.d_20),
+      itemBuilder: (context, index) =>
+          FeaturedMealsElement(meal: featuredMeals[index]),
     );
   }
 }
