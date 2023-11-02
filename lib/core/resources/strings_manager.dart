@@ -34,6 +34,7 @@ class StringsManager {
   static const String enterCode = 'Please, Enter the code';
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
+  static const String previousOrders = 'Previous orders';
   static const String letsDiveInText = 'Let\'s dive in';
   static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
@@ -59,6 +60,7 @@ class StringsManager {
   static const String total = 'Total Price';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
+  static const String reorder = 'Reorder';
   static const String profile = 'Profile';
   static const String seeAll = 'See all';
   static const String signIn = 'Sign in';

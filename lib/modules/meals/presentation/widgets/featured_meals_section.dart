@@ -10,20 +10,27 @@ import '../../../../core/utils/custom_cached_image.dart';
 import '../../../../core/resources/strings_manager.dart';
 
 class FeaturedMeals extends StatelessWidget {
-  const FeaturedMeals({super.key, required this.featuredMeals});
+  const FeaturedMeals({
+    super.key,
+    required this.featuredMeals,
+    this.isHome = true,
+  });
 
   final List<MealEntity> featuredMeals;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: isHome
+          ? const NeverScrollableScrollPhysics()
+          : const BouncingScrollPhysics(),
       itemCount: featuredMeals.length,
       separatorBuilder: (context, index) =>
           const SizedBox(height: DoubleManager.d_20),
       itemBuilder: (context, index) =>
-          FeaturedMealsElement(meal: featuredMeals[index]),
+          FeaturedMealsElement(meal: featuredMeals[index], isHome: isHome),
     );
   }
 }
@@ -32,9 +39,11 @@ class FeaturedMealsElement extends StatelessWidget {
   const FeaturedMealsElement({
     super.key,
     required this.meal,
+    required this.isHome,
   });
 
   final MealEntity meal;
+  final bool isHome;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -60,12 +69,30 @@ class FeaturedMealsElement extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(meal.name),
+                      Flexible(
+                        fit: FlexFit.loose,
+                        child: SizedBox(
+                          width: DoubleManager.d_200,
+                          child: Text(
+                            overflow: TextOverflow.visible,
+                            softWrap: true,
+                            maxLines: 2,
+                            textAlign: TextAlign.right,
+                            meal.description,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(fontSize: FontsSize.s10),
+                          ),
+                        ),
+                      ),
                       const Spacer(),
                       Flexible(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 2),
                               height: DoubleManager.d_30,
                               width: DoubleManager.d_130,
                               child: ElevatedButton(
@@ -77,7 +104,10 @@ class FeaturedMealsElement extends StatelessWidget {
                                                 DoubleManager.d_20)))),
                                 // TODO: Implement add to cart logic
                                 onPressed: () {},
-                                child: Text(StringsManager.addToCart,
+                                child: Text(
+                                    isHome
+                                        ? StringsManager.addToCart
+                                        : StringsManager.reorder,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineMedium!

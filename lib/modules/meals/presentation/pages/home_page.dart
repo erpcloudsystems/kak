@@ -35,7 +35,8 @@ const List<MealEntity> dummyMealsData = [
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],
-      description: '',
+      description:
+          '1 chicken sandwich + 1 single beef + burger or 1 single chicken burger + 1 Drink + medium fries',
       mealType: MealType.regular,
       quantity: 1,
       imageUrl:
@@ -45,7 +46,8 @@ const List<MealEntity> dummyMealsData = [
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],
-      description: '',
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
       mealType: MealType.regular,
       quantity: 1,
       imageUrl:
@@ -55,7 +57,8 @@ const List<MealEntity> dummyMealsData = [
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],
-      description: '',
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
       mealType: MealType.regular,
       quantity: 1,
       imageUrl: testImage,
@@ -64,7 +67,8 @@ const List<MealEntity> dummyMealsData = [
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],
-      description: '',
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
       mealType: MealType.regular,
       quantity: 1,
       imageUrl: testImage,
@@ -73,7 +77,28 @@ const List<MealEntity> dummyMealsData = [
   MealEntity(
       priceAfterDiscount: 20,
       additionalItems: [],
-      description: '',
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
+      mealType: MealType.regular,
+      quantity: 1,
+      imageUrl: testImage,
+      price: 10,
+      name: 'test'),
+  MealEntity(
+      priceAfterDiscount: 20,
+      additionalItems: [],
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
+      mealType: MealType.regular,
+      quantity: 1,
+      imageUrl: testImage,
+      price: 10,
+      name: 'test'),
+  MealEntity(
+      priceAfterDiscount: 20,
+      additionalItems: [],
+      description:
+          '1 chicken sandwich + 1 single beef + 1 single chicken burger + 1 Drink + medium fries',
       mealType: MealType.regular,
       quantity: 1,
       imageUrl: testImage,
