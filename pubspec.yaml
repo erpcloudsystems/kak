@@ -39,11 +39,12 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   dio: ^5.3.2
 
-  # Firebase
+  # Google
   google_maps_flutter: ^2.5.0
   firebase_core: ^2.17.0
   firebase_auth: ^4.10.1
   google_sign_in: ^6.1.5
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:

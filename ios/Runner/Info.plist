@@ -32,6 +32,8 @@
 		<string>Main</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>Kak needs location permission to choose delivery point</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Kak needs access to location when in the background to track your orders.</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
