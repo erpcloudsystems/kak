@@ -8,3 +8,11 @@ abstract class AddressEvent extends Equatable {
 }
 
 class GetCurrentLocationEvent extends AddressEvent {}
+
+class GetAddressEvent extends AddressEvent {
+  final LatLng coordinates;
+  const GetAddressEvent({required this.coordinates});
+
+  @override
+  List<Object> get props => [coordinates];
+}

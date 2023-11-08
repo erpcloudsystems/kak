@@ -4,13 +4,16 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
+import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
 
 class AddressRepoImpl implements AddressBaseRepo {
   final AddressBaseDataSource addressBaseDataSource;
-  AddressRepoImpl(this.addressBaseDataSource);
+  final BaseNetworkInfo networkInfo;
+  AddressRepoImpl(this.addressBaseDataSource, this.networkInfo);
 
+// _______________________ Current Location _________________________
   @override
   Future<Either<Failure, LatLng>> getCurrentLocation() async {
     LocationPermission permission;
@@ -39,6 +42,18 @@ class AddressRepoImpl implements AddressBaseRepo {
       return Right(currentLocation);
     } on PermissionDeniedException catch (error) {
       return Left(PermissionFailure(errorMessage: error.toString()));
+    }
+  }
+
+// _______________________ Current Address __________________________
+  @override
+  Future<Either<Failure, String>> getAddress(LatLng coordinates) async {
+    if (await networkInfo.isConnected) {
+      final address = await addressBaseDataSource.getAddress(coordinates);
+      return Right(address);
+    } else {
+      return const Left(
+          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
     }
   }
 }

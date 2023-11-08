@@ -27,6 +27,7 @@ class _AddressScreenState extends State<AddressScreen> {
     return SafeArea(
       child: Scaffold(
         body: BlocConsumer<AddressBloc, AddressState>(
+          listenWhen: (previous, current) => current.getCurrentLocationState != previous.getCurrentLocationState,
           listener: (context, state) {
             if (state.getCurrentLocationState == RequestState.error) {
               showDialog(
@@ -41,8 +42,12 @@ class _AddressScreenState extends State<AddressScreen> {
                 state.currentLocationCoordinates.latitude,
                 state.currentLocationCoordinates.longitude,
               );
+
+              BlocProvider.of<AddressBloc>(context)
+                  .add(GetAddressEvent(coordinates: userLocation));
             }
           },
+          buildWhen: (previous, current) => current.getCurrentLocationState != previous.getCurrentLocationState,
           builder: (context, state) {
             switch (state.getCurrentLocationState) {
               case RequestState.error:
@@ -63,6 +68,14 @@ class _AddressScreenState extends State<AddressScreen> {
                     onMapCreated: _onMapCreated,
                     onCameraMove: _onCameraMove,
                     onTap: (argument) => addMarker(argument),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      color: Colors.white,
+                      child: Text(
+                          context.watch<AddressBloc>().state.getAddressMessage),
+                    ),
                   ),
                 ]);
             }
@@ -119,6 +132,8 @@ class _AddressScreenState extends State<AddressScreen> {
       infoWindow: InfoWindow(title: location.longitude.toString()),
     );
     _markers.add(marker);
+        BlocProvider.of<AddressBloc>(context)
+                  .add(GetAddressEvent(coordinates: location));
     setState(() {});
   }
 

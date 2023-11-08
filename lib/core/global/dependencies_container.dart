@@ -7,6 +7,7 @@ import '../network/dio_helper.dart';
 import '../network/network_info.dart';
 import '../../modules/Address/presentation/bloc/address_bloc.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';
+import '../../modules/Address/domain/usecases/get_address_use_case.dart';
 import '../../modules/Address/data/datasources/address_data_source.dart';
 import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
@@ -25,7 +26,7 @@ Future<void> init() async {
   sl.registerFactory(() => SocialSignBloc(sl()));
 
   // Address
-  sl.registerFactory(() => AddressBloc(sl()));
+  sl.registerFactory(() => AddressBloc(sl(), sl()));
 
   // Caching
   // sl.registerFactory(() => CachingBloc(sl(),sl(), sl()));
@@ -45,6 +46,7 @@ Future<void> init() async {
 
   // Address 
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
+  sl.registerLazySingleton(() => GetAddressUseCase(sl()));
 
   // Repositories __________________________________________________________
   // Authentication
@@ -56,7 +58,7 @@ Future<void> init() async {
   // sl.registerLazySingleton<CacheUserDataBaseRepo>(() => CachingApiKeysRepoImpl(sl()));
 
   // Address
-  sl.registerLazySingleton<AddressBaseRepo>(() => AddressRepoImpl(sl()));
+  sl.registerLazySingleton<AddressBaseRepo>(() => AddressRepoImpl(sl(), sl()));
 
   // Data sources __________________________________________________________
   // Authentication
