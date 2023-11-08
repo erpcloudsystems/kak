@@ -32,3 +32,9 @@ class UnknownCachingFailure extends Failure {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class PermissionFailure extends Failure {
+  const PermissionFailure({required super.errorMessage});
+  @override
+  List<Object> get props => [errorMessage];
+}

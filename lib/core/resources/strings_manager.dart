@@ -17,9 +17,12 @@ class StringsManager {
       'You have created your account successfully ';
   static const String clickHereToDetermineYourOrderType =
       'Click here to determine your order type';
+  static const String accessLocation =
+      'Kak needs to access your location to help find your address';
   static const String emptyCacheFailureMessage = 'There is no cached user data';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
+  static const String enableLocation = 'Please open your location service';
   static const String emailValidateMessage = 'please enter your E-mail';
   static const String alreadyHaveAnAccount = 'Already have an account?';
   static const String emptyValidator = 'This field must have a value';

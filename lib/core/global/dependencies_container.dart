@@ -5,10 +5,15 @@ import 'package:get_it/get_it.dart';
 
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
+import '../../modules/Address/presentation/bloc/address_bloc.dart';
+import '../../modules/Address/data/repositories/address_repo_impl.dart';
+import '../../modules/Address/data/datasources/address_data_source.dart';
+import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
+import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
 import '../../modules/authentication/data/repositories/social_sign_repository.dart';
-import '../../modules/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import '../../modules/authentication/domain/repositories/base_social_sign_repository.dart';
+import '../../modules/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import '../../modules/authentication/data/datasources/base_authentication_remote_data_source.dart';
 
 final sl = GetIt.instance;
@@ -18,6 +23,9 @@ Future<void> init() async {
   // Authentication
   // sl.registerFactory(() => AuthenticationBloc(sl(),sl(), sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl()));
+
+  // Address
+  sl.registerFactory(() => AddressBloc(sl()));
 
   // Caching
   // sl.registerFactory(() => CachingBloc(sl(),sl(), sl()));
@@ -35,6 +43,9 @@ Future<void> init() async {
   //  sl.registerLazySingleton(() => GetCachedApiKeysUseCase(sl()));
   //  sl.registerLazySingleton(() => CacheApiKeysUseCase(sl()));
 
+  // Address 
+  sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
+
   // Repositories __________________________________________________________
   // Authentication
   sl.registerLazySingleton<BaseSocialSignRepository>(
@@ -43,6 +54,9 @@ Future<void> init() async {
 
   // Caching
   // sl.registerLazySingleton<CacheUserDataBaseRepo>(() => CachingApiKeysRepoImpl(sl()));
+
+  // Address
+  sl.registerLazySingleton<AddressBaseRepo>(() => AddressRepoImpl(sl()));
 
   // Data sources __________________________________________________________
   // Authentication
@@ -53,11 +67,14 @@ Future<void> init() async {
   // Caching
   // sl.registerLazySingleton<CachingBaseDataSource>(() =>CachingDataSourceImplByShaPref());
 
+  // Address
+  sl.registerLazySingleton<AddressBaseDataSource>(() => AddressDataSourceImpl());
+
   // External ______________________________________________________________
   final sharedPref = await SharedPreferences.getInstance();
 
-  sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
   sl.registerLazySingleton(() => FirebaseAuth);
+  sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
   sl.registerLazySingleton<BaseNetworkInfo>(() => NetworkInfo(sl()));
