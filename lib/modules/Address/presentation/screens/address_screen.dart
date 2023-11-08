@@ -1,10 +1,11 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kak/core/utils/enums.dart';
-import 'package:kak/modules/Address/presentation/bloc/address_bloc.dart';
 
+import '../bloc/address_bloc.dart';
+import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/error_dialog.dart';
+import '../widgets/address_and_button_section.dart';
 
 class AddressScreen extends StatefulWidget {
   const AddressScreen({super.key});
@@ -27,7 +28,9 @@ class _AddressScreenState extends State<AddressScreen> {
     return SafeArea(
       child: Scaffold(
         body: BlocConsumer<AddressBloc, AddressState>(
-          listenWhen: (previous, current) => current.getCurrentLocationState != previous.getCurrentLocationState,
+          listenWhen: (previous, current) =>
+              current.getCurrentLocationState !=
+              previous.getCurrentLocationState,
           listener: (context, state) {
             if (state.getCurrentLocationState == RequestState.error) {
               showDialog(
@@ -47,7 +50,9 @@ class _AddressScreenState extends State<AddressScreen> {
                   .add(GetAddressEvent(coordinates: userLocation));
             }
           },
-          buildWhen: (previous, current) => current.getCurrentLocationState != previous.getCurrentLocationState,
+          buildWhen: (previous, current) =>
+              current.getCurrentLocationState !=
+              previous.getCurrentLocationState,
           builder: (context, state) {
             switch (state.getCurrentLocationState) {
               case RequestState.error:
@@ -69,13 +74,9 @@ class _AddressScreenState extends State<AddressScreen> {
                     onCameraMove: _onCameraMove,
                     onTap: (argument) => addMarker(argument),
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.bottomCenter,
-                    child: Container(
-                      color: Colors.white,
-                      child: Text(
-                          context.watch<AddressBloc>().state.getAddressMessage),
-                    ),
+                    child: AddressAndButtonSection(),
                   ),
                 ]);
             }
@@ -132,8 +133,8 @@ class _AddressScreenState extends State<AddressScreen> {
       infoWindow: InfoWindow(title: location.longitude.toString()),
     );
     _markers.add(marker);
-        BlocProvider.of<AddressBloc>(context)
-                  .add(GetAddressEvent(coordinates: location));
+    BlocProvider.of<AddressBloc>(context)
+        .add(GetAddressEvent(coordinates: location));
     setState(() {});
   }
 

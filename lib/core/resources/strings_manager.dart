@@ -32,6 +32,7 @@ class StringsManager {
   static const String selectUrTerritory = 'Select your territory';
   static const String loginToUrAccount = 'Login To Your Account?';
   static const String userCachedEmailKey = 'user cached email';
+  static const String deliveryLocation = 'Delivery location';
   static const String forgotPassword = 'Forgot The Password';
   static const String chooseOrderType = 'Choose order type';
   static const String enterCode = 'Please, Enter the code';
@@ -42,6 +43,7 @@ class StringsManager {
   static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
   static const String continueWith = 'Continue with';
+  static const String deliverHere = 'Deliver here';
   static const String apiKeyCachingKey = 'API-KEY';
   static const String createOrder = 'Create Order';
   static const String description = 'Description';
