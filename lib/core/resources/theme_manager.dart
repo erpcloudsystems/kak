@@ -124,7 +124,6 @@ abstract class AppTheme {
         ),
 
         // Dialogs
-        dialogBackgroundColor: ColorsManager.mainColor,
         dialogTheme: DialogTheme(
           titleTextStyle: getRegularStyle(
             fontName: FontsName.detailsFont,

@@ -8,7 +8,11 @@ class SnackBarUtil {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(message,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Colors.white)),
         backgroundColor: color,
       ),
     );

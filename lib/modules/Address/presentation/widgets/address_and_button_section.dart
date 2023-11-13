@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../bloc/address_bloc.dart';
 import '../../../../core/utils/enums.dart';
@@ -16,7 +17,7 @@ class AddressAndButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
+        height: DoubleManager.d_30.h,
         color: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: 10,

@@ -26,6 +26,7 @@ class StringsManager {
   static const String emailValidateMessage = 'please enter your E-mail';
   static const String alreadyHaveAnAccount = 'Already have an account?';
   static const String emptyValidator = 'This field must have a value';
+  static const String unKnownErrorOccurred = 'Unknown Error Occurred';
   static const String authenticationDividerText = 'or continue with';
   static const String dontHaveAnAccount = 'Don\'t have an account?';
   static const String signInWithPassword = 'Sign in with password';
@@ -75,6 +76,7 @@ class StringsManager {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String google = 'Google';
+  static const String search = 'search';
   static const String enter = 'Enter';
   static const String email = 'Email';
   static const String appName = 'Kak';

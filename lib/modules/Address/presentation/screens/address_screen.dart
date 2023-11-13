@@ -1,12 +1,15 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
+import '../../../../core/resources/values_manager.dart';
 import '../bloc/address_bloc.dart';
+import '../widgets/search_button.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../widgets/address_and_button_section.dart';
 
+const double cameraZoom = DoubleManager.d_18;
 class AddressScreen extends StatefulWidget {
   const AddressScreen({super.key});
 
@@ -17,11 +20,11 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen> {
   late LatLng userLocation;
   final Set<Marker> _markers = {};
-  late GoogleMapController _controller;
+  GoogleMapController? _controller;
   LatLng _currentMapPosition = const LatLng(0, 0);
 
   static const _kInitialPosition =
-      CameraPosition(target: LatLng(0, 0), zoom: 17, tilt: 0, bearing: 0);
+      CameraPosition(target: LatLng(0, 0), zoom: cameraZoom, tilt: 0, bearing: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +81,10 @@ class _AddressScreenState extends State<AddressScreen> {
                     alignment: Alignment.bottomCenter,
                     child: AddressAndButtonSection(),
                   ),
+                  MapSearchButton(
+                    addMarker: addMarker,
+                    controller: _controller,
+                  ),
                 ]);
             }
           },
@@ -113,7 +120,7 @@ class _AddressScreenState extends State<AddressScreen> {
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
     addMarker(_currentMapPosition);
-    _controller.animateCamera(CameraUpdate.newLatLngZoom(userLocation, 15.0));
+    _controller!.animateCamera(CameraUpdate.newLatLngZoom(userLocation, cameraZoom));
 
     addMarker(userLocation);
   }
