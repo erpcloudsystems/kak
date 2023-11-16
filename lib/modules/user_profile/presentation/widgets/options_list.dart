@@ -74,7 +74,7 @@ const List<ProfileListElement> profileList = [
   ProfileListElement(
     icon: Icons.payment_outlined,
     text: StringsManager.paymentMethod,
-    routeName: Routes.myOrdersScreenKey,
+    routeName: Routes.paymentScreenKey,
   ),
   ProfileListElement(
     icon: Icons.logout,

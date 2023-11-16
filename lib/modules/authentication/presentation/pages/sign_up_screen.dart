@@ -77,6 +77,9 @@ class SignUpScreen extends StatelessWidget {
       user: UserEntity(
         email: email,
         password: password,
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
       ),
     );
   }

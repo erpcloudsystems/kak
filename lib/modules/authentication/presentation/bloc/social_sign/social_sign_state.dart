@@ -2,9 +2,9 @@ part of 'social_sign_bloc.dart';
 
 class SocialSignState extends Equatable {
   // Sign with Facebook state
-  final RequestState facebookSignState;
-  final String facebookSignMessage;
-  final UserEntity facebookUserData;
+  // final RequestState facebookSignState;
+  // final String facebookSignMessage;
+  // final UserEntity facebookUserData;
 
   // Sign with Google state
   final RequestState googleSignState;
@@ -12,13 +12,13 @@ class SocialSignState extends Equatable {
   final UserEntity googleUserData;
 
   const SocialSignState({
-    this.facebookSignState = RequestState.stable,
-    this.facebookSignMessage = '',
-    this.facebookUserData = const UserEntity(email: '', password: ''),
+    // this.facebookSignState = RequestState.stable,
+    // this.facebookSignMessage = '',
+    // this.facebookUserData = const UserEntity(email: '', password: ''),
    
     this.googleSignState = RequestState.stable,
     this.googleSignMessage = '',
-    this.googleUserData = const UserEntity(email: '', password: ''),
+    this.googleUserData = const UserEntity(email: '', password: '', firstName: '', lastName: '', phoneNumber: ''),
     
   });
   SocialSignState copyWith({
@@ -35,9 +35,9 @@ class SocialSignState extends Equatable {
 
   }) {
     return SocialSignState(
-      facebookSignState: facebookSignState ?? this.facebookSignState,
-      facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
-      facebookUserData: facebookUserData ?? this.facebookUserData,
+      // facebookSignState: facebookSignState ?? this.facebookSignState,
+      // facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
+      // facebookUserData: facebookUserData ?? this.facebookUserData,
     
       googleSignState: googleSignState ?? this.googleSignState,
       googleSignMessage: googleSignMessage ?? this.googleSignMessage,
@@ -48,9 +48,9 @@ class SocialSignState extends Equatable {
 
   @override
   List<Object> get props => [
-        facebookSignState,
-        facebookSignMessage,
-        facebookUserData,
+        // facebookSignState,
+        // facebookSignMessage,
+        // facebookUserData,
       
         googleSignState,
         googleSignMessage,

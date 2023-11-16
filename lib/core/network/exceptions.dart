@@ -15,3 +15,11 @@ class PrimaryServerException implements Exception {
     required this.message,
   });
 }
+
+class PaymentException extends PrimaryServerException {
+  PaymentException({
+    required super.error,
+    required super.code,
+    required super.message,
+  });
+}

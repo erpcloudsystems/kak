@@ -60,6 +60,10 @@ class DioHelper implements BaseDioHelper {
     // We use this condition because Token won't be needed in signing.
     bool isSign = false,
   }) async {
+    if (base != null) {
+      dio.options.baseUrl = base;
+    }
+
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
@@ -100,6 +104,10 @@ class DioHelper implements BaseDioHelper {
     data,
     query,
   }) async {
+    if (base != null) {
+      dio.options.baseUrl = base;
+    }
+
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
@@ -109,9 +117,9 @@ class DioHelper implements BaseDioHelper {
       if (!isMultiPart) 'Content-Type': 'application/json',
       if (!isMultiPart) 'Accept': 'application/json',
       if (token != null) 'token': token,
-      if (!isSign)
-        'Authorization':
-            'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
+      // if (!isSign)
+      //   'Authorization':
+      //       'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
     };
 
     log('URL => ${dio.options.baseUrl + endPoint}');
@@ -149,7 +157,7 @@ extension on BaseDioHelper {
       throw PrimaryServerException(
         code: e.response?.statusCode ?? 100,
         error: e.error.toString(),
-        message: e.response!.data['exception'],
+        message: e.response!.data['exception'] ?? e.message,
       );
     } catch (e) {
       PrimaryServerException exception = e as PrimaryServerException;

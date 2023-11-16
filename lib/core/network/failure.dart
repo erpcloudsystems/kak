@@ -38,3 +38,7 @@ class PermissionFailure extends Failure {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class PaymentFailure extends Failure {
+  const PaymentFailure({required super.errorMessage});
+}

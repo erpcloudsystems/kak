@@ -43,38 +43,37 @@ class SignInScreen extends StatelessWidget {
             //     }
             //   },
             //   child:
-        Padding(
-            padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
-            child: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MainLogo(),
-                      SignTypeText(
-                          signSentence: StringsManager.loginToUrAccount),
-                      SignForm(
-                          // signEvent: signEvent,
-                          buttonText: StringsManager.signIn),
-                      ForgotPasswordComponent(),
-                      AuthenticationDivider(
-                        text: StringsManager.authenticationDividerText,
-                      ),
-                      SocialSignWidget(),
-                      HaveAccountWidget(
-                        question: StringsManager.dontHaveAnAccount,
-                        buttonText: StringsManager.signUp,
-                        routeName: Routes.signUpScreenKey,
-                      ),
-                    ],
-                  ),
+            Padding(
+          padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MainLogo(),
+                    SignTypeText(signSentence: StringsManager.loginToUrAccount),
+                    SignForm(
+                        // signEvent: signEvent,
+                        buttonText: StringsManager.signIn),
+                    ForgotPasswordComponent(),
+                    AuthenticationDivider(
+                      text: StringsManager.authenticationDividerText,
+                    ),
+                    SocialSignWidget(),
+                    HaveAccountWidget(
+                      question: StringsManager.dontHaveAnAccount,
+                      buttonText: StringsManager.signUp,
+                      routeName: Routes.signUpScreenKey,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
       // ),
     );
   }
@@ -85,6 +84,9 @@ class SignInScreen extends StatelessWidget {
       user: UserEntity(
         email: email,
         password: password,
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
       ),
     );
   }

@@ -37,8 +37,12 @@ mixin SocialSignDataSource {
         idToken: googleSignInAuthentication.idToken);
     await fireAuth.signInWithCredential(credential);
     final UserModel user = UserModel(
-        email: googleSignInAccount.email, password: googleSignInAccount.id);
+      email: googleSignInAccount.email,
+      password: googleSignInAccount.id,
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+    );
     return Future.value(user);
   }
-
 }

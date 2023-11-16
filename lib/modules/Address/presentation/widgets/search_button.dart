@@ -38,7 +38,7 @@ class _MapSearchButtonState extends State<MapSearchButton> {
   }
 
   Future<void> _handleSearch() async {
-    final String apiKey = ConstantKeys.getApiKey(context);
+    final String apiKey = ConstantKeys.getMapsApiKey(context);
     await loc.PlacesAutocomplete.show(
             context: context,
             apiKey: apiKey,
@@ -73,7 +73,7 @@ class _MapSearchButtonState extends State<MapSearchButton> {
   }
 
   Future<void> displayPrediction(places.Prediction p) async {
-    final String apiKey = ConstantKeys.getApiKey(context);
+    final String apiKey = ConstantKeys.getMapsApiKey(context);
     places.GoogleMapsPlaces selectedPlaces = places.GoogleMapsPlaces(
         apiKey: apiKey,
         apiHeaders: await const header.GoogleApiHeaders().getHeaders());
