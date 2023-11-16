@@ -70,7 +70,7 @@ Future<void> init() async {
   // sl.registerLazySingleton<CachingBaseDataSource>(() =>CachingDataSourceImplByShaPref());
 
   // Address
-  sl.registerLazySingleton<AddressBaseDataSource>(() => AddressDataSourceImpl());
+  sl.registerLazySingleton<AddressBaseDataSource>(() => AddressDataSourceImpl(sl()));
 
   // External ______________________________________________________________
   final sharedPref = await SharedPreferences.getInstance();

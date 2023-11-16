@@ -70,7 +70,16 @@ class SuccessWidget extends StatelessWidget {
               color: Colors.black,
             ),
             const SizedBox(width: DoubleManager.d_20),
-            Text(context.watch<AddressBloc>().state.getAddressMessage),
+            Flexible(
+              child: Text(
+                context.watch<AddressBloc>().state.getAddressMessage,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: FontsSize.s12,
+                    ),
+              ),
+            ),
           ],
         ),
 

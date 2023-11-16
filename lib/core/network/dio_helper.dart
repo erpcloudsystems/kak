@@ -31,6 +31,8 @@ abstract class BaseDioHelper {
     String? token,
     dynamic data,
     dynamic query,
+    // We use this condition because Token won't be needed in signing.
+    bool isSign = false,
   });
 }
 
@@ -55,6 +57,8 @@ class DioHelper implements BaseDioHelper {
     Duration? timeOut,
     String? token,
     query,
+    // We use this condition because Token won't be needed in signing.
+    bool isSign = false,
   }) async {
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
@@ -64,8 +68,9 @@ class DioHelper implements BaseDioHelper {
       if (isMultiPart) 'Content-Type': 'multipart/form-data',
       if (!isMultiPart) 'Content-Type': 'application/json',
       if (!isMultiPart) 'Accept': 'application/json',
-      'Authorization':
-          'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
+      if (isSign)
+        'Authorization':
+            'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
       if (token != null) 'token': token,
     };
 

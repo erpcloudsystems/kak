@@ -2,12 +2,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/values_manager.dart';
 import '../bloc/address_bloc.dart';
 import '../widgets/search_button.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../widgets/address_and_button_section.dart';
+import '../../../../core/resources/values_manager.dart';
 
 const double cameraZoom = DoubleManager.d_18;
 class AddressScreen extends StatefulWidget {
@@ -89,30 +89,6 @@ class _AddressScreenState extends State<AddressScreen> {
             }
           },
         ),
-        // TODO: Refactor this code to implement search bar.
-        // Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: SearchAnchor(
-        //       builder: (BuildContext context, SearchController controller) {
-        //     return SearchBar(
-        //       surfaceTintColor: const MaterialStatePropertyAll(Colors.white),
-        //       controller: controller,
-        //       padding: const MaterialStatePropertyAll<EdgeInsets>(
-        //           EdgeInsets.symmetric(horizontal: 16.0)),
-        //       onTap: () => controller.openView(),
-        //       onChanged: (_) => controller.openView(),
-        //       leading: const Icon(Icons.search),
-        //     );
-        //   }, suggestionsBuilder: (context, controller) {
-        //     return List<ListTile>.generate(5, (index) {
-        //       final String item = 'item $index';
-        //       return ListTile(
-        //         title: Text(item),
-        //         onTap: () => setState(() => controller.closeView(item)),
-        //       );
-        //     });
-        //   }),
-        // ),
       ),
     );
   }
@@ -121,7 +97,6 @@ class _AddressScreenState extends State<AddressScreen> {
     _controller = controller;
     addMarker(_currentMapPosition);
     _controller!.animateCamera(CameraUpdate.newLatLngZoom(userLocation, cameraZoom));
-
     addMarker(userLocation);
   }
 

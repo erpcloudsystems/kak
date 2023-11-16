@@ -1,6 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
+import 'package:kak/core/network/exceptions.dart';
 
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
@@ -49,8 +50,12 @@ class AddressRepoImpl implements AddressBaseRepo {
   @override
   Future<Either<Failure, String>> getAddress(LatLng coordinates) async {
     if (await networkInfo.isConnected) {
-      final address = await addressBaseDataSource.getAddress(coordinates);
-      return Right(address);
+      try {
+        final address = await addressBaseDataSource.getAddress(coordinates);
+        return Right(address);
+      } on PrimaryServerException catch (error) {
+        return Left(ServerFailure(errorMessage: error.message));
+      }
     } else {
       return const Left(
           OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
