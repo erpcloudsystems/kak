@@ -51,7 +51,9 @@ class SignUpScreen extends StatelessWidget {
                       SignTypeText(signSentence: StringsManager.create),
                       SignForm(
                           // signEvent: signEvent,
-                          buttonText: StringsManager.signUp),
+                          buttonText: StringsManager.signUp,
+                          isSignUp: true,
+                          ),
                       AuthenticationDivider(
                           text: StringsManager.authenticationDividerText),
                       SocialSignWidget(),

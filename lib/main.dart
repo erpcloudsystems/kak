@@ -12,6 +12,7 @@ import 'core/resources/theme_manager.dart';
 import 'core/global/state_management.dart';
 import 'core/resources/strings_manager.dart';
 import 'core/global/dependencies_container.dart' as di;
+import 'modules/authentication/presentation/pages/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.getApplicationLightTheme(),
           routes: Routes.routes,
           // home: const SplashScreen(),
-          home: const SignUpScreen(),
+          home: const SignInScreen(),
         ),
       ),
     );

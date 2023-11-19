@@ -55,8 +55,10 @@ class SignInScreen extends StatelessWidget {
                     MainLogo(),
                     SignTypeText(signSentence: StringsManager.loginToUrAccount),
                     SignForm(
-                        // signEvent: signEvent,
-                        buttonText: StringsManager.signIn),
+                      // signEvent: signEvent,
+                      buttonText: StringsManager.signIn,
+                      isSignUp: false,
+                    ),
                     ForgotPasswordComponent(),
                     AuthenticationDivider(
                       text: StringsManager.authenticationDividerText,

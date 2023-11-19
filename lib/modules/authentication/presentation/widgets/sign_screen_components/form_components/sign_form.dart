@@ -15,13 +15,15 @@ import '../../../../../../core/utils/phone_number_Picker.dart';
 
 class SignForm extends StatelessWidget {
   // final AuthenticationEventFunction signEvent;
-  final String buttonText;
   const SignForm({
-    Key? key,
+    super.key,
     // required this.signEvent,
     required this.buttonText,
-  }) : super(key: key);
+    required this.isSignUp,
+  });
 
+  final String buttonText;
+  final bool isSignUp;
   @override
   Widget build(BuildContext context) {
     String phoneNumber;
@@ -46,18 +48,23 @@ class SignForm extends StatelessWidget {
           SizedBox(height: DoubleManager.d_2.h),
           PasswordForm(passwordController: passwordController),
           SizedBox(height: DoubleManager.d_2.h),
-          CustomTextField(
-              controller: firstNameController,
-              icon: Icons.person,
-              hint: StringsManager.firstName),
-          SizedBox(height: DoubleManager.d_2.h),
-          CustomTextField(
-              controller: lastNameController,
-              icon: Icons.person,
-              hint: StringsManager.lastName),
-          SizedBox(height: DoubleManager.d_2.h),
-          PhoneNumberPicker(
-              phoneNumber: (String number) => phoneNumber = number),
+          if (isSignUp)
+            Column(
+              children: [
+                CustomTextField(
+                    controller: firstNameController,
+                    icon: Icons.person,
+                    hint: StringsManager.firstName),
+                SizedBox(height: DoubleManager.d_2.h),
+                CustomTextField(
+                    controller: lastNameController,
+                    icon: Icons.person,
+                    hint: StringsManager.lastName),
+                SizedBox(height: DoubleManager.d_2.h),
+                PhoneNumberPicker(
+                    phoneNumber: (String number) => phoneNumber = number),
+              ],
+            ),
           RememberMeRow(emailController: emailController),
           ColoredElevatedButton(buttonText: buttonText, onPressed: saveForm),
         ],
