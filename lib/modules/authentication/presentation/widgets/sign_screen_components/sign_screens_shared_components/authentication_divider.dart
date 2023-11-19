@@ -16,8 +16,8 @@ class AuthenticationDivider extends StatelessWidget {
           const DividerLine(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_2.w),
-            child: Text(text,
-                style: Theme.of(context).textTheme.headlineMedium),
+            child:
+                Text(text, style: Theme.of(context).textTheme.headlineMedium),
           ),
           const DividerLine(),
         ],
@@ -34,10 +34,7 @@ class DividerLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        color: Colors.grey.withOpacity(DoubleManager.d_02),
-        height: DoubleManager.d_02.h,
-      ),
+      child: Container(color: Colors.grey, height: .5),
     );
   }
 }

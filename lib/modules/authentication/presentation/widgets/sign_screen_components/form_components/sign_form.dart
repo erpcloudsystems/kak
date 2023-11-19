@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:kak/core/resources/strings_manager.dart';
+import 'package:kak/core/utils/custom_text_field.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-// import '../../../../../../core/global/type_def.dart';
-import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../../core/utils/general_button.dart';
-// import '../../../bloc/regular_sign/authentication_bloc.dart';
 import 'email_form.dart';
 import 'password_form.dart';
 import 'remember_me_row.dart';
+// import '../../../../../../core/global/type_def.dart';
+import '../../../../../../core/utils/general_button.dart';
+import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/utils/phone_number_Picker.dart';
+// import '../../../bloc/regular_sign/authentication_bloc.dart';
 
 class SignForm extends StatelessWidget {
   // final AuthenticationEventFunction signEvent;
@@ -21,8 +24,11 @@ class SignForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
+    String phoneNumber;
     final passwordController = TextEditingController();
+    final firstNameController = TextEditingController();
+    final lastNameController = TextEditingController();
+    final emailController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
     void saveForm() {
@@ -39,8 +45,21 @@ class SignForm extends StatelessWidget {
           EmailForm(emailController: emailController),
           SizedBox(height: DoubleManager.d_2.h),
           PasswordForm(passwordController: passwordController),
+          SizedBox(height: DoubleManager.d_2.h),
+          CustomTextField(
+              controller: firstNameController,
+              icon: Icons.person,
+              hint: StringsManager.firstName),
+          SizedBox(height: DoubleManager.d_2.h),
+          CustomTextField(
+              controller: lastNameController,
+              icon: Icons.person,
+              hint: StringsManager.lastName),
+          SizedBox(height: DoubleManager.d_2.h),
+          PhoneNumberPicker(
+              phoneNumber: (String number) => phoneNumber = number),
           RememberMeRow(emailController: emailController),
-          GeneralButton(buttonText: buttonText, function: saveForm),
+          ColoredElevatedButton(buttonText: buttonText, onPressed: saveForm),
         ],
       ),
     );
