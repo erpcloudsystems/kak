@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kak/core/resources/routes.dart';
 import 'package:kak/core/utils/enums.dart';
 import 'package:kak/modules/Payment/domain/entities/card_payment_entity.dart';
 import 'package:kak/modules/Payment/presentation/bloc/payment_bloc.dart';
@@ -17,7 +18,13 @@ class PaymentScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: BlocBuilder<PaymentBloc, PaymentState>(
+            child: BlocConsumer<PaymentBloc, PaymentState>(
+              listener: (context, state) {
+                if (state.payWithCardState == RequestState.success){
+                  Navigator.of(context).pushNamed(Routes.transactionScreenKey);
+                }
+              },
+              
               builder: (context, state) {
                 switch (state.payWithCardState) {
                   case RequestState.loading:
@@ -30,7 +37,7 @@ class PaymentScreen extends StatelessWidget {
                     return Text(state.payWithCardMessage);
 
                   case RequestState.success:
-                    return Text(state.payWithCardToken);
+                    return const Text('Success transaction');
                 }
               },
             ),

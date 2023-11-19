@@ -1,5 +1,5 @@
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../resources/values_manager.dart';
@@ -22,4 +22,39 @@ class LoadingIndicatorUtil extends StatelessWidget {
       ),
     );
   }
+}
+
+abstract class LoadingUtils {
+  static showLoadingDialog(BuildContext context, String message) => showDialog(
+        barrierDismissible: false,
+        barrierColor: Colors.grey.withOpacity(0.4),
+        context: context,
+        builder: (BuildContext context) => Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(DoubleManager.d_15)),
+          backgroundColor: Colors.white,
+          insetPadding: const EdgeInsets.all(DoubleManager.d_12),
+          child: WillPopScope(
+            onWillPop: () async {
+              return false;
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(DoubleManager.d_8),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(message),
+                  const Padding(
+                    padding: EdgeInsets.all(DoubleManager.d_16),
+                    child: LinearProgressIndicator(
+                      color: ColorsManager.mainColor,
+                      backgroundColor: Colors.transparent,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
 }

@@ -40,6 +40,7 @@ class StringsManager {
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
   static const String previousOrders = 'Previous orders';
+  static const String loading = 'Loading, Please wait!';
   static const String letsDiveInText = 'Let\'s dive in';
   static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
