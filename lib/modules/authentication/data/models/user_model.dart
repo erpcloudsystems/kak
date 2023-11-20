@@ -10,15 +10,6 @@ class UserModel extends UserEntity {
      super.image,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        phoneNumber: json['phone_number'],
-        firstName: json['username'],
-        lastName: json['full_name'],
-        password: json['password'],
-        email: json['email'],
-        image: json['image'],
-      );
-
   Map<String, dynamic> toJsonSignIn() => {
         'usr': email,
         'pwd': password,
@@ -26,10 +17,12 @@ class UserModel extends UserEntity {
 
   Map<String, dynamic> toJsonSignUp() => {
         'phone_number': phoneNumber,
+        'full_name': '$firstName $lastName',
         'first_name': firstName,
         'last_name': lastName,
         'pwd': password,
         'image': image,
-        'usr': email,
+        'email': email,
+        'redirect_to': "/home",
       };
 }

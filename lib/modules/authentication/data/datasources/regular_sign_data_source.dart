@@ -25,7 +25,7 @@ class RegularSignDataSource {
 //_________________ Sign up_____________________________________
   Future<Unit> regularSignUp(UserModel user) async {
     await _dio.post(
-      endPoint: ApiConstance.loginEndPoint,
+      endPoint: ApiConstance.signUpEndPoint,
       query: user.toJsonSignUp(),
     );
 

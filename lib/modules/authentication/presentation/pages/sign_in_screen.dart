@@ -26,7 +26,7 @@ class SignInScreen extends StatelessWidget {
     final globalVariables = GlobalVariables();
     return SafeArea(
       child: Scaffold(
-        body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+        body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (previous, current) =>
               previous.signInState != current.signInState,
           listener: (context, state) {
@@ -55,8 +55,7 @@ class SignInScreen extends StatelessWidget {
               LoadingUtils.showLoadingDialog(context, LoadingType.circular);
             }
           },
-          builder: (context, state) {
-            return Padding(
+          child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
               child: CustomScrollView(
@@ -88,16 +87,12 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            );
-          },
+              )),
         ),
       ),
     );
   }
 
   // this is the function used in the form helping widget that needs an Authentication event.
-  SignInEvent signEvent(UserEntity user) {
-    return SignInEvent(user: user);
-  }
+  SignInEvent signEvent(UserEntity user) => SignInEvent(user: user);
 }
