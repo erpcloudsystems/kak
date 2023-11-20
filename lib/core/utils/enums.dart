@@ -9,3 +9,8 @@ enum MealType {
   regular,
   spicy,
 }
+
+enum LoadingType {
+  linear,
+  circular,
+}

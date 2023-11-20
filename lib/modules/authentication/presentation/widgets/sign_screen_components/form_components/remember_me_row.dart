@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/resources/fonts_manager.dart';
-import '../../../../../../core/resources/strings_manager.dart';
 
 import 'remember_me_check_box.dart';
+import '../../../../../../core/resources/fonts_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
 
 class RememberMeRow extends StatelessWidget {
   final TextEditingController emailController;

@@ -19,70 +19,62 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: 
-        // BlocListener<AuthenticationBloc, AuthenticationState>(
-        //   listenWhen: (previous, current) =>
-        //       previous.signUpState != current.signUpState,
-        //   listener: (context, state) {
-        //     if (state.signUpState == RequestState.success) {
-        //       Navigator.of(context).pushNamed(Routes.verificationScreenKey);
-        //     }
+        body:
+            // BlocListener<AuthenticationBloc, AuthenticationState>(
+            //   listenWhen: (previous, current) =>
+            //       previous.signUpState != current.signUpState,
+            //   listener: (context, state) {
+            //     if (state.signUpState == RequestState.success) {
+            //       Navigator.of(context).pushNamed(Routes.verificationScreenKey);
+            //     }
 
-        //     if (state.signUpState == RequestState.error) {
-        //       SnackBarUtil().getSnackBar(
-        //           context: context,
-        //           message: state.signUpMessage,
-        //           color: Colors.red);
-        //     }
-        //   },
-        //   child: 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
-            child: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MainLogo(),
-                      SignTypeText(signSentence: StringsManager.create),
-                      SignForm(
-                          // signEvent: signEvent,
-                          buttonText: StringsManager.signUp,
-                          isSignUp: true,
-                          ),
-                      AuthenticationDivider(
-                          text: StringsManager.authenticationDividerText),
-                      SocialSignWidget(),
-                      HaveAccountWidget(
-                        buttonText: StringsManager.signIn,
-                        question: StringsManager.alreadyHaveAnAccount,
-                        routeName: Routes.signInScreenKey,
-                      ),
-                    ],
-                  ),
+            //     if (state.signUpState == RequestState.error) {
+            //       SnackBarUtil().getSnackBar(
+            //           context: context,
+            //           message: state.signUpMessage,
+            //           color: Colors.red);
+            //     }
+            //   },
+            //   child:
+            Padding(
+          padding: const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const MainLogo(),
+                    const SignTypeText(signSentence: StringsManager.create),
+                    SignForm(
+                      signEvent: signEvent,
+                      buttonText: StringsManager.signUp,
+                      isSignUp: true,
+                    ),
+                    const AuthenticationDivider(
+                        text: StringsManager.authenticationDividerText),
+                    const SocialSignWidget(),
+                    const HaveAccountWidget(
+                      buttonText: StringsManager.signIn,
+                      question: StringsManager.alreadyHaveAnAccount,
+                      routeName: Routes.signInScreenKey,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
       // ),
     );
   }
 
   // this is the function used in the form helping widget that needs an Authentication event.
-  SignUpEvent signEvent(String email, String password) {
-    return SignUpEvent(
-      user: UserEntity(
-        email: email,
-        password: password,
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-      ),
-    );
+  SignUpEvent signEvent(UserEntity user) {
+    return SignUpEvent(user: user);
   }
 }

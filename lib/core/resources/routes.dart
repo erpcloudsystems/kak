@@ -10,7 +10,6 @@ import '../../modules/Payment/presentation/screens/transaction_screen.dart';
 import '../../modules/user_profile/presentation/pages/my_orders_screen.dart';
 import '../../modules/authentication/presentation/pages/sign_up_screen.dart';
 import '../../modules/authentication/presentation/pages/sign_in_screen.dart';
-import '../../modules/authentication/presentation/pages/password_reset_screen.dart';
 
 class Routes {
   static const String passwordResetScreenKey = '/password_reset';
@@ -27,7 +26,7 @@ class Routes {
 
   static Map<String, WidgetBuilder> get routes {
     return {
-      passwordResetScreenKey: (_) => const PasswordResetScreen(),
+      // passwordResetScreenKey: (_) => const PasswordResetScreen(),
       navigationBarScreenKey: (_) => const CustomNavigationBar(),
       mealContentsScreenKey: (_) => const MealsContentsScreen(),
       transactionScreenKey: (_) => const TransactionScreen(),

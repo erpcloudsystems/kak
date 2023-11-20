@@ -1,3 +1,4 @@
+import 'package:kak/core/utils/enums.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
             if (!isLoading) {
               setState(() {
                 isLoading = true;
-                LoadingUtils.showLoadingDialog(context, StringsManager.loading);
+                LoadingUtils.showLoadingDialog(
+                    context, LoadingType.linear, StringsManager.loading);
               });
             }
           },
@@ -74,9 +76,9 @@ class _TransactionScreenState extends State<TransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: 100.h,
-        width: 100.w,
-        child: WebViewWidget(controller: _controller)),
+          height: 100.h,
+          width: 100.w,
+          child: WebViewWidget(controller: _controller)),
     );
   }
 }

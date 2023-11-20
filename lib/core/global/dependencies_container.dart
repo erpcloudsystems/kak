@@ -16,11 +16,16 @@ import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/Payment/domain/repositories/payment_base_repo.dart';
 import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
+import '../../modules/authentication/domain/usecases/sign_in_use_case.dart';
+import '../../modules/authentication/domain/usecases/sign_up_use_case.dart';
 import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
 import '../../modules/authentication/data/repositories/social_sign_repository.dart';
-import '../../modules/authentication/domain/repositories/base_social_sign_repository.dart';
 import '../../modules/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
+import '../../modules/authentication/domain/repositories/base_social_sign_repository.dart';
+import '../../modules/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
+import '../../modules/authentication/data/repositories/regular_authentication_repository.dart';
 import '../../modules/authentication/data/datasources/base_authentication_remote_data_source.dart';
+import '../../modules/authentication/domain/repositories/base_regular_authentication_repository.dart';
 
 final sl = GetIt.instance;
 
@@ -28,7 +33,7 @@ Future<void> init() async {
   // BLOCs ________________________________________________________________
 
   // Authentication
-  // sl.registerFactory(() => AuthenticationBloc(sl(),sl(), sl(), sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl()));
 
   // Address
@@ -41,20 +46,20 @@ Future<void> init() async {
   // sl.registerFactory(() => CachingBloc(sl(),sl(), sl()));
 
   // Use cases ____________________________________________________________
-  
+
   // Authentication
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
+  sl.registerLazySingleton(() => SignUpUseCase(sl()));
+  sl.registerLazySingleton(() => SignInUseCase(sl()));
   // sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
-  // sl.registerLazySingleton(() => SignUpUseCase(sl()));
   // sl.registerLazySingleton(() => LogoutUseCase(sl()));
-  // sl.registerLazySingleton(() => LoginUseCase(sl()));
 
   // Caching
   //  sl.registerLazySingleton(() => RemoveApiCachedKeysUseCase(sl()));
   //  sl.registerLazySingleton(() => GetCachedApiKeysUseCase(sl()));
   //  sl.registerLazySingleton(() => CacheApiKeysUseCase(sl()));
 
-  // Address 
+  // Address
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
 
@@ -66,7 +71,8 @@ Future<void> init() async {
   // Authentication
   sl.registerLazySingleton<BaseSocialSignRepository>(
       () => SocialSignRepository(sl(), sl()));
-  // sl.registerLazySingleton<AuthBaseRepo>(() => AuthRepoImpl(sl(), sl()));
+  sl.registerLazySingleton<BaseRegularAuthenticationRepository>(
+      () => AuthenticationRepository(sl(), sl()));
 
   // Caching
   // sl.registerLazySingleton<CacheUserDataBaseRepo>(() => CachingApiKeysRepoImpl(sl()));
@@ -81,17 +87,19 @@ Future<void> init() async {
 
   // Authentication
   sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(
-      () => AuthenticationRemoteDataSource());
+      () => AuthenticationRemoteDataSource(sl()));
   // sl.registerLazySingleton<AuthBaseRemoteDataSources>(() => AuthRemoteDataSourcesByDio(sl()));
 
   // Caching
   // sl.registerLazySingleton<CachingBaseDataSource>(() =>CachingDataSourceImplByShaPref());
 
   // Address
-  sl.registerLazySingleton<AddressBaseDataSource>(() => AddressDataSourceImpl(sl()));
+  sl.registerLazySingleton<AddressBaseDataSource>(
+      () => AddressDataSourceImpl(sl()));
 
   // Payment
-  sl.registerLazySingleton<PaymentBaseDataSource>(() => PayByPaymobGateway(sl()));
+  sl.registerLazySingleton<PaymentBaseDataSource>(
+      () => PayByPaymobGateway(sl()));
 
   // External ______________________________________________________________
   final sharedPref = await SharedPreferences.getInstance();

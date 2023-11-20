@@ -157,7 +157,7 @@ extension on BaseDioHelper {
       throw PrimaryServerException(
         code: e.response?.statusCode ?? 100,
         error: e.error.toString(),
-        message: e.response!.data['exception'] ?? e.message,
+        message: e.response!.data['exception'] ?? e.response!.data['message'] ?? e.message,
       );
     } catch (e) {
       PrimaryServerException exception = e as PrimaryServerException;

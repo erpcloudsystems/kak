@@ -1,23 +1,24 @@
-import 'package:kak/core/resources/strings_manager.dart';
-import 'package:kak/core/utils/custom_text_field.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'email_form.dart';
 import 'password_form.dart';
 import 'remember_me_row.dart';
-// import '../../../../../../core/global/type_def.dart';
+import '../../../../domain/entities/user.dart';
+import '../../../../../../core/global/type_def.dart';
 import '../../../../../../core/utils/general_button.dart';
+import '../../../../../../core/utils/custom_text_field.dart';
+import '../../../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
 import '../../../../../../core/utils/phone_number_Picker.dart';
-// import '../../../bloc/regular_sign/authentication_bloc.dart';
 
 class SignForm extends StatelessWidget {
-  // final AuthenticationEventFunction signEvent;
+  final AuthenticationEventFunction signEvent;
   const SignForm({
     super.key,
-    // required this.signEvent,
+    required this.signEvent,
     required this.buttonText,
     required this.isSignUp,
   });
@@ -26,7 +27,7 @@ class SignForm extends StatelessWidget {
   final bool isSignUp;
   @override
   Widget build(BuildContext context) {
-    String phoneNumber;
+    String? phoneNumber;
     final passwordController = TextEditingController();
     final firstNameController = TextEditingController();
     final lastNameController = TextEditingController();
@@ -35,8 +36,17 @@ class SignForm extends StatelessWidget {
 
     void saveForm() {
       if (formKey.currentState!.validate()) {
-        // BlocProvider.of<AuthenticationBloc>(context).add(signEvent(
-        //     emailController.text.trim(), passwordController.text.trim()));
+        BlocProvider.of<AuthenticationBloc>(context).add(
+          signEvent(
+            UserEntity(
+              password: passwordController.text.trim(),
+              email: emailController.text.trim(),
+              firstName: firstNameController.text.trim(),
+              lastName: lastNameController.text.trim(),
+              phoneNumber: phoneNumber,
+            ),
+          ),
+        );
       }
     }
 
