@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
 import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
@@ -33,7 +34,7 @@ Future<void> init() async {
   // BLOCs ________________________________________________________________
 
   // Authentication
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl()));
 
   // Address
@@ -48,10 +49,10 @@ Future<void> init() async {
   // Use cases ____________________________________________________________
 
   // Authentication
-  sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
   sl.registerLazySingleton(() => SignUpUseCase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(sl()));
-  // sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
+  sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
+  sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
   // sl.registerLazySingleton(() => LogoutUseCase(sl()));
 
   // Caching

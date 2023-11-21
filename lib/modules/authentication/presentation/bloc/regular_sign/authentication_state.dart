@@ -1,7 +1,6 @@
 part of 'authentication_bloc.dart';
 
 class AuthenticationState extends Equatable {
-
   // Sign in state
   final LoggedInUserEntity loggedInUser;
   final RequestState signInState;
@@ -11,28 +10,23 @@ class AuthenticationState extends Equatable {
   final RequestState signUpState;
   final String signUpMessage;
 
-  // // Verify User
-  // final bool userState;
-  // final RequestState verifyUserState;
-  // final String verifyUserMessage;
-
-
-  // // Reset password
-  // final RequestState resetPasswordState;
-  // final String resetPasswordMessage;
+  // Reset password
+  final RequestState resetPasswordState;
+  final String resetPasswordMessage;
 
   const AuthenticationState({
+    // Sign in state
     this.signInState = RequestState.stable,
     this.signInMessage = '',
     this.loggedInUser = const LoggedInUserEntity(),
 
+    // Sign up state
     this.signUpState = RequestState.stable,
     this.signUpMessage = '',
-    // this.userState = false,
-    // this.verifyUserState = RequestState.loading,
-    // this.verifyUserMessage = '',
-    // this.resetPasswordState = RequestState.stable,
-    // this.resetPasswordMessage = '',
+
+    // Reset password
+    this.resetPasswordState = RequestState.stable,
+    this.resetPasswordMessage = '',
   });
 
   AuthenticationState copyWith({
@@ -45,43 +39,39 @@ class AuthenticationState extends Equatable {
     RequestState? signUpState,
     String? signUpMessage,
 
-  //   // Verify User
-  //   bool? userState,
-  //   RequestState? verifyUserState,
-  //   String? verifyUserMessage,
-
-    
-  // // Reset password
-  //  RequestState? resetPasswordState,
-  //  String? resetPasswordMessage,
-
-
+    // Reset password
+    RequestState? resetPasswordState,
+    String? resetPasswordMessage,
   }) {
     return AuthenticationState(
+      // Sign in state
       signInMessage: signInMessage ?? this.signInMessage,
       signInState: signInState ?? this.signInState,
       loggedInUser: loggedInUser ?? this.loggedInUser,
+
+      // Sign up state
       signUpMessage: signUpMessage ?? this.signUpMessage,
       signUpState: signUpState ?? this.signUpState,
-      // userState: userState ?? this.userState,
-      // verifyUserMessage: verifyUserMessage ?? this.verifyUserMessage,
-      // verifyUserState: verifyUserState ?? this.verifyUserState,
-      // resetPasswordState: resetPasswordState ?? this.resetPasswordState,
-      // resetPasswordMessage: resetPasswordMessage ?? this.resetPasswordMessage, 
+
+      // Reset password
+      resetPasswordState: resetPasswordState ?? this.resetPasswordState,
+      resetPasswordMessage: resetPasswordMessage ?? this.resetPasswordMessage,
     );
   }
 
   @override
   List<Object> get props => [
+        // Sign in state
         signInMessage,
         signInState,
         loggedInUser,
+
+        // Sign up state
         signUpMessage,
         signUpState,
-        // userState,
-        // verifyUserMessage,
-        // verifyUserState,
-        // resetPasswordState,
-        // resetPasswordMessage,
+
+        // Reset password
+        resetPasswordState,
+        resetPasswordMessage,
       ];
 }

@@ -50,30 +50,10 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
     return await _signMethod(() => _dataSource.signUp(userModel));
   }
 
-  // //____________________________Reset password_____________________________________
-  // @override
-  // Future<Either<Failure, Unit>> resetPassword(String email) async =>
-  //     await _signMethod(() => _dataSource.resetPassword(email));
-
-  // //____________________________Verify user__________________________________
-  // @override
-  // Future<Either<Failure, bool>> verifyUser() async {
-  //   if (await _deviceStatus.isConnected) {
-  //     try {
-  //       final response = await _dataSource.verifyUser();
-  //       return Right(response);
-  //     } on FirebaseAuthException catch (error) {
-  //       return Left(
-  //         ServerFailure(
-  //             errorMessage:
-  //                 error.message ?? StringsManager.serverFailureMessage),
-  //       );
-  //     }
-  //   } else {
-  //     return const Left(
-  //         OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
-  //   }
-  // }
+  //____________________________Reset password_____________________________________
+  @override
+  Future<Either<Failure, Unit>> resetPassword(String email) async =>
+      await _signMethod(() => _dataSource.resetPassword(email));
 
   //_____________________common returning Unit method___________________________
   Future<Either<Failure, Unit>> _signMethod(FutureFunction wantedMethod) async {

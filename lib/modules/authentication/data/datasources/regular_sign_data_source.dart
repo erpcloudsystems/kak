@@ -32,6 +32,15 @@ class RegularSignDataSource {
     return Future.value(unit);
   }
 
+//_________________ Reset password ___________________________________
+  Future<Unit> regularResetPassword(String email) async {
+    await _dio.post(
+      endPoint: ApiConstance.resetPasswordEndPoint,
+      query: {'email': email},
+    );
+
+    return Future.value(unit);
+  }
 // //_________________ Sign out_____________________________________
 //   Future<Unit> firebaseSignOut() async {
 //     await _fireAuth.signOut();
@@ -47,9 +56,4 @@ class RegularSignDataSource {
 //     }
 //     return Future.value(false);
 //   }
-
-// //_________________ Reset password ___________________________________
-//   Future<Unit> firebaseResetPassword(String email) async {
-//     await _fireAuth.sendPasswordResetEmail(email: email);
-//     return Future.value(unit);
 }

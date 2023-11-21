@@ -9,8 +9,6 @@ import '../bloc/social_sign/social_sign_bloc.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
 import '../widgets/sign_screen_components/social_sign_components/facebook_sign_widget.dart';
 import '../widgets/sign_screen_components/social_sign_components/google_sign_widget.dart';
-import '../widgets/sign_screen_components/social_sign_components/phone_number_widget.dart';
-import '../widgets/sign_screen_components/social_sign_screen_components/phone_view.dart';
 import '../widgets/sign_screen_components/social_sign_screen_components/social_buttons.dart';
 import 'package:sizer/sizer.dart';
 
@@ -60,8 +58,7 @@ class SocialSignScreen extends StatelessWidget {
                       signType: StringsManager.google,
                     )),
                     SizedBox(height: DoubleManager.d_2.h),
-                    const SignWithPhoneNumberWidget(
-                        phoneNumberSignView: SignScreenPhoneView()),
+
                     const AuthenticationDivider(text: StringsManager.or),
                     Padding(
                       padding:

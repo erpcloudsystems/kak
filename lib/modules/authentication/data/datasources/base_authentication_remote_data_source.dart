@@ -9,12 +9,11 @@ import '../models/logged_user_entity.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<LoggedInUserModel> signIn(UserModel user);
+  Future<Unit> resetPassword(String email);
   Future<Unit> signUp(UserModel user);
+
   Future<UserModel> signWithGoogle();
 
-  // Future<PhoneAuthState> signWithPhoneNumber(String phoneNumber);
-  // Future<Unit> resetPassword(String email);
-  // Future<Unit> otpVerify(String code);
   // Future<UserModel> signWithFacebook();
   // Future<bool> verifyUser();
   // Future<Unit> signOut();
@@ -25,12 +24,17 @@ class AuthenticationRemoteDataSource extends RegularSignDataSource
     implements BaseAuthenticationRemoteDataSource {
   AuthenticationRemoteDataSource(super.dio);
 
+ // Regular auth_______________________________________________________________________
   @override
   Future<LoggedInUserModel> signIn(UserModel user) async => await regularSignIn(user);
 
   @override
   Future<Unit> signUp(UserModel user) async => await regularSignUp(user);
 
+  @override
+  Future<Unit> resetPassword(String email) => regularResetPassword(email);
+  
+ // Social auth_________________________________________________________________________
   @override
   Future<UserModel> signWithGoogle() => socialSignWithGoogle();
 
@@ -50,6 +54,4 @@ class AuthenticationRemoteDataSource extends RegularSignDataSource
   // @override
   // Future<Unit> otpVerify(String code) => socialOtpVerification(code);
 
-  // @override
-  // Future<Unit> resetPassword(String email) => firebaseResetPassword(email);
 }

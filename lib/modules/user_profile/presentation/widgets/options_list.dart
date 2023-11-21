@@ -59,7 +59,7 @@ const List<ProfileListElement> profileList = [
   ProfileListElement(
     icon: Icons.person_2_outlined,
     text: StringsManager.myAccount,
-    routeName: Routes.myOrdersScreenKey,
+    routeName: Routes.editProfileScreenKey,
   ),
   ProfileListElement(
     icon: Icons.shopping_bag_outlined,

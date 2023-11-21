@@ -51,6 +51,7 @@ class StringsManager {
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String rememberMe = 'Remember me';
+  static const String sendEmail = 'Send E-mail';
   static const String addToCart = 'Add to Cart';
   static const String catagories = 'Categories';
   static const String popular = 'Popular Items';

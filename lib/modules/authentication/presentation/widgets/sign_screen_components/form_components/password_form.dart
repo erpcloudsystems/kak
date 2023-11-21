@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/resources/fonts_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../../core/resources/styles_manager.dart';
 import '../../../../../../core/resources/strings_manager.dart';
 
 class PasswordForm extends StatefulWidget {
@@ -23,8 +21,6 @@ class _PasswordFormState extends State<PasswordForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: getRegularStyle(
-          fontName: FontsName.headlinesFont, fontSize: FontsSize.s16),
       decoration: InputDecoration(
         hintText: StringsManager.password,
         prefixIcon: Icon(Icons.lock, size: Theme.of(context).iconTheme.size),

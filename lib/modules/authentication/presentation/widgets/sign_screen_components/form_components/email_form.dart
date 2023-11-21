@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/resources/extensions.dart';
-import '../../../../../../core/resources/fonts_manager.dart';
-import '../../../../../../core/resources/styles_manager.dart';
 import '../../../../../../core/resources/strings_manager.dart';
 
 class EmailForm extends StatelessWidget {
@@ -17,8 +15,6 @@ class EmailForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: emailController,
-      style: getRegularStyle(
-          fontName: FontsName.headlinesFont, fontSize: FontsSize.s16),
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email, size: Theme.of(context).iconTheme.size),
         hintText: StringsManager.email,

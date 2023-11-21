@@ -49,9 +49,6 @@ abstract class AppTheme {
 
         // Text Form Field theme
         inputDecorationTheme: InputDecorationTheme(
-          // focusColor: ColorsManager.tffEnabled,
-          // fillColor: ColorsManager.tffBackground,
-          // filled: true,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(DoubleManager.d_8)),
           contentPadding: const EdgeInsets.all(DoubleManager.d_8),
