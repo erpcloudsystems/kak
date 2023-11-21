@@ -14,7 +14,7 @@ class StringsManager {
   static const String verifyEmailMessage =
       'A verification email has been sent to your email address, Please open your inbox and verify your email';
   static const String createdAccountSuccessfully =
-      'You have created your account successfully ';
+      'You have created your account successfully!';
   static const String clickHereToDetermineYourOrderType =
       'Click here to determine your order type';
   static const String accessLocation =
@@ -32,7 +32,6 @@ class StringsManager {
   static const String signInWithPassword = 'Sign in with password';
   static const String selectUrTerritory = 'Select your territory';
   static const String loginToUrAccount = 'Login To Your Account?';
-  static const String userCachedEmailKey = 'user cached email';
   static const String deliveryLocation = 'Delivery location';
   static const String forgotPassword = 'Forgot The Password';
   static const String chooseOrderType = 'Choose order type';

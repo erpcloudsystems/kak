@@ -8,6 +8,7 @@ import 'remember_me_row.dart';
 import '../../../../domain/entities/user.dart';
 import '../../../../../../core/global/type_def.dart';
 import '../../../../../../core/utils/general_button.dart';
+import '../../../../../../core/global/global_varibles.dart';
 import '../../../../../../core/utils/custom_text_field.dart';
 import '../../../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../../../core/resources/values_manager.dart';
@@ -28,6 +29,7 @@ class SignForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? phoneNumber;
+    final globalVariables = GlobalVariables();
     final passwordController = TextEditingController();
     final firstNameController = TextEditingController();
     final lastNameController = TextEditingController();
@@ -36,6 +38,7 @@ class SignForm extends StatelessWidget {
 
     void saveForm() {
       if (formKey.currentState!.validate()) {
+        globalVariables.setGlobalUserPassword = passwordController.text.trim();
         BlocProvider.of<AuthenticationBloc>(context).add(
           signEvent(
             UserEntity(
@@ -75,7 +78,7 @@ class SignForm extends StatelessWidget {
                     phoneNumber: (String number) => phoneNumber = number),
               ],
             ),
-          RememberMeRow(emailController: emailController),
+          if (!isSignUp) RememberMeRow(emailController: emailController),
           ColoredElevatedButton(buttonText: buttonText, onPressed: saveForm),
         ],
       ),

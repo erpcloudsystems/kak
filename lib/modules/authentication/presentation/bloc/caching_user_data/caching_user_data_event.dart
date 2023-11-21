@@ -6,9 +6,10 @@ abstract class CachingUserDataEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class CacheUserDataEvent extends CachingUserDataEvent {
-  final String userEmail;
-  const CacheUserDataEvent({required this.userEmail});
+  final UserCachingDataEntity userData;
+  const CacheUserDataEvent({required this.userData});
 }
 
 class GetCachedUserDataEvent extends CachingUserDataEvent {}

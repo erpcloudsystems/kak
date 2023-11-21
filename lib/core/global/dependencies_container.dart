@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
 import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
@@ -19,14 +18,22 @@ import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
 import '../../modules/authentication/domain/usecases/sign_in_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_up_use_case.dart';
+import '../../modules/authentication/domain/usecases/cache_user_use_case.dart';
 import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
+import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
 import '../../modules/authentication/data/repositories/social_sign_repository.dart';
+import '../../modules/authentication/domain/usecases/get_cached_user_use_case.dart';
+import '../../modules/authentication/data/repositories/caching_user_data_repository.dart';
 import '../../modules/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import '../../modules/authentication/domain/repositories/base_social_sign_repository.dart';
+import '../../modules/authentication/domain/usecases/delete_user_cached_data_use_case.dart';
+import '../../modules/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../modules/authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../../modules/authentication/data/repositories/regular_authentication_repository.dart';
+import '../../modules/authentication/domain/repositories/base_caching_user_data_repository.dart';
 import '../../modules/authentication/data/datasources/base_authentication_remote_data_source.dart';
 import '../../modules/authentication/domain/repositories/base_regular_authentication_repository.dart';
+import '../../modules/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -34,8 +41,8 @@ Future<void> init() async {
   // BLOCs ________________________________________________________________
 
   // Authentication
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl()));
   sl.registerFactory(() => SocialSignBloc(sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl()));
 
   // Address
   sl.registerFactory(() => AddressBloc(sl(), sl()));
@@ -44,7 +51,7 @@ Future<void> init() async {
   sl.registerFactory(() => PaymentBloc(sl()));
 
   // Caching
-  // sl.registerFactory(() => CachingBloc(sl(),sl(), sl()));
+  sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
 
   // Use cases ____________________________________________________________
 
@@ -56,13 +63,13 @@ Future<void> init() async {
   // sl.registerLazySingleton(() => LogoutUseCase(sl()));
 
   // Caching
-  //  sl.registerLazySingleton(() => RemoveApiCachedKeysUseCase(sl()));
-  //  sl.registerLazySingleton(() => GetCachedApiKeysUseCase(sl()));
-  //  sl.registerLazySingleton(() => CacheApiKeysUseCase(sl()));
+  sl.registerLazySingleton(() => CacheUserUseCase(sl()));
+  sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
+  sl.registerLazySingleton(() => DeleteUserCachedDataUseCase(sl()));
 
   // Address
-  sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
+  sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
 
   // Payment
   sl.registerLazySingleton(() => PayWithCardUseCase(sl()));
@@ -76,7 +83,8 @@ Future<void> init() async {
       () => AuthenticationRepository(sl(), sl()));
 
   // Caching
-  // sl.registerLazySingleton<CacheUserDataBaseRepo>(() => CachingApiKeysRepoImpl(sl()));
+  sl.registerLazySingleton<BaseCachingUserDataRepository>(
+      () => CachingUserDataRepository(sl()));
 
   // Address
   sl.registerLazySingleton<AddressBaseRepo>(() => AddressRepoImpl(sl(), sl()));
@@ -89,10 +97,9 @@ Future<void> init() async {
   // Authentication
   sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(
       () => AuthenticationRemoteDataSource(sl()));
-  // sl.registerLazySingleton<AuthBaseRemoteDataSources>(() => AuthRemoteDataSourcesByDio(sl()));
 
   // Caching
-  // sl.registerLazySingleton<CachingBaseDataSource>(() =>CachingDataSourceImplByShaPref());
+  sl.registerLazySingleton<BaseLocalDataSource>(() =>LocalDataSource());
 
   // Address
   sl.registerLazySingleton<AddressBaseDataSource>(

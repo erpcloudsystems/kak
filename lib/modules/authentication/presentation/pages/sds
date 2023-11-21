@@ -1,0 +1,52 @@
+ void _navigateToHomeScreen() {
+    // Check if there are cached data for the user.
+    BlocListener<CachingUserDataBloc, CachingUserDataState>(
+      listener: (context, state) {
+        if (state.getCacheUserDataState == RequestState.success) {
+          // Send a sign in event with cached user data.
+          BlocProvider.of<AuthenticationBloc>(context).add(SignInEvent(
+              user: UserEntity(
+                  password: state.userCachedData.password,
+                  email: state.userCachedData.email)));
+
+          // Listen to the user login data status
+          BlocListener<AuthenticationBloc, AuthenticationState>(
+            listenWhen: (previous, current) =>
+                previous.signInState != current.signInState,
+            listener: (context, state) {
+              if (state.signInState == RequestState.success) {
+                final globalVariables = GlobalVariables();
+                globalVariables.setApiKey = state.loggedInUser.apiKey!;
+                globalVariables.setApiSecret = state.loggedInUser.apiSecret!;
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    Routes.homeScreenKey, (route) => false);
+              }
+
+              if (state.signInState == RequestState.error) {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    Routes.signInScreenKey, (route) => false);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => ErrorDialog(
+                    errorMessage: state.signInMessage,
+                  ),
+                );
+              }
+              if (state.signInState == RequestState.loading) {
+                LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+              }
+            },
+          );
+
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(Routes.homeScreenKey, (route) => false);
+        }
+        if (state.getCacheUserDataState == RequestState.error) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              Routes.signInScreenKey, (route) => false);
+        }
+      },
+    );
+  }

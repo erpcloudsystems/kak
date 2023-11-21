@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/snack_bar_util.dart';
 
 import '../../../../core/utils/enums.dart';
 import '../../domain/entities/user.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
+import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -31,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
               Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
                   context: context,
-                  message: 'You have registered successfully!',
+                  message: StringsManager.createdAccountSuccessfully,
                   color: Colors.green);
               Navigator.of(context)
                   .pushReplacementNamed(Routes.signInScreenKey);

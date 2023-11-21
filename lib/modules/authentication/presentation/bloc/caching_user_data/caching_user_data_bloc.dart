@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../domain/usecases/delete_user_cached_data_use_case.dart';
 
-import '../../../../../core/global/base_use_case.dart';
 import '../../../../../core/utils/enums.dart';
+import '../../../../../core/global/base_use_case.dart';
 import '../../../domain/usecases/cache_user_use_case.dart';
+import '../../../domain/entities/user_caching_data_entity.dart';
 import '../../../domain/usecases/get_cached_user_use_case.dart';
+import '../../../domain/usecases/delete_user_cached_data_use_case.dart';
 
 part 'caching_user_data_event.dart';
 part 'caching_user_data_state.dart';
@@ -30,7 +31,7 @@ class CachingUserDataBloc
   //__________________________Cache user data event______________________________________
   FutureOr<void> _cacheUserMethod(
       CacheUserDataEvent event, Emitter<CachingUserDataState> emit) async {
-    final result = await _cacheUser(event.userEmail);
+    final result = await _cacheUser(event.userData);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -53,8 +54,9 @@ class CachingUserDataBloc
         getCacheUserDataState: RequestState.error,
         getCacheUserDataMessage: failure.errorMessage,
       )),
-      (_) => emit(state.copyWith(
+      (userData) => emit(state.copyWith(
         getCacheUserDataState: RequestState.success,
+        userCachedData: userData,
       )),
     );
   }
@@ -73,8 +75,7 @@ class CachingUserDataBloc
       )),
       (_) => emit(state.copyWith(
         deleteCacheUserDataState: RequestState.success,
-      )
-      ),
+      )),
     );
   }
 }

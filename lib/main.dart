@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.getApplicationLightTheme(),
           routes: Routes.routes,
-          // home: const SplashScreen(),
-          home: const SignUpScreen(),
+          home: const SplashScreen(),
+          // home: const SignUpScreen(),
         ),
       ),
     );
