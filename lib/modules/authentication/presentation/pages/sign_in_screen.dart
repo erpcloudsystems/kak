@@ -41,6 +41,7 @@ class SignInScreen extends StatelessWidget {
                   password: globalVariables.getGlobalUserPassword!,
                 )));
               }
+              globalVariables.setSid = state.loggedInUser.sid!;
               Navigator.of(context).pop();
               Navigator.of(context).pushNamedAndRemoveUntil(
                   Routes.navigationBarScreenKey, (route) => false);

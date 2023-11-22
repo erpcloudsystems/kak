@@ -1,4 +1,4 @@
-import 'dart:convert';
+// import 'dart:convert';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
@@ -32,8 +32,8 @@ class _UserPhotoWidgetState extends State<UserPhotoWidget> {
     fileName = filePath.length <= 140 ? filePath : '${const Uuid().v1()}.jpg';
 
     // Convert the image to Base64 to send it to the Backend.
-    final imageBytes = await image.readAsBytes();
-    final images64 = base64Encode(imageBytes);
+    // final imageBytes = await image.readAsBytes();
+    // final images64 = base64Encode(imageBytes);
   }
 
   @override

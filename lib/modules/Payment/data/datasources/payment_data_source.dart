@@ -18,6 +18,7 @@ class PayByPaymobGateway implements PaymentBaseDataSource {
     late final String authKey, orderId, paymentToken;
 
     final authResponse = await dio.post(
+        useCookies: false,
         base: ApiConstance.paymobBaseUrl,
         endPoint: ApiConstance.paymobAuthRequest,
         data: {
@@ -27,6 +28,7 @@ class PayByPaymobGateway implements PaymentBaseDataSource {
     authKey = authResponse.data['token'];
 
     final orderResponse = await dio.post(
+        useCookies: false,
         base: ApiConstance.paymobBaseUrl,
         endPoint: ApiConstance.paymobOrderRegistration,
         data: {
@@ -40,6 +42,7 @@ class PayByPaymobGateway implements PaymentBaseDataSource {
     orderId = orderResponse.data['id'].toString();
 
     final paymentKeyResponse = await dio.post(
+        useCookies: false,
         base: ApiConstance.paymobBaseUrl,
         endPoint: ApiConstance.paymobPaymentKeyRequest,
         data: {

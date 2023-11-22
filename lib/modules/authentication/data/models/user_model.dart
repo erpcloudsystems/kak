@@ -16,13 +16,10 @@ class UserModel extends UserEntity {
       };
 
   Map<String, dynamic> toJsonSignUp() => {
+        'email': email,
+        'new_password': password,
         'mobile': phoneNumber,
-        'full_name': '$firstName $lastName',
         'first_name': firstName,
         'last_name': lastName,
-        'new_password': password,
-        'image': image,
-        'email': email,
-        'redirect_to': "/home",
       };
 }

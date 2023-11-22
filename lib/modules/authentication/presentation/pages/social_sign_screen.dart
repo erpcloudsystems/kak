@@ -38,7 +38,7 @@ class SocialSignScreen extends StatelessWidget {
                       width: DoubleManager.d_60.w,
                     ),
                     Text(
-                      StringsManager.letsDiveInText,
+                      'StringsManager.letsDiveInText',
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!

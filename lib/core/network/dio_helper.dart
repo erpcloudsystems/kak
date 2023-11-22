@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 
 import 'exceptions.dart';
@@ -18,8 +20,7 @@ abstract class BaseDioHelper {
     String? token,
     dynamic data,
     dynamic query,
-    // We use this condition because Token won't be needed in signing.
-    bool isSign = false,
+    bool useCookies = false,
   });
 
   Future<dynamic> get({
@@ -31,14 +32,14 @@ abstract class BaseDioHelper {
     String? token,
     dynamic data,
     dynamic query,
-    // We use this condition because Token won't be needed in signing.
-    bool isSign = false,
+    // We use this condition because Cookies won't be needed in signing and outer
+    // calls like maps.
+    bool useCookies = true,
   });
 }
 
 class DioHelper implements BaseDioHelper {
-  final globalVariables = GlobalVariables();
-
+  final globalVariable = GlobalVariables();
   final Dio dio = Dio(
     BaseOptions(
       baseUrl: ApiConstance.baseUrl,
@@ -46,6 +47,12 @@ class DioHelper implements BaseDioHelper {
       connectTimeout: const Duration(seconds: IntManager.i_30),
     ),
   );
+
+  final cookieJar = CookieJar(ignoreExpires: true);
+
+  DioHelper() {
+    dio.interceptors.add(CookieManager(cookieJar));
+  }
 
   @override
   Future get({
@@ -57,8 +64,7 @@ class DioHelper implements BaseDioHelper {
     Duration? timeOut,
     String? token,
     query,
-    // We use this condition because Token won't be needed in signing.
-    bool isSign = false,
+    bool useCookies = true,
   }) async {
     if (base != null) {
       dio.options.baseUrl = base;
@@ -72,10 +78,8 @@ class DioHelper implements BaseDioHelper {
       if (isMultiPart) 'Content-Type': 'multipart/form-data',
       if (!isMultiPart) 'Content-Type': 'application/json',
       if (!isMultiPart) 'Accept': 'application/json',
-      if (isSign)
-        'Authorization':
-            'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
       if (token != null) 'token': token,
+      if (useCookies) 'Cookie': 'sid=${globalVariable.getSid}'
     };
 
     log('URL => ${dio.options.baseUrl + endPoint}');
@@ -97,7 +101,7 @@ class DioHelper implements BaseDioHelper {
     required String endPoint,
     CancelToken? cancelToken,
     bool isMultiPart = false,
-    bool isSign = false,
+    bool useCookies = true,
     Duration? timeOut,
     String? base,
     String? token,
@@ -117,9 +121,7 @@ class DioHelper implements BaseDioHelper {
       if (!isMultiPart) 'Content-Type': 'application/json',
       if (!isMultiPart) 'Accept': 'application/json',
       if (token != null) 'token': token,
-      // if (!isSign)
-      //   'Authorization':
-      //       'token ${globalVariables.getApiKey}:${globalVariables.getApiSecret}',
+      if (useCookies) 'Cookie': 'sid=${globalVariable.getSid}'
     };
 
     log('URL => ${dio.options.baseUrl + endPoint}');

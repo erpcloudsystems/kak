@@ -47,15 +47,22 @@ class LocationServiceClass {
   Future<String> getUserAddressUsingGoogleGeoCodingApi(
       LatLng coordinates) async {
     final response = await dio.get(
-        endPoint: 'https://maps.googleapis.com/maps/api/geocode/json',
-        query: {
-          'latlng': '${coordinates.latitude},${coordinates.longitude}',
-          'key': ConstantKeys.serverMapsKey,
-        }) as Response;
-     if (response.data['status'] == 'OK' && response.data['results'] != null && response.data['results'].isNotEmpty) {
-    return response.data['results'][0]['formatted_address'];
-  } else {
-    throw PrimaryServerException(code: response.statusCode!, error: response.statusMessage!, message: response.data['error_message']);
+      useCookies: false,
+      endPoint: 'https://maps.googleapis.com/maps/api/geocode/json',
+      query: {
+        'latlng': '${coordinates.latitude},${coordinates.longitude}',
+        'key': ConstantKeys.serverMapsKey,
+      },
+    ) as Response;
+    if (response.data['status'] == 'OK' &&
+        response.data['results'] != null &&
+        response.data['results'].isNotEmpty) {
+      return response.data['results'][0]['formatted_address'];
+    } else {
+      throw PrimaryServerException(
+          code: response.statusCode!,
+          error: response.statusMessage!,
+          message: response.data['error_message']);
+    }
   }
-}
 }

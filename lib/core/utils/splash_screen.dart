@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kak/core/global/global_varibles.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,6 +74,8 @@ class _SplashScreenState extends State<SplashScreen> {
             previous.signInState != current.signInState,
         listener: (context, state) {
           if (state.signInState == RequestState.success) {
+            final globalVariables = GlobalVariables();
+            globalVariables.setSid = state.loggedInUser.sid!;
             _navigateToHomeScreen();
           } else if (state.signInState == RequestState.error) {
             _handleSignInError(state.signInMessage);

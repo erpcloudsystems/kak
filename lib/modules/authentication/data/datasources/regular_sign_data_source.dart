@@ -14,7 +14,8 @@ class RegularSignDataSource {
   Future<LoggedInUserModel> signIn(UserModel user) async {
     final response = await _dio.post(
       endPoint: ApiConstance.loginEndPoint,
-      query: user.toJsonSignIn(),
+      data: user.toJsonSignIn(),
+      useCookies: false,
     ) as Response;
 
     final returnedUser = LoggedInUserModel.fromJson(response.data['message']);
@@ -27,6 +28,7 @@ class RegularSignDataSource {
     await _dio.post(
       endPoint: ApiConstance.signUpEndPoint,
       query: user.toJsonSignUp(),
+      useCookies: false,
     );
 
     return Future.value(unit);
@@ -34,7 +36,7 @@ class RegularSignDataSource {
 
 //_________________ Reset password ___________________________________
   Future<Unit> resetPassword(String email) async {
-    await _dio.post(
+    await _dio.get(
       endPoint: ApiConstance.resetPasswordEndPoint,
       query: {'email': email},
     );
@@ -44,7 +46,7 @@ class RegularSignDataSource {
 
 //______________________ Logout _____________________________________
   Future<Unit> logout(String email) async {
-    await _dio.post(
+    await _dio.get(
       endPoint: ApiConstance.logoutEndPoint,
       query: {'user': email},
     );
@@ -54,7 +56,7 @@ class RegularSignDataSource {
 
 //____________________ delete user___________________________________
   Future<Unit> deleteUserAccount(String email) async {
-    await _dio.post(
+    await _dio.get(
       endPoint: ApiConstance.deleteUserEndPoint,
       query: {'user': email},
     );

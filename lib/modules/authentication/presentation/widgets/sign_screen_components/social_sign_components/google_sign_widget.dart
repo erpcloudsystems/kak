@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
-
-import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/routes.dart';
 import '../../../../../../core/utils/loading_indicator_util.dart';
 import '../../../../../../core/utils/enums.dart';
