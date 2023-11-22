@@ -22,9 +22,11 @@ class StringsManager {
   static const String emptyCacheFailureMessage = 'There is no cached user data';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
+  static const String deleteAccountMessage = 'You have deleted your account';
   static const String enableLocation = 'Please open your location service';
-  static const String emailValidateMessage = 'please enter your E-mail';
+  static const String logoutMessage = 'You have logged out successfully';
   static const String alreadyHaveAnAccount = 'Already have an account?';
+  static const String emailValidateMessage = 'please enter your E-mail';
   static const String emptyValidator = 'This field must have a value';
   static const String unKnownErrorOccurred = 'Unknown Error Occurred';
   static const String authenticationDividerText = 'or continue with';
@@ -40,12 +42,11 @@ class StringsManager {
   static const String productDetails = 'Product Details';
   static const String previousOrders = 'Previous orders';
   static const String loading = 'Loading, Please wait!';
-  static const String letsDiveInText = 'Let\'s dive in';
+  static const String deleteAccount = 'Delete account';
   static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
   static const String continueWith = 'Continue with';
   static const String deliverHere = 'Deliver here';
-  static const String apiKeyCachingKey = 'API-KEY';
   static const String createOrder = 'Create Order';
   static const String description = 'Description';
   static const String getStarted = 'Get started';

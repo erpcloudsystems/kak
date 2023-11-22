@@ -27,7 +27,7 @@ mixin SocialSignDataSource {
   // }
 
   //_______________________________Sign with Google______________________________
-  Future<UserModel> socialSignWithGoogle() async {
+  Future<UserModel> signWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
     final googleSignInAccount = await googleSignIn.signIn();
     final googleSignInAuthentication =

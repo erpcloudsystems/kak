@@ -10,8 +10,8 @@ class RegularSignDataSource {
   final BaseDioHelper _dio;
   const RegularSignDataSource(this._dio);
 
-//_________________ Sign in_____________________________________
-  Future<LoggedInUserModel> regularSignIn(UserModel user) async {
+//_________________ Sign in_________________________________________
+  Future<LoggedInUserModel> signIn(UserModel user) async {
     final response = await _dio.post(
       endPoint: ApiConstance.loginEndPoint,
       query: user.toJsonSignIn(),
@@ -22,8 +22,8 @@ class RegularSignDataSource {
     return returnedUser;
   }
 
-//_________________ Sign up_____________________________________
-  Future<Unit> regularSignUp(UserModel user) async {
+//_________________ Sign up__________________________________________
+  Future<Unit> signUp(UserModel user) async {
     await _dio.post(
       endPoint: ApiConstance.signUpEndPoint,
       query: user.toJsonSignUp(),
@@ -33,7 +33,7 @@ class RegularSignDataSource {
   }
 
 //_________________ Reset password ___________________________________
-  Future<Unit> regularResetPassword(String email) async {
+  Future<Unit> resetPassword(String email) async {
     await _dio.post(
       endPoint: ApiConstance.resetPasswordEndPoint,
       query: {'email': email},
@@ -41,19 +41,24 @@ class RegularSignDataSource {
 
     return Future.value(unit);
   }
-// //_________________ Sign out_____________________________________
-//   Future<Unit> firebaseSignOut() async {
-//     await _fireAuth.signOut();
-//     return Future.value(unit);
-//   }
 
-// //_________________ verify user___________________________________
-//   Future<bool> firebaseVerifyUser() async {
-//     final user = _fireAuth.currentUser!;
-//     await user.reload();
-//     if (user.emailVerified) {
-//       return Future.value(true);
-//     }
-//     return Future.value(false);
-//   }
+//______________________ Logout _____________________________________
+  Future<Unit> logout(String email) async {
+    await _dio.post(
+      endPoint: ApiConstance.logoutEndPoint,
+      query: {'user': email},
+    );
+
+    return Future.value(unit);
+  }
+
+//____________________ delete user___________________________________
+  Future<Unit> deleteUserAccount(String email) async {
+    await _dio.post(
+      endPoint: ApiConstance.deleteUserEndPoint,
+      query: {'user': email},
+    );
+
+    return Future.value(unit);
+  }
 }

@@ -55,7 +55,17 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
   Future<Either<Failure, Unit>> resetPassword(String email) async =>
       await _signMethod(() => _dataSource.resetPassword(email));
 
-  //_____________________common returning Unit method___________________________
+  //_________________________ Delete user account __________________________________
+  @override
+  Future<Either<Failure, Unit>> deleteAccount(String email) async =>
+      await _signMethod(() => _dataSource.deleteUserAccount(email));
+
+  //_______________________________ Logout _________________________________________
+  @override
+  Future<Either<Failure, Unit>> logout(String email) async =>
+      await _signMethod(() => _dataSource.logout(email));
+
+  //_________________________common returning Unit method___________________________
   Future<Either<Failure, Unit>> _signMethod(FutureFunction wantedMethod) async {
     if (await _deviceStatus.isConnected) {
       try {

@@ -14,6 +14,14 @@ class AuthenticationState extends Equatable {
   final RequestState resetPasswordState;
   final String resetPasswordMessage;
 
+  // Logout
+  final RequestState logoutState;
+  final String logoutMessage;
+
+  // Delete user account
+  final RequestState deleteUserAccountState;
+  final String deleteUserAccountMessage;
+
   const AuthenticationState({
     // Sign in state
     this.signInState = RequestState.stable,
@@ -27,6 +35,14 @@ class AuthenticationState extends Equatable {
     // Reset password
     this.resetPasswordState = RequestState.stable,
     this.resetPasswordMessage = '',
+
+    // Logout
+    this.logoutState = RequestState.stable,
+    this.logoutMessage = '',
+
+    // Delete user account
+    this.deleteUserAccountState = RequestState.stable,
+    this.deleteUserAccountMessage = '',
   });
 
   AuthenticationState copyWith({
@@ -42,6 +58,14 @@ class AuthenticationState extends Equatable {
     // Reset password
     RequestState? resetPasswordState,
     String? resetPasswordMessage,
+
+    // Logout
+    RequestState? logoutState,
+    String? logoutMessage,
+
+    // Delete user account
+    RequestState? deleteUserAccountState,
+    String? deleteUserAccountMessage,
   }) {
     return AuthenticationState(
       // Sign in state
@@ -56,6 +80,14 @@ class AuthenticationState extends Equatable {
       // Reset password
       resetPasswordState: resetPasswordState ?? this.resetPasswordState,
       resetPasswordMessage: resetPasswordMessage ?? this.resetPasswordMessage,
+
+      // Logout
+      logoutState: logoutState ?? this.logoutState,
+      logoutMessage: logoutMessage ?? this.logoutMessage,
+
+      // Delete user account
+      deleteUserAccountState: deleteUserAccountState ?? this.deleteUserAccountState,
+      deleteUserAccountMessage: deleteUserAccountMessage ?? this.deleteUserAccountMessage,
     );
   }
 
@@ -73,5 +105,13 @@ class AuthenticationState extends Equatable {
         // Reset password
         resetPasswordState,
         resetPasswordMessage,
+
+        // Logout
+        logoutState,
+        logoutMessage,
+
+        // Delete user account
+        deleteUserAccountState,
+        deleteUserAccountMessage,
       ];
 }

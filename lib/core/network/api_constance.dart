@@ -4,6 +4,7 @@ abstract class ApiConstance {
 
   static const String resetPasswordEndPoint = '/kak.api.resetPassword';
   static const String deleteUserEndPoint = '/kak.api.delete_user';
+  static const String logoutEndPoint = '/kak.api.logout';
   static const String signUpEndPoint = '/kak.api.sign_up';
   static const String loginEndPoint = '/kak.api.login';
 

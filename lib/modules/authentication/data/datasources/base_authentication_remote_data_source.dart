@@ -9,49 +9,18 @@ import '../models/logged_user_entity.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<LoggedInUserModel> signIn(UserModel user);
+  Future<Unit> deleteUserAccount(String email);
   Future<Unit> resetPassword(String email);
   Future<Unit> signUp(UserModel user);
+  Future<Unit> logout(String email);
 
   Future<UserModel> signWithGoogle();
 
   // Future<UserModel> signWithFacebook();
-  // Future<bool> verifyUser();
-  // Future<Unit> signOut();
 }
 
 class AuthenticationRemoteDataSource extends RegularSignDataSource
     with SocialSignDataSource
     implements BaseAuthenticationRemoteDataSource {
   AuthenticationRemoteDataSource(super.dio);
-
- // Regular auth_______________________________________________________________________
-  @override
-  Future<LoggedInUserModel> signIn(UserModel user) async => await regularSignIn(user);
-
-  @override
-  Future<Unit> signUp(UserModel user) async => await regularSignUp(user);
-
-  @override
-  Future<Unit> resetPassword(String email) => regularResetPassword(email);
-  
- // Social auth_________________________________________________________________________
-  @override
-  Future<UserModel> signWithGoogle() => socialSignWithGoogle();
-
-  // @override
-  // Future<UserModel> signWithFacebook() => socialSignWithFacebook();
-
-  // @override
-  // Future<Unit> signOut() => firebaseSignOut();
-
-  // @override
-  // Future<bool> verifyUser() => firebaseVerifyUser();
-
-  // @override
-  // Future<PhoneAuthState> signWithPhoneNumber(String phoneNumber) =>
-  //     socialSignWithPhoneNumber(phoneNumber);
-
-  // @override
-  // Future<Unit> otpVerify(String code) => socialOtpVerification(code);
-
 }

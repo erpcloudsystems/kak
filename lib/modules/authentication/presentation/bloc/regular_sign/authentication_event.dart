@@ -21,3 +21,13 @@ class ResetPasswordEvent extends AuthenticationEvent {
   final String email;
   const ResetPasswordEvent({required this.email});
 }
+
+class LogoutEvent extends AuthenticationEvent {
+  final String email;
+  const LogoutEvent({required this.email});
+}
+
+class DeleteUserAccountEvent extends AuthenticationEvent {
+  final String email;
+  const DeleteUserAccountEvent({required this.email});
+}

@@ -14,12 +14,14 @@ import '../../modules/Address/data/datasources/address_data_source.dart';
 import '../../modules/Payment/data/datasources/payment_data_source.dart';
 import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/Payment/domain/repositories/payment_base_repo.dart';
+import '../../modules/authentication/domain/usecases/logout_use_case.dart';
 import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
 import '../../modules/authentication/domain/usecases/sign_in_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_up_use_case.dart';
 import '../../modules/authentication/domain/usecases/cache_user_use_case.dart';
 import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
+import '../../modules/authentication/domain/usecases/delete_account_use_case.dart';
 import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
 import '../../modules/authentication/data/repositories/social_sign_repository.dart';
 import '../../modules/authentication/domain/usecases/get_cached_user_use_case.dart';
@@ -42,7 +44,7 @@ Future<void> init() async {
 
   // Authentication
   sl.registerFactory(() => SocialSignBloc(sl()));
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Address
   sl.registerFactory(() => AddressBloc(sl(), sl()));
@@ -58,9 +60,10 @@ Future<void> init() async {
   // Authentication
   sl.registerLazySingleton(() => SignUpUseCase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(sl()));
+  sl.registerLazySingleton(() => LogoutUseCase(sl()));
+  sl.registerLazySingleton(() => DeleteAccountUseCase(sl()));
   sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
-  // sl.registerLazySingleton(() => LogoutUseCase(sl()));
 
   // Caching
   sl.registerLazySingleton(() => CacheUserUseCase(sl()));
@@ -99,7 +102,7 @@ Future<void> init() async {
       () => AuthenticationRemoteDataSource(sl()));
 
   // Caching
-  sl.registerLazySingleton<BaseLocalDataSource>(() =>LocalDataSource());
+  sl.registerLazySingleton<BaseLocalDataSource>(() => LocalDataSource());
 
   // Address
   sl.registerLazySingleton<AddressBaseDataSource>(

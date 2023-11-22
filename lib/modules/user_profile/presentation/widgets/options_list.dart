@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/routes.dart';
-import 'package:kak/core/resources/strings_manager.dart';
 
+import 'logout_button.dart';
+import 'delete_account_button.dart';
+import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 
 class OptionsList extends StatelessWidget {
   const OptionsList({
@@ -14,6 +16,7 @@ class OptionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) => profileList[index],
       separatorBuilder: (context, index) => Divider(
         endIndent: DoubleManager.d_27,
@@ -27,14 +30,15 @@ class OptionsList extends StatelessWidget {
 
 class ProfileListElement extends StatelessWidget {
   const ProfileListElement({
-    required this.routeName,
+    required this.onTap,
     required this.icon,
     required this.text,
     super.key,
   });
 
   final IconData icon;
-  final String text, routeName;
+  final String text;
+  final void Function(BuildContext context) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -50,35 +54,36 @@ class ProfileListElement extends StatelessWidget {
           .textTheme
           .bodyMedium!
           .copyWith(fontSize: FontsSize.s15),
-      onTap: () => Navigator.of(context).pushNamed(routeName),
+      onTap: () => onTap(context),
     );
   }
 }
 
-const List<ProfileListElement> profileList = [
+List profileList = [
   ProfileListElement(
     icon: Icons.person_2_outlined,
     text: StringsManager.myAccount,
-    routeName: Routes.editProfileScreenKey,
+    onTap: (context) =>
+        Navigator.of(context).pushNamed(Routes.editProfileScreenKey),
   ),
   ProfileListElement(
     icon: Icons.shopping_bag_outlined,
     text: StringsManager.myOrders,
-    routeName: Routes.myOrdersScreenKey,
+    onTap: (context) =>
+        Navigator.of(context).pushNamed(Routes.myOrdersScreenKey),
   ),
   ProfileListElement(
     icon: Icons.home_outlined,
     text: StringsManager.myAddress,
-    routeName: Routes.addressScreenKey,
+    onTap: (context) =>
+        Navigator.of(context).pushNamed(Routes.addressScreenKey),
   ),
   ProfileListElement(
     icon: Icons.payment_outlined,
     text: StringsManager.paymentMethod,
-    routeName: Routes.paymentScreenKey,
+    onTap: (context) =>
+        Navigator.of(context).pushNamed(Routes.paymentScreenKey),
   ),
-  ProfileListElement(
-    icon: Icons.logout,
-    text: StringsManager.logout,
-    routeName: Routes.myOrdersScreenKey,
-  ),
+  const LogoutButton(),
+  const DeleteAccountButton(),
 ];
