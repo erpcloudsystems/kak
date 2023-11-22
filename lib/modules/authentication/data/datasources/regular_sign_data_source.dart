@@ -17,7 +17,7 @@ class RegularSignDataSource {
       query: user.toJsonSignIn(),
     ) as Response;
 
-    final returnedUser = LoggedInUserModel.fromJson(response.data);
+    final returnedUser = LoggedInUserModel.fromJson(response.data['message']);
 
     return returnedUser;
   }

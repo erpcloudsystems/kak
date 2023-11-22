@@ -41,10 +41,9 @@ class SignInScreen extends StatelessWidget {
                   password: globalVariables.getGlobalUserPassword!,
                 )));
               }
-              globalVariables.setApiKey = state.loggedInUser.apiKey!;
-              globalVariables.setApiSecret = state.loggedInUser.apiSecret!;
               Navigator.of(context).pop();
-              Navigator.of(context).pushReplacementNamed(Routes.homeScreenKey);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  Routes.navigationBarScreenKey, (route) => false);
             }
 
             if (state.signInState == RequestState.error) {

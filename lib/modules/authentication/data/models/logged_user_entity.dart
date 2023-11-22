@@ -17,7 +17,7 @@ class LoggedInUserModel extends LoggedInUserEntity {
 
   factory LoggedInUserModel.fromJson(Map<String, dynamic> json) => LoggedInUserModel(
         role: List<String>.from(json["role"].map((x) => x)),
-        apiSecret: json["api_secret"]["api_secret"],
+        // apiSecret: json["api_secret"]["api_secret"] ?? '',
         fullName: json["full_name"],
         userType: json["user_type"],
         username: json["username"],
