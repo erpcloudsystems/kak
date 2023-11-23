@@ -1,8 +1,11 @@
+import 'package:kak/core/utils/enums.dart';
+
 class GlobalVariables {
   static final GlobalVariables _globalVariables = GlobalVariables._internal();
 
   bool _ifUserWantedToBeRemembered = false;
-  String?  _sid, _globalUserPassword;
+  String? _sid, _globalUserPassword;
+  DeviceLanguage? _deviceLanguage;
 
   factory GlobalVariables() => _globalVariables;
 
@@ -16,4 +19,8 @@ class GlobalVariables {
 
   String? get getSid => _sid;
   set setSid(String sid) => _sid = sid;
+
+  DeviceLanguage? get getDeviceLanguage => _deviceLanguage;
+  set setDeviceLanguage(DeviceLanguage deviceLanguage) =>
+      _deviceLanguage = deviceLanguage;
 }

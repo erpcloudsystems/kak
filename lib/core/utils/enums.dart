@@ -14,3 +14,8 @@ enum LoadingType {
   linear,
   circular,
 }
+
+enum DeviceLanguage {
+  english,
+  arabic,
+}

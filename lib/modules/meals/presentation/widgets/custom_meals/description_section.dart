@@ -24,7 +24,8 @@ class _DescriptionSectionState extends State<DescriptionSection> {
   @override
   void initState() {
     super.initState();
-    count = ValueNotifier<int>(widget.meal.quantity);
+    // count = ValueNotifier<int>(widget.meal.quantity);
+    count = ValueNotifier<int>(1);
   }
 
   @override
@@ -96,7 +97,8 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                       ),
                     ],
                     color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(DoubleManager.d_5)),
+                    borderRadius: const BorderRadius.all(
+                        Radius.circular(DoubleManager.d_5)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

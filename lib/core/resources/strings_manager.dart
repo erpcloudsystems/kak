@@ -84,6 +84,7 @@ class StringsManager {
   static const String appName = 'Kak';
   static const String phone = 'Phone';
   static const String item = 'Items';
+  static const String none = 'None';
   static const String sort = 'Sort';
   static const String save = 'Save';
   static const String okay = 'Okay';

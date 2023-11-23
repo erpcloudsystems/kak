@@ -5,8 +5,13 @@ import 'package:get_it/get_it.dart';
 
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
+import '../../modules/meals/presentation/bloc/meals_bloc.dart';
+import '../../modules/meals/data/datasources/meals_remote.dart';
 import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
 import '../../modules/Address/presentation/bloc/address_bloc.dart';
+import '../../modules/meals/domain/usecases/get_offers_meals.dart';
+import '../../modules/meals/data/repositories/meals_repo_impl.dart';
+import '../../modules/meals/domain/repositories/meals_base_repo.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';
 import '../../modules/Payment/data/repositories/payment_repo_impl.dart';
 import '../../modules/Address/domain/usecases/get_address_use_case.dart';
@@ -34,8 +39,8 @@ import '../../modules/authentication/presentation/bloc/regular_sign/authenticati
 import '../../modules/authentication/data/repositories/regular_authentication_repository.dart';
 import '../../modules/authentication/domain/repositories/base_caching_user_data_repository.dart';
 import '../../modules/authentication/data/datasources/base_authentication_remote_data_source.dart';
-import '../../modules/authentication/domain/repositories/base_regular_authentication_repository.dart';
 import '../../modules/authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
+import '../../modules/authentication/domain/repositories/base_regular_authentication_repository.dart';
 
 final sl = GetIt.instance;
 
@@ -45,6 +50,9 @@ Future<void> init() async {
   // Authentication
   sl.registerFactory(() => SocialSignBloc(sl()));
   sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Meals
+  sl.registerFactory(() => MealsBloc(sl()));
 
   // Address
   sl.registerFactory(() => AddressBloc(sl(), sl()));
@@ -70,6 +78,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
   sl.registerLazySingleton(() => DeleteUserCachedDataUseCase(sl()));
 
+  // Meals
+  sl.registerLazySingleton(() => GetOffersMealsUseCase(sl()));
+
   // Address
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
@@ -89,6 +100,9 @@ Future<void> init() async {
   sl.registerLazySingleton<BaseCachingUserDataRepository>(
       () => CachingUserDataRepository(sl()));
 
+  // Meals
+  sl.registerLazySingleton<MealsBaseRepo>(() => MealsRepoImpl(sl(), sl()));
+
   // Address
   sl.registerLazySingleton<AddressBaseRepo>(() => AddressRepoImpl(sl(), sl()));
 
@@ -103,6 +117,10 @@ Future<void> init() async {
 
   // Caching
   sl.registerLazySingleton<BaseLocalDataSource>(() => LocalDataSource());
+
+  // Meals
+  sl.registerLazySingleton<MealsBaseRemoteDataSource>(
+      () => MealsRemoteDataSourceByDio(sl()));
 
   // Address
   sl.registerLazySingleton<AddressBaseDataSource>(

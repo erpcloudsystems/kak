@@ -13,12 +13,9 @@ const List<String> additionalList = ['Coleslaw', 'Rizo', 'Bread'];
 const List<String> drinksList = ['Pepsi', 'Cokacola', '7 UP'];
 List<String> mealTypeList = [MealType.regular.name, MealType.spicy.name];
 const MealEntity mealTest = MealEntity(
-    priceAfterDiscount: 20,
-    additionalItems: [],
+    id: 'test',
     description:
         '1 single beef or chicken sandwich + 1 single beef + burger or 1 single chicken burger + 1 Drink + medium fries',
-    mealType: MealType.regular,
-    quantity: 1,
     imageUrl:
         'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/fried-chicken-promo-design-template-77d37eb3a58ba753f502774abd21dbae_screen.jpg?ts=1655303745',
     price: 175,

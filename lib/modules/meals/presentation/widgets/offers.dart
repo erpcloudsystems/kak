@@ -1,56 +1,76 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'dots_indicator.dart';
 import 'choose_ur_order.dart';
+import '../bloc/meals_bloc.dart';
+import 'upper_screen_meal_image.dart';
+import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../../core/utils/custom_cached_image.dart';
-import 'upper_screen_meal_image.dart';
 
-class Offers extends StatefulWidget {
-  const Offers({super.key, required this.itemList});
-  final List<MealEntity> itemList;
-
-  @override
-  State<Offers> createState() => _OffersState();
-}
-
-class _OffersState extends State<Offers> {
-  int currentSliderIndex = IntManager.i_0;
+class Offers extends StatelessWidget {
+  const Offers({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      clipBehavior: Clip.none,
-      children: [
-        CarouselSlider.builder(
-          options: CarouselOptions(
-            viewportFraction: 1.0,
-            autoPlay: true,
-            onPageChanged: (index, reason) =>
-                setState(() => currentSliderIndex = index),
-          ),
-          itemCount: widget.itemList.length,
-          itemBuilder: (context, index, realIndex) => GestureDetector(
-            key: const Key('offer'),
-            // TODO: implement navigation call
-            // onTap: () => Navigator.of(context).pushNamed(
-            //   Routes.productDetails,
-            //   arguments: item,
-            // ),
-            child:
-                UpperScreenMealImage(imageUrl: widget.itemList[index].imageUrl),
-          ),
-        ),
-        const ChooseYourOrder(),
-        OfferDotsIndicator(
-          currentSliderIndex: currentSliderIndex,
-          offersList: widget.itemList,
-        )
-      ],
+    return BlocBuilder<MealsBloc, MealsState>(
+      buildWhen: (previous, current) => previous.getOffersState != current.getOffersState,
+      builder: (context, state) {
+        if (state.getOffersState == RequestState.error) {
+          return Center(child: Text(state.getOffersMessage));
+        }
+        if (state.getOffersState == RequestState.success) {
+          return OffersSection(offersList: state.getOffersData);
+        }
+        return const SizedBox();
+      },
     );
+  }
+}
+
+class OffersSection extends StatefulWidget {
+  const OffersSection({super.key, required this.offersList});
+  final List<MealEntity> offersList;
+  @override
+  State<OffersSection> createState() => _OffersSectionState();
+}
+
+class _OffersSectionState extends State<OffersSection> {
+    int currentSliderIndex = IntManager.i_0;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+            alignment: Alignment.bottomCenter,
+            clipBehavior: Clip.none,
+            children: [
+              CarouselSlider.builder(
+                options: CarouselOptions(
+                  viewportFraction: 1.0,
+                  autoPlay: true,
+                  onPageChanged: (index, reason) =>
+                      setState(() => currentSliderIndex = index),
+                ),
+                itemCount: widget.offersList.length,
+                itemBuilder: (context, index, realIndex) => GestureDetector(
+                  key: const Key('offer'),
+                  // TODO: implement navigation call
+                  // onTap: () => Navigator.of(context).pushNamed(
+                  //   Routes.productDetails,
+                  //   arguments: item,
+                  // ),
+                  child: UpperScreenMealImage(
+                      imageUrl: widget.offersList[index].imageUrl),
+                ),
+              ),
+              const ChooseYourOrder(),
+              OfferDotsIndicator(
+                currentSliderIndex: currentSliderIndex,
+                offersList: widget.offersList,
+              )
+            ],
+          );
   }
 }
 
