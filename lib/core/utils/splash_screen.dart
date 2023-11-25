@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kak/core/global/global_varibles.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'enums.dart';
 import 'error_dialog.dart';
 import '../resources/assetss_path.dart';
+import '../global/global_varibles.dart';
 import '../resources/values_manager.dart';
 import '../../../../core/resources/routes.dart';
 import '../../modules/authentication/domain/entities/user.dart';
@@ -42,6 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _whenVideoIntroEnd() {
     if (_controller.value.position >= _controller.value.duration) {
+      getDeviceLanguage();
       BlocProvider.of<CachingUserDataBloc>(context)
           .add(GetCachedUserDataEvent());
     }
@@ -132,4 +134,15 @@ class _SplashScreenState extends State<SplashScreen> {
         .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false);
   }
   //_____________________________________________________________________________
+
+  // Get the device
+  void getDeviceLanguage() {
+    final gv = GlobalVariables();
+    Locale currentLocale = context.locale;
+    if (currentLocale.languageCode == 'ar') {
+      gv.setDeviceLanguage = DeviceLanguage.arabic;
+    } else {
+      gv.setDeviceLanguage = DeviceLanguage.english;
+    }
+  }
 }

@@ -1,7 +1,6 @@
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
-
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/colors_manager.dart';

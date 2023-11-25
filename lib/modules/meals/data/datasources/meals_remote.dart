@@ -16,7 +16,7 @@ class MealsRemoteDataSourceByDio implements MealsBaseRemoteDataSource {
   Future<List<MealModel>> getOffers() async {
     final response = await dio.get(
       useCookies: false,
-      endPoint: ApiConstance.getOffersEnglishEndPoint,
+      endPoint: ApiConstance.getOffersEndPoint,
     ) as Response;
     final List<MealModel> data = List.from(response.data['message'])
         .map((e) => MealModel.fromJson(e))
