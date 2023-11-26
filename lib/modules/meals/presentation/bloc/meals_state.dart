@@ -6,11 +6,21 @@ class MealsState extends Equatable {
   final String getOffersMessage;
   final List<MealEntity> getOffersData;
 
+  // Get featured
+  final RequestState getFeaturedState;
+  final String getFeaturedMessage;
+  final List<MealEntity> getFeaturedData;
+
   const MealsState({
     // Get offers
     this.getOffersState = RequestState.stable,
     this.getOffersMessage = 'Get offers initial message',
     this.getOffersData = const [],
+
+    // Get Featured
+    this.getFeaturedState = RequestState.stable,
+    this.getFeaturedMessage = 'Get featured initial message',
+    this.getFeaturedData = const [],
   });
 
   MealsState copyWith({
@@ -18,12 +28,22 @@ class MealsState extends Equatable {
     RequestState? getOffersState,
     String? getOffersMessage,
     List<MealEntity>? getOffersData,
+
+    // Get Featured
+    RequestState? getFeaturedState,
+    String? getFeaturedMessage,
+    List<MealEntity>? getFeaturedData,
   }) =>
       MealsState(
         // Get Offers
         getOffersState: getOffersState ?? this.getOffersState,
         getOffersMessage: getOffersMessage ?? this.getOffersMessage,
         getOffersData: getOffersData ?? this.getOffersData,
+
+        // Get Featured
+        getFeaturedState: getFeaturedState ?? this.getFeaturedState,
+        getFeaturedMessage: getFeaturedMessage ?? this.getFeaturedMessage,
+        getFeaturedData: getFeaturedData ?? this.getFeaturedData,
       );
 
   @override
@@ -32,5 +52,10 @@ class MealsState extends Equatable {
         getOffersState,
         getOffersMessage,
         getOffersData,
+
+        // Get Featured
+        getFeaturedState,
+        getFeaturedMessage,
+        getFeaturedData,
       ];
 }

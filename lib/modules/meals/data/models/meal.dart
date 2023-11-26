@@ -19,7 +19,7 @@ class MealModel extends MealEntity {
             json['item_name'] ??
             StringsManager.none,
         imageUrl: '${ApiConstance.kakUrl}${json['image']}',
-        price: json['rate'] ?? 0.0,
+        price: double.tryParse(json['rate'].toString()) ?? 0.0,
         id: json['name'] ?? StringsManager.none,
       );
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kak/core/utils/enums.dart';
+import 'package:kak/modules/meals/presentation/bloc/meals_bloc.dart';
 
 import '../widgets/offers.dart';
 import '../widgets/appetizers_section.dart';
@@ -15,13 +18,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(StringsManager.menu)),
-      body: const CustomScrollingAnimatedTemplate(
+      body: CustomScrollingAnimatedTemplate(
         children: [
-          Offers(),
-          SizedBox(height: DoubleManager.d_60),
-          Appetizers(),
-          SizedBox(height: DoubleManager.d_20),
-          FeaturedMeals(featuredMeals: dummyMealsData),
+          const Offers(),
+          const SizedBox(height: DoubleManager.d_60),
+          const Appetizers(),
+          const SizedBox(height: DoubleManager.d_20),
+          BlocBuilder<MealsBloc, MealsState>(
+            buildWhen: (previous, current) =>
+                previous.getFeaturedState != current.getFeaturedState ||
+                previous.getFeaturedData != current.getFeaturedData,
+            builder: (context, state) {
+              if (state.getFeaturedState == RequestState.success) {
+                return FeaturedMeals(featuredMeals: state.getFeaturedData);
+              }
+              if (state.getFeaturedState == RequestState.error) {
+                return SizedBox(child: Text(state.getFeaturedMessage));
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ],
       ),
     );

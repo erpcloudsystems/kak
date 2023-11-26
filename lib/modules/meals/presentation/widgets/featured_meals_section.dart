@@ -12,8 +12,8 @@ import '../../../../core/resources/strings_manager.dart';
 class FeaturedMeals extends StatelessWidget {
   const FeaturedMeals({
     super.key,
-    required this.featuredMeals,
     this.isHome = true,
+    required this.featuredMeals,
   });
 
   final List<MealEntity> featuredMeals;

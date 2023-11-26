@@ -18,6 +18,10 @@ abstract class ApiConstance {
         ar: '/kak.general.get_offered_meals_arabic',
         en: '/kak.general.get_offered_meals_english',
       );
+  static String get getFeaturedEndPoint => getEndPointAccordingToDeviceLng(
+        ar: '/kak.general.get_featured_meals_arabic',
+        en: '/kak.general.get_featured_meals_english',
+      );
 
   // Paymob endpoints_______________________________________________________
   static const String paymobBaseUrl = 'https://accept.paymob.com/api';

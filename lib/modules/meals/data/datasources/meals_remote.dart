@@ -6,6 +6,7 @@ import '../../../../core/network/api_constance.dart';
 
 abstract class MealsBaseRemoteDataSource {
   Future<List<MealModel>> getOffers();
+  Future<List<MealModel>> getFeatured();
 }
 
 class MealsRemoteDataSourceByDio implements MealsBaseRemoteDataSource {
@@ -17,6 +18,18 @@ class MealsRemoteDataSourceByDio implements MealsBaseRemoteDataSource {
     final response = await dio.get(
       useCookies: false,
       endPoint: ApiConstance.getOffersEndPoint,
+    ) as Response;
+    final List<MealModel> data = List.from(response.data['message'])
+        .map((e) => MealModel.fromJson(e))
+        .toList();
+    return data;
+  }
+  
+  @override
+  Future<List<MealModel>> getFeatured() async {
+    final response = await dio.get(
+      useCookies: false,
+      endPoint: ApiConstance.getFeaturedEndPoint,
     ) as Response;
     final List<MealModel> data = List.from(response.data['message'])
         .map((e) => MealModel.fromJson(e))

@@ -11,6 +11,7 @@ import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
 import '../../modules/Address/presentation/bloc/address_bloc.dart';
 import '../../modules/meals/domain/usecases/get_offers_meals.dart';
 import '../../modules/meals/data/repositories/meals_repo_impl.dart';
+import '../../modules/meals/domain/usecases/get_featured_meals.dart';
 import '../../modules/meals/domain/repositories/meals_base_repo.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';
 import '../../modules/Payment/data/repositories/payment_repo_impl.dart';
@@ -52,7 +53,7 @@ Future<void> init() async {
   sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Meals
-  sl.registerFactory(() => MealsBloc(sl()));
+  sl.registerFactory(() => MealsBloc(sl(), sl()));
 
   // Address
   sl.registerFactory(() => AddressBloc(sl(), sl()));
@@ -80,6 +81,7 @@ Future<void> init() async {
 
   // Meals
   sl.registerLazySingleton(() => GetOffersMealsUseCase(sl()));
+  sl.registerLazySingleton(() => GetFeaturedMealsUseCase(sl()));
 
   // Address
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
