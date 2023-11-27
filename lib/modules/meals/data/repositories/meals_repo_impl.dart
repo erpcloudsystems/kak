@@ -6,6 +6,7 @@ import '../../../../core/network/failure.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
+import '../../domain/entities/meal_group_details.dart';
 import '../../domain/repositories/meals_base_repo.dart';
 import '../../../../core/resources/strings_manager.dart';
 
@@ -25,7 +26,13 @@ class MealsRepoImpl implements MealsBaseRepo {
 
   @override
   Future<Either<Failure, List<MealsGroupEntity>>> getMealsGroups() async =>
-      await _commonMethod(() => dataSource.getMealsGroups());
+      await _commonMethod<MealsGroupEntity>(() => dataSource.getMealsGroups());
+
+  @override
+  Future<Either<Failure, List<MealGroupDetailsEntity>>> getMealGroupItems(
+          String groupName) async =>
+      await _commonMethod<MealGroupDetailsEntity>(
+          () => dataSource.getMealsGroupsItems(groupName));
 
 //_________________common sign with email and password method____________________
   Future<Either<Failure, List<T>>> _commonMethod<T>(

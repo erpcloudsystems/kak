@@ -7,18 +7,22 @@ import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_group.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/global/base_use_case.dart';
-import '../../domain/usecases/get_meals_groups.dart';
 import '../../domain/usecases/get_offers_meals.dart';
+import '../../domain/usecases/get_meals_groups.dart';
+import '../../domain/entities/meal_group_details.dart';
 import '../../domain/usecases/get_featured_meals.dart';
+import '../../domain/usecases/get_meal_group_items.dart';
 
 part 'meals_event.dart';
 part 'meals_state.dart';
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
+  final GetMealGroupItemsUseCase _getMealGroupItemsUseCase;
   final GetFeaturedMealsUseCase _getFeaturedMealsUseCase;
   final GetOffersMealsUseCase _getOffersMealsUseCase;
   final GetMealsGroupsUseCase _getMealsGroupsUseCase;
   MealsBloc(
+    this._getMealGroupItemsUseCase,
     this._getFeaturedMealsUseCase,
     this._getOffersMealsUseCase,
     this._getMealsGroupsUseCase,
@@ -26,6 +30,7 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     on<GetOffersEvent>(_getOffers);
     on<GetFeaturedEvent>(_getFeatured);
     on<GetMealsGroupsEvent>(_getMealsGroups);
+    on<GetMealGroupItemsEvent>(_getMealGroupItems);
   }
 
   FutureOr<void> _getOffers(
@@ -78,6 +83,24 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
       (data) => emit(state.copyWith(
         getMealsGroupsState: RequestState.success,
         getMealsGroupsData: data,
+      )),
+    );
+  }
+
+  FutureOr<void> _getMealGroupItems(
+      GetMealGroupItemsEvent event, Emitter<MealsState> emit) async {
+    emit(state.copyWith(getMealGroupItemsState: RequestState.loading));
+
+    final response = await _getMealGroupItemsUseCase(event.groupName);
+
+    response.fold(
+      (failure) => emit(state.copyWith(
+        getMealGroupItemsState: RequestState.error,
+        getMealGroupItemsMessage: failure.errorMessage,
+      )),
+      (data) => emit(state.copyWith(
+        getMealGroupItemsState: RequestState.success,
+        getMealGroupItemsData: data,
       )),
     );
   }

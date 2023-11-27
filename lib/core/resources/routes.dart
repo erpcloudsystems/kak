@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
+import '../../modules/meals/presentation/pages/meal_group_items.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
 import '../../modules/Address/presentation/screens/address_screen.dart';
 import '../../modules/Payment/presentation/screens/payment_screen.dart';
@@ -14,6 +15,7 @@ import '../../modules/user_profile/presentation/pages/edit_profile_screen.dart';
 import '../../modules/authentication/presentation/pages/password_reset_screen.dart';
 
 class Routes {
+  static const String mealGroupItemsScreenKey = '/Meal-Group-Item';
   static const String passwordResetScreenKey = '/password_reset';
   static const String navigationBarScreenKey = '/navigation-bar';
   static const String mealContentsScreenKey = '/meal-contents';
@@ -29,12 +31,13 @@ class Routes {
 
   static Map<String, WidgetBuilder> get routes {
     return {
+      mealGroupItemsScreenKey: (_) => const MealGroupItemsScreen(),
       navigationBarScreenKey: (_) => const CustomNavigationBar(),
-      passwordResetScreenKey:(_) => const PasswordResetScreen(), 
+      passwordResetScreenKey: (_) => const PasswordResetScreen(),
       mealContentsScreenKey: (_) => const MealsContentsScreen(),
       transactionScreenKey: (_) => const TransactionScreen(),
-      editProfileScreenKey:(_) => const EditProfileScreen(), 
-      myOrdersScreenKey:(_) => const MyOrdersScreen(), 
+      editProfileScreenKey: (_) => const EditProfileScreen(),
+      myOrdersScreenKey: (_) => const MyOrdersScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
       addressScreenKey: (_) => const AddressScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),

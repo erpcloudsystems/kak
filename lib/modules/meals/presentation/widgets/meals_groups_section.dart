@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_group.dart';
+import '../../../../core/resources/routes.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/custom_cached_image.dart';
@@ -18,8 +19,8 @@ class MealsGroups extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 15.h,
-      margin: const EdgeInsets.symmetric(vertical: 5),
+      height: DoubleManager.d_15.h,
+      margin: const EdgeInsets.symmetric(vertical: DoubleManager.d_5),
       child: BlocBuilder<MealsBloc, MealsState>(
         buildWhen: (previous, current) =>
             previous.getMealsGroupsState != current.getMealsGroupsState,
@@ -71,20 +72,22 @@ class MealsGroupElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // TODO: Navigate to Item Group.
-      onTap: () {},
+      onTap: () {
+        BlocProvider.of<MealsBloc>(context).add(GetMealGroupItemsEvent(groupName: item.name));
+        Navigator.of(context).pushNamed(Routes.mealGroupItemsScreenKey, arguments: item.name);
+      },
       child: Column(
         children: [
           Flexible(
             fit: FlexFit.tight,
-            flex: 3,
+            flex: IntManager.i_3,
             child: CircleAvatar(
                 radius: DoubleManager.d_40,
                 backgroundColor: Colors.white,
                 child: ClipOval(child: CustomCachedImage(url: item.imageUrl))),
           ),
           Expanded(
-            flex: 1,
+            flex: IntManager.i_1,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: DoubleManager.d_4),
               child: Text(

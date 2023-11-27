@@ -12,3 +12,9 @@ class GetOffersEvent extends MealsEvent {}
 class GetFeaturedEvent extends MealsEvent {}
 
 class GetMealsGroupsEvent extends MealsEvent {}
+
+class GetMealGroupItemsEvent extends MealsEvent {
+  final String groupName;
+
+  const GetMealGroupItemsEvent({required this.groupName});
+}

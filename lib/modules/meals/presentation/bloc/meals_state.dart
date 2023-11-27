@@ -16,6 +16,11 @@ class MealsState extends Equatable {
   final String getMealsGroupsMessage;
   final List<MealsGroupEntity> getMealsGroupsData;
 
+  // Get meal group items
+  final List<MealGroupDetailsEntity> getMealGroupItemsData;
+  final RequestState getMealGroupItemsState;
+  final String getMealGroupItemsMessage;
+
   const MealsState({
     // Get offers
     this.getOffersState = RequestState.stable,
@@ -31,6 +36,11 @@ class MealsState extends Equatable {
     this.getMealsGroupsState = RequestState.stable,
     this.getMealsGroupsMessage = 'Get MealsGroups initial message',
     this.getMealsGroupsData = const [],
+
+    // Get MealGroupItems
+    this.getMealGroupItemsState = RequestState.stable,
+    this.getMealGroupItemsMessage = 'Get MealGroupItems initial message',
+    this.getMealGroupItemsData = const [],
   });
 
   MealsState copyWith({
@@ -48,6 +58,11 @@ class MealsState extends Equatable {
     RequestState? getMealsGroupsState,
     String? getMealsGroupsMessage,
     List<MealsGroupEntity>? getMealsGroupsData,
+
+    // Get MealGroupItems
+    RequestState? getMealGroupItemsState,
+    String? getMealGroupItemsMessage,
+    List<MealGroupDetailsEntity>? getMealGroupItemsData,
   }) =>
       MealsState(
         // Get Offers
@@ -65,6 +80,12 @@ class MealsState extends Equatable {
         getMealsGroupsMessage:
             getMealsGroupsMessage ?? this.getMealsGroupsMessage,
         getMealsGroupsData: getMealsGroupsData ?? this.getMealsGroupsData,
+
+        // Get MealGroupItems
+        getMealGroupItemsState: getMealGroupItemsState ?? this.getMealGroupItemsState,
+        getMealGroupItemsMessage:
+            getMealGroupItemsMessage ?? this.getMealGroupItemsMessage,
+        getMealGroupItemsData: getMealGroupItemsData ?? this.getMealGroupItemsData,
       );
 
   @override
@@ -83,5 +104,10 @@ class MealsState extends Equatable {
         getMealsGroupsState,
         getMealsGroupsMessage,
         getMealsGroupsData,
+
+        // Get MealGroupItems
+        getMealGroupItemsState,
+        getMealGroupItemsMessage,
+        getMealGroupItemsData,
       ];
 }
