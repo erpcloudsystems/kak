@@ -11,6 +11,11 @@ class MealsState extends Equatable {
   final String getFeaturedMessage;
   final List<MealEntity> getFeaturedData;
 
+  // Get meals groups
+  final RequestState getMealsGroupsState;
+  final String getMealsGroupsMessage;
+  final List<MealsGroupEntity> getMealsGroupsData;
+
   const MealsState({
     // Get offers
     this.getOffersState = RequestState.stable,
@@ -21,6 +26,11 @@ class MealsState extends Equatable {
     this.getFeaturedState = RequestState.stable,
     this.getFeaturedMessage = 'Get featured initial message',
     this.getFeaturedData = const [],
+
+    // Get MealsGroups
+    this.getMealsGroupsState = RequestState.stable,
+    this.getMealsGroupsMessage = 'Get MealsGroups initial message',
+    this.getMealsGroupsData = const [],
   });
 
   MealsState copyWith({
@@ -33,6 +43,11 @@ class MealsState extends Equatable {
     RequestState? getFeaturedState,
     String? getFeaturedMessage,
     List<MealEntity>? getFeaturedData,
+
+    // Get MealsGroups
+    RequestState? getMealsGroupsState,
+    String? getMealsGroupsMessage,
+    List<MealsGroupEntity>? getMealsGroupsData,
   }) =>
       MealsState(
         // Get Offers
@@ -44,6 +59,12 @@ class MealsState extends Equatable {
         getFeaturedState: getFeaturedState ?? this.getFeaturedState,
         getFeaturedMessage: getFeaturedMessage ?? this.getFeaturedMessage,
         getFeaturedData: getFeaturedData ?? this.getFeaturedData,
+
+        // Get MealsGroups
+        getMealsGroupsState: getMealsGroupsState ?? this.getMealsGroupsState,
+        getMealsGroupsMessage:
+            getMealsGroupsMessage ?? this.getMealsGroupsMessage,
+        getMealsGroupsData: getMealsGroupsData ?? this.getMealsGroupsData,
       );
 
   @override
@@ -57,5 +78,10 @@ class MealsState extends Equatable {
         getFeaturedState,
         getFeaturedMessage,
         getFeaturedData,
+
+        // Get MealsGroups
+        getMealsGroupsState,
+        getMealsGroupsMessage,
+        getMealsGroupsData,
       ];
 }

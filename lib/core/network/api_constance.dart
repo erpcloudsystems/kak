@@ -18,9 +18,15 @@ abstract class ApiConstance {
         ar: '/kak.general.get_offered_meals_arabic',
         en: '/kak.general.get_offered_meals_english',
       );
+      
   static String get getFeaturedEndPoint => getEndPointAccordingToDeviceLng(
         ar: '/kak.general.get_featured_meals_arabic',
         en: '/kak.general.get_featured_meals_english',
+      );
+
+  static String get getMealsGroupsEndPoint => getEndPointAccordingToDeviceLng(
+        ar: '/kak.general.get_group_arabic',
+        en: '/kak.general.get_group_english',
       );
 
   // Paymob endpoints_______________________________________________________

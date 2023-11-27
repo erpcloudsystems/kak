@@ -18,7 +18,8 @@ class StateManagement {
     BlocProvider(
       create: (_) => di.sl<MealsBloc>()
         ..add(GetOffersEvent())
-        ..add(GetFeaturedEvent()),
+        ..add(GetFeaturedEvent())
+        ..add(GetMealsGroupsEvent()),
     ),
   ];
 }

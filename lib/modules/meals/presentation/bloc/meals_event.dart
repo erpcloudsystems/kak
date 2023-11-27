@@ -10,3 +10,5 @@ abstract class MealsEvent extends Equatable {
 class GetOffersEvent extends MealsEvent {}
 
 class GetFeaturedEvent extends MealsEvent {}
+
+class GetMealsGroupsEvent extends MealsEvent {}

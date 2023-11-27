@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/utils/enums.dart';
+import '../../domain/entities/meal_group.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/global/base_use_case.dart';
+import '../../domain/usecases/get_meals_groups.dart';
 import '../../domain/usecases/get_offers_meals.dart';
 import '../../domain/usecases/get_featured_meals.dart';
 
@@ -13,12 +15,17 @@ part 'meals_event.dart';
 part 'meals_state.dart';
 
 class MealsBloc extends Bloc<MealsEvent, MealsState> {
-  final GetOffersMealsUseCase _getOffersMealsUseCase;
   final GetFeaturedMealsUseCase _getFeaturedMealsUseCase;
-  MealsBloc(this._getOffersMealsUseCase, this._getFeaturedMealsUseCase)
-      : super(const MealsState()) {
+  final GetOffersMealsUseCase _getOffersMealsUseCase;
+  final GetMealsGroupsUseCase _getMealsGroupsUseCase;
+  MealsBloc(
+    this._getFeaturedMealsUseCase,
+    this._getOffersMealsUseCase,
+    this._getMealsGroupsUseCase,
+  ) : super(const MealsState()) {
     on<GetOffersEvent>(_getOffers);
     on<GetFeaturedEvent>(_getFeatured);
+    on<GetMealsGroupsEvent>(_getMealsGroups);
   }
 
   FutureOr<void> _getOffers(
@@ -39,10 +46,11 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
     );
   }
 
-  FutureOr<void> _getFeatured(GetFeaturedEvent event, Emitter<MealsState> emit) async {
+  FutureOr<void> _getFeatured(
+      GetFeaturedEvent event, Emitter<MealsState> emit) async {
     emit(state.copyWith(getFeaturedState: RequestState.loading));
 
- final response = await _getFeaturedMealsUseCase(const NoParameters());
+    final response = await _getFeaturedMealsUseCase(const NoParameters());
 
     response.fold(
       (failure) => emit(state.copyWith(
@@ -52,6 +60,24 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
       (data) => emit(state.copyWith(
         getFeaturedState: RequestState.success,
         getFeaturedData: data,
+      )),
+    );
+  }
+
+  FutureOr<void> _getMealsGroups(
+      GetMealsGroupsEvent event, Emitter<MealsState> emit) async {
+    emit(state.copyWith(getMealsGroupsState: RequestState.loading));
+
+    final response = await _getMealsGroupsUseCase(const NoParameters());
+
+    response.fold(
+      (failure) => emit(state.copyWith(
+        getMealsGroupsState: RequestState.error,
+        getMealsGroupsMessage: failure.errorMessage,
+      )),
+      (data) => emit(state.copyWith(
+        getMealsGroupsState: RequestState.success,
+        getMealsGroupsData: data,
       )),
     );
   }

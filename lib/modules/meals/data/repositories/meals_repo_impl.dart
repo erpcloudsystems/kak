@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../datasources/meals_remote.dart';
-import '../../../../core/global/type_def.dart';
+import '../../domain/entities/meal_group.dart';
 import '../../../../core/network/failure.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/network/exceptions.dart';
@@ -17,19 +17,23 @@ class MealsRepoImpl implements MealsBaseRepo {
 
   @override
   Future<Either<Failure, List<MealEntity>>> getOffersMeals() async =>
-      _commonMethod(() => dataSource.getOffers());
+      await _commonMethod<MealEntity>(() => dataSource.getOffers());
 
   @override
   Future<Either<Failure, List<MealEntity>>> getFeaturedMeals() async =>
-      _commonMethod(() => dataSource.getFeatured());
+      await _commonMethod<MealEntity>(() => dataSource.getFeatured());
 
-  //_________________common sign with email and password method____________________
-  Future<Either<Failure, List<MealEntity>>> _commonMethod(
-      FutureMealsListFunction wantedMethod) async {
+  @override
+  Future<Either<Failure, List<MealsGroupEntity>>> getMealsGroups() async =>
+      await _commonMethod(() => dataSource.getMealsGroups());
+
+//_________________common sign with email and password method____________________
+  Future<Either<Failure, List<T>>> _commonMethod<T>(
+      Future<List<T>> Function() wantedMethod) async {
     if (await networkInfo.isConnected) {
       try {
-        final List<MealEntity> meals = await wantedMethod();
-        return Right(meals);
+        final List<T> data = await wantedMethod();
+        return Right(data);
       } on PrimaryServerException catch (error) {
         return Left(
           ServerFailure(errorMessage: error.message),
