@@ -5,6 +5,7 @@ import 'meal_component.dart';
 class MealEntity extends Equatable {
   final String imageUrl, name, description, id;
   final List<MealComponentEntity>? components;
+  final int? quantity;
   final double price;
 
   const MealEntity( {
@@ -14,6 +15,7 @@ class MealEntity extends Equatable {
     required this.name,
     required this.id,
     this.components,
+    this.quantity,
   });
 
   @override
@@ -21,6 +23,7 @@ class MealEntity extends Equatable {
         description,
         components,
         imageUrl,
+        quantity,
         price,
         name,
         id,

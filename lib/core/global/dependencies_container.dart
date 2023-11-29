@@ -1,4 +1,5 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kak/modules/Cart/presentation/bloc/cart_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -66,6 +67,9 @@ Future<void> init() async {
 
   // Caching
   sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
+
+  // Cart
+  sl.registerFactory(() => CartBloc());
 
   // Use cases ____________________________________________________________
 

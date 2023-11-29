@@ -37,5 +37,10 @@ class GlobalVariables {
     debugPrint(_chosenMealsComponents.toString());
   }
 
+  void clearChosenList() {
+    _chosenMealsComponents.clear();
+  }
+
   Set get getChosenList => _chosenMealsComponents;
+
 }

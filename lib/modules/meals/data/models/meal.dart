@@ -1,8 +1,7 @@
-import 'package:kak/modules/meals/data/models/meal_component.dart';
-
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/network/api_constance.dart';
 import '../../domain/entities/meal_entity.dart';
+import 'meal_component.dart';
 
 class MealModel extends MealEntity {
   const MealModel({
@@ -12,6 +11,7 @@ class MealModel extends MealEntity {
     required super.name,
     required super.id,
     super.components,
+    super.quantity,
   });
 
   factory MealModel.fromJson(Map<String, dynamic> json) => MealModel(
@@ -29,4 +29,24 @@ class MealModel extends MealEntity {
                 json['details'].map((e) => MealComponentModel.fromJson(e)))
             : [],
       );
+
+  Map<String, dynamic> toJson() => {
+        "item_code": id,
+        "item_name": name,
+        "qty": quantity,
+        "rate": price,
+        if (components != null && components!.isNotEmpty)
+          'details': List.from(components!.map((e) {
+            final mealComponent = MealComponentModel(
+                itemClassification: e.itemClassification,
+                componentType: e.componentType,
+                maxRequired: e.maxRequired,
+                itemName: e.itemName,
+                quantity: e.quantity,
+                image: e.image,
+                price: e.price);
+
+            return mealComponent.toJson();
+          }))
+      };
 }

@@ -1,5 +1,11 @@
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/global/global_varibles.dart';
+import 'package:kak/core/utils/snack_bar_util.dart';
+import 'package:kak/modules/Cart/presentation/bloc/cart_bloc.dart';
+import 'package:kak/modules/meals/domain/entities/meal_component.dart';
+import 'package:kak/modules/meals/domain/entities/meal_entity.dart';
 import 'package:sizer/sizer.dart';
 
 import '../bloc/meals_bloc.dart';
@@ -22,6 +28,7 @@ class MealsContentsScreen extends StatefulWidget {
 class _MealsContentsScreenState extends State<MealsContentsScreen> {
   late ScrollController _scrollController;
   bool isScrolledTo25Percent = false;
+  MealEntity? theMeal;
 
   @override
   void initState() {
@@ -65,6 +72,7 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
             }
             if (state.getMealDetailsState == RequestState.success) {
               final meal = state.getMealDetailsData;
+              theMeal = meal;
 
               return CustomScrollView(
                 controller: _scrollController,
@@ -86,7 +94,43 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
             return Container();
           },
         ),
-        floatingActionButton: const MealCustomBottomButton(total: '175'),
+        floatingActionButton: BlocListener<CartBloc, CartState>(
+          listenWhen: (previous, current) =>
+              previous.addCartItemState != current.addCartItemState,
+          listener: (context, state) {
+            if (state.addCartItemState == RequestState.success) {
+              SnackBarUtil().getSnackBar(
+                  context: context,
+                  message: state.addCartItemMessage,
+                  color: Colors.green);
+            }
+
+            if (state.addCartItemState == RequestState.error) {
+              SnackBarUtil().getSnackBar(
+                  context: context,
+                  message: state.addCartItemMessage,
+                  color: Colors.red);
+            }
+          },
+          child: MealCustomBottomButton(
+            total: '175',
+            onPressed: () {
+              final gv = GlobalVariables();
+              final meal = MealEntity(
+                description: theMeal!.description,
+                imageUrl: theMeal!.imageUrl,
+                price: theMeal!.price,
+                name: theMeal!.name,
+                id: theMeal!.id,
+                components: List<MealComponentEntity>.from(gv.getChosenList),
+                quantity: 1,
+              );
+              BlocProvider.of<CartBloc>(context)
+                  .add(AddCartItemEvent(meal: meal));
+              gv.clearChosenList();
+            },
+          ),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
 }

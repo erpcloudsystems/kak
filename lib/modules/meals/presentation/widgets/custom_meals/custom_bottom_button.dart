@@ -10,9 +10,11 @@ class MealCustomBottomButton extends StatelessWidget {
   const MealCustomBottomButton({
     super.key,
     required this.total,
+    required this.onPressed,
   });
 
   final String total;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +37,7 @@ class MealCustomBottomButton extends StatelessWidget {
           child: FloatingActionButton(
             backgroundColor: ColorsManager.mainColor,
             shape: const OutlineInputBorder(borderSide: BorderSide.none),
-            onPressed: () {},
+            onPressed: onPressed,
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: DoubleManager.d_20),

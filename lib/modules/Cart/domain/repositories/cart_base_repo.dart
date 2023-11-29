@@ -1,11 +1,7 @@
-// import 'package:dartz/dartz.dart';
-// import '../entities/posting_cart.dart';
-// import '../entities/returning_cart_item.dart';
-// import '../../../../core/network/failure.dart';
+import '../../../meals/domain/entities/meal_entity.dart';
 
-// abstract class CartBaseRepo {
-//   Future<Either<Failure, ReturningCartEntity>> updateCartItem(PostingCartEntity item);
-//   Future<Either<Failure, ReturningCartEntity>> getCartItems(int userId);
-//   Future<Either<Failure, ReturningCartEntity>> deleteCartItem(PostingCartEntity item);
-//   Future<Either<Failure, Unit>> addCartItem(PostingCartEntity item);
-// }
+abstract class CartBaseRepo {
+  void deleteCartItem(MealEntity meal);
+  void addCartItem(MealEntity meal);
+  List<MealEntity> getCartItems();
+}

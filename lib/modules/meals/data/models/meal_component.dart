@@ -29,4 +29,11 @@ class MealComponentModel extends MealComponentEntity {
             json['item_classification_arabic'] ??
             StringsManager.none,
       );
+
+  Map<String, dynamic> toJson() => {
+    'item_classification': itemClassification,
+    'item_name': itemName,
+    'qty': quantity,
+    'rate': price,
+  };    
 }

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'cart_card.dart';
@@ -7,12 +7,12 @@ import 'cart_list_tile_image.dart';
 import 'title_cart_list_title.dart';
 import 'subtile_cart_list_tile.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../domain/entities/returning_cart_item.dart';
+import '../../../meals/domain/entities/meal_entity.dart';
 
 class CartList extends StatelessWidget {
   const CartList({super.key, required this.cartItems});
 
-  final List<CartItemEntity> cartItems;
+  final List<MealEntity> cartItems;
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +27,28 @@ class CartList extends StatelessWidget {
               verticalOffset: 90.h,
               curve: Curves.decelerate,
               child: FadeInAnimation(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: cartItems.length,
-                  itemBuilder: (context, index) => CartCard(
-                    key: ValueKey(cartItems[index].productId),
+                child:  CartCard(
+                    key: ValueKey(cartItems[index].hashCode),
                     child: ListTile(
                       tileColor: Colors.white,
                       contentPadding: const EdgeInsets.all(DoubleManager.d_8),
                       leading: CartListTileImage(
-                          imageUrl: cartItems[index].productImage),
+                          imageUrl: cartItems[index].imageUrl),
                       title: CartListTileTitle(
                         key: UniqueKey(),
-                        title: cartItems[index].productName,
-                        productId: cartItems[index].productId,
+                        title: cartItems[index].name,
+                        productId: cartItems[index].hashCode,
                       ),
                       subtitle: CartListTileSubtitle(
-                        productId: cartItems[index].productId,
-                        itemPrice: cartItems[index].itemPrice.toString(),
-                        quantity: cartItems[index].quantity,
+                        productId: cartItems[index].hashCode,
+                        itemPrice: cartItems[index].price.toString(),
+                        quantity: cartItems[index].quantity!,
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
+            
           );
         },
       ),

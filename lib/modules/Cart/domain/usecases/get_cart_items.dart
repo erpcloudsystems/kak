@@ -1,15 +1,9 @@
-// import 'package:dartz/dartz.dart';
+import '../../../meals/domain/entities/meal_entity.dart';
+import '../repositories/cart_base_repo.dart';
 
-// import '../repositories/cart_base_repo.dart';
-// import '../entities/returning_cart_item.dart';
-// import '../../../../core/network/failure.dart';
-// import '../../../../core/global/base_use_case.dart';
+class GetCartItemsUseCase {
+  final CartBaseRepo repo;
+  GetCartItemsUseCase(this.repo);
 
-// class GetCartItemsUseCase extends BaseUseCase<ReturningCartEntity, int> {
-//   final CartBaseRepo repo;
-//   GetCartItemsUseCase(this.repo);
-
-//   @override
-//   Future<Either<Failure, ReturningCartEntity>> call(int parameters) async =>
-//       await repo.getCartItems(parameters);
-// }
+  List<MealEntity> call() => repo.getCartItems();
+}

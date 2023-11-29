@@ -1,15 +1,8 @@
-// import 'package:dartz/dartz.dart';
+import '../repositories/cart_base_repo.dart';
 
-// import '../entities/posting_cart.dart';
-// import '../repositories/cart_base_repo.dart';
-// import '../../../../core/network/failure.dart';
-// import '../../../../core/global/base_use_case.dart';
+class AddCartItemUseCase {
+  final CartBaseRepo repo;
+  AddCartItemUseCase(this.repo);
 
-// class AddCartItemUseCase extends BaseUseCase<Unit, PostingCartEntity> {
-//   final CartBaseRepo repo;
-//   AddCartItemUseCase(this.repo);
-
-//   @override
-//   Future<Either<Failure, Unit>> call(parameters) async =>
-//       await repo.addCartItem(parameters);
-// }
+  void call(meal) async => repo.addCartItem(meal);
+}
