@@ -15,6 +15,10 @@ class GetMealsGroupsEvent extends MealsEvent {}
 
 class GetMealGroupItemsEvent extends MealsEvent {
   final String groupName;
-
   const GetMealGroupItemsEvent({required this.groupName});
+}
+
+class GetMealDetailsEvent extends MealsEvent {
+  final String mealName;
+  const GetMealDetailsEvent({required this.mealName});
 }

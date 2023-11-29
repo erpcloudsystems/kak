@@ -31,6 +31,7 @@ dependencies:
   easy_localization: ^3.0.3
   webview_flutter: ^4.4.2
   image_picker: ^1.0.4
+  collection: ^1.15.0
   equatable: ^2.0.5
   sizer: ^2.0.15
   get_it: ^7.6.4

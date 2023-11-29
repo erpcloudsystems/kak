@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:kak/core/utils/enums.dart';
+import 'package:kak/modules/meals/domain/entities/meal_component.dart';
 
 class GlobalVariables {
   static final GlobalVariables _globalVariables = GlobalVariables._internal();
@@ -6,6 +8,7 @@ class GlobalVariables {
   bool _ifUserWantedToBeRemembered = false;
   String? _sid, _globalUserPassword;
   DeviceLanguage? _deviceLanguage;
+  final Set<MealComponentEntity> _chosenMealsComponents = {};
 
   factory GlobalVariables() => _globalVariables;
 
@@ -23,4 +26,16 @@ class GlobalVariables {
   DeviceLanguage? get getDeviceLanguage => _deviceLanguage;
   set setDeviceLanguage(DeviceLanguage deviceLanguage) =>
       _deviceLanguage = deviceLanguage;
+
+  void addToChosenList(MealComponentEntity mealComponent) {
+    _chosenMealsComponents.add(mealComponent);
+    debugPrint(_chosenMealsComponents.toString());
+  }
+
+  void removeFromChosenList(MealComponentEntity mealComponent) {
+    _chosenMealsComponents.remove(mealComponent);
+    debugPrint(_chosenMealsComponents.toString());
+  }
+
+  Set get getChosenList => _chosenMealsComponents;
 }

@@ -1,5 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kak/core/resources/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/modules/meals/presentation/bloc/meals_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../domain/entities/meal_entity.dart';
@@ -47,8 +49,11 @@ class FeaturedMealsElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Navigator.of(context).pushNamed(Routes.mealContentsScreenKey),
+      onTap: () {
+        BlocProvider.of<MealsBloc>(context)
+            .add(GetMealDetailsEvent(mealName: meal.id));
+        Navigator.of(context).pushNamed(Routes.mealContentsScreenKey);
+      },
       child: Card(
           elevation: DoubleManager.d_8,
           margin: const EdgeInsets.symmetric(horizontal: DoubleManager.d_10),

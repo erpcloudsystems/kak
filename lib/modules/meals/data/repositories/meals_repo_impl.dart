@@ -18,28 +18,34 @@ class MealsRepoImpl implements MealsBaseRepo {
 
   @override
   Future<Either<Failure, List<MealEntity>>> getOffersMeals() async =>
-      await _commonMethod<MealEntity>(() => dataSource.getOffers());
+      await _commonMethod<List<MealEntity>>(() => dataSource.getOffers());
 
   @override
   Future<Either<Failure, List<MealEntity>>> getFeaturedMeals() async =>
-      await _commonMethod<MealEntity>(() => dataSource.getFeatured());
+      await _commonMethod<List<MealEntity>>(() => dataSource.getFeatured());
 
   @override
   Future<Either<Failure, List<MealsGroupEntity>>> getMealsGroups() async =>
-      await _commonMethod<MealsGroupEntity>(() => dataSource.getMealsGroups());
+      await _commonMethod<List<MealsGroupEntity>>(
+          () => dataSource.getMealsGroups());
 
   @override
   Future<Either<Failure, List<MealGroupDetailsEntity>>> getMealGroupItems(
           String groupName) async =>
-      await _commonMethod<MealGroupDetailsEntity>(
+      await _commonMethod<List<MealGroupDetailsEntity>>(
           () => dataSource.getMealsGroupsItems(groupName));
 
+  @override
+  Future<Either<Failure, MealEntity>> getMealDetails(String mealName) async =>
+      await _commonMethod<MealEntity>(
+          () => dataSource.getMealDetails(mealName));
+
 //_________________common sign with email and password method____________________
-  Future<Either<Failure, List<T>>> _commonMethod<T>(
-      Future<List<T>> Function() wantedMethod) async {
+  Future<Either<Failure, T>> _commonMethod<T>(
+      Future<T> Function() wantedMethod) async {
     if (await networkInfo.isConnected) {
       try {
-        final List<T> data = await wantedMethod();
+        final data = await wantedMethod();
         return Right(data);
       } on PrimaryServerException catch (error) {
         return Left(

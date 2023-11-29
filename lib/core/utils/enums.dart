@@ -19,3 +19,9 @@ enum DeviceLanguage {
   english,
   arabic,
 }
+
+enum ComponentType {
+  atLeastOne,
+  required,
+  optional,
+}

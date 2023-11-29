@@ -8,6 +8,7 @@ import '../../../../core/network/failure.dart';
 abstract class MealsBaseRepo {
   Future<Either<Failure, List<MealGroupDetailsEntity>>> getMealGroupItems(
       String groupName);
+  Future<Either<Failure, MealEntity>> getMealDetails(String mealName);
   Future<Either<Failure, List<MealsGroupEntity>>> getMealsGroups();
   Future<Either<Failure, List<MealEntity>>> getFeaturedMeals();
   Future<Either<Failure, List<MealEntity>>> getOffersMeals();

@@ -1,5 +1,5 @@
-import 'package:kak/core/global/global_varibles.dart';
-import 'package:kak/core/utils/enums.dart';
+import '../global/global_varibles.dart';
+import '../utils/enums.dart';
 
 abstract class ApiConstance {
   // System endpoints_______________________________________________________
@@ -32,6 +32,11 @@ abstract class ApiConstance {
   static String get getMealsGroupsItemsEndPoint => getEndPointAccordingToDeviceLng(
         en: '/kak.general.get_items_english',
         ar: '/kak.general.get_items_arabic',
+      );
+
+  static String get getMealDetailsEndPoint => getEndPointAccordingToDeviceLng(
+        en: '/kak.general.get_meals_details_english',
+        ar: '/kak.general.get_meals_details_arabic',
       );
 
   // Paymob endpoints_______________________________________________________

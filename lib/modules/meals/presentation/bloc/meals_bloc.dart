@@ -7,6 +7,7 @@ import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_group.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/global/base_use_case.dart';
+import '../../domain/usecases/get_meal_details.dart';
 import '../../domain/usecases/get_offers_meals.dart';
 import '../../domain/usecases/get_meals_groups.dart';
 import '../../domain/entities/meal_group_details.dart';
@@ -21,16 +22,20 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
   final GetFeaturedMealsUseCase _getFeaturedMealsUseCase;
   final GetOffersMealsUseCase _getOffersMealsUseCase;
   final GetMealsGroupsUseCase _getMealsGroupsUseCase;
+  final GetMealDetailsUseCase _getMealDetailsUseCase;
+
   MealsBloc(
     this._getMealGroupItemsUseCase,
     this._getFeaturedMealsUseCase,
     this._getOffersMealsUseCase,
     this._getMealsGroupsUseCase,
+    this._getMealDetailsUseCase,
   ) : super(const MealsState()) {
     on<GetOffersEvent>(_getOffers);
     on<GetFeaturedEvent>(_getFeatured);
     on<GetMealsGroupsEvent>(_getMealsGroups);
     on<GetMealGroupItemsEvent>(_getMealGroupItems);
+    on<GetMealDetailsEvent>(_getMealDetails);
   }
 
   FutureOr<void> _getOffers(
@@ -101,6 +106,24 @@ class MealsBloc extends Bloc<MealsEvent, MealsState> {
       (data) => emit(state.copyWith(
         getMealGroupItemsState: RequestState.success,
         getMealGroupItemsData: data,
+      )),
+    );
+  }
+
+  FutureOr<void> _getMealDetails(
+      GetMealDetailsEvent event, Emitter<MealsState> emit) async {
+    emit(state.copyWith(getMealDetailsState: RequestState.loading));
+
+    final response = await _getMealDetailsUseCase(event.mealName);
+
+    response.fold(
+      (failure) => emit(state.copyWith(
+        getMealDetailsState: RequestState.error,
+        getMealDetailsMessage: failure.errorMessage,
+      )),
+      (data) => emit(state.copyWith(
+        getMealDetailsState: RequestState.success,
+        getMealDetailsData: data,
       )),
     );
   }

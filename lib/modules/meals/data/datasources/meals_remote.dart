@@ -8,6 +8,7 @@ import '../../../../core/network/api_constance.dart';
 
 abstract class MealsBaseRemoteDataSource {
   Future<List<MealGroupDetailsModel>> getMealsGroupsItems(String groupName);
+  Future<MealModel> getMealDetails(String mealName);
   Future<List<MealsGroupModel>> getMealsGroups();
   Future<List<MealModel>> getFeatured();
   Future<List<MealModel>> getOffers();
@@ -60,10 +61,23 @@ class MealsRemoteDataSourceByDio implements MealsBaseRemoteDataSource {
         endPoint: ApiConstance.getMealsGroupsItemsEndPoint,
         useCookies: false,
         query: {'item_group': groupName}) as Response;
-        
+
     final List<MealGroupDetailsModel> data = List.from(response.data['message'])
         .map((e) => MealGroupDetailsModel.fromJson(e))
         .toList();
+    return data;
+  }
+
+  @override
+  Future<MealModel> getMealDetails(String mealName) async {
+    final response = await dio.get(
+      endPoint: ApiConstance.getMealDetailsEndPoint,
+      useCookies: false,
+      query: {'name': mealName},
+    ) as Response;
+
+    final data = MealModel.fromJson(response.data['message'][0]);
+
     return data;
   }
 }

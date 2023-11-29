@@ -21,6 +21,11 @@ class MealsState extends Equatable {
   final RequestState getMealGroupItemsState;
   final String getMealGroupItemsMessage;
 
+  // Get meal details
+  final MealEntity getMealDetailsData;
+  final RequestState getMealDetailsState;
+  final String getMealDetailsMessage;
+
   const MealsState({
     // Get offers
     this.getOffersState = RequestState.stable,
@@ -41,6 +46,12 @@ class MealsState extends Equatable {
     this.getMealGroupItemsState = RequestState.stable,
     this.getMealGroupItemsMessage = 'Get MealGroupItems initial message',
     this.getMealGroupItemsData = const [],
+
+    // Get MealDetails
+    this.getMealDetailsState = RequestState.stable,
+    this.getMealDetailsMessage = 'Get MealDetails initial message',
+    this.getMealDetailsData = const MealEntity(
+        description: '', imageUrl: '', price: 0.0, name: '', id: ''),
   });
 
   MealsState copyWith({
@@ -63,6 +74,11 @@ class MealsState extends Equatable {
     RequestState? getMealGroupItemsState,
     String? getMealGroupItemsMessage,
     List<MealGroupDetailsEntity>? getMealGroupItemsData,
+
+    // Get MealDetails
+    RequestState? getMealDetailsState,
+    String? getMealDetailsMessage,
+    MealEntity? getMealDetailsData,
   }) =>
       MealsState(
         // Get Offers
@@ -82,10 +98,20 @@ class MealsState extends Equatable {
         getMealsGroupsData: getMealsGroupsData ?? this.getMealsGroupsData,
 
         // Get MealGroupItems
-        getMealGroupItemsState: getMealGroupItemsState ?? this.getMealGroupItemsState,
+        getMealGroupItemsState:
+            getMealGroupItemsState ?? this.getMealGroupItemsState,
         getMealGroupItemsMessage:
             getMealGroupItemsMessage ?? this.getMealGroupItemsMessage,
-        getMealGroupItemsData: getMealGroupItemsData ?? this.getMealGroupItemsData,
+        getMealGroupItemsData:
+            getMealGroupItemsData ?? this.getMealGroupItemsData,
+
+        // Get MealDetails
+        getMealDetailsState:
+            getMealDetailsState ?? this.getMealDetailsState,
+        getMealDetailsMessage:
+            getMealDetailsMessage ?? this.getMealDetailsMessage,
+        getMealDetailsData:
+            getMealDetailsData ?? this.getMealDetailsData,
       );
 
   @override
@@ -109,5 +135,10 @@ class MealsState extends Equatable {
         getMealGroupItemsState,
         getMealGroupItemsMessage,
         getMealGroupItemsData,
+
+        // Get MealDetails
+        getMealDetailsState,
+        getMealDetailsMessage,
+        getMealDetailsData,
       ];
 }
