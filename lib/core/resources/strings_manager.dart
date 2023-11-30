@@ -20,6 +20,10 @@ class StringsManager {
   static const String accessLocation =
       'Kak needs to access your location to help find your address';
   static const String emptyCacheFailureMessage = 'There is no cached user data';
+  static String oneItemIsRequired(String itemClassification) =>
+      'One Item of $itemClassification is must be chosen';
+  static String itemIsRequired(String itemClassification) =>
+      'A $itemClassification is must be chosen';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
   static const String deleteAccountMessage = 'You have deleted your account';

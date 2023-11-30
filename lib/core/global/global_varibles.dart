@@ -41,6 +41,6 @@ class GlobalVariables {
     _chosenMealsComponents.clear();
   }
 
-  Set get getChosenList => _chosenMealsComponents;
+  Set<MealComponentEntity> get getChosenList => _chosenMealsComponents;
 
 }

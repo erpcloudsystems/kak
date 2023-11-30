@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:kak/core/global/global_varibles.dart';
@@ -27,6 +26,7 @@ class MealsContentsScreen extends StatefulWidget {
 
 class _MealsContentsScreenState extends State<MealsContentsScreen> {
   late ScrollController _scrollController;
+  final _formKey = GlobalKey<FormState>();
   bool isScrolledTo25Percent = false;
   MealEntity? theMeal;
 
@@ -74,21 +74,25 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
               final meal = state.getMealDetailsData;
               theMeal = meal;
 
-              return CustomScrollView(
-                controller: _scrollController,
-                slivers: [
-                  MealsCustomSliverAppBar(
-                      isScrolledTo25Percent: isScrolledTo25Percent, meal: meal),
-                  DescriptionSection(meal: meal),
-                  ComponentsSection(componentsList: meal.components ?? []),
-                  SliverToBoxAdapter(
-                    child: SizedBox.fromSize(
-                      size: Size.fromHeight(
-                        kBottomNavigationBarHeight + DoubleManager.d_5.h,
+              return Form(
+                key: _formKey,
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  slivers: [
+                    MealsCustomSliverAppBar(
+                        isScrolledTo25Percent: isScrolledTo25Percent,
+                        meal: meal),
+                    DescriptionSection(meal: meal),
+                    ComponentsSection(componentsList: meal.components ?? []),
+                    SliverToBoxAdapter(
+                      child: SizedBox.fromSize(
+                        size: Size.fromHeight(
+                          kBottomNavigationBarHeight + DoubleManager.d_5.h,
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               );
             }
             return Container();
@@ -107,29 +111,32 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
 
             if (state.addCartItemState == RequestState.error) {
               SnackBarUtil().getSnackBar(
-                  context: context,
-                  message: state.addCartItemMessage,
-                  color: Colors.red);
+                context: context,
+                message: state.addCartItemMessage,
+                color: Colors.red,
+              );
             }
           },
           child: MealCustomBottomButton(
-            total: '175',
-            onPressed: () {
-              final gv = GlobalVariables();
-              final meal = MealEntity(
-                description: theMeal!.description,
-                imageUrl: theMeal!.imageUrl,
-                price: theMeal!.price,
-                name: theMeal!.name,
-                id: theMeal!.id,
-                components: List<MealComponentEntity>.from(gv.getChosenList),
-                quantity: 1,
-              );
-              BlocProvider.of<CartBloc>(context)
-                  .add(AddCartItemEvent(meal: meal));
-              gv.clearChosenList();
-            },
-          ),
+              total: '175',
+              onPressed: () {
+                if (_formKey.currentState?.validate() == true) {
+                  final gv = GlobalVariables();
+                  final meal = MealEntity(
+                    description: theMeal!.description,
+                    imageUrl: theMeal!.imageUrl,
+                    price: theMeal!.price,
+                    name: theMeal!.name,
+                    id: theMeal!.id,
+                    components:
+                        List<MealComponentEntity>.from(gv.getChosenList),
+                    quantity: 1,
+                  );
+                  BlocProvider.of<CartBloc>(context)
+                      .add(AddCartItemEvent(meal: meal));
+                  gv.clearChosenList();
+                }
+              }),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
