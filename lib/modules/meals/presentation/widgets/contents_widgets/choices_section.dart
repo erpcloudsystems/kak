@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
 
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/meal_component.dart';
 import '../../../../../core/global/global_varibles.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 import '../../../../../core/utils/check_box_form_field.dart';
 
 class ComponentsSection extends StatelessWidget {
@@ -56,10 +56,6 @@ class _ChoicesSectionState extends State<ChoicesSection> {
             separatorBuilder: (context, index) =>
                 const Divider(height: 1, color: Colors.grey, thickness: .2),
             itemBuilder: (context, index) {
-              if (widget.choicesList[index].componentType ==
-                  ComponentType.required) {
-                gv.addToChosenList(widget.choicesList[index]);
-              }
               return CheckboxFormField(
                 title: Text(widget.choicesList[index].itemName),
                 value: gv.getChosenList.contains(widget.choicesList[index]),
@@ -71,7 +67,10 @@ class _ChoicesSectionState extends State<ChoicesSection> {
                         gv.addToChosenList(widget.choicesList[index]);
                         break;
                       case false:
-                        gv.removeFromChosenList(widget.choicesList[index]);
+                        if (widget.choicesList[index].componentType !=
+                            ComponentType.required) {
+                          gv.removeFromChosenList(widget.choicesList[index]);
+                        }
                         break;
                       default:
                     }
@@ -86,7 +85,7 @@ class _ChoicesSectionState extends State<ChoicesSection> {
             }),
       );
 
-  // Validation function
+  // Validation function for the state of the component and it's priority.
   String? validateSection(List<MealComponentEntity> choicesList) {
     switch (choicesList[0].componentType) {
       case ComponentType.atLeastOne:
@@ -108,6 +107,18 @@ class _ChoicesSectionState extends State<ChoicesSection> {
 
       case ComponentType.optional:
         return null;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Add the required components in the choices list in the beginning.
+    for (var choice in widget.choicesList) {
+      if (choice.componentType == ComponentType.required &&
+          !gv.getChosenList.contains(choice)) {
+        gv.addToChosenList(choice);
+      }
     }
   }
 }

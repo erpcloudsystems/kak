@@ -10,34 +10,23 @@ class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
     super.key,
     required this.meal,
+    required this.quantity,
   });
+
   final MealEntity meal;
+  final ValueNotifier<int> quantity;
 
   @override
   State<DescriptionSection> createState() => _DescriptionSectionState();
 }
 
 class _DescriptionSectionState extends State<DescriptionSection> {
-  late ValueNotifier<int> count;
   bool isNegative = false;
 
   @override
-  void initState() {
-    super.initState();
-    // count = ValueNotifier<int>(widget.meal.quantity);
-    count = ValueNotifier<int>(1);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    count.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    count.addListener(() {
-      setState(() => isNegative = count.value <= 0);
+    widget.quantity.addListener(() {
+      setState(() => isNegative = widget.quantity.value <= 0);
     });
     return SliverToBoxAdapter(
       child: Container(
@@ -105,14 +94,15 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                     children: [
                       CartListTileIcon(
                         isNegative: isNegative,
-                        onTab: () => count.value = count.value - 1,
+                        onTab: () =>
+                            widget.quantity.value = widget.quantity.value - 1,
                         icon: Icons.remove,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: DoubleManager.d_10),
                         child: ValueListenableBuilder<int>(
-                          valueListenable: count,
+                          valueListenable: widget.quantity,
                           builder: (context, value, child) => Text(
                             value.toString(),
                             style: Theme.of(context)
@@ -127,7 +117,8 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                       ),
                       CartListTileIcon(
                         isNegative: false,
-                        onTab: () => count.value = count.value + 1,
+                        onTab: () =>
+                            widget.quantity.value = widget.quantity.value + 1,
                         icon: Icons.add,
                       )
                     ],
