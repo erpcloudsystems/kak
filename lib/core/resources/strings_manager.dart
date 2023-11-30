@@ -29,6 +29,7 @@ class StringsManager {
   static const String deleteAccountMessage = 'You have deleted your account';
   static const String enableLocation = 'Please open your location service';
   static const String logoutMessage = 'You have logged out successfully';
+  static const String completeMealMessage = 'Please, complete your meal';
   static const String alreadyHaveAnAccount = 'Already have an account?';
   static const String emailValidateMessage = 'please enter your E-mail';
   static const String emptyValidator = 'This field must have a value';

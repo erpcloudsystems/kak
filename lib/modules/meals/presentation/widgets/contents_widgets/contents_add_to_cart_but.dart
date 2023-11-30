@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/strings_manager.dart';
 
 import 'custom_bottom_button.dart';
 import '../../../../../core/utils/enums.dart';
@@ -53,13 +54,18 @@ class ContentMealAddToCartBut extends StatelessWidget {
                 price: theMeal!.price,
                 name: theMeal!.name,
                 id: theMeal!.id,
-                components:
-                    List<MealComponentEntity>.from(gv.getChosenList),
+                components: List<MealComponentEntity>.from(gv.getChosenList),
                 quantity: quantity.value,
               );
               BlocProvider.of<CartBloc>(context)
                   .add(AddCartItemEvent(meal: meal));
               gv.clearChosenList();
+            } else {
+              SnackBarUtil().getSnackBar(
+                context: context,
+                message: StringsManager.completeMealMessage,
+                color: Colors.red,
+              );
             }
           }),
     );
