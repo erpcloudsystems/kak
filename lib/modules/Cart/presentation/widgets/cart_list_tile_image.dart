@@ -12,10 +12,9 @@ class CartListTileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: DoubleManager.d_30.h,
       width: DoubleManager.d_20.w,
-      decoration: BoxDecoration(color: Colors.grey.withOpacity(.2)),
       child: CachedNetworkImage(
         fadeInCurve: Curves.easeIn,
         fadeInDuration: const Duration(milliseconds: IntManager.i_500),

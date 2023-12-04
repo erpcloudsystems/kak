@@ -21,6 +21,7 @@ dependencies:
   country_picker: ^2.0.21
   carousel_slider: ^4.2.1
   video_player: ^2.7.2
+  quickalert: ^1.0.2
   shimmer: ^3.0.0
 
   # State management

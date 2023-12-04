@@ -51,9 +51,6 @@ class _CartScreenState extends State<CartScreen> {
                 return Flexible(
                     flex: IntManager.i_5,
                     child: CartList(cartItems: state.getCartItemsData));
-                // cartItems: state.getCartItemsData.items));
-                // }
-                // }),
               },
             ),
             const CreateOrderSection(),

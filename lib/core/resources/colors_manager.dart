@@ -8,7 +8,10 @@ class ColorsManager {
   static const Color scaffoldColor = Color(0xffedd9c2);
 
   // General
-  static const Color gBlack = Color(0xFF020102);
+  static const Color gWhite = Colors.white;
+  static const Color gGreen = Colors.green;
+  static const Color gBlack = Colors.black;
+  static const Color gRed = Colors.red;
 
   // Swatch
   static const MaterialColor swatchRed = MaterialColor(0xffc13721, {

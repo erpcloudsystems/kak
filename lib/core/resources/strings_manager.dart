@@ -24,9 +24,10 @@ class StringsManager {
       'One Item of $itemClassification is must be chosen';
   static String itemIsRequired(String itemClassification) =>
       'A $itemClassification is must be chosen';
+  static const String deleteItemMessage = 'Are you sure to delete this item?';
+  static const String deleteAccountMessage = 'You have deleted your account';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
-  static const String deleteAccountMessage = 'You have deleted your account';
   static const String enableLocation = 'Please open your location service';
   static const String logoutMessage = 'You have logged out successfully';
   static const String completeMealMessage = 'Please, complete your meal';
@@ -73,6 +74,7 @@ class StringsManager {
   static const String total = 'Total Price';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
+  static const String deleting = 'Deleting';
   static const String reorder = 'Reorder';
   static const String profile = 'Profile';
   static const String seeAll = 'See all';
@@ -98,5 +100,7 @@ class StringsManager {
   static const String male = 'Male';
   static const String home = 'Home';
   static const String all = 'All';
+  static const String yes = 'Yes';
   static const String or = 'Or';
+  static const String no = 'No';
 }

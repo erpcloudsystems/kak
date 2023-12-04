@@ -24,31 +24,29 @@ class CartList extends StatelessWidget {
             position: index,
             duration: const Duration(milliseconds: 1000),
             child: SlideAnimation(
-              verticalOffset: 90.h,
+              verticalOffset: DoubleManager.d_90.h,
               curve: Curves.decelerate,
               child: FadeInAnimation(
-                child:  CartCard(
-                    key: ValueKey(cartItems[index].hashCode),
-                    child: ListTile(
-                      tileColor: Colors.white,
-                      contentPadding: const EdgeInsets.all(DoubleManager.d_8),
-                      leading: CartListTileImage(
-                          imageUrl: cartItems[index].imageUrl),
-                      title: CartListTileTitle(
-                        key: UniqueKey(),
-                        title: cartItems[index].name,
-                        productId: cartItems[index].hashCode,
-                      ),
-                      subtitle: CartListTileSubtitle(
-                        productId: cartItems[index].hashCode,
-                        itemPrice: cartItems[index].price.toString(),
-                        quantity: cartItems[index].quantity!,
-                      ),
+                child: CartCard(
+                  key: ValueKey(cartItems[index].hashCode),
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    contentPadding: const EdgeInsets.all(DoubleManager.d_8),
+                    leading:
+                        CartListTileImage(imageUrl: cartItems[index].imageUrl),
+                    title: CartListTileTitle(
+                      key: UniqueKey(),
+                      meal: cartItems[index],
+                    ),
+                    subtitle: CartListTileSubtitle(
+                      productId: cartItems[index].hashCode,
+                      itemPrice: cartItems[index].price.toString(),
+                      quantity: cartItems[index].quantity!,
                     ),
                   ),
                 ),
               ),
-            
+            ),
           );
         },
       ),

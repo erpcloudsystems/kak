@@ -12,10 +12,7 @@ import '../widgets/contents_widgets/contents_add_to_cart_but.dart';
 import '../widgets/contents_widgets/contents_success_state_widget.dart';
 
 class MealsContentsScreen extends StatefulWidget {
-  const MealsContentsScreen(
-      {super.key, this.isCartItem = false, this.cartMeal});
-  final bool isCartItem;
-  final MealEntity? cartMeal;
+  const MealsContentsScreen({super.key});
 
   @override
   State<MealsContentsScreen> createState() => _MealsContentsScreenState();
@@ -52,46 +49,38 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: widget.isCartItem
-            ? ContentsSuccessCaseWidget(
+        body: BlocConsumer<MealsBloc, MealsState>(
+          listenWhen: (previous, current) =>
+              previous.getMealDetailsState != current.getMealDetailsState,
+          listener: (context, state) {
+            if (state.getMealDetailsState == RequestState.error) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    ErrorDialog(errorMessage: state.getMealDetailsMessage),
+              );
+            }
+          },
+          buildWhen: (previous, current) =>
+              previous.getMealDetailsState != current.getMealDetailsState,
+          builder: (context, state) {
+            if (state.getMealDetailsState == RequestState.loading) {
+              return const LoadingIndicatorUtil();
+            }
+            if (state.getMealDetailsState == RequestState.success) {
+              final meal = state.getMealDetailsData;
+              theMeal = meal;
+              return ContentsSuccessCaseWidget(
                 isScrolledTo25Percent: isScrolledTo25Percent,
                 scrollController: _scrollController,
                 quantity: quantity,
                 formKey: _formKey,
-                meal: widget.cartMeal!,
-              )
-            : BlocConsumer<MealsBloc, MealsState>(
-                listenWhen: (previous, current) =>
-                    previous.getMealDetailsState != current.getMealDetailsState,
-                listener: (context, state) {
-                  if (state.getMealDetailsState == RequestState.error) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => ErrorDialog(
-                          errorMessage: state.getMealDetailsMessage),
-                    );
-                  }
-                },
-                buildWhen: (previous, current) =>
-                    previous.getMealDetailsState != current.getMealDetailsState,
-                builder: (context, state) {
-                  if (state.getMealDetailsState == RequestState.loading) {
-                    return const LoadingIndicatorUtil();
-                  }
-                  if (state.getMealDetailsState == RequestState.success) {
-                    final meal = state.getMealDetailsData;
-                    theMeal = meal;
-                    return ContentsSuccessCaseWidget(
-                      isScrolledTo25Percent: isScrolledTo25Percent,
-                      scrollController: _scrollController,
-                      quantity: quantity,
-                      formKey: _formKey,
-                      meal: meal,
-                    );
-                  }
-                  return Container();
-                },
-              ),
+                meal: meal,
+              );
+            }
+            return Container();
+          },
+        ),
         floatingActionButton: ContentMealAddToCartBut(
             formKey: _formKey, theMeal: theMeal, quantity: quantity),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

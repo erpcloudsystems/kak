@@ -15,7 +15,8 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text(errorMessage, softWrap: true),      actions: [
+      content: Text(errorMessage, softWrap: true),
+      actions: [
         TextButton(
             onPressed: onPressed ?? () => Navigator.of(context).pop(),
             child: const Text(StringsManager.okay)),
