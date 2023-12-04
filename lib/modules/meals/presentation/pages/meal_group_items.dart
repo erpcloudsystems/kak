@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/assetss_path.dart';
+import 'package:kak/core/resources/strings_manager.dart';
 
 import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
@@ -23,7 +25,10 @@ class MealGroupItemsScreen extends StatelessWidget {
             previous.getMealGroupItemsData != current.getMealGroupItemsData,
         builder: (context, state) {
           if (state.getMealGroupItemsState == RequestState.error) {
-            return const Center(child: NoDataWidget());
+            return const Center(child: NoDataWidget(
+              assetPath: ImagesPath.errorPath,
+              text: StringsManager.errorMessage,
+            ));
           }
           if (state.getMealGroupItemsState == RequestState.success) {
             return CustomAnimatedGrid(items: state.getMealGroupItemsData);

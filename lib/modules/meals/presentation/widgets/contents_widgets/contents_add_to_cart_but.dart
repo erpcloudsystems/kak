@@ -15,8 +15,8 @@ class ContentMealAddToCartBut extends StatelessWidget {
   const ContentMealAddToCartBut({
     super.key,
     required GlobalKey<FormState> formKey,
-    required this.theMeal,
     required this.quantity,
+    required this.theMeal,
     required this.price,
   }) : _formKey = formKey;
 
@@ -54,7 +54,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
               final meal = MealEntity(
                 description: theMeal!.description,
                 imageUrl: theMeal!.imageUrl,
-                price: price.value,
+                price: price.value * quantity.value,
                 name: theMeal!.name,
                 id: theMeal!.id,
                 components: List<MealComponentEntity>.from(gv.getChosenList),

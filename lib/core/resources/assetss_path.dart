@@ -8,6 +8,7 @@ class ImagesPath {
   static const String verificationPath = '$imagePath/verification.png';
   static const String socialSignPath = '$imagePath/social_sign.png';
   static const String splashLogoPath = '$imagePath/splash_logo.jpg';
+  static const String emptyCartPath = '$imagePath/empty_cart.png';
   static const String deletePath = '$imagePath/delete.png';
   static const String errorPath = '$imagePath/error.png';
   static const String logoPath = '$imagePath/logo.png';

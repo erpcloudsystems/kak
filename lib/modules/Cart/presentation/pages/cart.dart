@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/assetss_path.dart';
 
 import '../bloc/cart_bloc.dart';
 import '../widgets/cart_list.dart';
@@ -36,25 +37,28 @@ class _CartScreenState extends State<CartScreen> {
                 .copyWith(fontSize: FontsSize.s20),
           ),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BlocBuilder<CartBloc, CartState>(
-              buildWhen: (previous, current) =>
-                  previous.getCartItemsState != current.getCartItemsState ||
-                  previous.getCartItemsData != current.getCartItemsData,
-              builder: (context, state) {
-                if (state.getCartItemsState == RequestState.error) {
-                  return const NoDataWidget();
-                }
+        body: BlocBuilder<CartBloc, CartState>(
+          buildWhen: (previous, current) =>
+              previous.getCartItemsState != current.getCartItemsState ||
+              previous.getCartItemsData != current.getCartItemsData,
+          builder: (context, state) {
+            if (state.getCartItemsState == RequestState.error) {
+              return const NoDataWidget(
+                assetPath: ImagesPath.emptyCartPath,
+                text: StringsManager.noCartItemsMessage,
+              );
+            }
 
-                return Flexible(
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
                     flex: IntManager.i_5,
-                    child: CartList(cartItems: state.getCartItemsData));
-              },
-            ),
-            const CreateOrderSection(),
-          ],
+                    child: CartList(cartItems: state.getCartItemsData)),
+                const CreateOrderSection(),
+              ],
+            );
+          },
         ));
   }
 }
