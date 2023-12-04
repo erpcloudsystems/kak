@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import 'custom_bottom_button.dart';
 import '../../../../../core/utils/enums.dart';
@@ -56,7 +57,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
                 imageUrl: theMeal!.imageUrl,
                 price: price.value * quantity.value,
                 name: theMeal!.name,
-                id: theMeal!.id,
+                id: const Uuid().v1(),
                 components: List<MealComponentEntity>.from(gv.getChosenList),
                 quantity: quantity.value,
               );
