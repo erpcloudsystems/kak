@@ -38,11 +38,7 @@ class CartList extends StatelessWidget {
                       key: UniqueKey(),
                       meal: cartItems[index],
                     ),
-                    subtitle: CartListTileSubtitle(
-                      productId: cartItems[index].hashCode,
-                      itemPrice: cartItems[index].price.toString(),
-                      quantity: cartItems[index].quantity!,
-                    ),
+                    subtitle: CartListTileSubtitle(meal: cartItems[index]),
                   ),
                 ),
               ),

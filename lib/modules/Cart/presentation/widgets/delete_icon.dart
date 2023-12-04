@@ -48,6 +48,7 @@ class CartItemDeleteIcon extends StatelessWidget {
           }
         },
         child: IconButton(
+          padding: const EdgeInsets.only(top: DoubleManager.d_25),
           onPressed: () {
             AwesomeDialogUtils.showConfirmDialog(
               context: context,
