@@ -12,9 +12,7 @@ import '../widgets/contents_widgets/contents_add_to_cart_but.dart';
 import '../widgets/contents_widgets/contents_success_state_widget.dart';
 
 class MealsContentsScreen extends StatefulWidget {
-  const MealsContentsScreen(
-      {super.key, this.isCartItem = false, this.cartMeal});
-  final bool isCartItem;
+  const MealsContentsScreen({super.key, this.cartMeal});
   final MealEntity? cartMeal;
 
   @override
@@ -24,6 +22,7 @@ class MealsContentsScreen extends StatefulWidget {
 class _MealsContentsScreenState extends State<MealsContentsScreen> {
   late ScrollController _scrollController;
   late ValueNotifier<int> quantity;
+  late ValueNotifier<double> price;
   final _formKey = GlobalKey<FormState>();
   bool isScrolledTo25Percent = false;
   MealEntity? theMeal;
@@ -34,6 +33,7 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
     _scrollController = ScrollController();
     _scrollController.addListener(_handleScroll);
     quantity = ValueNotifier<int>(theMeal?.quantity ?? IntManager.i_1);
+    price = ValueNotifier<double>(theMeal?.price ?? DoubleManager.d_0);
   }
 
   void _handleScroll() {
@@ -52,48 +52,46 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: widget.isCartItem
-            ? ContentsSuccessCaseWidget(
+        body: BlocConsumer<MealsBloc, MealsState>(
+          listenWhen: (previous, current) =>
+              previous.getMealDetailsState != current.getMealDetailsState,
+          listener: (context, state) {
+            if (state.getMealDetailsState == RequestState.error) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    ErrorDialog(errorMessage: state.getMealDetailsMessage),
+              );
+            }
+          },
+          buildWhen: (previous, current) =>
+              previous.getMealDetailsState != current.getMealDetailsState,
+          builder: (context, state) {
+            if (state.getMealDetailsState == RequestState.loading) {
+              return const LoadingIndicatorUtil();
+            }
+            if (state.getMealDetailsState == RequestState.success) {
+              final meal = state.getMealDetailsData;
+              theMeal = meal;
+              price.value = theMeal!.price;
+              return ContentsSuccessCaseWidget(
                 isScrolledTo25Percent: isScrolledTo25Percent,
                 scrollController: _scrollController,
                 quantity: quantity,
+                price: price,
                 formKey: _formKey,
-                meal: widget.cartMeal!,
-              )
-            : BlocConsumer<MealsBloc, MealsState>(
-                listenWhen: (previous, current) =>
-                    previous.getMealDetailsState != current.getMealDetailsState,
-                listener: (context, state) {
-                  if (state.getMealDetailsState == RequestState.error) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => ErrorDialog(
-                          errorMessage: state.getMealDetailsMessage),
-                    );
-                  }
-                },
-                buildWhen: (previous, current) =>
-                    previous.getMealDetailsState != current.getMealDetailsState,
-                builder: (context, state) {
-                  if (state.getMealDetailsState == RequestState.loading) {
-                    return const LoadingIndicatorUtil();
-                  }
-                  if (state.getMealDetailsState == RequestState.success) {
-                    final meal = state.getMealDetailsData;
-                    theMeal = meal;
-                    return ContentsSuccessCaseWidget(
-                      isScrolledTo25Percent: isScrolledTo25Percent,
-                      scrollController: _scrollController,
-                      quantity: quantity,
-                      formKey: _formKey,
-                      meal: meal,
-                    );
-                  }
-                  return Container();
-                },
-              ),
+                meal: meal,
+              );
+            }
+            return Container();
+          },
+        ),
         floatingActionButton: ContentMealAddToCartBut(
-            formKey: _formKey, theMeal: theMeal, quantity: quantity),
+          quantity: quantity,
+          formKey: _formKey,
+          theMeal: theMeal,
+          price: price,
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
 }

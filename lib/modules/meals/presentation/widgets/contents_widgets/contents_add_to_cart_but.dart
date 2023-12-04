@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
 
 import 'custom_bottom_button.dart';
 import '../../../../../core/utils/enums.dart';
@@ -9,6 +8,8 @@ import '../../../domain/entities/meal_component.dart';
 import '../../../../../core/utils/snack_bar_util.dart';
 import '../../../../../core/global/global_varibles.dart';
 import '../../../../Cart/presentation/bloc/cart_bloc.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class ContentMealAddToCartBut extends StatelessWidget {
   const ContentMealAddToCartBut({
@@ -16,10 +17,12 @@ class ContentMealAddToCartBut extends StatelessWidget {
     required GlobalKey<FormState> formKey,
     required this.theMeal,
     required this.quantity,
+    required this.price,
   }) : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
   final ValueNotifier<int> quantity;
+  final ValueNotifier<double> price;
   final MealEntity? theMeal;
 
   @override
@@ -32,14 +35,14 @@ class ContentMealAddToCartBut extends StatelessWidget {
           SnackBarUtil().getSnackBar(
               context: context,
               message: state.addCartItemMessage,
-              color: Colors.green);
+              color: ColorsManager.gGreen);
         }
 
         if (state.addCartItemState == RequestState.error) {
           SnackBarUtil().getSnackBar(
             context: context,
             message: state.addCartItemMessage,
-            color: Colors.red,
+            color: ColorsManager.gRed,
           );
         }
       },
@@ -51,7 +54,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
               final meal = MealEntity(
                 description: theMeal!.description,
                 imageUrl: theMeal!.imageUrl,
-                price: theMeal!.price,
+                price: price.value,
                 name: theMeal!.name,
                 id: theMeal!.id,
                 components: List<MealComponentEntity>.from(gv.getChosenList),
@@ -64,7 +67,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
               SnackBarUtil().getSnackBar(
                 context: context,
                 message: StringsManager.completeMealMessage,
-                color: Colors.red,
+                color: ColorsManager.gRed,
               );
             }
           }),

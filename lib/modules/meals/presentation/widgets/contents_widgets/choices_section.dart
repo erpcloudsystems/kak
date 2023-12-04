@@ -9,9 +9,11 @@ import '../../../../../core/resources/strings_manager.dart';
 import '../../../../../core/utils/check_box_form_field.dart';
 
 class ComponentsSection extends StatelessWidget {
-  const ComponentsSection({required this.componentsList, super.key});
+  const ComponentsSection(
+      {required this.componentsList, super.key, required this.price});
 
   final List<MealComponentEntity> componentsList;
+  final ValueNotifier<double> price;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class ComponentsSection extends StatelessWidget {
             List<MealComponentEntity> choicesList =
                 groupedMap[groupName]!.map((obj) => obj).toList();
 
-            return ChoicesSection(choicesList: choicesList);
+            return ChoicesSection(choicesList: choicesList, price: price);
           }
           return Container();
         });
@@ -36,8 +38,10 @@ class ComponentsSection extends StatelessWidget {
 }
 
 class ChoicesSection extends StatefulWidget {
-  const ChoicesSection({super.key, required this.choicesList});
+  const ChoicesSection(
+      {super.key, required this.choicesList, required this.price});
   final List<MealComponentEntity> choicesList;
+  final ValueNotifier<double> price;
 
   @override
   State<ChoicesSection> createState() => _ChoicesSectionState();
@@ -65,11 +69,15 @@ class _ChoicesSectionState extends State<ChoicesSection> {
                     switch (value) {
                       case true:
                         gv.addToChosenList(widget.choicesList[index]);
+                        widget.price.value = widget.price.value +
+                            widget.choicesList[index].price;
                         break;
                       case false:
                         if (widget.choicesList[index].componentType !=
                             ComponentType.required) {
                           gv.removeFromChosenList(widget.choicesList[index]);
+                          widget.price.value = widget.price.value -
+                              widget.choicesList[index].price;
                         }
                         break;
                       default:

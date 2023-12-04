@@ -10,11 +10,12 @@ class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
     super.key,
     required this.meal,
-    required this.quantity,
+    required this.quantity, required this.price,
   });
 
   final MealEntity meal;
   final ValueNotifier<int> quantity;
+  final ValueNotifier<double> price;
 
   @override
   State<DescriptionSection> createState() => _DescriptionSectionState();
@@ -64,7 +65,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               children: [
                 // Meal's Price
                 Text(
-                  'EGP ${widget.meal.price.toString()}',
+                  'EGP ${widget.price.value}',
                   style: Theme.of(context)
                       .textTheme
                       .headlineMedium!

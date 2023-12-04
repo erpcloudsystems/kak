@@ -13,8 +13,9 @@ class ContentsSuccessCaseWidget extends StatelessWidget {
     required GlobalKey<FormState> formKey,
     required ScrollController scrollController,
     required this.isScrolledTo25Percent,
-    required this.meal,
     required this.quantity,
+    required this.price,
+    required this.meal,
   })  : _formKey = formKey,
         _scrollController = scrollController;
 
@@ -23,6 +24,7 @@ class ContentsSuccessCaseWidget extends StatelessWidget {
   final bool isScrolledTo25Percent;
   final MealEntity meal;
   final ValueNotifier<int> quantity;
+  final ValueNotifier<double> price;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,8 @@ class ContentsSuccessCaseWidget extends StatelessWidget {
         slivers: [
           MealsCustomSliverAppBar(
               isScrolledTo25Percent: isScrolledTo25Percent, meal: meal),
-          DescriptionSection(meal: meal, quantity: quantity),
-          ComponentsSection(componentsList: meal.components ?? []),
+          DescriptionSection(meal: meal, quantity: quantity, price: price),
+          ComponentsSection(price: price,componentsList: meal.components ?? []),
           SliverToBoxAdapter(
             child: SizedBox.fromSize(
               size: Size.fromHeight(
