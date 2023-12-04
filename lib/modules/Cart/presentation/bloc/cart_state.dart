@@ -14,6 +14,9 @@ class CartState extends Equatable {
   final RequestState removeCartItemState;
   final String removeCartItemMessage;
 
+  // Total price
+  final double totalPrice;
+
   const CartState({
     // Get
     this.getCartItemsState = RequestState.stable,
@@ -27,6 +30,9 @@ class CartState extends Equatable {
     // Remove
     this.removeCartItemState = RequestState.stable,
     this.removeCartItemMessage = '',
+
+    // Total price
+    this.totalPrice = 0.0,
   });
 
   CartState copyWith({
@@ -42,6 +48,9 @@ class CartState extends Equatable {
     // Remove cart item
     RequestState? removeCartItemState,
     String? removeCartItemMessage,
+
+    // Total price
+    double? totalPrice,
   }) =>
       CartState(
         addCartItemMessage: addCartItemMessage ?? this.addCartItemMessage,
@@ -52,6 +61,7 @@ class CartState extends Equatable {
         removeCartItemMessage:
             removeCartItemMessage ?? this.removeCartItemMessage,
         removeCartItemState: removeCartItemState ?? this.removeCartItemState,
+        totalPrice: totalPrice ?? this.totalPrice,
       );
 
   @override
@@ -63,5 +73,6 @@ class CartState extends Equatable {
         getCartItemsState,
         removeCartItemMessage,
         removeCartItemState,
+        totalPrice,
       ];
 }

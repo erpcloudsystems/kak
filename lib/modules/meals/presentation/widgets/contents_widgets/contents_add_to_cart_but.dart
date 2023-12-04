@@ -47,7 +47,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
         }
       },
       child: MealCustomBottomButton(
-          total: '175',
+          total: context.watch<CartBloc>().state.totalPrice.toString(),
           onPressed: () {
             if (_formKey.currentState?.validate() == true) {
               final gv = GlobalVariables();

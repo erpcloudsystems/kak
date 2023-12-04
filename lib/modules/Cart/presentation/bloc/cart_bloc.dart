@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/utils/enums.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../meals/domain/entities/meal_entity.dart';
 
 part 'cart_event.dart';
@@ -17,6 +18,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   final List<MealEntity> _cartItems = [];
+  // double _cartTotalPrice = 0.0;
 
   // ____________________________________ Get cart items _______________________________
   FutureOr<void> getCartItems(
@@ -25,7 +27,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (_cartItems.isEmpty) {
       emit(state.copyWith(
         getCartItemsState: RequestState.error,
-        getCartItemsMessage: 'There is no items yet in your cart!',
+        getCartItemsMessage: StringsManager.noCartItemsMessage,
       ));
     } else {
       emit(state.copyWith(
@@ -43,12 +45,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _cartItems.add(event.meal);
       emit(state.copyWith(
         addCartItemState: RequestState.success,
-        addCartItemMessage: 'Added to your cart',
+        addCartItemMessage: StringsManager.cartAddedMessage,
+        totalPrice: state.totalPrice + event.meal.price,
       ));
     } catch (e) {
       emit(state.copyWith(
         addCartItemState: RequestState.error,
-        addCartItemMessage: 'Something went wrong!',
+        addCartItemMessage: StringsManager.errorMessage,
       ));
     }
   }
@@ -61,12 +64,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     try {
       _cartItems.removeWhere((element) => element.id == event.meal.id);
       emit(state.copyWith(
-          removeCartItemState: RequestState.success,
-          removeCartItemMessage: 'Item removed from your cart'));
+        removeCartItemState: RequestState.success,
+        removeCartItemMessage: StringsManager.removedFromCartMessage,
+        totalPrice: state.totalPrice - event.meal.price,
+      ));
     } catch (e) {
       emit(state.copyWith(
         removeCartItemState: RequestState.error,
-        removeCartItemMessage: 'There is some thing went wrong!',
+        removeCartItemMessage: StringsManager.errorMessage,
       ));
     }
   }
@@ -76,5 +81,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> eraseCartItems(
       EraseCartItemEvent event, Emitter<CartState> emit) {
     _cartItems.clear();
+    emit(state.copyWith(totalPrice: 0.0));
   }
 }

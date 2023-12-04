@@ -24,10 +24,12 @@ class StringsManager {
       'One Item of $itemClassification is must be chosen';
   static String itemIsRequired(String itemClassification) =>
       'A $itemClassification is must be chosen';
+  static const String noCartItemsMessage = 'There is no items yet in your cart!';
   static const String deleteItemMessage = 'Are you sure to delete this item?';
   static const String deleteAccountMessage = 'You have deleted your account';
   static const String phoneNumberMessage = 'Please, enter your phone number';
   static const String passwordValidateMessage = 'please enter your Password';
+  static const String removedFromCartMessage = 'Item removed from your cart';
   static const String enableLocation = 'Please open your location service';
   static const String logoutMessage = 'You have logged out successfully';
   static const String completeMealMessage = 'Please, complete your meal';
@@ -40,7 +42,9 @@ class StringsManager {
   static const String signInWithPassword = 'Sign in with password';
   static const String selectUrTerritory = 'Select your territory';
   static const String loginToUrAccount = 'Login To Your Account?';
+  static const String cartAddedMessage = 'Added to your cart';
   static const String deliveryLocation = 'Delivery location';
+  static const String errorMessage = 'Something went wrong!';
   static const String forgotPassword = 'Forgot The Password';
   static const String chooseOrderType = 'Choose order type';
   static const String enterCode = 'Please, Enter the code';
