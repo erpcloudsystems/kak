@@ -94,6 +94,7 @@ class StringsManager {
   static const String email = 'Email';
   static const String appName = 'Kak';
   static const String phone = 'Phone';
+  static const String cost = 'Cost:';
   static const String item = 'Items';
   static const String none = 'None';
   static const String sort = 'Sort';

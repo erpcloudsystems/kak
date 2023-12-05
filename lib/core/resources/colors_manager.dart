@@ -11,6 +11,7 @@ class ColorsManager {
   static const Color gWhite = Colors.white;
   static const Color gGreen = Colors.green;
   static const Color gBlack = Colors.black;
+  static const Color gGrey = Colors.grey;
   static const Color gRed = Colors.red;
 
   // Swatch
