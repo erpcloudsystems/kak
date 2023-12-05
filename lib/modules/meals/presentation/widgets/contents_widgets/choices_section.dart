@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
+import 'meal_details_section.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/meal_component.dart';
 import '../../../../../core/global/global_varibles.dart';
@@ -24,7 +25,7 @@ class ComponentsSection extends StatelessWidget {
     return SliverList.builder(
         itemCount: groupedMap.length,
         itemBuilder: (context, index) {
-          // Here we separate every section of components together.
+          // Here we build the list of every group.
           if (index < groupedMap.length) {
             String groupName = groupedMap.keys.elementAt(index);
             List<MealComponentEntity> choicesList =
@@ -61,29 +62,10 @@ class _ChoicesSectionState extends State<ChoicesSection> {
                 const Divider(height: 1, color: Colors.grey, thickness: .2),
             itemBuilder: (context, index) {
               return CheckboxFormField(
-                title: Text(widget.choicesList[index].itemName),
+                title: MealDetailsSection(widget: widget,index: index),
                 value: gv.getChosenList.contains(widget.choicesList[index]),
                 checkboxShape: const CircleBorder(),
-                onChanged: (bool? value) {
-                  setState(() {
-                    switch (value) {
-                      case true:
-                        gv.addToChosenList(widget.choicesList[index]);
-                        widget.price.value = widget.price.value +
-                            widget.choicesList[index].price;
-                        break;
-                      case false:
-                        if (widget.choicesList[index].componentType !=
-                            ComponentType.required) {
-                          gv.removeFromChosenList(widget.choicesList[index]);
-                          widget.price.value = widget.price.value -
-                              widget.choicesList[index].price;
-                        }
-                        break;
-                      default:
-                    }
-                  });
-                },
+                onChanged: (bool? value) => addToChosenList(value, index),
                 validator: (_) => validateSection(widget.choicesList),
                 initialValue: widget.choicesList[index].componentType ==
                         ComponentType.required
@@ -92,6 +74,30 @@ class _ChoicesSectionState extends State<ChoicesSection> {
               );
             }),
       );
+
+/* This method take the user choice and add the component to the choices list
+ or remove it, but only if the component is not required in the meal,
+ if it's required it won't be removed. */
+  void addToChosenList(bool? value, int index) {
+    return setState(() {
+      switch (value) {
+        case true:
+          gv.addToChosenList(widget.choicesList[index]);
+          widget.price.value =
+              widget.price.value + widget.choicesList[index].price;
+          break;
+        case false:
+          if (widget.choicesList[index].componentType !=
+              ComponentType.required) {
+            gv.removeFromChosenList(widget.choicesList[index]);
+            widget.price.value =
+                widget.price.value - widget.choicesList[index].price;
+          }
+          break;
+        default:
+      }
+    });
+  }
 
   // Validation function for the state of the component and it's priority.
   String? validateSection(List<MealComponentEntity> choicesList) {

@@ -31,6 +31,7 @@ class DoubleManager {
   static const double d_40 = 40;
   static const double d_45 = 45;
   static const double d_50 = 50;
+  static const double d_55 = 55;
   static const double d_60 = 60;
   static const double d_70 = 70;
   static const double d_77 = 77;

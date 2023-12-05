@@ -75,6 +75,7 @@ class StringsManager {
   static const String lastName = 'Last Name';
   static const String allItems = 'All Items';
   static const String userName = 'User Name';
+  static const String quantity = 'Quantity:';
   static const String total = 'Total Price';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
