@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kak/core/resources/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/modules/meals/presentation/bloc/meals_bloc.dart';
 import 'package:sizer/sizer.dart';
+import '../bloc/meals_bloc.dart';
 
 import '../../../../core/utils/enums.dart';
-import '../../../../core/utils/snack_bar_util.dart';
-import '../../../Cart/presentation/bloc/cart_bloc.dart';
+import '../../../../core/resources/routes.dart';
 import '../../domain/entities/meal_entity.dart';
+import '../../../../core/utils/snack_bar_util.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/colors_manager.dart';
+import '../../../Cart/presentation/bloc/cart_bloc.dart';
 import '../../../../core/utils/custom_cached_image.dart';
 import '../../../../core/resources/strings_manager.dart';
 
@@ -26,16 +26,38 @@ class FeaturedMeals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: isHome
-          ? const NeverScrollableScrollPhysics()
-          : const BouncingScrollPhysics(),
-      itemCount: featuredMeals.length,
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: DoubleManager.d_20),
-      itemBuilder: (context, index) =>
-          FeaturedMealsElement(meal: featuredMeals[index], isHome: isHome),
+    return BlocListener<CartBloc, CartState>(
+      listenWhen: (previous, current) =>
+          previous.addCartItemState != current.addCartItemState,
+      listener: (context, state) {
+        if (state.addCartItemState == RequestState.success) {
+          SnackBarUtil().getSnackBar(
+            context: context,
+            message: state.addCartItemMessage,
+            color: ColorsManager.gGreen,
+          );
+          Navigator.of(context).pushNamed(Routes.cartScreenKey);
+        }
+
+        if (state.addCartItemState == RequestState.error) {
+          SnackBarUtil().getSnackBar(
+            context: context,
+            message: state.addCartItemMessage,
+            color: ColorsManager.gRed,
+          );
+        }
+      },
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: isHome
+            ? const NeverScrollableScrollPhysics()
+            : const BouncingScrollPhysics(),
+        itemCount: featuredMeals.length,
+        separatorBuilder: (context, index) =>
+            const SizedBox(height: DoubleManager.d_20),
+        itemBuilder: (context, index) =>
+            FeaturedMealsElement(meal: featuredMeals[index], isHome: isHome),
+      ),
     );
   }
 }
@@ -84,8 +106,8 @@ class FeaturedMealsElement extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.end,
                           )),
-                          
-                      // Description    
+
+                      // Description
                       Flexible(
                         fit: FlexFit.loose,
                         child: SizedBox(
@@ -109,59 +131,31 @@ class FeaturedMealsElement extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             // Add button
-                            BlocListener<CartBloc, CartState>(
-                              listenWhen: (previous, current) =>
-                                  previous.addCartItemState !=
-                                  current.addCartItemState,
-                              listener: (context, state) {
-                                if (state.addCartItemState ==
-                                    RequestState.success) {
-                                  SnackBarUtil().getSnackBar(
-                                    context: context,
-                                    message: state.addCartItemMessage,
-                                    color: ColorsManager.gGreen,
-                                  );
-                                  Navigator.of(context)
-                                      .pushNamed(Routes.cartScreenKey);
-                                }
-
-                                if (state.addCartItemState ==
-                                    RequestState.error) {
-                                  SnackBarUtil().getSnackBar(
-                                    context: context,
-                                    message: state.addCartItemMessage,
-                                    color: ColorsManager.gRed,
-                                  );
-                                }
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(bottom: 2),
-                                height: DoubleManager.d_30,
-                                width: DoubleManager.d_130,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: ColorsManager.mainColor,
-                                      shape: const ContinuousRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(
-                                                  DoubleManager.d_20)))),
-                                  // TODO: Implement add to cart logic
-                                  onPressed: () {
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 2),
+                              height: DoubleManager.d_30,
+                              width: DoubleManager.d_130,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: ColorsManager.mainColor,
+                                    shape: const ContinuousRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                DoubleManager.d_20)))),
+                                onPressed: () =>
                                     BlocProvider.of<CartBloc>(context)
-                                        .add(AddCartItemEvent(meal: meal));
-                                  },
-                                  child: Text(
-                                      isHome
-                                          ? StringsManager.addToCart
-                                          : StringsManager.reorder,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineMedium!
-                                          .copyWith(
-                                            fontSize: FontsSize.s12,
-                                            color: Colors.white,
-                                          )),
-                                ),
+                                        .add(AddCartItemEvent(meal: meal)),
+                                child: Text(
+                                    isHome
+                                        ? StringsManager.addToCart
+                                        : StringsManager.reorder,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                          fontSize: FontsSize.s12,
+                                          color: Colors.white,
+                                        )),
                               ),
                             ),
                             const SizedBox(width: DoubleManager.d_15),
