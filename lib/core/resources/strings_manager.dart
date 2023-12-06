@@ -24,7 +24,10 @@ class StringsManager {
       'One Item of $itemClassification is must be chosen';
   static String itemIsRequired(String itemClassification) =>
       'A $itemClassification is must be chosen';
-  static const String noCartItemsMessage = 'There is no items yet in your cart!';
+  static String maximumNumberError(String maxNumber) =>
+      'only $maxNumber items is what you can add to your meal';
+  static const String noCartItemsMessage =
+      'There is no items yet in your cart!';
   static const String deleteItemMessage = 'Are you sure to delete this item?';
   static const String deleteAccountMessage = 'You have deleted your account';
   static const String removedFromCartMessage = 'Item removed from your cart';

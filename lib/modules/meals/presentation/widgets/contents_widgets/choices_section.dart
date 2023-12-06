@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'meal_details_section.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/meal_component.dart';
+import '../../../../../core/utils/snack_bar_util.dart';
 import '../../../../../core/global/global_varibles.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
 import '../../../../../core/utils/check_box_form_field.dart';
 
@@ -62,7 +64,7 @@ class _ChoicesSectionState extends State<ChoicesSection> {
                 const Divider(height: 1, color: Colors.grey, thickness: .2),
             itemBuilder: (context, index) {
               return CheckboxFormField(
-                title: MealDetailsSection(widget: widget,index: index),
+                title: MealDetailsSection(widget: widget, index: index),
                 value: gv.getChosenList.contains(widget.choicesList[index]),
                 checkboxShape: const CircleBorder(),
                 onChanged: (bool? value) => addToChosenList(value, index),
@@ -82,9 +84,18 @@ class _ChoicesSectionState extends State<ChoicesSection> {
     return setState(() {
       switch (value) {
         case true:
-          gv.addToChosenList(widget.choicesList[index]);
-          widget.price.value =
-              widget.price.value + widget.choicesList[index].price;
+          if (canAddItem(widget.choicesList[index])) {
+            gv.addToChosenList(widget.choicesList[index]);
+            widget.price.value =
+                widget.price.value + widget.choicesList[index].price;
+          } else {
+            SnackBarUtil().getSnackBar(
+              context: context,
+              message: StringsManager.maximumNumberError(
+                  widget.choicesList[index].maxRequired.toString()),
+              color: ColorsManager.gRed,
+            );
+          }
           break;
         case false:
           if (widget.choicesList[index].componentType !=
@@ -99,7 +110,21 @@ class _ChoicesSectionState extends State<ChoicesSection> {
     });
   }
 
-  // Validation function for the state of the component and it's priority.
+  /// Check if adding the item violates the maxRequired limit
+  bool canAddItem(MealComponentEntity item) {
+    if (item.componentType != ComponentType.optional && item.maxRequired > 0) {
+      int count = gv.getChosenList
+          .where((chosenItem) =>
+              chosenItem.itemClassification == item.itemClassification)
+          .length;
+
+      return count < item.maxRequired;
+    }
+    // Allow adding items that are not required
+    return true;
+  }
+
+  /// Validation function for the state of the component and it's priority.
   String? validateSection(List<MealComponentEntity> choicesList) {
     switch (choicesList[0].componentType) {
       case ComponentType.atLeastOne:
@@ -127,6 +152,8 @@ class _ChoicesSectionState extends State<ChoicesSection> {
   @override
   void initState() {
     super.initState();
+    // Clear the list before adding new items.
+    gv.getChosenList.clear();
     // Add the required components in the choices list in the beginning.
     for (var choice in widget.choicesList) {
       if (choice.componentType == ComponentType.required &&
