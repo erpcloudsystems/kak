@@ -2,6 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:kak/core/resources/assetss_path.dart';
 
+import '../../../../core/resources/colors_manager.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/cart_bloc.dart';
 import '../widgets/cart_list.dart';
 import '../../../../core/utils/enums.dart';
@@ -37,7 +40,34 @@ class _CartScreenState extends State<CartScreen> {
                 .copyWith(fontSize: FontsSize.s20),
           ),
         ),
-        body: BlocBuilder<CartBloc, CartState>(
+        body: BlocConsumer<CartBloc, CartState>(
+          listenWhen: (previous, current) =>
+              previous.removeCartItemState != current.removeCartItemState,
+          listener: (context, state) {
+            if (state.removeCartItemState == RequestState.loading) {
+              LoadingUtils.showLoadingDialog(
+                  context, LoadingType.linear, StringsManager.deleting);
+            }
+
+            if (state.removeCartItemState == RequestState.success) {
+              Navigator.of(context).pop();
+              BlocProvider.of<CartBloc>(context).add(GetCartItemsEvent());
+              SnackBarUtil().getSnackBar(
+                message: state.removeCartItemMessage,
+                context: context,
+                color: ColorsManager.gGreen,
+              );
+            }
+
+            if (state.removeCartItemState == RequestState.error) {
+              Navigator.of(context).pop();
+              SnackBarUtil().getSnackBar(
+                message: state.removeCartItemMessage,
+                context: context,
+                color: ColorsManager.gRed,
+              );
+            }
+          },
           buildWhen: (previous, current) =>
               previous.getCartItemsState != current.getCartItemsState ||
               previous.getCartItemsData != current.getCartItemsData,
