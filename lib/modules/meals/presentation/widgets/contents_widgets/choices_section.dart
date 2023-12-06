@@ -154,6 +154,7 @@ class _ChoicesSectionState extends State<ChoicesSection> {
     super.initState();
     // Clear the list before adding new items.
     gv.getChosenList.clear();
+
     // Add the required components in the choices list in the beginning.
     for (var choice in widget.choicesList) {
       if (choice.componentType == ComponentType.required &&

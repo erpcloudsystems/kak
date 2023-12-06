@@ -10,7 +10,8 @@ class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
     super.key,
     required this.meal,
-    required this.quantity, required this.price,
+    required this.quantity,
+    required this.price,
   });
 
   final MealEntity meal;
@@ -64,13 +65,19 @@ class _DescriptionSectionState extends State<DescriptionSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Meal's Price
-                Text(
-                  'EGP ${widget.price.value}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(fontSize: FontsSize.s16),
+                ValueListenableBuilder<double>(
+                  valueListenable: widget.price,
+                  builder: (context, price, child) {
+                    return Text(
+                      'EGP $price',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(fontSize: FontsSize.s16),
+                    );
+                  },
                 ),
+
                 // Meal's Quantity
                 Container(
                   padding: const EdgeInsets.symmetric(
