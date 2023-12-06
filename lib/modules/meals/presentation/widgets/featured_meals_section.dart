@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:kak/modules/meals/presentation/bloc/meals_bloc.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/snack_bar_util.dart';
+import '../../../Cart/presentation/bloc/cart_bloc.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/values_manager.dart';
@@ -73,7 +76,16 @@ class FeaturedMealsElement extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(meal.name),
+                      // Name
+                      SizedBox(
+                          width: DoubleManager.d_50.w,
+                          child: Text(
+                            meal.name,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                          )),
+                          
+                      // Description    
                       Flexible(
                         fit: FlexFit.loose,
                         child: SizedBox(
@@ -96,33 +108,64 @@ class FeaturedMealsElement extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 2),
-                              height: DoubleManager.d_30,
-                              width: DoubleManager.d_130,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: ColorsManager.mainColor,
-                                    shape: const ContinuousRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(
-                                                DoubleManager.d_20)))),
-                                // TODO: Implement add to cart logic
-                                onPressed: () {},
-                                child: Text(
-                                    isHome
-                                        ? StringsManager.addToCart
-                                        : StringsManager.reorder,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                          fontSize: FontsSize.s12,
-                                          color: Colors.white,
-                                        )),
+                            // Add button
+                            BlocListener<CartBloc, CartState>(
+                              listenWhen: (previous, current) =>
+                                  previous.addCartItemState !=
+                                  current.addCartItemState,
+                              listener: (context, state) {
+                                if (state.addCartItemState ==
+                                    RequestState.success) {
+                                  SnackBarUtil().getSnackBar(
+                                    context: context,
+                                    message: state.addCartItemMessage,
+                                    color: ColorsManager.gGreen,
+                                  );
+                                  Navigator.of(context)
+                                      .pushNamed(Routes.cartScreenKey);
+                                }
+
+                                if (state.addCartItemState ==
+                                    RequestState.error) {
+                                  SnackBarUtil().getSnackBar(
+                                    context: context,
+                                    message: state.addCartItemMessage,
+                                    color: ColorsManager.gRed,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 2),
+                                height: DoubleManager.d_30,
+                                width: DoubleManager.d_130,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: ColorsManager.mainColor,
+                                      shape: const ContinuousRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(
+                                                  DoubleManager.d_20)))),
+                                  // TODO: Implement add to cart logic
+                                  onPressed: () {
+                                    BlocProvider.of<CartBloc>(context)
+                                        .add(AddCartItemEvent(meal: meal));
+                                  },
+                                  child: Text(
+                                      isHome
+                                          ? StringsManager.addToCart
+                                          : StringsManager.reorder,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                            fontSize: FontsSize.s12,
+                                            color: Colors.white,
+                                          )),
+                                ),
                               ),
                             ),
                             const SizedBox(width: DoubleManager.d_15),
+                            // Price
                             Text('EGP ${meal.price}',
                                 style: Theme.of(context)
                                     .textTheme
@@ -137,6 +180,7 @@ class FeaturedMealsElement extends StatelessWidget {
                     ],
                   ),
                 ),
+                // Image
                 Expanded(
                   child: CustomCachedImage(
                     url: meal.imageUrl,
