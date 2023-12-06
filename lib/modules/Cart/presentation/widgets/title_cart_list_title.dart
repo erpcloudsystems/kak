@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/colors_manager.dart';
 
 import 'delete_icon.dart';
 import '../../../../core/resources/fonts_manager.dart';
@@ -27,15 +26,19 @@ class CartListTileTitle extends StatelessWidget {
                   child: Text(
                 meal.name,
                 overflow: TextOverflow.ellipsis,
-                maxLines: IntManager.i_2,
               )),
               Flexible(
                 child: Text(
                   overflow: TextOverflow.visible,
                   softWrap: true,
-                  getComponentsDescription(meal.components!),
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontSize: FontsSize.s10, color: ColorsManager.gBlack),
+                  maxLines: IntManager.i_2,
+                  meal.components!.isEmpty
+                      ? meal.description.toString()
+                      : getComponentsDescription(meal.components!),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(fontSize: FontsSize.s10),
                 ),
               ),
             ],
