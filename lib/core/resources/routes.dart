@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
+import '../../modules/Cart/presentation/pages/cart.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
 import '../../modules/meals/presentation/pages/meal_group_items.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String signUpScreenKey = '/sign-up';
   static const String signInScreenKey = '/sign-in';
   static const String errorScreenKey = '/error';
+  static const String cartScreenKey = '/cart';
   static const String homeScreenKey = '/home';
 
   static Map<String, WidgetBuilder> get routes {
@@ -43,6 +45,7 @@ class Routes {
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),
+      cartScreenKey: (_) => const CartScreen(),
       homeScreenKey: (_) => const HomePage(),
     };
   }
