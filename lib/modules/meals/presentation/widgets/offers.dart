@@ -2,12 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'dots_indicator.dart';
 import 'choose_ur_order.dart';
+import 'dots_indicator.dart';
 import '../bloc/meals_bloc.dart';
+import 'offers/bottom_sheet.dart';
 import 'upper_screen_meal_image.dart';
 import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_entity.dart';
+import '../../../../core/utils/bottom_sheet.dart';
 import '../../../../core/resources/values_manager.dart';
 
 class Offers extends StatelessWidget {
@@ -16,7 +18,8 @@ class Offers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MealsBloc, MealsState>(
-      buildWhen: (previous, current) => previous.getOffersState != current.getOffersState,
+      buildWhen: (previous, current) =>
+          previous.getOffersState != current.getOffersState,
       builder: (context, state) {
         if (state.getOffersState == RequestState.error) {
           return Center(child: Text(state.getOffersMessage));
@@ -38,39 +41,41 @@ class OffersSection extends StatefulWidget {
 }
 
 class _OffersSectionState extends State<OffersSection> {
-    int currentSliderIndex = IntManager.i_0;
+  int currentSliderIndex = IntManager.i_0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
-            alignment: Alignment.bottomCenter,
-            clipBehavior: Clip.none,
-            children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  viewportFraction: 1.0,
-                  autoPlay: true,
-                  onPageChanged: (index, reason) =>
-                      setState(() => currentSliderIndex = index),
-                ),
-                itemCount: widget.offersList.length,
-                itemBuilder: (context, index, realIndex) => GestureDetector(
-                  key: const Key('offer'),
-                  // TODO: implement navigation call
-                  // onTap: () => Navigator.of(context).pushNamed(
-                  //   Routes.productDetails,
-                  //   arguments: item,
-                  // ),
-                  child: UpperScreenMealImage(
-                      imageUrl: widget.offersList[index].imageUrl),
-                ),
+      alignment: Alignment.bottomCenter,
+      clipBehavior: Clip.none,
+      children: [
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            viewportFraction: 1.0,
+            autoPlay: true,
+            onPageChanged: (index, reason) =>
+                setState(() => currentSliderIndex = index),
+          ),
+          itemCount: widget.offersList.length,
+          itemBuilder: (context, index, realIndex) => GestureDetector(
+            key: const Key('offer'),
+            onTap: () => BottomSheetUtil.bottomSheetBuilder(
+              bottomSheetView: OffersBottomSheetView(
+                meal: widget.offersList[index],
               ),
-              const ChooseYourOrder(),
-              OfferDotsIndicator(
-                currentSliderIndex: currentSliderIndex,
-                offersList: widget.offersList,
-              )
-            ],
-          );
+              context: context,
+            ),
+            child: UpperScreenMealImage(
+                imageUrl: widget.offersList[index].imageUrl),
+          ),
+        ),
+        const ChooseYourOrder(),
+        OfferDotsIndicator(
+          currentSliderIndex: currentSliderIndex,
+          offersList: widget.offersList,
+        )
+      ],
+    );
   }
 }
 
@@ -129,3 +134,4 @@ class _OffersSectionState extends State<OffersSection> {
 //     );
 //   }
 // }
+

@@ -113,3 +113,7 @@ class StringsManager {
   static const String or = 'Or';
   static const String no = 'No';
 }
+
+abstract class UnTranslatedStrings{
+  static const String egp = 'EGP';
+}

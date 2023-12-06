@@ -6,6 +6,7 @@ import 'meal_component.dart';
 class MealModel extends MealEntity {
   const MealModel({
     required super.description,
+    super.priceAfterDiscount,
     required super.imageUrl,
     required super.price,
     required super.name,
@@ -23,6 +24,8 @@ class MealModel extends MealEntity {
             StringsManager.none,
         imageUrl: '${ApiConstance.kakUrl}${json['image']}',
         price: double.tryParse(json['rate'].toString()) ?? 0.0,
+        priceAfterDiscount:
+            double.tryParse(json['custom_price_after_offer'].toString()) ?? 0.0,
         id: json['name'] ?? StringsManager.none,
         components: (json['details'] != null)
             ? List<MealComponentModel>.from(

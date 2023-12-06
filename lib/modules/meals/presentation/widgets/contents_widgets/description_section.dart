@@ -10,8 +10,7 @@ class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
     super.key,
     required this.meal,
-    required this.quantity,
-    required this.price,
+    required this.quantity, required this.price,
   });
 
   final MealEntity meal;
@@ -77,7 +76,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                     );
                   },
                 ),
-
+               
                 // Meal's Quantity
                 Container(
                   padding: const EdgeInsets.symmetric(
