@@ -21,8 +21,6 @@ class MealAddToCartBut extends StatelessWidget {
     return MealCustomBottomButton(
         total: context.watch<CartBloc>().state.totalPrice.toString(),
         onPressed: () {
-          // To close the bottom sheet first before navigating.
-          Navigator.of(context).pop();
           BlocProvider.of<CartBloc>(context).add(AddCartItemEvent(
               meal: MealEntity(
             description: meal.description,

@@ -28,29 +28,6 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
   MealEntity? theMeal;
 
   @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(_handleScroll);
-    quantity = ValueNotifier<int>(theMeal?.quantity ?? IntManager.i_1);
-    price = ValueNotifier<double>(theMeal?.price ?? DoubleManager.d_0);
-  }
-
-  void _handleScroll() {
-    double maxScroll = DoubleManager.d_25.h;
-    double currentScroll = _scrollController.offset;
-    setState(() => isScrolledTo25Percent = currentScroll >= maxScroll);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.removeListener(_handleScroll);
-    _scrollController.dispose();
-    quantity.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) => Scaffold(
         body: BlocConsumer<MealsBloc, MealsState>(
           listenWhen: (previous, current) =>
@@ -94,4 +71,27 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
+      
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_handleScroll);
+    quantity = ValueNotifier<int>(theMeal?.quantity ?? IntManager.i_1);
+    price = ValueNotifier<double>(theMeal?.price ?? DoubleManager.d_0);
+  }
+
+  void _handleScroll() {
+    double maxScroll = DoubleManager.d_25.h;
+    double currentScroll = _scrollController.offset;
+    setState(() => isScrolledTo25Percent = currentScroll >= maxScroll);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    quantity.dispose();
+  }
 }

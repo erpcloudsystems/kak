@@ -36,7 +36,10 @@ class FeaturedMeals extends StatelessWidget {
             message: state.addCartItemMessage,
             color: ColorsManager.gGreen,
           );
-          Navigator.of(context).pushNamed(Routes.cartScreenKey);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            Routes.cartScreenKey,
+            (route) => route.settings.name == Routes.navigationBarScreenKey,
+          );
         }
 
         if (state.addCartItemState == RequestState.error) {
