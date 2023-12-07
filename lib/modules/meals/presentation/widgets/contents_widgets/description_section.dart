@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../quantity_counter.dart';
 import '../../../domain/entities/meal_entity.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
-import '../../../../../core/resources/colors_manager.dart';
-import '../../../../Cart/presentation/widgets/cart_list_tile_icon.dart';
 
 class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
     super.key,
     required this.meal,
-    required this.quantity, required this.price,
+    required this.quantity,
+    required this.price,
   });
 
   final MealEntity meal;
@@ -76,61 +76,9 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                     );
                   },
                 ),
-               
+
                 // Meal's Quantity
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: DoubleManager.d_10,
-                    vertical: DoubleManager.d_5,
-                  ),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(.5),
-                        offset: const Offset(0, 2),
-                        blurRadius: 1,
-                        spreadRadius: 1,
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(
-                        Radius.circular(DoubleManager.d_5)),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CartListTileIcon(
-                        isNegative: isNegative,
-                        onTab: () =>
-                            widget.quantity.value = widget.quantity.value - 1,
-                        icon: Icons.remove,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: DoubleManager.d_10),
-                        child: ValueListenableBuilder<int>(
-                          valueListenable: widget.quantity,
-                          builder: (context, value, child) => Text(
-                            value.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color: ColorsManager.swatchRed,
-                                  fontSize: FontsSize.s18,
-                                ),
-                          ),
-                        ),
-                      ),
-                      CartListTileIcon(
-                        isNegative: false,
-                        onTab: () =>
-                            widget.quantity.value = widget.quantity.value + 1,
-                        icon: Icons.add,
-                      )
-                    ],
-                  ),
-                ),
+                QuantityCounter(quantity: widget.quantity),
               ],
             ),
           ],
