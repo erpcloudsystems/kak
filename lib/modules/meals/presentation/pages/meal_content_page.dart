@@ -1,13 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/global/global_varibles.dart';
 import 'package:sizer/sizer.dart';
 
 import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../domain/entities/meal_entity.dart';
+import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
+import '../../../../core/global/global_varibles.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../Cart/presentation/bloc/cart_bloc.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/contents_widgets/contents_add_to_cart_but.dart';
 import '../widgets/contents_widgets/contents_success_state_widget.dart';
@@ -30,39 +32,51 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: BlocConsumer<MealsBloc, MealsState>(
+        body: BlocListener<CartBloc, CartState>(
           listenWhen: (previous, current) =>
-              previous.getMealDetailsState != current.getMealDetailsState,
+              previous.addCartItemState != current.addCartItemState,
           listener: (context, state) {
-            if (state.getMealDetailsState == RequestState.error) {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) =>
-                    ErrorDialog(errorMessage: state.getMealDetailsMessage),
+            if (state.addCartItemState == RequestState.success) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                Routes.cartScreenKey,
+                (route) => route.settings.name == Routes.navigationBarScreenKey,
               );
             }
           },
-          buildWhen: (previous, current) =>
-              previous.getMealDetailsState != current.getMealDetailsState,
-          builder: (context, state) {
-            if (state.getMealDetailsState == RequestState.loading) {
-              return const LoadingIndicatorUtil();
-            }
-            if (state.getMealDetailsState == RequestState.success) {
-              final meal = state.getMealDetailsData;
-              theMeal = meal;
-              price.value = theMeal!.price;
-              return ContentsSuccessCaseWidget(
-                isScrolledTo25Percent: isScrolledTo25Percent,
-                scrollController: _scrollController,
-                quantity: quantity,
-                price: price,
-                formKey: _formKey,
-                meal: meal,
-              );
-            }
-            return Container();
-          },
+          child: BlocConsumer<MealsBloc, MealsState>(
+            listenWhen: (previous, current) =>
+                previous.getMealDetailsState != current.getMealDetailsState,
+            listener: (context, state) {
+              if (state.getMealDetailsState == RequestState.error) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      ErrorDialog(errorMessage: state.getMealDetailsMessage),
+                );
+              }
+            },
+            buildWhen: (previous, current) =>
+                previous.getMealDetailsState != current.getMealDetailsState,
+            builder: (context, state) {
+              if (state.getMealDetailsState == RequestState.loading) {
+                return const LoadingIndicatorUtil();
+              }
+              if (state.getMealDetailsState == RequestState.success) {
+                final meal = state.getMealDetailsData;
+                theMeal = meal;
+                price.value = theMeal!.price;
+                return ContentsSuccessCaseWidget(
+                  isScrolledTo25Percent: isScrolledTo25Percent,
+                  scrollController: _scrollController,
+                  quantity: quantity,
+                  price: price,
+                  formKey: _formKey,
+                  meal: meal,
+                );
+              }
+              return Container();
+            },
+          ),
         ),
         floatingActionButton: ContentMealAddToCartBut(
           quantity: quantity,

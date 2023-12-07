@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../bloc/meals_bloc.dart';
 
+import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/resources/routes.dart';
 import '../../domain/entities/meal_entity.dart';
@@ -31,10 +31,10 @@ class FeaturedMeals extends StatelessWidget {
           previous.addCartItemState != current.addCartItemState,
       listener: (context, state) {
         if (state.addCartItemState == RequestState.success) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-            Routes.cartScreenKey,
-            (route) => route.settings.name == Routes.navigationBarScreenKey,
-          );
+          // Navigator.of(context).pushNamedAndRemoveUntil(
+          //   Routes.cartScreenKey,
+          //   (route) => route.settings.name == Routes.navigationBarScreenKey,
+          // );
           SnackBarUtil().getSnackBar(
             context: context,
             message: state.addCartItemMessage,
@@ -163,7 +163,7 @@ class FeaturedMealsElement extends StatelessWidget {
                             ),
                             const SizedBox(width: DoubleManager.d_15),
                             // Price
-                            Text('EGP ${meal.price}',
+                            Text('${UnTranslatedStrings.egp} ${meal.price}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineMedium!
