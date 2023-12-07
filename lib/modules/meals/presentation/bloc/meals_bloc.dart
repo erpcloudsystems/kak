@@ -10,7 +10,6 @@ import '../../../../core/global/base_use_case.dart';
 import '../../domain/usecases/get_meal_details.dart';
 import '../../domain/usecases/get_offers_meals.dart';
 import '../../domain/usecases/get_meals_groups.dart';
-import '../../domain/entities/meal_group_details.dart';
 import '../../domain/usecases/get_featured_meals.dart';
 import '../../domain/usecases/get_meal_group_items.dart';
 

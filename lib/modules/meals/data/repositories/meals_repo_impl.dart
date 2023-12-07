@@ -6,7 +6,6 @@ import '../../../../core/network/failure.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/entities/meal_group_details.dart';
 import '../../domain/repositories/meals_base_repo.dart';
 import '../../../../core/resources/strings_manager.dart';
 
@@ -30,9 +29,9 @@ class MealsRepoImpl implements MealsBaseRepo {
           () => dataSource.getMealsGroups());
 
   @override
-  Future<Either<Failure, List<MealGroupDetailsEntity>>> getMealGroupItems(
+  Future<Either<Failure, List<MealEntity>>> getMealGroupItems(
           String groupName) async =>
-      await _commonMethod<List<MealGroupDetailsEntity>>(
+      await _commonMethod<List<MealEntity>>(
           () => dataSource.getMealsGroupsItems(groupName));
 
   @override

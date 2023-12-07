@@ -17,7 +17,7 @@ class MealsState extends Equatable {
   final List<MealsGroupEntity> getMealsGroupsData;
 
   // Get meal group items
-  final List<MealGroupDetailsEntity> getMealGroupItemsData;
+  final List<MealEntity> getMealGroupItemsData;
   final RequestState getMealGroupItemsState;
   final String getMealGroupItemsMessage;
 
@@ -73,7 +73,7 @@ class MealsState extends Equatable {
     // Get MealGroupItems
     RequestState? getMealGroupItemsState,
     String? getMealGroupItemsMessage,
-    List<MealGroupDetailsEntity>? getMealGroupItemsData,
+    List<MealEntity>? getMealGroupItemsData,
 
     // Get MealDetails
     RequestState? getMealDetailsState,

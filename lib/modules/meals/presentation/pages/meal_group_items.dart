@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/assetss_path.dart';
-import 'package:kak/core/resources/strings_manager.dart';
 
 import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/no_data.dart';
+import '../../../../core/resources/assetss_path.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_animated_grid.dart';
 
 class MealGroupItemsScreen extends StatelessWidget {
