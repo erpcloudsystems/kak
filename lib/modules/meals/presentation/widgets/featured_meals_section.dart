@@ -104,10 +104,10 @@ class FeaturedMealsElement extends StatelessWidget {
                       // Name
                       SizedBox(
                           width: DoubleManager.d_50.w,
-                          child: Text(
-                            meal.name,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.end,
+                          child: FittedBox(
+                            alignment: AlignmentDirectional.centerEnd,
+                            fit: BoxFit.scaleDown,
+                            child: Text(meal.name),
                           )),
 
                       // Description

@@ -11,7 +11,8 @@ import '../../../../../core/utils/custom_cached_image.dart';
 class MealDetailsSection extends StatelessWidget {
   const MealDetailsSection({
     super.key,
-    required this.widget, required this.index,
+    required this.widget,
+    required this.index,
   });
 
   final ChoicesSection widget;
@@ -26,8 +27,7 @@ class MealDetailsSection extends StatelessWidget {
           radius: DoubleManager.d_25,
           backgroundColor: Colors.transparent,
           child: ClipOval(
-            child: CustomCachedImage(
-                url: widget.choicesList[index].image),
+            child: CustomCachedImage(url: widget.choicesList[index].image),
           ),
         ),
         const SizedBox(width: DoubleManager.d_8),
@@ -37,20 +37,21 @@ class MealDetailsSection extends StatelessWidget {
             // Item name
             SizedBox(
               width: DoubleManager.d_55.w,
-              child: Text(
-                widget.choicesList[index].itemName,
-                overflow: TextOverflow.ellipsis,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  widget.choicesList[index].itemName,
+                ),
               ),
             ),
             Row(
-              // Item price -if it's greater than 0-.
+              // Item price - if it's greater than 0 -.
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (widget.choicesList[index].price >
-                    DoubleManager.d_0)
+                if (widget.choicesList[index].price > DoubleManager.d_0)
                   Padding(
-                    padding: const EdgeInsets.only(
-                        right: DoubleManager.d_30),
+                    padding: const EdgeInsets.only(right: DoubleManager.d_30),
                     child: Text(
                       '${StringsManager.cost} ${widget.choicesList[index].price.toString()}',
                       style: Theme.of(context)
@@ -64,10 +65,7 @@ class MealDetailsSection extends StatelessWidget {
                 // Item quantity
                 Text(
                   '${StringsManager.quantity} ${widget.choicesList[index].quantity}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: FontsSize.s14,
                         color: ColorsManager.swatchRed,
                       ),
