@@ -1,19 +1,18 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_cached_image.dart';
 import '../resources/fonts_manager.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
+import '../resources/strings_manager.dart';
+import '../../modules/Cart/presentation/bloc/cart_bloc.dart';
+import '../../modules/meals/domain/entities/meal_entity.dart';
 
 class CustomAnimatedGridChild extends StatelessWidget {
-  const CustomAnimatedGridChild({
-    super.key,
-    required this.imageUrl,
-    required this.description,
-    required this.price,
-  });
+  const CustomAnimatedGridChild({super.key, required this.meal});
 
-  final String imageUrl, description, price;
+  final MealEntity meal;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +32,16 @@ class CustomAnimatedGridChild extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                CustomCachedImage(url: imageUrl),
+                // Image
+                CustomCachedImage(url: meal.imageUrl),
+
+                // Add icon
                 Align(
                   alignment: Alignment.bottomRight,
                   child: IconButton(
-                      // TODO: IMPLEMENT ADD TO CART LOGIC.
-                      onPressed: () {},
+                      onPressed: () => context
+                          .read<CartBloc>()
+                          .add(AddCartItemEvent(meal: meal)),
                       icon: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
@@ -49,26 +52,33 @@ class CustomAnimatedGridChild extends StatelessWidget {
                           child: const Icon(
                             Icons.add,
                             size: DoubleManager.d_25,
-                            color: Colors.white,
+                            color: ColorsManager.gWhite,
                           ))),
                 ),
               ],
             ),
           ),
         ),
+
+        // Name
         Flexible(
           fit: FlexFit.loose,
           flex: IntManager.i_1,
-          child: Text(
-            description,
-            overflow: TextOverflow.clip,
-            softWrap: true,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(fontSize: FontsSize.s11),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              meal.name,
+              overflow: TextOverflow.clip,
+              softWrap: true,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: FontsSize.s14),
+            ),
           ),
         ),
+
+        // Price
         Flexible(
             flex: IntManager.i_1,
             fit: FlexFit.loose,
@@ -76,14 +86,14 @@ class CustomAnimatedGridChild extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'EGP ',
+                  '${UnTranslatedStrings.egp} ',
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
                       .copyWith(fontSize: FontsSize.s12),
                 ),
                 Text(
-                  price,
+                  meal.price.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!

@@ -68,7 +68,7 @@ class _OffersBottomSheetViewState extends State<OffersBottomSheetView> {
               children: [
                 RichText(
                   text: TextSpan(
-                    // EGP
+                    // ${UnTranslatedStrings.egp}
                     text: '${UnTranslatedStrings.egp}  ',
                     style: TextStyle(
                       color: ColorsManager.gBlack,
@@ -99,7 +99,7 @@ class _OffersBottomSheetViewState extends State<OffersBottomSheetView> {
                     ],
                   ),
                 ),
-                
+
                 // Quantity counter
                 QuantityCounter(quantity: quantity),
               ],

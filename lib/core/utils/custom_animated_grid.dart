@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'custom_animated_grid_child.dart';
 import '../resources/values_manager.dart';
+import '../../modules/meals/domain/entities/meal_entity.dart';
 
 class CustomAnimatedGrid extends StatelessWidget {
-  final List items;
+  final List<MealEntity> items;
   const CustomAnimatedGrid({super.key, required this.items});
   @override
   Widget build(BuildContext context) {
@@ -29,12 +30,7 @@ class CustomAnimatedGrid extends StatelessWidget {
                 columnCount: IntManager.i_3,
                 child: ScaleAnimation(
                   child: FadeInAnimation(
-                    child: CustomAnimatedGridChild(
-                      // Notice here the items entity must have the parameters blew with the same name.
-                      description: items[index].name,
-                      price: items[index].price.toString(),
-                      imageUrl: items[index].imageUrl,
-                    ),
+                    child: CustomAnimatedGridChild(meal: items[index]),
                   ),
                 ),
               );

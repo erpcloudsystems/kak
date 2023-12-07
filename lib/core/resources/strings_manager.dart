@@ -114,6 +114,6 @@ class StringsManager {
   static const String no = 'No';
 }
 
-abstract class UnTranslatedStrings{
+abstract class UnTranslatedStrings {
   static const String egp = 'EGP';
 }

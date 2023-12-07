@@ -4,6 +4,7 @@ import '../quantity_counter.dart';
 import '../../../domain/entities/meal_entity.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class DescriptionSection extends StatefulWidget {
   const DescriptionSection({
@@ -68,7 +69,7 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                   valueListenable: widget.price,
                   builder: (context, price, child) {
                     return Text(
-                      'EGP $price',
+                      '${UnTranslatedStrings.egp} $price',
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium!

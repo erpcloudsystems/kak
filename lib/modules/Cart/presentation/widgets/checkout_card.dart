@@ -32,7 +32,7 @@ class TotalCard extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        'EGP $total',
+        '${UnTranslatedStrings.egp} $total',
         style: Theme.of(context)
             .textTheme
             .headlineMedium!

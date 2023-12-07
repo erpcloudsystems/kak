@@ -49,7 +49,7 @@ class MealCustomBottomButton extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Colors.white, fontSize: FontsSize.s18),
                     ),
-                    Text('EGP $total',
+                    Text('${UnTranslatedStrings.egp} $total',
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Colors.white, fontSize: FontsSize.s18)),
                   ]),
