@@ -31,7 +31,7 @@ class CustomAnimatedGrid extends StatelessWidget {
                   child: FadeInAnimation(
                     child: CustomAnimatedGridChild(
                       // Notice here the items entity must have the parameters blew with the same name.
-                      description: items[index].description,
+                      description: items[index].name,
                       price: items[index].price.toString(),
                       imageUrl: items[index].image,
                     ),
