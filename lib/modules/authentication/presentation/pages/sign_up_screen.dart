@@ -23,6 +23,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (previous, current) =>
               previous.signUpState != current.signUpState,

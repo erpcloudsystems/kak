@@ -28,6 +28,7 @@ class SignInScreen extends StatelessWidget {
     final globalVariables = GlobalVariables();
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (previous, current) =>
               previous.signInState != current.signInState,
