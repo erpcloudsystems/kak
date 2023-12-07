@@ -29,12 +29,12 @@ class GlobalVariables {
 
   void addToChosenList(MealComponentEntity mealComponent) {
     _chosenMealsComponents.add(mealComponent);
-    debugPrint(_chosenMealsComponents.toString());
+    debugPrint('Adding call: ${_chosenMealsComponents.toString()}');
   }
 
   void removeFromChosenList(MealComponentEntity mealComponent) {
     _chosenMealsComponents.remove(mealComponent);
-    debugPrint(_chosenMealsComponents.toString());
+    debugPrint('Remove call: ${_chosenMealsComponents.toString()}');
   }
 
   void clearChosenList() {
@@ -42,5 +42,4 @@ class GlobalVariables {
   }
 
   Set<MealComponentEntity> get getChosenList => _chosenMealsComponents;
-
 }

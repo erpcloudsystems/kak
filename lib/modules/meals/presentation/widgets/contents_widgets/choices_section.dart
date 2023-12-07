@@ -152,19 +152,12 @@ class _ChoicesSectionState extends State<ChoicesSection> {
   @override
   void initState() {
     super.initState();
-    // Add the required components in the choices list in the beginning.
     for (var choice in widget.choicesList) {
+      // Add the required components in the choices list in the beginning.
       if (choice.componentType == ComponentType.required &&
           !gv.getChosenList.contains(choice)) {
         gv.addToChosenList(choice);
       }
     }
-  }
-
-  @override
-  void dispose() {
-    // Clear the list before adding new items.
-    gv.getChosenList.clear();
-       super.dispose();
   }
 }

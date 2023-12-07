@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/global/global_varibles.dart';
 import 'package:sizer/sizer.dart';
 
 import '../bloc/meals_bloc.dart';
@@ -71,7 +72,7 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
-      
+
   @override
   void initState() {
     super.initState();
@@ -93,5 +94,6 @@ class _MealsContentsScreenState extends State<MealsContentsScreen> {
     _scrollController.removeListener(_handleScroll);
     _scrollController.dispose();
     quantity.dispose();
+    GlobalVariables().clearChosenList();
   }
 }

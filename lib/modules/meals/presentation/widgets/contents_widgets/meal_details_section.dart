@@ -40,9 +40,7 @@ class MealDetailsSection extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  widget.choicesList[index].itemName,
-                ),
+                child: Text(widget.choicesList[index].itemName),
               ),
             ),
             Row(
