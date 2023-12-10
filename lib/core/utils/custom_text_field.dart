@@ -4,14 +4,14 @@ import '../../../../../../core/resources/strings_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
-    super.key,
     required this.controller,
-    required this.icon,
     required this.hint,
+     this.icon,
+    super.key,
   });
 
   final TextEditingController controller;
-  final IconData icon;
+  final IconData? icon;
   final String hint;
   @override
   Widget build(BuildContext context) {

@@ -58,6 +58,7 @@ class StringsManager {
   static const String deleteAccount = 'Delete account';
   static const String paymentMethod = 'payment Method';
   static const String create = 'Create Your Account';
+  static const String buildingName = 'Building name';
   static const String continueWith = 'Continue with';
   static const String deliverHere = 'Deliver here';
   static const String createOrder = 'Create Order';
