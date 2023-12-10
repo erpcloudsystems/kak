@@ -78,9 +78,9 @@ class _MapScreenState extends State<MapScreen> {
                     onCameraMove: _onCameraMove,
                     onTap: (argument) => addMarker(argument),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.bottomCenter,
-                    child: AddressAndButtonSection(),
+                    child: AddressAndButtonSection(mapController: _controller),
                   ),
                   MapSearchButton(
                     addMarker: addMarker,

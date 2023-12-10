@@ -64,6 +64,7 @@ class StringsManager {
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String rememberMe = 'Remember me';
+  static const String newAddress = 'New address';
   static const String sendEmail = 'Send E-mail';
   static const String addToCart = 'Add to Cart';
   static const String catagories = 'Categories';
@@ -89,6 +90,7 @@ class StringsManager {
   static const String signIn = 'Sign in';
   static const String signUp = 'Sign up';
   static const String logout = 'Logout';
+  static const String change = 'Change';
   static const String filter = 'Filter';
   static const String gender = 'Gender';
   static const String female = 'Female';
@@ -101,6 +103,7 @@ class StringsManager {
   static const String cost = 'Cost:';
   static const String item = 'Items';
   static const String none = 'None';
+  static const String area = 'Area';
   static const String sort = 'Sort';
   static const String save = 'Save';
   static const String okay = 'Okay';

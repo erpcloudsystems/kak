@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kak/core/resources/routes.dart';
+import 'package:kak/core/utils/loading_indicator_util.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../bloc/address_bloc.dart';
@@ -11,9 +13,9 @@ import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
 
 class AddressAndButtonSection extends StatelessWidget {
-  const AddressAndButtonSection({
-    super.key,
-  });
+  const AddressAndButtonSection({super.key, required this.mapController});
+
+  final GoogleMapController? mapController;
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +40,16 @@ class AddressAndButtonSection extends StatelessWidget {
                   return Center(child: Text(state.getAddressMessage));
 
                 case RequestState.success:
-                  return const SuccessWidget();
+                  return SuccessWidget(mapController: mapController);
               }
             }));
   }
 }
 
 class SuccessWidget extends StatelessWidget {
-  const SuccessWidget({
-    super.key,
-  });
+  const SuccessWidget({super.key, required this.mapController});
 
+  final GoogleMapController? mapController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -86,7 +87,17 @@ class SuccessWidget extends StatelessWidget {
 
         // Delivery button
         InkWell(
-          onTap: () => Navigator.of(context).pushNamed(Routes.addressScreenKey),
+          // take a snapshot of the map and navigate to the address screen.
+          onTap: () async {
+            LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+            await mapController!.takeSnapshot().then((image) {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed(
+                Routes.addressScreenKey,
+                arguments: image,
+              );
+            });
+          },
           child: Container(
             height: DoubleManager.d_70,
             width: double.infinity,
