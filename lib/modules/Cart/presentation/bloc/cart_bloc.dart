@@ -13,12 +13,12 @@ part 'cart_state.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(const CartState()) {
     on<RemoveCartItemEvent>(removeCartItem);
+    on<UpdateCartItemEvent>(updateCartItem);
     on<GetCartItemsEvent>(getCartItems);
     on<AddCartItemEvent>(addCartItem);
   }
 
   final List<MealEntity> _cartItems = [];
-  // double _cartTotalPrice = 0.0;
 
   // ____________________________________ Get cart items _______________________________
   FutureOr<void> getCartItems(
@@ -46,7 +46,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(state.copyWith(
         addCartItemState: RequestState.success,
         addCartItemMessage: StringsManager.cartAddedMessage,
-        totalPrice: state.totalPrice + event.meal.price,
+        totalPrice: calculateTotalPrice(),
       ));
     } catch (e) {
       emit(state.copyWith(
@@ -66,7 +66,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(state.copyWith(
         removeCartItemState: RequestState.success,
         removeCartItemMessage: StringsManager.removedFromCartMessage,
-        totalPrice: state.totalPrice - event.meal.price,
+        totalPrice: calculateTotalPrice(),
       ));
     } catch (e) {
       emit(state.copyWith(
@@ -82,5 +82,26 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       EraseCartItemEvent event, Emitter<CartState> emit) {
     _cartItems.clear();
     emit(state.copyWith(totalPrice: 0.0));
+  }
+  // ___________________________________ Update cart item ________________________________
+
+  FutureOr<void> updateCartItem(
+      UpdateCartItemEvent event, Emitter<CartState> emit) async {
+    final index =
+        _cartItems.indexWhere((element) => element.id == event.meal.id);
+
+    if (index != -1) {
+      _cartItems[index] = event.meal;
+      emit(state.copyWith(totalPrice: calculateTotalPrice()));
+    }
+  }
+
+  // ________________________________ Calculate total price ________________________________
+  double calculateTotalPrice() {
+    double totalPrice = 0.0;
+    for (var item in _cartItems) {
+      totalPrice += item.price * item.quantity!;
+    }
+    return totalPrice;
   }
 }

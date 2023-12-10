@@ -25,4 +25,12 @@ class RemoveCartItemEvent extends CartEvent {
   List<Object> get props => [meal];
 }
 
+class UpdateCartItemEvent extends CartEvent {
+  const UpdateCartItemEvent({required this.meal});
+  final MealEntity meal;
+  
+  @override
+  List<Object> get props => [meal];
+}
+
 class EraseCartItemEvent extends CartEvent {}

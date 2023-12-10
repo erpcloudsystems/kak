@@ -16,22 +16,22 @@ class MealModel extends MealEntity {
   });
 
   factory MealModel.fromJson(Map<String, dynamic> json) => MealModel(
-        description: json['custom_arabic_description'] ??
-            json['description'] ??
-            StringsManager.none,
-        name: json['custom_item_name_arabic'] ??
-            json['item_name'] ??
-            StringsManager.none,
-        imageUrl: '${ApiConstance.kakUrl}${json['image']}',
-        price: double.tryParse(json['rate'].toString()) ?? 0.0,
-        priceAfterDiscount:
-            double.tryParse(json['custom_price_after_offer'].toString()) ?? 0.0,
-        id: json['name'] ?? StringsManager.none,
-        components: (json['details'] != null)
-            ? List<MealComponentModel>.from(
-                json['details'].map((e) => MealComponentModel.fromJson(e)))
-            : [],
-      );
+      description: json['custom_arabic_description'] ??
+          json['description'] ??
+          StringsManager.none,
+      name: json['custom_item_name_arabic'] ??
+          json['item_name'] ??
+          StringsManager.none,
+      imageUrl: '${ApiConstance.kakUrl}${json['image']}',
+      price: double.tryParse(json['rate'].toString()) ?? 0.0,
+      id: json['name'] ?? StringsManager.none,
+      priceAfterDiscount:
+          double.tryParse(json['custom_price_after_offer'].toString()) ?? 0.0,
+      components: (json['details'] != null)
+          ? List<MealComponentModel>.from(
+              json['details'].map((e) => MealComponentModel.fromJson(e)))
+          : [],
+      quantity: int.tryParse(json['qty'].toString()) ?? 1);
 
   Map<String, dynamic> toJson() => {
         "item_code": id,
