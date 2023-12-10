@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
 import '../../modules/Cart/presentation/pages/cart.dart';
+import '../../modules/Address/presentation/screens/map.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
+import '../../modules/Address/presentation/screens/address.dart';
 import '../../modules/meals/presentation/pages/meal_group_items.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
-import '../../modules/Address/presentation/screens/address_screen.dart';
 import '../../modules/Payment/presentation/screens/payment_screen.dart';
 import '../../modules/Payment/presentation/screens/transaction_screen.dart';
 import '../../modules/user_profile/presentation/pages/my_orders_screen.dart';
@@ -30,6 +31,7 @@ class Routes {
   static const String errorScreenKey = '/error';
   static const String cartScreenKey = '/cart';
   static const String homeScreenKey = '/home';
+  static const String mapScreenKey = '/map';
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -40,13 +42,14 @@ class Routes {
       transactionScreenKey: (_) => const TransactionScreen(),
       editProfileScreenKey: (_) => const EditProfileScreen(),
       myOrdersScreenKey: (_) => const MyOrdersScreen(),
-      paymentScreenKey: (_) => const PaymentScreen(),
       addressScreenKey: (_) => const AddressScreen(),
+      paymentScreenKey: (_) => const PaymentScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),
       cartScreenKey: (_) => const CartScreen(),
       homeScreenKey: (_) => const HomePage(),
+      mapScreenKey: (_) => const MapScreen(),
     };
   }
 }

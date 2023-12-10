@@ -76,7 +76,7 @@ List profileList = [
     icon: Icons.home_outlined,
     text: StringsManager.myAddress,
     onTap: (context) =>
-        Navigator.of(context).pushNamed(Routes.addressScreenKey),
+        Navigator.of(context).pushNamed(Routes.mapScreenKey),
   ),
   ProfileListElement(
     icon: Icons.payment_outlined,

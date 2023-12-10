@@ -5,12 +5,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../screens/address_screen.dart';
-import '../../../../core/global/constant_keys.dart';
-import '../../../../core/utils/snack_bar_util.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/resources/colors_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
+import '../../screens/map.dart';
+import '../../../../../core/global/constant_keys.dart';
+import '../../../../../core/utils/snack_bar_util.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class MapSearchButton extends StatefulWidget {
   final GoogleMapController? controller;

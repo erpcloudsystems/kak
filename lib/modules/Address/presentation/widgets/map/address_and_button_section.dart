@@ -1,13 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/routes.dart';
 import 'package:sizer/sizer.dart';
 
-import '../bloc/address_bloc.dart';
-import '../../../../core/utils/enums.dart';
-import '../../../../core/resources/fonts_manager.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/resources/colors_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
+import '../../bloc/address_bloc.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../../core/resources/fonts_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class AddressAndButtonSection extends StatelessWidget {
   const AddressAndButtonSection({
@@ -85,8 +86,7 @@ class SuccessWidget extends StatelessWidget {
 
         // Delivery button
         InkWell(
-          // TODO: Implement on tap logic.
-          onTap: () {},
+          onTap: () => Navigator.of(context).pushNamed(Routes.addressScreenKey),
           child: Container(
             height: DoubleManager.d_70,
             width: double.infinity,
