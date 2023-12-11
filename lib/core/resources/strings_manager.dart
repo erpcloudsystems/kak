@@ -36,6 +36,7 @@ class StringsManager {
   static const String enableLocation = 'Please open your location service';
   static const String logoutMessage = 'You have logged out successfully';
   static const String completeMealMessage = 'Please, complete your meal';
+  static const String additionalDir = 'Additional directions (optional)';
   static const String alreadyHaveAnAccount = 'Already have an account?';
   static const String emailValidateMessage = 'please enter your E-mail';
   static const String emptyValidator = 'This field must have a value';
@@ -60,6 +61,8 @@ class StringsManager {
   static const String create = 'Create Your Account';
   static const String buildingName = 'Building name';
   static const String continueWith = 'Continue with';
+  static const String apartmentNumber = 'Apt. no.';
+  static const String saveAddress = 'Save address';
   static const String deliverHere = 'Deliver here';
   static const String createOrder = 'Create Order';
   static const String description = 'Description';
@@ -90,13 +93,15 @@ class StringsManager {
   static const String seeAll = 'See all';
   static const String signIn = 'Sign in';
   static const String signUp = 'Sign up';
+  static const String street = 'Street';
   static const String logout = 'Logout';
   static const String change = 'Change';
   static const String filter = 'Filter';
-  static const String gender = 'Gender';
   static const String female = 'Female';
+  static const String gender = 'Gender';
   static const String google = 'Google';
   static const String search = 'search';
+  static const String floor = 'Floor';
   static const String enter = 'Enter';
   static const String email = 'Email';
   static const String appName = 'Kak';
