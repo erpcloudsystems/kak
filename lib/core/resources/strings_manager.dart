@@ -67,6 +67,7 @@ class StringsManager {
   static const String createOrder = 'Create Order';
   static const String description = 'Description';
   static const String getStarted = 'Get started';
+  static const String floor = 'Floor (optional)';
   static const String rememberMe = 'Remember me';
   static const String newAddress = 'New address';
   static const String sendEmail = 'Send E-mail';
@@ -101,7 +102,6 @@ class StringsManager {
   static const String gender = 'Gender';
   static const String google = 'Google';
   static const String search = 'search';
-  static const String floor = 'Floor';
   static const String enter = 'Enter';
   static const String email = 'Email';
   static const String appName = 'Kak';

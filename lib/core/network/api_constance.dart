@@ -13,6 +13,9 @@ abstract class ApiConstance {
   static const String logoutEndPoint = '/kak.api.logout';
   static const String loginEndPoint = '/kak.api.login';
 
+  // Address
+  static const String sendUserAddress = '/kak.add.add_address';
+
   // Meals
   static String get getOffersEndPoint => getEndPointAccordingToDeviceLng(
         ar: '/kak.general.get_offered_meals_arabic',

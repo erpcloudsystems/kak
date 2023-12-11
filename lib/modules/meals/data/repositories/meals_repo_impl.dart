@@ -7,7 +7,6 @@ import '../../domain/entities/meal_entity.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/meals_base_repo.dart';
-import '../../../../core/resources/strings_manager.dart';
 
 class MealsRepoImpl implements MealsBaseRepo {
   final MealsBaseRemoteDataSource dataSource;
@@ -17,30 +16,32 @@ class MealsRepoImpl implements MealsBaseRepo {
 
   @override
   Future<Either<Failure, List<MealEntity>>> getOffersMeals() async =>
-      await _commonMethod<List<MealEntity>>(() => dataSource.getOffers());
+      await _commonApiResponseMethod<List<MealEntity>>(
+          () => dataSource.getOffers());
 
   @override
   Future<Either<Failure, List<MealEntity>>> getFeaturedMeals() async =>
-      await _commonMethod<List<MealEntity>>(() => dataSource.getFeatured());
+      await _commonApiResponseMethod<List<MealEntity>>(
+          () => dataSource.getFeatured());
 
   @override
   Future<Either<Failure, List<MealsGroupEntity>>> getMealsGroups() async =>
-      await _commonMethod<List<MealsGroupEntity>>(
+      await _commonApiResponseMethod<List<MealsGroupEntity>>(
           () => dataSource.getMealsGroups());
 
   @override
   Future<Either<Failure, List<MealEntity>>> getMealGroupItems(
           String groupName) async =>
-      await _commonMethod<List<MealEntity>>(
+      await _commonApiResponseMethod<List<MealEntity>>(
           () => dataSource.getMealsGroupsItems(groupName));
 
   @override
   Future<Either<Failure, MealEntity>> getMealDetails(String mealName) async =>
-      await _commonMethod<MealEntity>(
+      await _commonApiResponseMethod<MealEntity>(
           () => dataSource.getMealDetails(mealName));
 
-//_________________common sign with email and password method____________________
-  Future<Either<Failure, T>> _commonMethod<T>(
+//_________________________common method_____________________________
+  Future<Either<Failure, T>> _commonApiResponseMethod<T>(
       Future<T> Function() wantedMethod) async {
     if (await networkInfo.isConnected) {
       try {
@@ -52,8 +53,7 @@ class MealsRepoImpl implements MealsBaseRepo {
         );
       }
     } else {
-      return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+      return const Left(OfflineFailure());
     }
   }
 }

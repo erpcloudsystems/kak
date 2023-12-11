@@ -2,7 +2,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../bloc/address_bloc.dart';
+import '../bloc/location/location_bloc.dart';
 import '../widgets/map/search_button.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/error_dialog.dart';
@@ -31,7 +31,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocConsumer<AddressBloc, AddressState>(
+        body: BlocConsumer<LocationBloc, LocationState>(
           listenWhen: (previous, current) =>
               current.getCurrentLocationState !=
               previous.getCurrentLocationState,
@@ -50,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
                 state.currentLocationCoordinates.longitude,
               );
 
-              BlocProvider.of<AddressBloc>(context)
+              BlocProvider.of<LocationBloc>(context)
                   .add(GetAddressEvent(coordinates: userLocation));
             }
           },
@@ -105,7 +105,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<AddressBloc>(context).add(GetCurrentLocationEvent());
+    BlocProvider.of<LocationBloc>(context).add(GetCurrentLocationEvent());
   }
 
   void addMarker(LatLng location) {
@@ -117,7 +117,7 @@ class _MapScreenState extends State<MapScreen> {
       infoWindow: InfoWindow(title: location.longitude.toString()),
     );
     _markers.add(marker);
-    BlocProvider.of<AddressBloc>(context)
+    BlocProvider.of<LocationBloc>(context)
         .add(GetAddressEvent(coordinates: location));
     setState(() {});
   }

@@ -4,29 +4,29 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/utils/enums.dart';
-import '../../../../core/global/base_use_case.dart';
-import '../../domain/usecases/get_address_use_case.dart';
-import '../../domain/usecases/get_current_location_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../../core/global/base_use_case.dart';
+import '../../../domain/usecases/get_address_use_case.dart';
+import '../../../domain/usecases/get_current_location_use_case.dart';
 
-part 'address_event.dart';
-part 'address_state.dart';
+part 'location_event.dart';
+part 'location_state.dart';
 
-class AddressBloc extends Bloc<AddressEvent, AddressState> {
+class LocationBloc extends Bloc<LocationEvent, LocationState> {
   final GetCurrentLocationUseCase _getCurrentLocationUseCase;
   final GetAddressUseCase _getAddressUseCase;
 
-  AddressBloc(
+  LocationBloc(
     this._getCurrentLocationUseCase,
     this._getAddressUseCase,
-  ) : super(const AddressState()) {
+  ) : super(const LocationState()) {
     on<GetCurrentLocationEvent>(getCurrentLocation);
     on<GetAddressEvent>(getAddress);
   }
 
   // ____________________ Current location _______________________________
   FutureOr<void> getCurrentLocation(
-      GetCurrentLocationEvent event, Emitter<AddressState> emit) async {
+      GetCurrentLocationEvent event, Emitter<LocationState> emit) async {
     emit(state.copyWith(getCurrentLocationState: RequestState.loading));
 
     final result = await _getCurrentLocationUseCase(const NoParameters());
@@ -44,7 +44,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
 
   // _________________________ Get Address _______________________________
   FutureOr<void> getAddress(
-      GetAddressEvent event, Emitter<AddressState> emit) async {
+      GetAddressEvent event, Emitter<LocationState> emit) async {
     emit(state.copyWith(getAddressState: RequestState.loading));
 
     final response = await _getAddressUseCase(event.coordinates);

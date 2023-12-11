@@ -1,6 +1,6 @@
-part of 'address_bloc.dart';
+part of 'location_bloc.dart';
 
-class AddressState extends Equatable {
+class LocationState extends Equatable {
   // Current location
   final RequestState getCurrentLocationState;
   final String getCurrentLocationMessage;
@@ -10,7 +10,7 @@ class AddressState extends Equatable {
   final RequestState getAddressState;
   final String getAddressMessage;
 
-  const AddressState({
+  const LocationState({
     // Current location
     this.getCurrentLocationState = RequestState.stable,
     this.getCurrentLocationMessage = 'get current location initial message',
@@ -21,7 +21,7 @@ class AddressState extends Equatable {
     this.getAddressMessage = 'get address initial message',
   });
 
-  AddressState copyWith({
+  LocationState copyWith({
     // Current location
     RequestState? getCurrentLocationState,
     String? getCurrentLocationMessage,
@@ -31,7 +31,7 @@ class AddressState extends Equatable {
     RequestState? getAddressState,
     String? getAddressMessage,
   }) =>
-      AddressState(
+      LocationState(
         // Current location
         getCurrentLocationState:
             getCurrentLocationState ?? this.getCurrentLocationState,

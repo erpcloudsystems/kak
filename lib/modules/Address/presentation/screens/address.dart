@@ -1,9 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kak/core/utils/enums.dart';
 import 'package:kak/core/utils/general_button.dart';
 import 'package:kak/core/utils/snack_bar_util.dart';
+import 'package:kak/modules/Address/domain/entities/address.dart';
+import 'package:kak/modules/Address/presentation/bloc/address/address_bloc.dart';
 import 'package:sizer/sizer.dart';
+import '../bloc/location/location_bloc.dart';
 import '../widgets/address/form_field.dart';
 import '../widgets/address/map_snapshot_section.dart';
 import 'package:kak/core/resources/colors_manager.dart';
@@ -93,22 +98,61 @@ class AddressScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              // Save button
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: DoubleManager.d_8,
                   vertical: DoubleManager.d_20,
                 ),
-                child: ColoredElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      SnackBarUtil().getSnackBar(
-                        context: context,
-                        message: 'Address Saved',
-                        color: ColorsManager.gGreen,
-                      );
+                child: BlocListener<AddressBloc, AddressState>(
+                  listenWhen: (previous, current) =>
+                      previous.sendUserAddressState !=
+                      current.sendUserAddressState,
+                  listener: (context, state) {
+                    switch (state.sendUserAddressState) {
+                      case RequestState.success:
+                        SnackBarUtil().getSnackBar(
+                          context: context,
+                          message: 'Address Saved',
+                          color: ColorsManager.gGreen,
+                        );
+                        break;
+                      case RequestState.error:
+                        SnackBarUtil().getSnackBar(
+                          context: context,
+                          message: state.sendUserAddressMessage,
+                          color: ColorsManager.gRed,
+                        );
+                        break;
+                      default:
                     }
                   },
-                  buttonText: StringsManager.saveAddress,
+                  child: ColoredElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        context.read<AddressBloc>().add(SendUserAddressEvent(
+                                address: AddressEntity(
+                              googleAddress: context
+                                  .read<LocationBloc>()
+                                  .state
+                                  .getAddressMessage,
+                              apartmentNumber:
+                                  apartmentNoController.text.trim(),
+                              buildingName: buildingController.text.trim(),
+                              isPrimary: false,
+                              street: streetController.text.trim(),
+                              additionalDirections:
+                                  additionalInfController.text.trim().isEmpty
+                                      ? null
+                                      : additionalInfController.text.trim(),
+                              floor: floorController.text.trim().isEmpty
+                                  ? null
+                                  : floorController.text.trim(),
+                            )));
+                      }
+                    },
+                    buttonText: StringsManager.saveAddress,
+                  ),
                 ),
               ),
             ],

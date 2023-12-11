@@ -5,7 +5,7 @@ import 'package:kak/core/resources/routes.dart';
 import 'package:kak/core/utils/loading_indicator_util.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../bloc/address_bloc.dart';
+import '../../bloc/location/location_bloc.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
@@ -25,7 +25,7 @@ class AddressAndButtonSection extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
-        child: BlocBuilder<AddressBloc, AddressState>(
+        child: BlocBuilder<LocationBloc, LocationState>(
             buildWhen: (previous, current) =>
                 current.getAddressState != previous.getAddressState,
             builder: (context, state) {
@@ -74,7 +74,7 @@ class SuccessWidget extends StatelessWidget {
             const SizedBox(width: DoubleManager.d_20),
             Flexible(
               child: Text(
-                context.watch<AddressBloc>().state.getAddressMessage,
+                context.watch<LocationBloc>().state.getAddressMessage,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'dart:typed_data';
 
-import '../../bloc/address_bloc.dart';
+import '../../bloc/location/location_bloc.dart';
 import '../../../../../core/resources/routes.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
@@ -30,7 +30,7 @@ class MapSnapshotSection extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-    
+
           // address details
           Positioned(
             bottom: -DoubleManager.d_40,
@@ -47,8 +47,7 @@ class MapSnapshotSection extends StatelessWidget {
                     color: Colors.grey,
                     blurRadius: DoubleManager.d_5,
                     spreadRadius: DoubleManager.d_1,
-                    offset:
-                        Offset(DoubleManager.d_3, DoubleManager.d_3),
+                    offset: Offset(DoubleManager.d_3, DoubleManager.d_3),
                   )
                 ],
               ),
@@ -74,12 +73,12 @@ class MapSnapshotSection extends StatelessWidget {
                                 .bodyMedium!
                                 .copyWith(fontSize: FontsSize.s10),
                           ),
-    
+
                           // Address
                           Flexible(
                             child: Text(
                               context
-                                  .watch<AddressBloc>()
+                                  .read<LocationBloc>()
                                   .state
                                   .getAddressMessage,
                               softWrap: true,
@@ -96,7 +95,7 @@ class MapSnapshotSection extends StatelessWidget {
                       ),
                     ),
                   ),
-    
+
                   // Button
                   SizedBox(
                     width: DoubleManager.d_15.w,
@@ -104,8 +103,7 @@ class MapSnapshotSection extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       child: TextButton(
                           onPressed: () => Navigator.of(context)
-                              .pushReplacementNamed(
-                                  Routes.mapScreenKey),
+                              .pushReplacementNamed(Routes.mapScreenKey),
                           child: const Text(StringsManager.change)),
                     ),
                   )

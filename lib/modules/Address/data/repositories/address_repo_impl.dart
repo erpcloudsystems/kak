@@ -1,13 +1,17 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
-import 'package:kak/core/network/exceptions.dart';
 
+import '../models/address.dart';
+import 'package:dartz/dartz.dart' as dartz;
+import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
+import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
+import '../../../../core/network/helper_network_methods.dart';
 
 class AddressRepoImpl implements AddressBaseRepo {
   final AddressBaseDataSource addressBaseDataSource;
@@ -57,8 +61,25 @@ class AddressRepoImpl implements AddressBaseRepo {
         return Left(ServerFailure(errorMessage: error.message));
       }
     } else {
-      return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+      return const Left(OfflineFailure());
     }
+  }
+
+// _______________________ Send user Address _________________________
+  @override
+  Future<Either<Failure, dartz.Unit>> sendUserAddress(
+      AddressEntity address) async {
+    final userAddress = AddressModel(
+      googleAddress: address.googleAddress,
+      apartmentNumber: address.apartmentNumber,
+      buildingName: address.buildingName,
+      isPrimary: address.isPrimary,
+      street: address.street,
+      additionalDirections: address.additionalDirections,
+      floor: address.floor,
+    );
+    return await HelperNetworkMethods.commonApiResponseMethod(
+        () async => await addressBaseDataSource.sendUserAddress(userAddress),
+        networkInfo);
   }
 }

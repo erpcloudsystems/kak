@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../resources/strings_manager.dart';
+
 abstract class Failure extends Equatable {
   final String errorMessage;
 
@@ -16,7 +18,8 @@ class ServerFailure extends Failure {
 }
 
 class OfflineFailure extends Failure {
-  const OfflineFailure({required super.errorMessage});
+  const OfflineFailure(
+      {super.errorMessage = StringsManager.offlineFailureMessage});
   @override
   List<Object> get props => [errorMessage];
 }

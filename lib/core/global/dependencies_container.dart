@@ -1,4 +1,5 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kak/modules/Address/domain/usecases/send_user_address.dart';
 import 'package:kak/modules/Cart/presentation/bloc/cart_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,6 @@ import '../../modules/meals/data/datasources/meals_remote.dart';
 import '../../modules/meals/domain/usecases/get_meals_groups.dart';
 import '../../modules/meals/domain/usecases/get_meal_details.dart';
 import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
-import '../../modules/Address/presentation/bloc/address_bloc.dart';
 import '../../modules/meals/domain/usecases/get_offers_meals.dart';
 import '../../modules/meals/data/repositories/meals_repo_impl.dart';
 import '../../modules/meals/domain/usecases/get_featured_meals.dart';
@@ -24,11 +24,13 @@ import '../../modules/Address/data/datasources/address_data_source.dart';
 import '../../modules/Payment/data/datasources/payment_data_source.dart';
 import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/Payment/domain/repositories/payment_base_repo.dart';
+import '../../modules/Address/presentation/bloc/address/address_bloc.dart';
 import '../../modules/authentication/domain/usecases/logout_use_case.dart';
 import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
 import '../../modules/authentication/domain/usecases/sign_in_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_up_use_case.dart';
+import '../../modules/Address/presentation/bloc/location/location_bloc.dart';
 import '../../modules/authentication/domain/usecases/cache_user_use_case.dart';
 import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
 import '../../modules/authentication/domain/usecases/delete_account_use_case.dart';
@@ -60,7 +62,8 @@ Future<void> init() async {
   sl.registerFactory(() => MealsBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Address
-  sl.registerFactory(() => AddressBloc(sl(), sl()));
+  sl.registerFactory(() => LocationBloc(sl(), sl()));
+  sl.registerFactory(() => AddressBloc(sl()));
 
   // Payment
   sl.registerFactory(() => PaymentBloc(sl()));
@@ -95,7 +98,9 @@ Future<void> init() async {
 
   // Address
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
+  sl.registerLazySingleton(() => SendUserAddressUseCase(sl()));
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
+
 
   // Payment
   sl.registerLazySingleton(() => PayWithCardUseCase(sl()));
