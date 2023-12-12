@@ -28,6 +28,7 @@ class StringsManager {
       'only $maxNumber items is what you can add to your meal';
   static const String noCartItemsMessage =
       'There is no items yet in your cart!';
+  static const String newAddressMessage = 'Your new address added successfully';
   static const String deleteItemMessage = 'Are you sure to delete this item?';
   static const String deleteAccountMessage = 'You have deleted your account';
   static const String removedFromCartMessage = 'Item removed from your cart';
@@ -42,6 +43,7 @@ class StringsManager {
   static const String emptyValidator = 'This field must have a value';
   static const String unKnownErrorOccurred = 'Unknown Error Occurred';
   static const String authenticationDividerText = 'or continue with';
+  static const String defaultAddress = 'Is this ur default address';
   static const String dontHaveAnAccount = 'Don\'t have an account?';
   static const String signInWithPassword = 'Sign in with password';
   static const String selectUrTerritory = 'Select your territory';
@@ -51,6 +53,7 @@ class StringsManager {
   static const String errorMessage = 'Something went wrong!';
   static const String forgotPassword = 'Forgot The Password';
   static const String chooseOrderType = 'Choose order type';
+  static const String savingAddress = 'Saving your address';
   static const String enterCode = 'Please, Enter the code';
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
