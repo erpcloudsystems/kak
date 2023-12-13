@@ -1,14 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 
-
-import '../../domain/entities/user.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/global/type_def.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../datasources/base_authentication_remote_data_source.dart';
+import '../../../authentication/domain/entities/user.dart';
 import '../../domain/repositories/base_social_sign_repository.dart';
+import '../datasources/base_authentication_remote_data_source.dart';
 
 class SocialSignRepository implements BaseSocialSignRepository {
   final BaseAuthenticationRemoteDataSource _dataSource;

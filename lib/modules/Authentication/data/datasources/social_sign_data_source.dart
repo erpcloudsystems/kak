@@ -1,7 +1,8 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/user_model.dart';
+import '../../../authentication/data/models/user_model.dart';
+
 
 mixin SocialSignDataSource {
   final fireAuth = FirebaseAuth.instance;

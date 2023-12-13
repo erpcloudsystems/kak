@@ -1,17 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/user.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/global/global_varibles.dart';
+
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../authentication/domain/entities/user.dart';
+import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../../domain/entities/user_caching_data_entity.dart';
 import '../bloc/caching_user_data/caching_user_data_bloc.dart';
-import '../bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';

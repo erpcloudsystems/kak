@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 
-import '../models/user_model.dart';
+import '../../../authentication/data/models/logged_user_entity.dart';
+import '../../../authentication/data/models/user_model.dart';
 import 'social_sign_data_source.dart';
 import 'regular_sign_data_source.dart';
-import '../models/logged_user_entity.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<LoggedInUserModel> signIn(UserModel user);
