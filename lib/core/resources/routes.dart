@@ -6,6 +6,7 @@ import '../../modules/Cart/presentation/pages/cart.dart';
 import '../../modules/Address/presentation/screens/map.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
 import '../../modules/Address/presentation/screens/address.dart';
+import '../../modules/Payment/presentation/screens/checkout.dart';
 import '../../modules/meals/presentation/pages/meal_group_items.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
 import '../../modules/Payment/presentation/screens/payment_screen.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const String editProfileScreenKey = '/edit-profile';
   static const String transactionScreenKey = '/transaction';
   static const String myOrdersScreenKey = '/my-orders';
+  static const String checkoutScreenKey = '/checkout';
   static const String addressScreenKey = '/address';
   static const String paymentScreenKey = '/payment';
   static const String signUpScreenKey = '/sign-up';
@@ -42,6 +44,7 @@ class Routes {
       transactionScreenKey: (_) => const TransactionScreen(),
       editProfileScreenKey: (_) => const EditProfileScreen(),
       myOrdersScreenKey: (_) => const MyOrdersScreen(),
+      checkoutScreenKey: (_) => const CheckoutScreen(),
       addressScreenKey: (_) => const AddressScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),

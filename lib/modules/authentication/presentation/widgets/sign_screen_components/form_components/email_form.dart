@@ -5,9 +5,9 @@ import '../../../../../../core/resources/strings_manager.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({
-    Key? key,
+    super.key,
     required this.emailController,
-  }) : super(key: key);
+  });
 
   final TextEditingController emailController;
 

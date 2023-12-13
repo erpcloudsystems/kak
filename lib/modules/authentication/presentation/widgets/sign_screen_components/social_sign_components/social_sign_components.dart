@@ -10,10 +10,10 @@ class SocialSignComponent extends StatelessWidget {
   final SocialSignEvent signEvent;
   
   const SocialSignComponent({
-    Key? key,
+    super.key,
     required this.authIcon,
     required this.signEvent,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

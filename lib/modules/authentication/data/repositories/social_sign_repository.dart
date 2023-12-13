@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 
+
 import '../../domain/entities/user.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/global/type_def.dart';

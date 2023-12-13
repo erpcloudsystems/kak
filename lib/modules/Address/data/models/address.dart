@@ -13,7 +13,7 @@ class AddressModel extends AddressEntity {
 
   Map<String, dynamic> toJson() {
     String addressString =
-        ' Apt.No: $apartmentNumber, Building Name: $buildingName, Street: $street';
+        ' Apt.No: $apartmentNumber, Building Name: $buildingName, Street: $street, ';
     if (floor != null) {
       addressString += ', Floor: $floor';
     }

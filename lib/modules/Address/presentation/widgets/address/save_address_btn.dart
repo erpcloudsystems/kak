@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/resources/routes.dart';
 import '../../bloc/address/address_bloc.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/address.dart';
@@ -21,6 +24,7 @@ class SaveAddressBtn extends StatelessWidget {
     required this.streetController,
     required this.floorController,
     required this.isPrimaryValue,
+    required this.mapSnapshot,
     required this.formKey,
   });
 
@@ -30,6 +34,7 @@ class SaveAddressBtn extends StatelessWidget {
   final TextEditingController streetController;
   final TextEditingController floorController;
   final GlobalKey<FormState> formKey;
+  final Uint8List mapSnapshot;
   final bool isPrimaryValue;
 
   @override
@@ -52,7 +57,13 @@ class SaveAddressBtn extends StatelessWidget {
               );
               break;
             case RequestState.success:
-              Navigator.of(context).pop();
+              // TODO: Make the navigation in the success state only.
+              // Navigator.of(context).pop();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                arguments: mapSnapshot,
+                Routes.checkoutScreenKey,
+                (route) => route.settings.name == Routes.navigationBarScreenKey,
+              );
               SnackBarUtil().getSnackBar(
                 context: context,
                 color: ColorsManager.gGreen,
@@ -60,7 +71,12 @@ class SaveAddressBtn extends StatelessWidget {
               );
               break;
             case RequestState.error:
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                arguments: mapSnapshot,
+                Routes.checkoutScreenKey,
+                (route) => route.settings.name == Routes.navigationBarScreenKey,
+              );
+              // Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
                 context: context,
                 color: ColorsManager.gRed,

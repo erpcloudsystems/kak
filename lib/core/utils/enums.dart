@@ -25,3 +25,8 @@ enum ComponentType {
   required,
   optional,
 }
+
+enum PaymentType {
+  creditCard,
+  cash,
+}

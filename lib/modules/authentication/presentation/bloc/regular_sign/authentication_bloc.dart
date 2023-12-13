@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/user.dart';
 import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/user.dart';
 import '../../../domain/usecases/logout_use_case.dart';
 import '../../../domain/usecases/sign_up_use_case.dart';
 import '../../../domain/usecases/sign_in_use_case.dart';

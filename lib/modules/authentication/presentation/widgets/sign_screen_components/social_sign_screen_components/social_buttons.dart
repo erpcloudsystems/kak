@@ -11,11 +11,11 @@ class SocialSignScreenButtons extends StatelessWidget {
   final IconData icon;
   final String signType;
   const SocialSignScreenButtons({
-    Key? key,
+    super.key,
     required this.signEvent,
     required this.icon,
     required this.signType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

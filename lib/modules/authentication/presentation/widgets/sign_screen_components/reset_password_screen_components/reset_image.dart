@@ -7,8 +7,8 @@ import '../../../../../../core/resources/values_manager.dart';
 
 class ResetImage extends StatelessWidget {
   const ResetImage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

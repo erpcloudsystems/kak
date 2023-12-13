@@ -28,8 +28,8 @@ class AuthenticationDivider extends StatelessWidget {
 
 class DividerLine extends StatelessWidget {
   const DividerLine({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

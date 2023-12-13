@@ -5,9 +5,9 @@ import '../../../../../../core/resources/strings_manager.dart';
 
 class PasswordForm extends StatefulWidget {
   const PasswordForm({
-    Key? key,
+    super.key,
     required this.passwordController,
-  }) : super(key: key);
+  });
 
   final TextEditingController passwordController;
 

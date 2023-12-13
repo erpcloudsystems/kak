@@ -43,7 +43,7 @@ class LocalDataSource implements BaseLocalDataSource {
   Future<Unit> deleteUserCachedData() async {
     await sl<SharedPreferences>()
         .remove(ConstantKeys.userEmailCachingKey)
-        .whenComplete(() async => await await sl<SharedPreferences>()
+        .whenComplete(() async => await sl<SharedPreferences>()
             .remove(ConstantKeys.userPasswordCachingKey));
     return Future.value(unit);
   }

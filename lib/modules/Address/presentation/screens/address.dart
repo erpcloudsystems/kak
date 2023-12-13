@@ -54,6 +54,7 @@ class AddressScreen extends StatelessWidget {
                   buildingController: buildingController,
                   streetController: streetController,
                   floorController: floorController,
+                  mapSnapshot: mapSnapshot,
                   isPrimaryValue: value,
                   formKey: formKey,
                 ),

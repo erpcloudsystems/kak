@@ -26,8 +26,13 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       (failure) => emit(state.copyWith(
         sendUserAddressState: RequestState.error,
         sendUserAddressMessage: failure.errorMessage,
+        // TODO: Remove when the add address endpoint works.
+        userChosenAddress: event.address,
       )),
-      (_) => emit(state.copyWith(sendUserAddressState: RequestState.success)),
+      (_) => emit(state.copyWith(
+        sendUserAddressState: RequestState.success,
+        userChosenAddress: event.address,
+      )),
     );
   }
 }

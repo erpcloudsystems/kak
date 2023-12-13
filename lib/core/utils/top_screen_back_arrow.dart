@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class TopScreenBackArrow extends StatelessWidget {
   final VoidCallback navigateFunction;
   const TopScreenBackArrow({
-    Key? key,
+    super.key,
     required this.navigateFunction,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

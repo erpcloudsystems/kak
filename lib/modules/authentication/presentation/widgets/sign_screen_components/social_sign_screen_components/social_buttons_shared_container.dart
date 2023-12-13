@@ -7,10 +7,10 @@ import '../../../../../../core/resources/strings_manager.dart';
 
 class SocialButtonsSharedContainer extends StatelessWidget {
   const SocialButtonsSharedContainer({
-    Key? key,
+    super.key,
     required this.icon,
     required this.signType,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final String signType;

@@ -8,8 +8,8 @@ import '../../../../../../core/resources/values_manager.dart';
 
 class EnterEmailText extends StatelessWidget {
   const EnterEmailText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
