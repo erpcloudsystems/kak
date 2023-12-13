@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 
-import '../models/user_model.dart';
-import '../../domain/entities/user.dart';
 import '../../../../core/global/type_def.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../domain/entities/logged_in_user_entity.dart';
+import '../../../authentication/data/models/user_model.dart';
+import '../../../authentication/domain/entities/logged_in_user_entity.dart';
+import '../../../authentication/domain/entities/user.dart';
 import '../datasources/base_authentication_remote_data_source.dart';
 import '../../domain/repositories/base_regular_authentication_repository.dart';
 

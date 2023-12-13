@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/enums.dart';
-import '../../domain/entities/user.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/utils/snack_bar_util.dart';
-import '../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../authentication/domain/entities/user.dart';
+import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';

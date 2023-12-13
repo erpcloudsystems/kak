@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/global/base_use_case.dart';
 import '../../../../core/network/failure.dart';
-import '../entities/user.dart';
 
+import '../../../authentication/domain/entities/user.dart';
 import '../repositories/base_social_sign_repository.dart';
 
 class SignWithGoogleUseCase extends BaseUseCase<UserEntity, NoParameters> {

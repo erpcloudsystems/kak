@@ -2,15 +2,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../../authentication/domain/entities/user.dart';
+import '../../../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import 'email_form.dart';
 import 'password_form.dart';
 import 'remember_me_row.dart';
-import '../../../../domain/entities/user.dart';
 import '../../../../../../core/global/type_def.dart';
 import '../../../../../../core/utils/general_button.dart';
 import '../../../../../../core/global/global_varibles.dart';
 import '../../../../../../core/utils/custom_text_field.dart';
-import '../../../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/resources/strings_manager.dart';
 import '../../../../../../core/utils/phone_number_Picker.dart';

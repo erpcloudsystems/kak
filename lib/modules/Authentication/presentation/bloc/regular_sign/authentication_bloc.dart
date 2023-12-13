@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/utils/enums.dart';
-import '../../../domain/entities/user.dart';
+import '../../../../authentication/domain/entities/logged_in_user_entity.dart';
+import '../../../../authentication/domain/entities/user.dart';
 import '../../../domain/usecases/logout_use_case.dart';
 import '../../../domain/usecases/sign_up_use_case.dart';
 import '../../../domain/usecases/sign_in_use_case.dart';
-import '../../../domain/entities/logged_in_user_entity.dart';
 import '../../../domain/usecases/delete_account_use_case.dart';
 import '../../../domain/usecases/reset_password_use_case.dart';
 

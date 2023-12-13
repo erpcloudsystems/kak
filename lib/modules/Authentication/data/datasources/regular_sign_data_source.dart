@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../models/user_model.dart';
-import '../models/logged_user_entity.dart';
 import '../../../../core/network/dio_helper.dart';
 import '../../../../core/network/api_constance.dart';
+import '../../../authentication/data/models/logged_user_entity.dart';
+import '../../../authentication/data/models/user_model.dart';
 
 class RegularSignDataSource {
   final BaseDioHelper _dio;
