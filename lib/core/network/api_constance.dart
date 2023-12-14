@@ -21,7 +21,7 @@ abstract class ApiConstance {
         ar: '/kak.general.get_offered_meals_arabic',
         en: '/kak.general.get_offered_meals_english',
       );
-      
+
   static String get getFeaturedEndPoint => getEndPointAccordingToDeviceLng(
         ar: '/kak.general.get_featured_meals_arabic',
         en: '/kak.general.get_featured_meals_english',
@@ -32,7 +32,8 @@ abstract class ApiConstance {
         en: '/kak.general.get_group_english',
       );
 
-  static String get getMealsGroupsItemsEndPoint => getEndPointAccordingToDeviceLng(
+  static String get getMealsGroupsItemsEndPoint =>
+      getEndPointAccordingToDeviceLng(
         en: '/kak.general.get_items_english',
         ar: '/kak.general.get_items_arabic',
       );
@@ -41,6 +42,9 @@ abstract class ApiConstance {
         en: '/kak.general.get_meals_details_english',
         ar: '/kak.general.get_meals_details_arabic',
       );
+
+  // Orders
+  static const String createOrderEndPoint = '/kak.add.sales_order';
 
   // Paymob endpoints_______________________________________________________
   static const String paymobBaseUrl = 'https://accept.paymob.com/api';

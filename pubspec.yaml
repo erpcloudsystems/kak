@@ -37,6 +37,7 @@ dependencies:
   sizer: ^2.0.15
   get_it: ^7.6.4
   dartz: ^0.10.1
+  intl: ^0.18.1
   uuid: ^4.1.0
 
   # Network

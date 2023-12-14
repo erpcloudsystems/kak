@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 
+import '../models/order.dart';
+import '../../domain/entities/order.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/payment_data_source.dart';
-import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/card_payment_entity.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/payment_base_repo.dart';
+import '../../../../core/network/helper_network_methods.dart';
 
 class PaymentRepoImpl implements PaymentBaseRepo {
   final PaymentBaseDataSource dataSource;
@@ -16,17 +17,25 @@ class PaymentRepoImpl implements PaymentBaseRepo {
 
   @override
   Future<Either<Failure, String>> payWithCard(
-      CardPaymentEntity paymentData) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final String response = await dataSource.payWithCard(paymentData);
-        return Right(response);
-      } on PrimaryServerException catch (e) {
-        return Left(ServerFailure(errorMessage: e.message));
-      }
-    } else {
-      return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
-    }
+          CardPaymentEntity paymentData) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<String>(
+        () async => await dataSource.payWithCard(paymentData),
+        networkInfo,
+      );
+
+  @override
+  Future<Either<Failure, Unit>> createOrder(OrderEntity order) async {
+    final orderModel = OrderModel(
+      customerAddress: order.customerAddress,
+      modeOfPayment: order.modeOfPayment,
+      items: List.from(order.items),
+    );
+
+    final response = await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+      () async => await dataSource.createOrder(orderModel),
+      networkInfo,
+    );
+
+    return response;
   }
 }

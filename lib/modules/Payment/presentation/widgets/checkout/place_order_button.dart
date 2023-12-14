@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/general_button.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/resources/strings_manager.dart';
+import '../../../../../core/utils/general_button.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class PlaceOrderButton extends StatelessWidget {
   const PlaceOrderButton({
