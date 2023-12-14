@@ -58,6 +58,7 @@ class StringsManager {
   static const String apiSecretCachingKey = 'API-SECRET';
   static const String productDetails = 'Product Details';
   static const String previousOrders = 'Previous orders';
+  static const String paymentSummary = 'Payment summary';
   static const String loading = 'Loading, Please wait!';
   static const String deleteAccount = 'Delete account';
   static const String paymentMethod = 'payment Method';
@@ -68,11 +69,15 @@ class StringsManager {
   static const String saveAddress = 'Save address';
   static const String deliverHere = 'Deliver here';
   static const String createOrder = 'Create Order';
+  static const String deliveryFee = 'Delivery Fee';
+  static const String totalAmount = 'Total amount';
   static const String description = 'Description';
   static const String getStarted = 'Get started';
+  static const String placeOrder = 'Place order';
   static const String floor = 'Floor (optional)';
   static const String rememberMe = 'Remember me';
   static const String newAddress = 'New address';
+  static const String creditCard = 'Credit Card';
   static const String sendEmail = 'Send E-mail';
   static const String addToCart = 'Add to Cart';
   static const String catagories = 'Categories';
@@ -89,9 +94,12 @@ class StringsManager {
   static const String userName = 'User Name';
   static const String quantity = 'Quantity:';
   static const String total = 'Total Price';
+  static const String subtotal = 'Subtotal';
+  static const String checkout = 'Checkout';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
   static const String deleting = 'Deleting';
+  static const String payWith = 'Pay with';
   static const String reorder = 'Reorder';
   static const String profile = 'Profile';
   static const String seeAll = 'See all';
@@ -113,6 +121,7 @@ class StringsManager {
   static const String item = 'Items';
   static const String none = 'None';
   static const String area = 'Area';
+  static const String cash = 'Cash';
   static const String sort = 'Sort';
   static const String save = 'Save';
   static const String okay = 'Okay';
