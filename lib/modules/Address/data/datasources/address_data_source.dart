@@ -1,14 +1,14 @@
-import 'package:dartz/dartz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:dio/dio.dart';
 
-import '../../../../core/network/api_constance.dart';
-import '../models/address.dart';
 import 'location_helper.dart';
+import '../models/address.dart';
+import '../../../../core/network/api_constance.dart';
 
 abstract class AddressBaseDataSource {
   Future<LatLng> getCurrentLocation();
   Future<String> getAddress(LatLng coordinates);
-  Future<Unit> sendUserAddress(AddressModel address);
+  Future<String> sendUserAddress(AddressModel address);
 }
 
 class AddressDataSourceImpl extends LocationServiceClass
@@ -16,11 +16,14 @@ class AddressDataSourceImpl extends LocationServiceClass
   AddressDataSourceImpl(super.dio);
 
   @override
-  Future<Unit> sendUserAddress(AddressModel address) async {
-    await dio.post(
+  Future<String> sendUserAddress(AddressModel address) async {
+   final result = await dio.post(
       endPoint: ApiConstance.sendUserAddress,
       query: address.toJson(),
-    );
-    return Future.value(unit);
+    ) as Response;
+  
+    final addressId = result.data['message'];
+
+    return addressId;
   }
 }

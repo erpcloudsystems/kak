@@ -5,11 +5,11 @@ import '../../../../core/network/failure.dart';
 import '../repositories/address_base_repo.dart';
 import '../../../../core/global/base_use_case.dart';
 
-class SendUserAddressUseCase extends BaseUseCase<Unit, AddressEntity> {
+class SendUserAddressUseCase extends BaseUseCase<String, AddressEntity> {
   final AddressBaseRepo repo;
   SendUserAddressUseCase(this.repo);
 
   @override
-  Future<Either<Failure, Unit>> call(AddressEntity parameters) async =>
+  Future<Either<Failure, String>> call(AddressEntity parameters) async =>
       await repo.sendUserAddress(parameters);
 }

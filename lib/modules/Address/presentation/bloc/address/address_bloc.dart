@@ -29,9 +29,10 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         // TODO: Remove when the add address endpoint works.
         userChosenAddress: event.address,
       )),
-      (_) => emit(state.copyWith(
+      (addressId) => emit(state.copyWith(
         sendUserAddressState: RequestState.success,
         userChosenAddress: event.address,
+        userAddressId: addressId,
       )),
     );
   }

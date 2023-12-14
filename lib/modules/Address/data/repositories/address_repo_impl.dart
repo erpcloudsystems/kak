@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
 
 import '../models/address.dart';
-import 'package:dartz/dartz.dart' as dartz;
 import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
@@ -67,8 +66,7 @@ class AddressRepoImpl implements AddressBaseRepo {
 
 // _______________________ Send user Address _________________________
   @override
-  Future<Either<Failure, dartz.Unit>> sendUserAddress(
-      AddressEntity address) async {
+  Future<Either<Failure, String>> sendUserAddress(AddressEntity address) async {
     final userAddress = AddressModel(
       googleAddress: address.googleAddress,
       apartmentNumber: address.apartmentNumber,
@@ -78,8 +76,10 @@ class AddressRepoImpl implements AddressBaseRepo {
       additionalDirections: address.additionalDirections,
       floor: address.floor,
     );
-    return await HelperNetworkMethods.commonApiResponseMethod(
+    final addressId = await HelperNetworkMethods.commonApiResponseMethod(
         () async => await addressBaseDataSource.sendUserAddress(userAddress),
         networkInfo);
+
+     return addressId;   
   }
 }

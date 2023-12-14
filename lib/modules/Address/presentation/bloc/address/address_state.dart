@@ -3,7 +3,7 @@ part of 'address_bloc.dart';
 class AddressState extends Equatable {
   // Send user Address
   final RequestState sendUserAddressState;
-  final String sendUserAddressMessage;
+  final String sendUserAddressMessage, userAddressId;
 
   // User chosen address
   final AddressEntity userChosenAddress;
@@ -12,6 +12,7 @@ class AddressState extends Equatable {
     // Send user address
     this.sendUserAddressState = RequestState.stable,
     this.sendUserAddressMessage = 'Send user address initial message',
+    this.userAddressId = 'user address id initial message',
     // User chosen address
     this.userChosenAddress = const AddressEntity(
         googleAddress: '',
@@ -25,6 +26,7 @@ class AddressState extends Equatable {
     // Send user address
     RequestState? sendUserAddressState,
     String? sendUserAddressMessage,
+    userAddressId,
     // User chosen address
     AddressEntity? userChosenAddress,
   }) =>
@@ -33,6 +35,7 @@ class AddressState extends Equatable {
         sendUserAddressState: sendUserAddressState ?? this.sendUserAddressState,
         sendUserAddressMessage:
             sendUserAddressMessage ?? this.sendUserAddressMessage,
+        userAddressId: userAddressId ?? this.userAddressId,   
         // User chosen address
         userChosenAddress: userChosenAddress ?? this.userChosenAddress,
       );
@@ -42,6 +45,7 @@ class AddressState extends Equatable {
         // Send user address
         sendUserAddressState,
         sendUserAddressMessage,
+        userAddressId,
         // User chosen address
         userChosenAddress,
       ];
