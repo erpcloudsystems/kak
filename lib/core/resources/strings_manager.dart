@@ -50,10 +50,12 @@ class StringsManager {
   static const String selectUrTerritory = 'Select your territory';
   static const String loginToUrAccount = 'Login To Your Account?';
   static const String createOrderMessage = 'Creating your order';
+  static const String deliveryAddresses = 'Delivery addresses';
   static const String cartAddedMessage = 'Added to your cart';
   static const String deliveryLocation = 'Delivery location';
   static const String errorMessage = 'Something went wrong!';
   static const String forgotPassword = 'Forgot The Password';
+  static const String noAddressMessage = 'No Addresses yet!';
   static const String chooseOrderType = 'Choose order type';
   static const String savingAddress = 'Saving your address';
   static const String enterCode = 'Please, Enter the code';

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:kak/modules/Address/presentation/screens/All_addresses.dart';
 
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
 import '../../modules/Cart/presentation/pages/cart.dart';
 import '../../modules/Address/presentation/screens/map.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
-import '../../modules/Address/presentation/screens/address.dart';
 import '../../modules/Payment/presentation/screens/checkout.dart';
 import '../../modules/meals/presentation/pages/meal_group_items.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
+import '../../modules/Address/presentation/screens/create_address.dart';
 import '../../modules/Payment/presentation/screens/payment_screen.dart';
 import '../../modules/Payment/presentation/screens/transaction_screen.dart';
 import '../../modules/user_profile/presentation/pages/my_orders_screen.dart';
@@ -21,6 +22,7 @@ class Routes {
   static const String mealGroupItemsScreenKey = '/Meal-Group-Item';
   static const String passwordResetScreenKey = '/password_reset';
   static const String navigationBarScreenKey = '/navigation-bar';
+  static const String allAddressesScreenKey = '/all-addresses';
   static const String mealContentsScreenKey = '/meal-contents';
   static const String editProfileScreenKey = '/edit-profile';
   static const String transactionScreenKey = '/transaction';
@@ -28,8 +30,8 @@ class Routes {
   static const String checkoutScreenKey = '/checkout';
   static const String addressScreenKey = '/address';
   static const String paymentScreenKey = '/payment';
-  static const String signUpScreenKey = '/sign-up';
   static const String signInScreenKey = '/sign-in';
+  static const String signUpScreenKey = '/sign-up';
   static const String errorScreenKey = '/error';
   static const String cartScreenKey = '/cart';
   static const String homeScreenKey = '/home';
@@ -41,11 +43,12 @@ class Routes {
       navigationBarScreenKey: (_) => const CustomNavigationBar(),
       passwordResetScreenKey: (_) => const PasswordResetScreen(),
       mealContentsScreenKey: (_) => const MealsContentsScreen(),
+      allAddressesScreenKey: (_) => const AllAddressesScreen(),
       transactionScreenKey: (_) => const TransactionScreen(),
       editProfileScreenKey: (_) => const EditProfileScreen(),
+      addressScreenKey: (_) => const CreateAddressScreen(),
       myOrdersScreenKey: (_) => const MyOrdersScreen(),
       checkoutScreenKey: (_) => const CheckoutScreen(),
-      addressScreenKey: (_) => const AddressScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),

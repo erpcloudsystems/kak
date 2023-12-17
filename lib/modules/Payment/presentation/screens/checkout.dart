@@ -13,7 +13,7 @@ import '../widgets/checkout/place_order_button.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
-import '../../../Address/presentation/widgets/address/map_snapshot_section.dart';
+import '../../../Address/presentation/widgets/create_address/map_snapshot_section.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});

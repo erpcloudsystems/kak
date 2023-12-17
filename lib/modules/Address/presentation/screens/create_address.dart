@@ -2,14 +2,14 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import '../widgets/address/address_form.dart';
-import '../widgets/address/save_address_btn.dart';
-import '../widgets/address/map_snapshot_section.dart';
+import '../widgets/create_address/address_form.dart';
+import '../widgets/create_address/save_address_btn.dart';
+import '../widgets/create_address/map_snapshot_section.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 
-class AddressScreen extends StatelessWidget {
-  const AddressScreen({super.key});
+class CreateAddressScreen extends StatelessWidget {
+  const CreateAddressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
