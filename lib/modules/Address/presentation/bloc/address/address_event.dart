@@ -15,3 +15,5 @@ class SendUserAddressEvent extends AddressEvent {
   @override
   List<Object> get props => [address];
 }
+
+class GetAllAddressesEvent extends AddressEvent {}

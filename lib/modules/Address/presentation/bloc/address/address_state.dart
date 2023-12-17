@@ -8,6 +8,11 @@ class AddressState extends Equatable {
   // User chosen address
   final AddressCreatorEntity userChosenAddress;
 
+  // Get all addresses
+  final RequestState getAllAddressesState;
+  final String getAllAddressesMessage;
+  final List<AddressEntity> getAllAddressesData;
+
   const AddressState({
     // Send user address
     this.sendUserAddressState = RequestState.stable,
@@ -20,6 +25,10 @@ class AddressState extends Equatable {
         buildingName: '',
         isPrimary: false,
         street: ''),
+    // Get all addresses
+    this.getAllAddressesState = RequestState.stable,
+    this.getAllAddressesMessage = 'Get All Addresses initial message',
+    this.getAllAddressesData = const [],
   });
 
   AddressState copyWith({
@@ -29,6 +38,10 @@ class AddressState extends Equatable {
     userAddressId,
     // User chosen address
     AddressCreatorEntity? userChosenAddress,
+    // Get all addresses
+    RequestState? getAllAddressesState,
+    String? getAllAddressesMessage,
+    List<AddressEntity>? getAllAddressesData,
   }) =>
       AddressState(
         // Send user address
@@ -38,6 +51,11 @@ class AddressState extends Equatable {
         userAddressId: userAddressId ?? this.userAddressId,
         // User chosen address
         userChosenAddress: userChosenAddress ?? this.userChosenAddress,
+        // Get all addresses
+        getAllAddressesState: getAllAddressesState ?? this.getAllAddressesState,
+        getAllAddressesMessage:
+            getAllAddressesMessage ?? this.getAllAddressesMessage,
+        getAllAddressesData: getAllAddressesData ?? this.getAllAddressesData,
       );
 
   @override
@@ -48,5 +66,9 @@ class AddressState extends Equatable {
         userAddressId,
         // User chosen address
         userChosenAddress,
+        // Get all addresses
+        getAllAddressesState,
+        getAllAddressesMessage,
+        getAllAddressesData,
       ];
 }

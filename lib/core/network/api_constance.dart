@@ -14,6 +14,7 @@ abstract class ApiConstance {
   static const String logoutEndPoint = '/logout';
 
   // Address
+  static const String getAllAddressesEndpoint = '/kak.general.get_user_addresses';
   static const String sendUserAddress = '/kak.add.add_address';
 
   // Meals

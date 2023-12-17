@@ -16,6 +16,7 @@ import '../../modules/meals/domain/usecases/get_offers_meals.dart';
 import '../../modules/meals/data/repositories/meals_repo_impl.dart';
 import '../../modules/meals/domain/usecases/get_featured_meals.dart';
 import '../../modules/meals/domain/repositories/meals_base_repo.dart';
+import '../../modules/Address/domain/usecases/get_all_addresses.dart';
 import '../../modules/Address/domain/usecases/send_user_address.dart';
 import '../../modules/meals/domain/usecases/get_meal_group_items.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';
@@ -64,7 +65,7 @@ Future<void> init() async {
 
   // Address
   sl.registerFactory(() => LocationBloc(sl(), sl()));
-  sl.registerFactory(() => AddressBloc(sl()));
+  sl.registerFactory(() => AddressBloc(sl(), sl()));
 
   // Payment
   sl.registerFactory(() => PaymentBloc(sl(), sl()));
@@ -99,6 +100,7 @@ Future<void> init() async {
 
   // Address
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
+  sl.registerLazySingleton(() => GetAllAddressesUseCase(sl()));
   sl.registerLazySingleton(() => SendUserAddressUseCase(sl()));
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
 

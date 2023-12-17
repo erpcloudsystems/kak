@@ -3,11 +3,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
 
 import '../models/address_creator.dart';
-import '../../domain/entities/address_creator.dart';
+import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
+import '../../domain/entities/address_creator.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
 import '../../../../core/network/helper_network_methods.dart';
@@ -77,10 +78,20 @@ class AddressRepoImpl implements AddressBaseRepo {
       additionalDirections: address.additionalDirections,
       floor: address.floor,
     );
-    final addressId = await HelperNetworkMethods.commonApiResponseMethod(
-        () async => await addressBaseDataSource.sendUserAddress(userAddress),
-        networkInfo);
+    final addressId =
+        await HelperNetworkMethods.commonApiResponseMethod<String>(
+            () async =>
+                await addressBaseDataSource.sendUserAddress(userAddress),
+            networkInfo);
 
     return addressId;
   }
+
+// _______________________ Get all Addresses _________________________
+  @override
+  Future<Either<Failure, List<AddressEntity>>> getAllAddresses() async =>
+      await HelperNetworkMethods.commonApiResponseMethod<List<AddressEntity>>(
+        () async => await addressBaseDataSource.getAllAddresses(),
+        networkInfo,
+      );
 }
