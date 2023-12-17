@@ -10,8 +10,8 @@ abstract class ApiConstance {
   static const String resetPasswordEndPoint = '/kak.api.resetPassword';
   static const String deleteUserEndPoint = '/kak.api.delete_user';
   static const String signUpEndPoint = '/kak.api.sign_up';
-  static const String logoutEndPoint = '/kak.api.logout';
   static const String loginEndPoint = '/kak.api.login';
+  static const String logoutEndPoint = '/logout';
 
   // Address
   static const String sendUserAddress = '/kak.add.add_address';
@@ -54,7 +54,7 @@ abstract class ApiConstance {
   static const String paymobAuthRequest = '/auth/tokens';
 }
 
-// Helper functions_______________________________________________________
+// Helper functions__________________________________________________________
 String getEndPointAccordingToDeviceLng({required String ar, en}) {
   final gv = GlobalVariables().getDeviceLanguage;
   String endPoint;

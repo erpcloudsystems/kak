@@ -3,11 +3,11 @@ import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/routes.dart';
 import '../../bloc/address/address_bloc.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/address.dart';
 import '../../bloc/location/location_bloc.dart';
+import '../../../../../core/resources/routes.dart';
 import '../../../../../core/utils/general_button.dart';
 import '../../../../../core/utils/snack_bar_util.dart';
 import '../../../../../core/resources/colors_manager.dart';
@@ -57,8 +57,6 @@ class SaveAddressBtn extends StatelessWidget {
               );
               break;
             case RequestState.success:
-              // TODO: Make the navigation in the success state only.
-              // Navigator.of(context).pop();
               Navigator.of(context).pushNamedAndRemoveUntil(
                 arguments: mapSnapshot,
                 Routes.checkoutScreenKey,
@@ -71,12 +69,7 @@ class SaveAddressBtn extends StatelessWidget {
               );
               break;
             case RequestState.error:
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                arguments: mapSnapshot,
-                Routes.checkoutScreenKey,
-                (route) => route.settings.name == Routes.navigationBarScreenKey,
-              );
-              // Navigator.of(context).pop();
+              Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
                 context: context,
                 color: ColorsManager.gRed,
@@ -88,7 +81,6 @@ class SaveAddressBtn extends StatelessWidget {
         },
         child: ColoredElevatedButton(
           onPressed: () {
-            debugPrint(isPrimaryValue.toString());
             if (formKey.currentState!.validate()) {
               context.read<AddressBloc>().add(SendUserAddressEvent(
                       address: AddressEntity(

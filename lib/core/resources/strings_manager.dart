@@ -40,6 +40,7 @@ class StringsManager {
   static const String additionalDir = 'Additional directions (optional)';
   static const String alreadyHaveAnAccount = 'Already have an account?';
   static const String emailValidateMessage = 'please enter your E-mail';
+  static const String orderCreated = 'Your order created successfully';
   static const String emptyValidator = 'This field must have a value';
   static const String unKnownErrorOccurred = 'Unknown Error Occurred';
   static const String authenticationDividerText = 'or continue with';
@@ -48,6 +49,7 @@ class StringsManager {
   static const String signInWithPassword = 'Sign in with password';
   static const String selectUrTerritory = 'Select your territory';
   static const String loginToUrAccount = 'Login To Your Account?';
+  static const String createOrderMessage = 'Creating your order';
   static const String cartAddedMessage = 'Added to your cart';
   static const String deliveryLocation = 'Delivery location';
   static const String errorMessage = 'Something went wrong!';

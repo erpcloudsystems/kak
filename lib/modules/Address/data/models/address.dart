@@ -15,7 +15,7 @@ class AddressModel extends AddressEntity {
     String addressString =
         ' Apt.No: $apartmentNumber, Building Name: $buildingName, Street: $street, ';
     if (floor != null) {
-      addressString += ', Floor: $floor';
+      addressString += 'Floor: $floor';
     }
 
     if (additionalDirections != null) {
@@ -27,6 +27,7 @@ class AddressModel extends AddressEntity {
     return {
       'primary': isPrimary ? 1 : 0,
       'address_line1': addressString,
+      'address_title': 'test',
     };
   }
 }

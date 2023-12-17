@@ -36,13 +36,13 @@ extension ThePaymentTypeName on PaymentType {
 
 
 extension DateTimeExtension on DateTime {
-  String formatDate() {
     /// Formate date in [day - month - year].
+  String formatDate() {
     return DateFormat('dd-MM-yyyy').format(this);
   }
 
-  String formatDateYMD() {
     /// Formate date in [year - month - day].
+  String formatDateYMD() {
     return DateFormat('yyyy-MM-dd').format(this);
   }
 }

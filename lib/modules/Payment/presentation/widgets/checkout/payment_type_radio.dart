@@ -8,14 +8,15 @@ import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
 
 class PaymentTypeRadio extends StatefulWidget {
-  const PaymentTypeRadio({super.key});
+  const PaymentTypeRadio({super.key, required this.paymentType});
 
+  final ValueNotifier<PaymentType> paymentType;
   @override
   State<PaymentTypeRadio> createState() => _RadioFormState();
 }
 
 class _RadioFormState extends State<PaymentTypeRadio> {
-  PaymentType selectedRadio = PaymentType.creditCard;
+  PaymentType selectedRadio = PaymentType.cash;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,10 @@ class _RadioFormState extends State<PaymentTypeRadio> {
           PaymentRadioComponent(
             radioType: PaymentType.creditCard,
             selectedRadio: selectedRadio,
-            onChanged: (value) => setState(() => selectedRadio = value!),
+            onChanged: (value) => setState(() {
+              selectedRadio = value!;
+              widget.paymentType.value = selectedRadio;
+            }),
           ),
           const SizedBox(height: DoubleManager.d_10),
 
@@ -49,7 +53,10 @@ class _RadioFormState extends State<PaymentTypeRadio> {
           PaymentRadioComponent(
             radioType: PaymentType.cash,
             selectedRadio: selectedRadio,
-            onChanged: (value) => setState(() => selectedRadio = value!),
+            onChanged: (value) => setState(() {
+              selectedRadio = value!;
+              widget.paymentType.value = selectedRadio;
+            }),
           ),
         ],
       ),
