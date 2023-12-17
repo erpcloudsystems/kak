@@ -2,8 +2,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
 
-import '../models/address.dart';
-import '../../domain/entities/address.dart';
+import '../models/address_creator.dart';
+import '../../domain/entities/address_creator.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
 import '../../../../core/network/exceptions.dart';
@@ -66,8 +66,9 @@ class AddressRepoImpl implements AddressBaseRepo {
 
 // _______________________ Send user Address _________________________
   @override
-  Future<Either<Failure, String>> sendUserAddress(AddressEntity address) async {
-    final userAddress = AddressModel(
+  Future<Either<Failure, String>> sendUserAddress(
+      AddressCreatorEntity address) async {
+    final userAddress = AddressCreatorModel(
       googleAddress: address.googleAddress,
       apartmentNumber: address.apartmentNumber,
       buildingName: address.buildingName,
@@ -80,6 +81,6 @@ class AddressRepoImpl implements AddressBaseRepo {
         () async => await addressBaseDataSource.sendUserAddress(userAddress),
         networkInfo);
 
-     return addressId;   
+    return addressId;
   }
 }

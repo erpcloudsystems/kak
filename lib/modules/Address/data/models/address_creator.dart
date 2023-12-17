@@ -1,7 +1,7 @@
-import '../../domain/entities/address.dart';
+import '../../domain/entities/address_creator.dart';
 
-class AddressModel extends AddressEntity {
-  const AddressModel({
+class AddressCreatorModel extends AddressCreatorEntity {
+  const AddressCreatorModel({
     required super.googleAddress,
     required super.apartmentNumber,
     required super.buildingName,

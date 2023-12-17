@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/utils/enums.dart';
-import '../../../domain/entities/address.dart';
+import '../../../domain/entities/address_creator.dart';
 import '../../../domain/usecases/send_user_address.dart';
 
 part 'address_event.dart';

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../bloc/address/address_bloc.dart';
 import '../../../../../core/utils/enums.dart';
-import '../../../domain/entities/address.dart';
+import '../../../domain/entities/address_creator.dart';
 import '../../bloc/location/location_bloc.dart';
 import '../../../../../core/resources/routes.dart';
 import '../../../../../core/utils/general_button.dart';
@@ -83,7 +83,7 @@ class SaveAddressBtn extends StatelessWidget {
           onPressed: () {
             if (formKey.currentState!.validate()) {
               context.read<AddressBloc>().add(SendUserAddressEvent(
-                      address: AddressEntity(
+                      address: AddressCreatorEntity(
                     googleAddress:
                         context.read<LocationBloc>().state.getAddressMessage,
                     apartmentNumber: apartmentNoController.text.trim(),

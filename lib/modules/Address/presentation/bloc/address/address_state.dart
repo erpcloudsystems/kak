@@ -6,7 +6,7 @@ class AddressState extends Equatable {
   final String sendUserAddressMessage, userAddressId;
 
   // User chosen address
-  final AddressEntity userChosenAddress;
+  final AddressCreatorEntity userChosenAddress;
 
   const AddressState({
     // Send user address
@@ -14,7 +14,7 @@ class AddressState extends Equatable {
     this.sendUserAddressMessage = 'Send user address initial message',
     this.userAddressId = 'user address id initial message',
     // User chosen address
-    this.userChosenAddress = const AddressEntity(
+    this.userChosenAddress = const AddressCreatorEntity(
         googleAddress: '',
         apartmentNumber: '',
         buildingName: '',
@@ -28,14 +28,14 @@ class AddressState extends Equatable {
     String? sendUserAddressMessage,
     userAddressId,
     // User chosen address
-    AddressEntity? userChosenAddress,
+    AddressCreatorEntity? userChosenAddress,
   }) =>
       AddressState(
         // Send user address
         sendUserAddressState: sendUserAddressState ?? this.sendUserAddressState,
         sendUserAddressMessage:
             sendUserAddressMessage ?? this.sendUserAddressMessage,
-        userAddressId: userAddressId ?? this.userAddressId,   
+        userAddressId: userAddressId ?? this.userAddressId,
         // User chosen address
         userChosenAddress: userChosenAddress ?? this.userChosenAddress,
       );
