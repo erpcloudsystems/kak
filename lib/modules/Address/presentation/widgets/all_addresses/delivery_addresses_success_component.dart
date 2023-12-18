@@ -24,10 +24,12 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool? isDismissed;
     return BlocListener<AddressBloc, AddressState>(
       listenWhen: (previous, current) =>
           previous.deleteAddressState != current.deleteAddressState,
-      listener: deleteAddressSwitch,
+      listener: (context, state) =>
+          deleteAddressSwitch(context, state, isDismissed),
       child: AnimationLimiter(
         child: ListView.builder(
           padding: const EdgeInsets.only(bottom: DoubleManager.d_100),
@@ -42,6 +44,7 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
                 child: FadeInAnimation(
                   child: DeliveryAddressComponent(
                     address: addresses[index],
+                    isDismissed: isDismissed,
                   ),
                 ),
               ),
@@ -53,13 +56,15 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
   }
 
   /// This switch handle delete address state changes.
-  void deleteAddressSwitch(BuildContext context, AddressState state) {
+  void deleteAddressSwitch(
+      BuildContext context, AddressState state, bool? isDismissed) {
     switch (state.deleteAddressState) {
       case RequestState.loading:
         LoadingUtils.showLoadingDialog(
             context, LoadingType.linear, StringsManager.deleting);
         break;
       case RequestState.success:
+        isDismissed = true;
         BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
         Navigator.of(context).pop();
         SnackBarUtil().getSnackBar(
@@ -68,8 +73,9 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
           message: StringsManager.deleteAddressMessage,
         );
       case RequestState.error:
-        BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
+        isDismissed = false;
         Navigator.of(context).pop();
+        BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
         showDialog(
           context: context,
           builder: (BuildContext context) => ErrorDialog(

@@ -38,7 +38,6 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
           getAddressesSwitch(context, state);
         },
         buildWhen: (previous, current) =>
-            previous.getAllAddressesState != current.getAllAddressesState ||
             previous.getAllAddressesData != current.getAllAddressesData,
         builder: addressesBuilderSwitch,
       ),
@@ -77,19 +76,15 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
   }
 
   /// This switch handle Get all address states.
-  Widget addressesBuilderSwitch(context, state) {
-    switch (state.getAllAddressesState) {
-      case RequestState.loading:
-        return const SizedBox();
-
-      case RequestState.error:
-        return const NoDataWidget(
-          assetPath: ImagesPath.emptyCartPath,
-          text: StringsManager.noAddressMessage,
-        );
-      default:
-        final addresses = state.getAllAddressesData;
-        return DeliveryAddressesSuccessComponent(addresses: addresses);
+  Widget addressesBuilderSwitch(BuildContext context, AddressState state) {
+    if (state.getAllAddressesData.isEmpty) {
+      return const NoDataWidget(
+        assetPath: ImagesPath.emptyCartPath,
+        text: StringsManager.noAddressMessage,
+      );
     }
+
+    final addresses = state.getAllAddressesData;
+    return DeliveryAddressesSuccessComponent(addresses: addresses);
   }
 }

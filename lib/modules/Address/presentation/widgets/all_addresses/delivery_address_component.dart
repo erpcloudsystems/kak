@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
 import '../../bloc/address/address_bloc.dart';
 import '../../../domain/entities/address.dart';
@@ -10,16 +10,22 @@ class DeliveryAddressComponent extends StatelessWidget {
   const DeliveryAddressComponent({
     super.key,
     required this.address,
+    this.isDismissed,
   });
 
   final AddressEntity address;
+  final bool? isDismissed;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(address.id),
-      onDismissed: (_) => BlocProvider.of<AddressBloc>(context)
-          .add(DeleteAddressEvent(addressId: address.id)),
+      confirmDismiss: (_) async {
+        context
+            .read<AddressBloc>()
+            .add(DeleteAddressEvent(addressId: address.id));
+        return isDismissed;
+      },
       background: Container(
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.all(DoubleManager.d_20),
@@ -67,10 +73,6 @@ class DeliveryAddressComponent extends StatelessWidget {
                     address.addressTitle,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  const Spacer(),
-
-                  // // Delete icon
-                  // const Icon(Icons.delete, size: DoubleManager.d_25),
                 ],
               ),
               const SizedBox(height: DoubleManager.d_20),
