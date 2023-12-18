@@ -1,6 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dio/dio.dart';
+import 'package:kak/core/network/api_constance.dart';
 
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/dio_helper.dart';
@@ -31,7 +32,8 @@ class LocationServiceClass {
   Future<String> getAddress(LatLng coordinates) async {
     final response = await dio.get(
       useCookies: false,
-      endPoint: 'https://maps.googleapis.com/maps/api/geocode/json',
+      base: ApiConstance.googleMapsBaseUrl,
+      endPoint: ApiConstance.googleMapsGeocodeApi,
       query: {
         'latlng': '${coordinates.latitude},${coordinates.longitude}',
         'key': ConstantKeys.serverMapsKey,

@@ -53,6 +53,10 @@ abstract class ApiConstance {
   static const String paymobPaymentKeyRequest = '/acceptance/payment_keys';
   static const String paymobOrderRegistration = '/ecommerce/orders';
   static const String paymobAuthRequest = '/auth/tokens';
+
+  // Paymob endpoints_______________________________________________________
+  static const String googleMapsBaseUrl = 'https://maps.googleapis.com/maps/api';
+  static const String googleMapsGeocodeApi = '/geocode/json';
 }
 
 // Helper functions__________________________________________________________

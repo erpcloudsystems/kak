@@ -68,6 +68,8 @@ class DioHelper implements BaseDioHelper {
   }) async {
     if (base != null) {
       dio.options.baseUrl = base;
+    } else {
+      dio.options.baseUrl = ApiConstance.baseUrl;
     }
 
     if (timeOut != null) {
@@ -110,6 +112,8 @@ class DioHelper implements BaseDioHelper {
   }) async {
     if (base != null) {
       dio.options.baseUrl = base;
+    } else {
+      dio.options.baseUrl = ApiConstance.baseUrl;
     }
 
     if (timeOut != null) {
