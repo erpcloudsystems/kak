@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/enums.dart';
 import '../bloc/address/address_bloc.dart';
 import '../../../../core/utils/no_data.dart';
+import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/utils/custom_floating_button.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/all_addresses/delivery_addresses_success_component.dart';
 
@@ -40,6 +42,11 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
             previous.getAllAddressesData != current.getAllAddressesData,
         builder: addressesBuilderSwitch,
       ),
+      floatingActionButton: CustomFloatingButton(
+        title: StringsManager.addAddress,
+        onPressed: () => Navigator.of(context).pushNamed(Routes.mapScreenKey),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

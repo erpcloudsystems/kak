@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:kak/core/resources/values_manager.dart';
-import 'package:kak/modules/Address/domain/entities/address.dart';
-import 'package:kak/modules/Address/presentation/widgets/all_addresses/delivery_address_component.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import 'delivery_address_component.dart';
+import '../../../domain/entities/address.dart';
+import '../../../../../core/resources/values_manager.dart';
 
 class DeliveryAddressesSuccessComponent extends StatelessWidget {
   const DeliveryAddressesSuccessComponent({
@@ -26,8 +27,10 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
               verticalOffset: DoubleManager.d_90.h,
               curve: Curves.decelerate,
               child: FadeInAnimation(
-                  child: DeliveryAddressComponent(
-                      address: addresses[index])),
+                child: DeliveryAddressComponent(
+                  address: addresses[index],
+                ),
+              ),
             ),
           );
         },
