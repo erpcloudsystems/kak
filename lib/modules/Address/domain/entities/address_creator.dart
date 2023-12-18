@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class AddressCreatorEntity extends Equatable {
-  final String googleAddress, buildingName, apartmentNumber, street;
+  final String googleAddress, buildingName, apartmentNumber, street, title;
   final String? floor, additionalDirections;
   final bool isPrimary;
   const AddressCreatorEntity({
@@ -10,6 +10,7 @@ class AddressCreatorEntity extends Equatable {
     required this.buildingName,
     required this.isPrimary,
     required this.street,
+    required this.title,
     this.additionalDirections,
     this.floor,
   });
@@ -23,5 +24,6 @@ class AddressCreatorEntity extends Equatable {
         isPrimary,
         street,
         floor,
+        title,
       ];
 }

@@ -20,11 +20,13 @@ class AddressState extends Equatable {
     this.userAddressId = 'user address id initial message',
     // User chosen address
     this.userChosenAddress = const AddressCreatorEntity(
-        googleAddress: '',
-        apartmentNumber: '',
-        buildingName: '',
-        isPrimary: false,
-        street: ''),
+      googleAddress: '',
+      apartmentNumber: '',
+      buildingName: '',
+      isPrimary: false,
+      street: '',
+      title: '',
+    ),
     // Get all addresses
     this.getAllAddressesState = RequestState.stable,
     this.getAllAddressesMessage = 'Get All Addresses initial message',

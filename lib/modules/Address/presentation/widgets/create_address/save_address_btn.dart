@@ -23,6 +23,7 @@ class SaveAddressBtn extends StatelessWidget {
     required this.buildingController,
     required this.streetController,
     required this.floorController,
+    required this.titleController,
     required this.isPrimaryValue,
     required this.mapSnapshot,
     required this.formKey,
@@ -33,6 +34,7 @@ class SaveAddressBtn extends StatelessWidget {
   final TextEditingController buildingController;
   final TextEditingController streetController;
   final TextEditingController floorController;
+  final TextEditingController titleController;
   final GlobalKey<FormState> formKey;
   final Uint8List mapSnapshot;
   final bool isPrimaryValue;
@@ -90,6 +92,7 @@ class SaveAddressBtn extends StatelessWidget {
                     buildingName: buildingController.text.trim(),
                     isPrimary: isPrimaryValue,
                     street: streetController.text.trim(),
+                    title: titleController.text.trim(),
                     additionalDirections:
                         additionalInfController.text.trim().isEmpty
                             ? null

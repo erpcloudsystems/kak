@@ -7,27 +7,28 @@ class AddressCreatorModel extends AddressCreatorEntity {
     required super.buildingName,
     required super.isPrimary,
     required super.street,
+    required super.title,
     super.additionalDirections,
     super.floor,
   });
 
   Map<String, dynamic> toJson() {
     String addressString =
-        ' Apt.No: $apartmentNumber, Building Name: $buildingName, Street: $street, ';
+        ' Apt.No: $apartmentNumber, Building Name: $buildingName, Street: $street';
     if (floor != null) {
-      addressString += 'Floor: $floor';
+      addressString += ', Floor: $floor';
     }
 
     if (additionalDirections != null) {
       addressString += ', Additional Directions: $additionalDirections';
     }
 
-    addressString += 'Area: $googleAddress';
+    addressString += ', Area: $googleAddress';
 
     return {
       'primary': isPrimary ? 1 : 0,
       'address_line1': addressString,
-      'address_title': 'test',
+      'address_title': title,
     };
   }
 }

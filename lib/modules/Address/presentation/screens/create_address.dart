@@ -3,10 +3,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import '../widgets/create_address/address_form.dart';
-import '../widgets/create_address/save_address_btn.dart';
-import '../widgets/create_address/map_snapshot_section.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../widgets/create_address/save_address_btn.dart';
+import '../widgets/create_address/map_snapshot_section.dart';
 
 class CreateAddressScreen extends StatelessWidget {
   const CreateAddressScreen({super.key});
@@ -20,6 +20,7 @@ class CreateAddressScreen extends StatelessWidget {
     final buildingController = TextEditingController();
     final streetController = TextEditingController();
     final floorController = TextEditingController();
+    final titleController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
     final ValueNotifier<bool> switchValue = ValueNotifier<bool>(false);
@@ -41,6 +42,7 @@ class CreateAddressScreen extends StatelessWidget {
                 buildingController: buildingController,
                 streetController: streetController,
                 floorController: floorController,
+                titleController: titleController,
                 switchValue: switchValue,
                 formKey: formKey,
               ),
@@ -54,6 +56,7 @@ class CreateAddressScreen extends StatelessWidget {
                   buildingController: buildingController,
                   streetController: streetController,
                   floorController: floorController,
+                  titleController: titleController,
                   mapSnapshot: mapSnapshot,
                   isPrimaryValue: value,
                   formKey: formKey,

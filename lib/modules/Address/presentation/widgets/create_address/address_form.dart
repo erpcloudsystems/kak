@@ -14,6 +14,7 @@ class AddressForm extends StatelessWidget {
     required this.buildingController,
     required this.streetController,
     required this.floorController,
+    required this.titleController,
     required this.switchValue,
     required this.formKey,
   });
@@ -23,6 +24,7 @@ class AddressForm extends StatelessWidget {
   final TextEditingController buildingController;
   final TextEditingController streetController;
   final TextEditingController floorController;
+  final TextEditingController titleController;
   final ValueNotifier<bool> switchValue;
   final GlobalKey<FormState> formKey;
 
@@ -76,6 +78,12 @@ class AddressForm extends StatelessWidget {
               AddressFormField(
                 controller: streetController,
                 hint: StringsManager.street,
+              ),
+
+              // Title
+              AddressFormField(
+                controller: titleController,
+                hint: StringsManager.title,
               ),
 
               // Additional info

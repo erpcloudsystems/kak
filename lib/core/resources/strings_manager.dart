@@ -69,6 +69,7 @@ class StringsManager {
   static const String create = 'Create Your Account';
   static const String buildingName = 'Building name';
   static const String continueWith = 'Continue with';
+  static const String title = 'Your address title';
   static const String apartmentNumber = 'Apt. no.';
   static const String saveAddress = 'Save address';
   static const String deliverHere = 'Deliver here';

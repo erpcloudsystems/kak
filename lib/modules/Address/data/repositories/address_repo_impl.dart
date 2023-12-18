@@ -75,6 +75,7 @@ class AddressRepoImpl implements AddressBaseRepo {
       buildingName: address.buildingName,
       isPrimary: address.isPrimary,
       street: address.street,
+      title: address.title,
       additionalDirections: address.additionalDirections,
       floor: address.floor,
     );
