@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/address/address_bloc.dart';
 import '../../../domain/entities/address.dart';
-import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
 
 class DeliveryAddressComponent extends StatelessWidget {
   const DeliveryAddressComponent({
@@ -16,8 +18,8 @@ class DeliveryAddressComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(address.id),
-      // Put delete address event.
-      onDismissed: (direction) {},
+      onDismissed: (_) => BlocProvider.of<AddressBloc>(context)
+          .add(DeleteAddressEvent(addressId: address.id)),
       background: Container(
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.all(DoubleManager.d_20),
@@ -67,8 +69,8 @@ class DeliveryAddressComponent extends StatelessWidget {
                   ),
                   const Spacer(),
 
-                  // Delete icon
-                  const Icon(Icons.delete, size: DoubleManager.d_25),
+                  // // Delete icon
+                  // const Icon(Icons.delete, size: DoubleManager.d_25),
                 ],
               ),
               const SizedBox(height: DoubleManager.d_20),

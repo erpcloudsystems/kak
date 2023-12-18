@@ -48,12 +48,12 @@ class AddressDataSourceImpl extends LocationServiceClass
   }
 
   // Delete addresses _________________________________________________
-  // TODO: Make useCookies true.
   @override
   Future<Unit> deleteAddress(String addressId) async {
     await dio.post(
       endPoint: ApiConstance.deleteAddress,
       query: {'address_name': addressId},
+      useCookies: true,
     ) as Response;
 
     return Future.value(unit);
