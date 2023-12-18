@@ -95,4 +95,12 @@ class AddressRepoImpl implements AddressBaseRepo {
         () async => await addressBaseDataSource.getAllAddresses(),
         networkInfo,
       );
+
+// _______________________ Delete address ____________________________
+  @override
+  Future<Either<Failure, Unit>> deleteAddress(String addressId) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+        () async => await addressBaseDataSource.deleteAddress(addressId),
+        networkInfo,
+      );
 }

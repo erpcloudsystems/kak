@@ -16,4 +16,12 @@ class SendUserAddressEvent extends AddressEvent {
   List<Object> get props => [address];
 }
 
+class DeleteAddressEvent extends AddressEvent {
+  final String addressId;
+  const DeleteAddressEvent({required this.addressId});
+
+  @override
+  List<Object> get props => [addressId];
+}
+
 class GetAllAddressesEvent extends AddressEvent {}

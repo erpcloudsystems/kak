@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dio/dio.dart';
 
@@ -9,6 +10,7 @@ import '../../../../core/network/api_constance.dart';
 
 abstract class AddressBaseDataSource {
   Future<LatLng> getCurrentLocation();
+  Future<Unit> deleteAddress(String addressId);
   Future<String> getAddress(LatLng coordinates);
   Future<List<AddressEntity>> getAllAddresses();
   Future<String> sendUserAddress(AddressCreatorModel address);
@@ -42,6 +44,18 @@ class AddressDataSourceImpl extends LocationServiceClass
         .map((e) => AddressModel.fromJson(e))
         .toList();
 
-    return data;    
+    return data;
+  }
+
+  // Delete addresses _________________________________________________
+  // TODO: Make useCookies true.
+  @override
+  Future<Unit> deleteAddress(String addressId) async {
+    await dio.post(
+      endPoint: ApiConstance.deleteAddress,
+      query: {'address_name': addressId},
+    ) as Response;
+
+    return Future.value(unit);
   }
 }

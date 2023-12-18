@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/address.dart';
+import '../../../domain/usecases/delete_address.dart';
 import '../../../domain/entities/address_creator.dart';
 import '../../../../../core/global/base_use_case.dart';
 import '../../../domain/usecases/get_all_addresses.dart';
@@ -14,15 +15,18 @@ part 'address_event.dart';
 part 'address_state.dart';
 
 class AddressBloc extends Bloc<AddressEvent, AddressState> {
-  final SendUserAddressUseCase sendUserAddressUseCase;
   final GetAllAddressesUseCase _getAllAddressesUseCase;
+  final SendUserAddressUseCase sendUserAddressUseCase;
+  final DeleteAddressUseCase _deleteAddressUseCase;
 
   AddressBloc(
     this.sendUserAddressUseCase,
     this._getAllAddressesUseCase,
+    this._deleteAddressUseCase,
   ) : super(const AddressState()) {
     on<SendUserAddressEvent>(sendUserAddress);
     on<GetAllAddressesEvent>(getAllAddresses);
+    on<DeleteAddressEvent>(deleteAddress);
   }
 
   // Send User Address _____________________________________________________
@@ -61,6 +65,22 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         getAllAddressesState: RequestState.success,
         getAllAddressesData: data,
       )),
+    );
+  }
+
+  // Delete address ________________________________________________________
+  FutureOr<void> deleteAddress(
+      DeleteAddressEvent event, Emitter<AddressState> emit) async {
+    emit(state.copyWith(deleteAddressState: RequestState.loading));
+
+    final result = await _deleteAddressUseCase(event.addressId);
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        deleteAddressState: RequestState.error,
+        deleteAddressMessage: failure.errorMessage,
+      )),
+      (_) => emit(state.copyWith(deleteAddressState: RequestState.success)),
     );
   }
 }

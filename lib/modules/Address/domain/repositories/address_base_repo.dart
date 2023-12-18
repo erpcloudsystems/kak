@@ -9,5 +9,6 @@ abstract class AddressBaseRepo {
   Future<Either<Failure, String>> sendUserAddress(AddressCreatorEntity address);
   Future<Either<Failure, String>> getAddress(LatLng coordinates);
   Future<Either<Failure, List<AddressEntity>>> getAllAddresses();
+  Future<Either<Failure, Unit>> deleteAddress(String addressId);
   Future<Either<Failure, LatLng>> getCurrentLocation();
 }

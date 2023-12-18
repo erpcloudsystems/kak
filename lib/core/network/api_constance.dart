@@ -15,6 +15,7 @@ abstract class ApiConstance {
 
   // Address
   static const String getAllAddressesEndpoint = '/kak.general.get_user_addresses';
+  static const String deleteAddress = '/kak.add.delete_address';
   static const String sendUserAddress = '/kak.add.add_address';
 
   // Meals

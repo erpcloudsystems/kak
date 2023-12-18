@@ -1,4 +1,5 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kak/modules/Address/domain/usecases/delete_address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -65,7 +66,7 @@ Future<void> init() async {
 
   // Address
   sl.registerFactory(() => LocationBloc(sl(), sl()));
-  sl.registerFactory(() => AddressBloc(sl(), sl()));
+  sl.registerFactory(() => AddressBloc(sl(), sl(), sl()));
 
   // Payment
   sl.registerFactory(() => PaymentBloc(sl(), sl()));
@@ -100,6 +101,7 @@ Future<void> init() async {
 
   // Address
   sl.registerLazySingleton(() => GetAddressUseCase(sl()));
+  sl.registerLazySingleton(() => DeleteAddressUseCase(sl()));
   sl.registerLazySingleton(() => GetAllAddressesUseCase(sl()));
   sl.registerLazySingleton(() => SendUserAddressUseCase(sl()));
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
