@@ -19,11 +19,11 @@ class DeliveryAddressComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(address.id),
+      key: Key(address.id!),
       confirmDismiss: (_) async {
         context
             .read<AddressBloc>()
-            .add(DeleteAddressEvent(addressId: address.id));
+            .add(DeleteAddressEvent(addressId: address.id!));
         return isDismissed;
       },
       background: Container(
@@ -70,7 +70,7 @@ class DeliveryAddressComponent extends StatelessWidget {
 
                   // Address title
                   Text(
-                    address.addressTitle,
+                    address.addressTitle!,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],
@@ -79,7 +79,7 @@ class DeliveryAddressComponent extends StatelessWidget {
 
               // Address details
               Text(
-                address.addressDetails,
+                address.googleAddress!,
                 style: Theme.of(context).textTheme.bodySmall,
               )
             ],

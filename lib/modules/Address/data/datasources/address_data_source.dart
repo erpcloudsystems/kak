@@ -1,10 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../models/address.dart';
 import 'location_helper.dart';
-import '../models/address_creator.dart';
 import '../../domain/entities/address.dart';
 import '../../../../core/network/api_constance.dart';
 
@@ -13,7 +12,7 @@ abstract class AddressBaseDataSource {
   Future<Unit> deleteAddress(String addressId);
   Future<String> getAddress(LatLng coordinates);
   Future<List<AddressEntity>> getAllAddresses();
-  Future<String> sendUserAddress(AddressCreatorModel address);
+  Future<String> sendUserAddress(AddressModel address);
 }
 
 class AddressDataSourceImpl extends LocationServiceClass
@@ -22,7 +21,7 @@ class AddressDataSourceImpl extends LocationServiceClass
 
   // Send user Address _______________________________________________
   @override
-  Future<String> sendUserAddress(AddressCreatorModel address) async {
+  Future<String> sendUserAddress(AddressModel address) async {
     final result = await dio.post(
       endPoint: ApiConstance.sendUserAddress,
       query: address.toJson(),

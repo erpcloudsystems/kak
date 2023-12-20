@@ -2,16 +2,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
 
-import '../models/address_creator.dart';
 import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/entities/address_creator.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
 import '../../../../core/network/helper_network_methods.dart';
+import '../models/address.dart';
 
 class AddressRepoImpl implements AddressBaseRepo {
   final AddressBaseDataSource addressBaseDataSource;
@@ -68,17 +67,18 @@ class AddressRepoImpl implements AddressBaseRepo {
 // _______________________ Send user Address _________________________
   @override
   Future<Either<Failure, String>> sendUserAddress(
-      AddressCreatorEntity address) async {
-    final userAddress = AddressCreatorModel(
-      googleAddress: address.googleAddress,
-      apartmentNumber: address.apartmentNumber,
-      buildingName: address.buildingName,
-      isPrimary: address.isPrimary,
-      street: address.street,
-      title: address.title,
+      AddressEntity address) async {
+    final userAddress = AddressModel(
       additionalDirections: address.additionalDirections,
+      isDefaultAddress: address.isDefaultAddress,
+      apartmentNumber: address.apartmentNumber,
+      googleAddress: address.googleAddress,
+      buildingName: address.buildingName,
+      addressTitle: address.addressTitle,
+      street: address.street,
       floor: address.floor,
     );
+    
     final addressId =
         await HelperNetworkMethods.commonApiResponseMethod<String>(
             () async =>

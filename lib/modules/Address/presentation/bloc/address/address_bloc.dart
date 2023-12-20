@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/entities/address.dart';
 import '../../../domain/usecases/delete_address.dart';
-import '../../../domain/entities/address_creator.dart';
 import '../../../../../core/global/base_use_case.dart';
 import '../../../domain/usecases/get_all_addresses.dart';
 import '../../../domain/usecases/send_user_address.dart';

@@ -8,7 +8,7 @@ sealed class AddressEvent extends Equatable {
 }
 
 class SendUserAddressEvent extends AddressEvent {
-  final AddressCreatorEntity address;
+  final AddressEntity address;
 
   const SendUserAddressEvent({required this.address});
 
