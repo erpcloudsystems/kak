@@ -17,8 +17,9 @@ class StateManagement {
     BlocProvider(create: (_) => di.sl<SocialSignBloc>()),
     BlocProvider(create: (_) => di.sl<PaymentBloc>()),
     BlocProvider(create: (_) => di.sl<LocationBloc>()),
-    BlocProvider(create: (_) => di.sl<AddressBloc>()),
     BlocProvider(create: (_) => di.sl<CartBloc>()),
+    BlocProvider(
+        create: (_) => di.sl<AddressBloc>()),
     BlocProvider(
       create: (_) => di.sl<MealsBloc>()
         ..add(GetOffersEvent())

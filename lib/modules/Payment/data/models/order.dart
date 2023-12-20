@@ -14,7 +14,6 @@ class OrderModel extends OrderEntity {
     final date = DateTime.now().formatDateYMD();
     return {
       'data': {
-        'doctype': 'Sales Order',
         'transaction_date': date,
         'delivery_date': date,
         'customer_address': customerAddress,

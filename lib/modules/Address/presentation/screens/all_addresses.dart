@@ -49,11 +49,11 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
+  // }
 
   /// This switch handle get all addresses state changes.
   void getAddressesSwitch(BuildContext context, AddressState state) {

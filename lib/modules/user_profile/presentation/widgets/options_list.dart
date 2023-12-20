@@ -72,12 +72,12 @@ List profileList = [
     onTap: (context) =>
         Navigator.of(context).pushNamed(Routes.myOrdersScreenKey),
   ),
-  ProfileListElement(
-    icon: Icons.home_outlined,
-    text: StringsManager.myAddress,
-    onTap: (context) =>
-        Navigator.of(context).pushNamed(Routes.allAddressesScreenKey),
-  ),
+  // ProfileListElement(
+  //   icon: Icons.home_outlined,
+  //   text: StringsManager.myAddress,
+  //   onTap: (context) =>
+  //       Navigator.of(context).pushNamed(Routes.allAddressesScreenKey),
+  // ),
   ProfileListElement(
     icon: Icons.payment_outlined,
     text: StringsManager.paymentMethod,
