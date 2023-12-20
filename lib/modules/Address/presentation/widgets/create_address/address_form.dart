@@ -67,7 +67,7 @@ class AddressForm extends StatelessWidget {
                   Expanded(
                     child: AddressFormField(
                       controller: floorController,
-                      hint: StringsManager.floor,
+                      hint: StringsManager.floorOpt,
                       optional: true,
                     ),
                   ),

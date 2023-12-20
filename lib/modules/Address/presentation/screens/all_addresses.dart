@@ -77,6 +77,10 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
 
   /// This switch handle Get all address states.
   Widget addressesBuilderSwitch(BuildContext context, AddressState state) {
+    if (state.getAllAddressesState == RequestState.loading) {
+      return const SizedBox();
+    }
+
     if (state.getAllAddressesData.isEmpty) {
       return const NoDataWidget(
         assetPath: ImagesPath.emptyCartPath,

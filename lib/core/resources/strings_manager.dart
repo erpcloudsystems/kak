@@ -81,12 +81,13 @@ class StringsManager {
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String placeOrder = 'Place order';
-  static const String floor = 'Floor (optional)';
+  static const String floorOpt = 'Floor (optional)';
   static const String rememberMe = 'Remember me';
   static const String newAddress = 'New address';
   static const String creditCard = 'Credit Card';
   static const String sendEmail = 'Send E-mail';
   static const String addToCart = 'Add to Cart';
+  static const String directions = 'Directions';
   static const String catagories = 'Categories';
   static const String popular = 'Popular Items';
   static const String categories = 'Categories';
@@ -123,6 +124,7 @@ class StringsManager {
   static const String enter = 'Enter';
   static const String email = 'Email';
   static const String appName = 'Kak';
+  static const String floor = 'Floor';
   static const String phone = 'Phone';
   static const String cost = 'Cost:';
   static const String item = 'Items';
