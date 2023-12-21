@@ -65,23 +65,25 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
         break;
       case RequestState.success:
         isDismissed = true;
-        BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
+        // The pop here to close the loading indicator, and the new event to refresh the data.
         Navigator.of(context).pop();
+        BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
         SnackBarUtil().getSnackBar(
           context: context,
           color: ColorsManager.gGreen,
           message: StringsManager.deleteAddressMessage,
         );
+        break;
       case RequestState.error:
         isDismissed = false;
         Navigator.of(context).pop();
-        BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
         showDialog(
           context: context,
           builder: (BuildContext context) => ErrorDialog(
             errorMessage: state.deleteAddressMessage,
           ),
         );
+        break;
       default:
     }
   }

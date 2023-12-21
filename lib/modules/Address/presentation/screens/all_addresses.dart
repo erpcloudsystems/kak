@@ -3,24 +3,16 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/enums.dart';
 import '../bloc/address/address_bloc.dart';
-import '../../../../core/utils/no_data.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
-import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_floating_button.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/all_addresses/delivery_addresses_success_component.dart';
 
-class AllAddressesScreen extends StatefulWidget {
+class AllAddressesScreen extends StatelessWidget {
   const AllAddressesScreen({super.key});
 
-  @override
-  State<AllAddressesScreen> createState() => _AllAddressesScreenState();
-}
-
-class _AllAddressesScreenState extends State<AllAddressesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +26,12 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
       body: BlocConsumer<AddressBloc, AddressState>(
         listenWhen: (previous, current) =>
             previous.getAllAddressesState != current.getAllAddressesState,
-        listener: (context, state) {
-          getAddressesSwitch(context, state);
-        },
+        listener: handleGetAddressStates,
         buildWhen: (previous, current) =>
             previous.getAllAddressesData != current.getAllAddressesData,
-        builder: addressesBuilderSwitch,
+        builder: (context, state) => DeliveryAddressesSuccessComponent(
+          addresses: state.getAllAddressesData,
+        ),
       ),
       floatingActionButton: CustomFloatingButton(
         title: StringsManager.addAddress,
@@ -49,20 +41,13 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
     );
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   BlocProvider.of<AddressBloc>(context).add(GetAllAddressesEvent());
-  // }
-
   /// This switch handle get all addresses state changes.
-  void getAddressesSwitch(BuildContext context, AddressState state) {
+  void handleGetAddressStates(context, state) {
     switch (state.getAllAddressesState) {
-      case RequestState.loading:
-        LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-        break;
+      // We don't display an loading indicator here because it's handled in the check button.
       case RequestState.success:
         Navigator.of(context).pop();
+        break;
       case RequestState.error:
         Navigator.of(context).pop();
         showDialog(
@@ -71,24 +56,8 @@ class _AllAddressesScreenState extends State<AllAddressesScreen> {
             errorMessage: state.getAllAddressesMessage,
           ),
         );
+        break;
       default:
     }
-  }
-
-  /// This switch handle Get all address states.
-  Widget addressesBuilderSwitch(BuildContext context, AddressState state) {
-    if (state.getAllAddressesState == RequestState.loading) {
-      return const SizedBox();
-    }
-
-    if (state.getAllAddressesData.isEmpty) {
-      return const NoDataWidget(
-        assetPath: ImagesPath.emptyCartPath,
-        text: StringsManager.noAddressMessage,
-      );
-    }
-
-    final addresses = state.getAllAddressesData;
-    return DeliveryAddressesSuccessComponent(addresses: addresses);
   }
 }
