@@ -109,13 +109,14 @@ class DeliveryAddressComponent extends StatelessWidget {
                     value: address.apartmentNumber!,
                   ),
 
-                if (address.floor != null)
+                if (address.floor != null && address.floor!.isNotEmpty)
                   AddressField(
                     title: StringsManager.floor,
                     value: address.floor!,
                   ),
 
-                if (address.additionalDirections != null)
+                if (address.additionalDirections != null &&
+                    address.additionalDirections!.isNotEmpty)
                   AddressField(
                     title: StringsManager.directions,
                     value: address.additionalDirections!,
