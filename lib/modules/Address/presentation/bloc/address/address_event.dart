@@ -25,3 +25,8 @@ class DeleteAddressEvent extends AddressEvent {
 }
 
 class GetAllAddressesEvent extends AddressEvent {}
+
+class SaveAddressIdEvent extends AddressEvent {
+  final String addressId;
+  const SaveAddressIdEvent({required this.addressId});
+}

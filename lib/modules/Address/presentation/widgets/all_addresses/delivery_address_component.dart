@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../bloc/address/address_bloc.dart';
 import '../../../domain/entities/address.dart';
+import '../../../../../core/resources/routes.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
@@ -44,79 +45,89 @@ class DeliveryAddressComponent extends StatelessWidget {
           color: ColorsManager.gWhite,
         ),
       ),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          side: address.isDefaultAddress
-              ? const BorderSide(
-                  color: ColorsManager.swatchRed, width: DoubleManager.d_2)
-              : BorderSide.none,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(DoubleManager.d_12),
+      child: InkWell(
+        onTap: () {
+          context
+              .read<AddressBloc>()
+              .add(SaveAddressIdEvent(addressId: address.id!));
+          Navigator.of(context).pushNamed(
+            Routes.checkoutScreenKey,
+          );
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            side: address.isDefaultAddress
+                ? const BorderSide(
+                    color: ColorsManager.swatchRed, width: DoubleManager.d_2)
+                : BorderSide.none,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(DoubleManager.d_12),
+            ),
           ),
-        ),
-        margin: const EdgeInsets.symmetric(
-            horizontal: DoubleManager.d_20, vertical: DoubleManager.d_10),
-        elevation: DoubleManager.d_5,
-        child: Padding(
-          padding: const EdgeInsets.all(DoubleManager.d_10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Location icon
-                  const Icon(Icons.location_pin, size: DoubleManager.d_25),
-                  const SizedBox(width: DoubleManager.d_10),
+          margin: const EdgeInsets.symmetric(
+              horizontal: DoubleManager.d_20, vertical: DoubleManager.d_10),
+          elevation: DoubleManager.d_5,
+          child: Padding(
+            padding: const EdgeInsets.all(DoubleManager.d_10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Location icon
+                    const Icon(Icons.location_pin, size: DoubleManager.d_25),
+                    const SizedBox(width: DoubleManager.d_10),
 
-                  // Address title
-                  Text(
-                    address.addressTitle!,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    // Address title
+                    Text(
+                      address.addressTitle!,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: DoubleManager.d_20),
+
+                // Address details
+                if (address.street != null)
+                  AddressField(
+                    title: StringsManager.street,
+                    value: address.street!,
                   ),
-                ],
-              ),
-              const SizedBox(height: DoubleManager.d_20),
 
-              // Address details
-              if (address.street != null)
-                AddressField(
-                  title: StringsManager.street,
-                  value: address.street!,
+                if (address.buildingName != null)
+                  AddressField(
+                    title: StringsManager.buildingName,
+                    value: address.buildingName!,
+                  ),
+
+                if (address.apartmentNumber != null)
+                  AddressField(
+                    title: StringsManager.apartmentNumber,
+                    value: address.apartmentNumber!,
+                  ),
+
+                if (address.floor != null)
+                  AddressField(
+                    title: StringsManager.floor,
+                    value: address.floor!,
+                  ),
+
+                if (address.additionalDirections != null)
+                  AddressField(
+                    title: StringsManager.directions,
+                    value: address.additionalDirections!,
+                  ),
+
+                const SizedBox(height: DoubleManager.d_10),
+
+                Text(
+                  address.googleAddress!,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-
-              if (address.buildingName != null)
-                AddressField(
-                  title: StringsManager.buildingName,
-                  value: address.buildingName!,
-                ),
-
-              if (address.apartmentNumber != null)
-                AddressField(
-                  title: StringsManager.apartmentNumber,
-                  value: address.apartmentNumber!,
-                ),
-
-              if (address.floor != null)
-                AddressField(
-                  title: StringsManager.floor,
-                  value: address.floor!,
-                ),
-
-              if (address.additionalDirections != null)
-                AddressField(
-                  title: StringsManager.directions,
-                  value: address.additionalDirections!,
-                ),
-
-              const SizedBox(height: DoubleManager.d_10),
-
-              Text(
-                address.googleAddress!,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

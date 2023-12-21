@@ -9,9 +9,6 @@ class AddressState extends Equatable {
   final RequestState deleteAddressState;
   final String deleteAddressMessage;
 
-  // User chosen address
-  final AddressEntity userChosenAddress;
-
   // Get all addresses
   final RequestState getAllAddressesState;
   final String getAllAddressesMessage;
@@ -25,8 +22,6 @@ class AddressState extends Equatable {
     // delete address
     this.deleteAddressState = RequestState.stable,
     this.deleteAddressMessage = 'Delete address initial message',
-    // User chosen address
-    this.userChosenAddress = const AddressEntity(isDefaultAddress: false),
     // Get all addresses
     this.getAllAddressesState = RequestState.stable,
     this.getAllAddressesMessage = 'Get All Addresses initial message',
@@ -41,8 +36,6 @@ class AddressState extends Equatable {
     // Delete address
     RequestState? deleteAddressState,
     String? deleteAddressMessage,
-    // User chosen address
-    AddressEntity? userChosenAddress,
     // Get all addresses
     RequestState? getAllAddressesState,
     String? getAllAddressesMessage,
@@ -57,8 +50,6 @@ class AddressState extends Equatable {
         // Delete address
         deleteAddressState: deleteAddressState ?? this.deleteAddressState,
         deleteAddressMessage: deleteAddressMessage ?? this.deleteAddressMessage,
-        // User chosen address
-        userChosenAddress: userChosenAddress ?? this.userChosenAddress,
         // Get all addresses
         getAllAddressesState: getAllAddressesState ?? this.getAllAddressesState,
         getAllAddressesMessage:
@@ -75,8 +66,6 @@ class AddressState extends Equatable {
         // Delete address
         deleteAddressState,
         deleteAddressMessage,
-        // User chosen address
-        userChosenAddress,
         // Get all addresses
         getAllAddressesState,
         getAllAddressesMessage,

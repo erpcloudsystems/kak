@@ -26,6 +26,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     on<SendUserAddressEvent>(sendUserAddress);
     on<GetAllAddressesEvent>(getAllAddresses);
     on<DeleteAddressEvent>(deleteAddress);
+    on<SaveAddressIdEvent>(saveAddressId);
   }
 
   // Send User Address _____________________________________________________
@@ -42,7 +43,6 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       )),
       (addressId) => emit(state.copyWith(
         sendUserAddressState: RequestState.success,
-        userChosenAddress: event.address,
         userAddressId: addressId,
       )),
     );
@@ -81,5 +81,11 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       )),
       (_) => emit(state.copyWith(deleteAddressState: RequestState.success)),
     );
+  }
+
+  // Delete address ________________________________________________________
+  FutureOr<void> saveAddressId(
+      SaveAddressIdEvent event, Emitter<AddressState> emit) {
+    emit(state.copyWith(userAddressId: event.addressId));
   }
 }
