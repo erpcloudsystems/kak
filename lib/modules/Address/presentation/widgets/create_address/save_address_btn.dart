@@ -90,6 +90,8 @@ class SaveAddressBtn extends StatelessWidget {
                     SendUserAddressEvent(
                       address: AddressEntity(
                         googleAddress: googleAddressData.fullAddress,
+                        longitude: googleAddressData.longitude,
+                        latitude: googleAddressData.latitude,
                         country: googleAddressData.country,
                         city: googleAddressData.city,
                         apartmentNumber: apartmentNoController.text.trim(),

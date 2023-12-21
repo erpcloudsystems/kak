@@ -76,6 +76,8 @@ class AddressRepoImpl implements AddressBaseRepo {
       googleAddress: address.googleAddress,
       buildingName: address.buildingName,
       addressTitle: address.addressTitle,
+      longitude: address.longitude,
+      latitude: address.latitude,
       street: address.street,
       floor: address.floor,
     );
