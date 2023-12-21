@@ -9,6 +9,7 @@ class LocationState extends Equatable {
   // Address
   final RequestState getAddressState;
   final String getAddressMessage;
+  final GoogleAddressEntity googleAddress;
 
   const LocationState({
     // Current location
@@ -19,6 +20,13 @@ class LocationState extends Equatable {
     // Address
     this.getAddressState = RequestState.stable,
     this.getAddressMessage = 'get address initial message',
+    this.googleAddress = const GoogleAddressEntity(
+      fullAddress: 'fullAddress',
+      longitude: 'longitude',
+      latitude: 'latitude',
+      country: 'country',
+      city: 'city',
+    ),
   });
 
   LocationState copyWith({
@@ -30,6 +38,7 @@ class LocationState extends Equatable {
     // Address
     RequestState? getAddressState,
     String? getAddressMessage,
+    GoogleAddressEntity? googleAddress,
   }) =>
       LocationState(
         // Current location
@@ -43,6 +52,7 @@ class LocationState extends Equatable {
         // Address
         getAddressState: getAddressState ?? this.getAddressState,
         getAddressMessage: getAddressMessage ?? this.getAddressMessage,
+        googleAddress: googleAddress ?? this.googleAddress,
       );
 
   @override
@@ -55,5 +65,6 @@ class LocationState extends Equatable {
         // Address
         getAddressState,
         getAddressMessage,
+        googleAddress,
       ];
 }

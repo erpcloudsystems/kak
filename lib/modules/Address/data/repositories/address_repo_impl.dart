@@ -2,15 +2,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:dartz/dartz.dart';
 
+import '../models/address.dart';
 import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
 import '../../../../core/network/exceptions.dart';
+import '../../domain/entities/google_address.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
 import '../../../../core/network/helper_network_methods.dart';
-import '../models/address.dart';
 
 class AddressRepoImpl implements AddressBaseRepo {
   final AddressBaseDataSource addressBaseDataSource;
@@ -51,7 +52,8 @@ class AddressRepoImpl implements AddressBaseRepo {
 
 // _______________________ Current Address __________________________
   @override
-  Future<Either<Failure, String>> getAddress(LatLng coordinates) async {
+  Future<Either<Failure, GoogleAddressEntity>> getAddress(
+      LatLng coordinates) async {
     if (await networkInfo.isConnected) {
       try {
         final address = await addressBaseDataSource.getAddress(coordinates);
@@ -66,8 +68,7 @@ class AddressRepoImpl implements AddressBaseRepo {
 
 // _______________________ Send user Address _________________________
   @override
-  Future<Either<Failure, String>> sendUserAddress(
-      AddressEntity address) async {
+  Future<Either<Failure, String>> sendUserAddress(AddressEntity address) async {
     final userAddress = AddressModel(
       additionalDirections: address.additionalDirections,
       isDefaultAddress: address.isDefaultAddress,
@@ -78,7 +79,7 @@ class AddressRepoImpl implements AddressBaseRepo {
       street: address.street,
       floor: address.floor,
     );
-    
+
     final addressId =
         await HelperNetworkMethods.commonApiResponseMethod<String>(
             () async =>

@@ -1,16 +1,16 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kak/core/resources/routes.dart';
-import 'package:kak/core/utils/loading_indicator_util.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../bloc/location/location_bloc.dart';
 import '../../../../../core/utils/enums.dart';
+import '../../bloc/location/location_bloc.dart';
+import '../../../../../core/resources/routes.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
+import '../../../../../core/utils/loading_indicator_util.dart';
 
 class AddressAndButtonSection extends StatelessWidget {
   const AddressAndButtonSection({super.key, required this.mapController});
@@ -22,9 +22,7 @@ class AddressAndButtonSection extends StatelessWidget {
     return Container(
         height: DoubleManager.d_30.h,
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DoubleManager.d_30),
         child: BlocBuilder<LocationBloc, LocationState>(
             buildWhen: (previous, current) =>
                 current.getAddressState != previous.getAddressState,
@@ -74,7 +72,7 @@ class SuccessWidget extends StatelessWidget {
             const SizedBox(width: DoubleManager.d_20),
             Flexible(
               child: Text(
-                context.watch<LocationBloc>().state.getAddressMessage,
+                context.watch<LocationBloc>().state.googleAddress.fullAddress,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

@@ -84,23 +84,29 @@ class SaveAddressBtn extends StatelessWidget {
         child: ColoredElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              context.read<AddressBloc>().add(SendUserAddressEvent(
+              final googleAddressData =
+                  context.read<LocationBloc>().state.googleAddress;
+              context.read<AddressBloc>().add(
+                    SendUserAddressEvent(
                       address: AddressEntity(
-                    googleAddress:
-                        context.read<LocationBloc>().state.getAddressMessage,
-                    apartmentNumber: apartmentNoController.text.trim(),
-                    buildingName: buildingController.text.trim(),
-                    addressTitle: titleController.text.trim(),
-                    street: streetController.text.trim(),
-                    isDefaultAddress: isPrimaryValue,
-                    additionalDirections:
-                        additionalInfController.text.trim().isEmpty
+                        googleAddress: googleAddressData.fullAddress,
+                        country: googleAddressData.country,
+                        city: googleAddressData.city,
+                        apartmentNumber: apartmentNoController.text.trim(),
+                        buildingName: buildingController.text.trim(),
+                        addressTitle: titleController.text.trim(),
+                        street: streetController.text.trim(),
+                        isDefaultAddress: isPrimaryValue,
+                        additionalDirections:
+                            additionalInfController.text.trim().isEmpty
+                                ? null
+                                : additionalInfController.text.trim(),
+                        floor: floorController.text.trim().isEmpty
                             ? null
-                            : additionalInfController.text.trim(),
-                    floor: floorController.text.trim().isEmpty
-                        ? null
-                        : floorController.text.trim(),
-                  )));
+                            : floorController.text.trim(),
+                      ),
+                    ),
+                  );
             }
           },
           buttonText: StringsManager.saveAddress,

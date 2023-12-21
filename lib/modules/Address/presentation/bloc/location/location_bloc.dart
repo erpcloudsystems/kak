@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/google_address.dart';
 import '../../../../../core/global/base_use_case.dart';
 import '../../../domain/usecases/get_address_use_case.dart';
 import '../../../domain/usecases/get_current_location_use_case.dart';
@@ -55,7 +56,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       )),
       (address) => emit(state.copyWith(
         getAddressState: RequestState.success,
-        getAddressMessage: address,
+        googleAddress: address,
       )),
     );
   }

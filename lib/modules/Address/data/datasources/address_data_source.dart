@@ -5,12 +5,13 @@ import 'package:dio/dio.dart';
 import '../models/address.dart';
 import 'location_helper.dart';
 import '../../domain/entities/address.dart';
+import '../../domain/entities/google_address.dart';
 import '../../../../core/network/api_constance.dart';
 
 abstract class AddressBaseDataSource {
   Future<LatLng> getCurrentLocation();
   Future<Unit> deleteAddress(String addressId);
-  Future<String> getAddress(LatLng coordinates);
+  Future<GoogleAddressEntity> getAddress(LatLng coordinates);
   Future<List<AddressEntity>> getAllAddresses();
   Future<String> sendUserAddress(AddressModel address);
 }
