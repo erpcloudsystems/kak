@@ -1,22 +1,22 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'dart:typed_data';
 
-import '../../bloc/location/location_bloc.dart';
 import '../../../../../core/resources/routes.dart';
+import '../../../../../core/network/api_constance.dart';
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/utils/custom_cached_image.dart';
 import '../../../../../core/resources/strings_manager.dart';
 
 class MapSnapshotSection extends StatelessWidget {
   const MapSnapshotSection({
     super.key,
-    required this.mapSnapshot,
+    required this.latitude,
+    required this.longitude,
+    required this.fullAddress,
   });
 
-  final Uint8List mapSnapshot;
-
+  final String latitude, longitude, fullAddress;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,11 +24,14 @@ class MapSnapshotSection extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           // map snapshot
-          Image.memory(
-            mapSnapshot,
+          CustomCachedImage(
+            url: ApiConstance.getMapSnapshot(
+              context,
+              latitude,
+              longitude,
+            ),
             height: DoubleManager.d_20.h,
             width: double.infinity,
-            fit: BoxFit.cover,
           ),
 
           // address details
@@ -77,10 +80,7 @@ class MapSnapshotSection extends StatelessWidget {
                           // Address
                           Flexible(
                             child: Text(
-                              context
-                                  .read<LocationBloc>()
-                                  .state
-                                  .getAddressMessage,
+                              fullAddress,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)

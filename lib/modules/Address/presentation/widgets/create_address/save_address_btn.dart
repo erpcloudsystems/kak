@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +23,6 @@ class SaveAddressBtn extends StatelessWidget {
     required this.floorController,
     required this.titleController,
     required this.isPrimaryValue,
-    required this.mapSnapshot,
     required this.formKey,
   });
 
@@ -36,11 +33,11 @@ class SaveAddressBtn extends StatelessWidget {
   final TextEditingController floorController;
   final TextEditingController titleController;
   final GlobalKey<FormState> formKey;
-  final Uint8List mapSnapshot;
   final bool isPrimaryValue;
 
   @override
   Widget build(BuildContext context) {
+    AddressEntity? address;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: DoubleManager.d_8,
@@ -60,9 +57,9 @@ class SaveAddressBtn extends StatelessWidget {
               break;
             case RequestState.success:
               Navigator.of(context).pushNamedAndRemoveUntil(
-                arguments: mapSnapshot,
                 Routes.checkoutScreenKey,
                 (route) => route.settings.name == Routes.navigationBarScreenKey,
+                arguments: address,
               );
               SnackBarUtil().getSnackBar(
                 context: context,
@@ -86,29 +83,28 @@ class SaveAddressBtn extends StatelessWidget {
             if (formKey.currentState!.validate()) {
               final googleAddressData =
                   context.read<LocationBloc>().state.googleAddress;
-              context.read<AddressBloc>().add(
-                    SendUserAddressEvent(
-                      address: AddressEntity(
-                        googleAddress: googleAddressData.fullAddress,
-                        longitude: googleAddressData.longitude,
-                        latitude: googleAddressData.latitude,
-                        country: googleAddressData.country,
-                        city: googleAddressData.city,
-                        apartmentNumber: apartmentNoController.text.trim(),
-                        buildingName: buildingController.text.trim(),
-                        addressTitle: titleController.text.trim(),
-                        street: streetController.text.trim(),
-                        isDefaultAddress: isPrimaryValue,
-                        additionalDirections:
-                            additionalInfController.text.trim().isEmpty
-                                ? null
-                                : additionalInfController.text.trim(),
-                        floor: floorController.text.trim().isEmpty
-                            ? null
-                            : floorController.text.trim(),
-                      ),
-                    ),
-                  );
+              address = AddressEntity(
+                googleAddress: googleAddressData.fullAddress,
+                longitude: googleAddressData.longitude,
+                latitude: googleAddressData.latitude,
+                country: googleAddressData.country,
+                city: googleAddressData.city,
+                apartmentNumber: apartmentNoController.text.trim(),
+                buildingName: buildingController.text.trim(),
+                addressTitle: titleController.text.trim(),
+                street: streetController.text.trim(),
+                isDefaultAddress: isPrimaryValue,
+                additionalDirections:
+                    additionalInfController.text.trim().isEmpty
+                        ? null
+                        : additionalInfController.text.trim(),
+                floor: floorController.text.trim().isEmpty
+                    ? null
+                    : floorController.text.trim(),
+              );
+              context
+                  .read<AddressBloc>()
+                  .add(SendUserAddressEvent(address: address!));
             }
           },
           buttonText: StringsManager.saveAddress,

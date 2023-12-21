@@ -1,5 +1,9 @@
-import '../global/global_varibles.dart';
+import 'package:flutter/material.dart';
+
 import '../utils/enums.dart';
+import '../global/constant_keys.dart';
+import '../global/global_varibles.dart';
+import '../../modules/Address/presentation/screens/map.dart';
 
 abstract class ApiConstance {
   // System endpoints_______________________________________________________
@@ -14,7 +18,8 @@ abstract class ApiConstance {
   static const String logoutEndPoint = '/logout';
 
   // Address
-  static const String getAllAddressesEndpoint = '/kak.general.get_user_addresses';
+  static const String getAllAddressesEndpoint =
+      '/kak.general.get_user_addresses';
   static const String deleteAddress = '/kak.add.delete_address';
   static const String sendUserAddress = '/kak.add.add_address';
 
@@ -55,9 +60,12 @@ abstract class ApiConstance {
   static const String paymobOrderRegistration = '/ecommerce/orders';
   static const String paymobAuthRequest = '/auth/tokens';
 
-  // Paymob endpoints_______________________________________________________
-  static const String googleMapsBaseUrl = 'https://maps.googleapis.com/maps/api';
+  // Google endpoints_______________________________________________________
+  static const String googleMapsBaseUrl =
+      'https://maps.googleapis.com/maps/api';
   static const String googleMapsGeocodeApi = '/geocode/json';
+  static String getMapSnapshot(BuildContext context, String lat, long) =>
+      'https://maps.googleapis.com/maps/api/staticmap?zoom=$cameraZoom&size=400x300&markers=$lat,$long&key=${ConstantKeys.getMapsApiKey(context)}';
 }
 
 // Helper functions__________________________________________________________

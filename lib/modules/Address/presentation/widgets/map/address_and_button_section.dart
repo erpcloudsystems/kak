@@ -10,7 +10,6 @@ import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
-import '../../../../../core/utils/loading_indicator_util.dart';
 
 class AddressAndButtonSection extends StatelessWidget {
   const AddressAndButtonSection({super.key, required this.mapController});
@@ -85,17 +84,8 @@ class SuccessWidget extends StatelessWidget {
 
         // Delivery button
         InkWell(
-          // take a snapshot of the map and navigate to the address screen.
-          onTap: () async {
-            LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-            await mapController!.takeSnapshot().then((image) {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushReplacementNamed(
-                Routes.addressScreenKey,
-                arguments: image,
-              );
-            });
-          },
+          onTap: () => Navigator.of(context)
+              .pushReplacementNamed(Routes.addressScreenKey),
           child: Container(
             height: DoubleManager.d_70,
             width: double.infinity,

@@ -1,7 +1,6 @@
-import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:kak/modules/Address/domain/entities/address.dart';
 
 import '../bloc/payment_bloc.dart';
 import '../../../../core/utils/enums.dart';
@@ -20,8 +19,8 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mapSnapshot = ModalRoute.of(context)!.settings.arguments as Uint8List;
     final paymentType = ValueNotifier<PaymentType>(PaymentType.cash);
+    final address = ModalRoute.of(context)!.settings.arguments as AddressEntity;
 
     return Scaffold(
       backgroundColor: ColorsManager.gWhite,
@@ -61,7 +60,11 @@ class CheckoutScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(children: [
             // Map snapshot
-            MapSnapshotSection(mapSnapshot: mapSnapshot),
+            MapSnapshotSection(
+              latitude: address.latitude!,
+              longitude: address.longitude!,
+              fullAddress: address.googleAddress!,
+            ),
 
             // Delivery time
             const DeliveryTime(deliveryTime: 30),

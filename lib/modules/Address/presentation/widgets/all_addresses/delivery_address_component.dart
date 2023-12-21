@@ -52,6 +52,7 @@ class DeliveryAddressComponent extends StatelessWidget {
               .add(SaveAddressIdEvent(addressId: address.id!));
           Navigator.of(context).pushNamed(
             Routes.checkoutScreenKey,
+            arguments: address,
           );
         },
         child: Card(

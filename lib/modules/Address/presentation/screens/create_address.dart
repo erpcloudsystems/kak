@@ -1,7 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/location/location_bloc.dart';
 import '../widgets/create_address/address_form.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -13,8 +13,6 @@ class CreateAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mapSnapshot = ModalRoute.of(context)!.settings.arguments as Uint8List;
-
     final additionalInfController = TextEditingController();
     final apartmentNoController = TextEditingController();
     final buildingController = TextEditingController();
@@ -25,6 +23,8 @@ class CreateAddressScreen extends StatelessWidget {
 
     final ValueNotifier<bool> switchValue = ValueNotifier<bool>(false);
 
+    final googleAddressData = context.read<LocationBloc>().state.googleAddress;
+
     return Scaffold(
         backgroundColor: ColorsManager.gWhite,
         appBar: AppBar(title: const Text(StringsManager.newAddress)),
@@ -33,7 +33,11 @@ class CreateAddressScreen extends StatelessWidget {
           child: Column(
             children: [
               // Map snapshot
-              MapSnapshotSection(mapSnapshot: mapSnapshot),
+              MapSnapshotSection(
+                latitude: googleAddressData.latitude,
+                longitude: googleAddressData.longitude,
+                fullAddress: googleAddressData.fullAddress,
+              ),
 
               // Form
               AddressForm(
@@ -57,7 +61,6 @@ class CreateAddressScreen extends StatelessWidget {
                   streetController: streetController,
                   floorController: floorController,
                   titleController: titleController,
-                  mapSnapshot: mapSnapshot,
                   isPrimaryValue: value,
                   formKey: formKey,
                 ),
