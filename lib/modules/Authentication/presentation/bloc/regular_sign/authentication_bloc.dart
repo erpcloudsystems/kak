@@ -90,7 +90,8 @@ class AuthenticationBloc
   }
 
   //__________________________Delete user account event______________________________
-  FutureOr<void> _deleteUserAccount(DeleteUserAccountEvent event, Emitter<AuthenticationState> emit) async {
+  FutureOr<void> _deleteUserAccount(
+      DeleteUserAccountEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(deleteUserAccountState: RequestState.loading));
     final result = await deleteAccount(event.email);
 
@@ -106,7 +107,8 @@ class AuthenticationBloc
   }
 
   //__________________________ Logout event _______________________________________
-  FutureOr<void> _logout(LogoutEvent event, Emitter<AuthenticationState> emit) async {
+  FutureOr<void> _logout(
+      LogoutEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(logoutState: RequestState.loading));
     final result = await logout(event.email);
 
@@ -114,10 +116,10 @@ class AuthenticationBloc
       (failure) => emit(state.copyWith(
         logoutState: RequestState.error,
         logoutMessage: failure.errorMessage,
-        isUserLoggedIn: false,
       )),
       (_) => emit(state.copyWith(
         logoutState: RequestState.success,
+        isUserLoggedIn: false,
       )),
     );
   }

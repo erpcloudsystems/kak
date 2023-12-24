@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/colors_manager.dart';
 
 import 'options_list.dart';
-import '../../../../core/utils/enums.dart';
-import '../../../../core/resources/routes.dart';
-import '../../../../core/utils/error_dialog.dart';
-import '../../../../core/utils/snack_bar_util.dart';
-import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
-import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
-import '../../../authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../../core/resources/routes.dart';
+import '../../../../../core/utils/error_dialog.dart';
+import '../../../../../core/utils/snack_bar_util.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
+import '../../../../../core/utils/loading_indicator_util.dart';
+import '../../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
+import '../../../../authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});

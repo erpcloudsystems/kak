@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../resources/strings_manager.dart';
-import '../../modules/user_profile/presentation/pages/profile_screen.dart';
 import '../../modules/Cart/presentation/pages/cart.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
+import '../../modules/user_profile/presentation/pages/profile_screen.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({super.key});

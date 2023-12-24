@@ -106,6 +106,7 @@ class StringsManager {
   static const String quantity = 'Quantity:';
   static const String total = 'Total Price';
   static const String subtotal = 'Subtotal';
+  static const String register = 'Register';
   static const String checkout = 'Checkout';
   static const String password = 'Password';
   static const String facebook = 'Facebook';
@@ -113,6 +114,7 @@ class StringsManager {
   static const String payWith = 'Pay with';
   static const String reorder = 'Reorder';
   static const String profile = 'Profile';
+  static const String version = 'Version';
   static const String seeAll = 'See all';
   static const String signIn = 'Sign in';
   static const String signUp = 'Sign up';
@@ -124,6 +126,8 @@ class StringsManager {
   static const String gender = 'Gender';
   static const String google = 'Google';
   static const String search = 'search';
+  static const String login = 'Login';
+  static const String guest = 'Guest';
   static const String enter = 'Enter';
   static const String email = 'Email';
   static const String appName = 'Kak';
@@ -149,4 +153,8 @@ class StringsManager {
 
 abstract class UnTranslatedStrings {
   static const String egp = 'EGP';
+  static const String en = 'en';
+  static const String english = 'English';
+  static const String arabic = 'عربي';
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kak/core/utils/splash_screen.dart';
 import 'package:kak/modules/Address/presentation/screens/All_addresses.dart';
 
 import '../utils/error_screen.dart';
@@ -32,6 +33,7 @@ class Routes {
   static const String paymentScreenKey = '/payment';
   static const String signInScreenKey = '/sign-in';
   static const String signUpScreenKey = '/sign-up';
+  static const String splashScreenKey = '/splash';
   static const String errorScreenKey = '/error';
   static const String cartScreenKey = '/cart';
   static const String homeScreenKey = '/home';
@@ -50,6 +52,7 @@ class Routes {
       myOrdersScreenKey: (_) => const MyOrdersScreen(),
       checkoutScreenKey: (_) => const CheckoutScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
+      splashScreenKey: (_) => const SplashScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),
       errorScreenKey: (_) => const ErrorScreen(),

@@ -1,13 +1,15 @@
 // import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/resources/colors_manager.dart';
-import '../../../../core/utils/custom_cached_image.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/utils/custom_cached_image.dart';
+import '../../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 class UserPhotoWidget extends StatefulWidget {
   const UserPhotoWidget({super.key});
@@ -52,7 +54,8 @@ class _UserPhotoWidgetState extends State<UserPhotoWidget> {
                       ? Image(image: FileImage(File(pickedImage!.path)))
                       : const CustomCachedImage(url: userTestImage),
                 )),
-            ImagePickerButton(onPressed: () => pickAnImage()),
+            if (context.read<AuthenticationBloc>().state.isUserLoggedIn)
+              ImagePickerButton(onPressed: () => pickAnImage()),
           ]),
     );
   }
