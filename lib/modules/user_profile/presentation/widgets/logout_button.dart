@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/colors_manager.dart';
 
 import 'options_list.dart';
 import '../../../../core/utils/enums.dart';
@@ -63,9 +64,11 @@ class LogoutButton extends StatelessWidget {
     SnackBarUtil().getSnackBar(
       context: context,
       message: StringsManager.logoutMessage,
-      color: Colors.green,
+      color: ColorsManager.gGreen,
     );
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      Routes.navigationBarScreenKey,
+      (route) => false,
+    );
   }
 }
