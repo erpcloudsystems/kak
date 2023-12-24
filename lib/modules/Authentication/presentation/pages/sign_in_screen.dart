@@ -10,10 +10,10 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../../../authentication/domain/entities/user.dart';
-import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../../domain/entities/user_caching_data_entity.dart';
 import '../bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
+import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/sign_type_text.dart';
@@ -27,6 +27,12 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final globalVariables = GlobalVariables();
+
+    // Here we check if the user has navigated from cart screen so we pop back to it.
+    final Map<String, dynamic>? args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    bool fromCart = args?['fromCart'] ?? false;
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -45,8 +51,12 @@ class SignInScreen extends StatelessWidget {
               }
               globalVariables.setSid = state.loggedInUser.sid!;
               Navigator.of(context).pop();
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  Routes.navigationBarScreenKey, (route) => false);
+
+              fromCart
+                  ? Navigator.of(context).popUntil((route) =>
+                      route.settings.name == Routes.navigationBarScreenKey)
+                  : Navigator.of(context).pushNamedAndRemoveUntil(
+                      Routes.navigationBarScreenKey, (route) => false);
             }
 
             if (state.signInState == RequestState.error) {
