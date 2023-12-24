@@ -5,6 +5,7 @@ class AuthenticationState extends Equatable {
   final LoggedInUserEntity loggedInUser;
   final RequestState signInState;
   final String signInMessage;
+  final bool isUserLoggedIn;
 
   // Sign up state
   final RequestState signUpState;
@@ -27,6 +28,7 @@ class AuthenticationState extends Equatable {
     this.signInState = RequestState.stable,
     this.signInMessage = '',
     this.loggedInUser = const LoggedInUserEntity(),
+    this.isUserLoggedIn = false,
 
     // Sign up state
     this.signUpState = RequestState.stable,
@@ -50,6 +52,7 @@ class AuthenticationState extends Equatable {
     LoggedInUserEntity? loggedInUser,
     RequestState? signInState,
     String? signInMessage,
+    bool? isUserLoggedIn,
 
     // Sign up state
     RequestState? signUpState,
@@ -72,6 +75,7 @@ class AuthenticationState extends Equatable {
       signInMessage: signInMessage ?? this.signInMessage,
       signInState: signInState ?? this.signInState,
       loggedInUser: loggedInUser ?? this.loggedInUser,
+      isUserLoggedIn: isUserLoggedIn ?? this.isUserLoggedIn,
 
       // Sign up state
       signUpMessage: signUpMessage ?? this.signUpMessage,
@@ -97,6 +101,7 @@ class AuthenticationState extends Equatable {
         signInMessage,
         signInState,
         loggedInUser,
+        isUserLoggedIn,
 
         // Sign up state
         signUpMessage,

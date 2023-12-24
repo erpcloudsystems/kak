@@ -5,9 +5,12 @@ import 'checkout_card.dart';
 import '../bloc/cart_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/resources/routes.dart';
+import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../../../Address/presentation/bloc/address/address_bloc.dart';
+import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 class CreateOrderSection extends StatelessWidget {
   const CreateOrderSection({
@@ -30,8 +33,11 @@ class CreateOrderButton extends StatelessWidget {
           previous.getAllAddressesState != current.getAllAddressesState,
       listener: checkForUserAddress,
       child: TotalCard(
-        checkoutFunction: () =>
-            context.read<AddressBloc>().add(GetAllAddressesEvent()),
+        checkoutFunction: () {
+          context.read<AuthenticationBloc>().state.isUserLoggedIn
+              ? context.read<AddressBloc>().add(GetAllAddressesEvent())
+              : letTheUserLogin(context);
+        },
         total: context.watch<CartBloc>().state.totalPrice.toString(),
       ),
     );
@@ -51,5 +57,14 @@ class CreateOrderButton extends StatelessWidget {
     if (state.getAllAddressesState == RequestState.error) {
       Navigator.of(context).pop();
     }
+  }
+
+  /// Check if the user is logged in or not before making an order.
+  void letTheUserLogin(BuildContext context) {
+    ErrorDialogUtils.displayErrorDialog(
+      context: context,
+      errorMessage: StringsManager.loginFirstMessage,
+      onPressed: () => Navigator.of(context).pushNamed(Routes.signInScreenKey),
+    );
   }
 }

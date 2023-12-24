@@ -124,14 +124,13 @@ class _SplashScreenState extends State<SplashScreen> {
         .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false);
     showDialog(
       context: context,
-      builder: (BuildContext context) =>
-          ErrorDialog(errorMessage: errorMessage),
+      builder: (context) => ErrorDialog(errorMessage: errorMessage),
     );
   }
 
   void _navigateToSignInScreen() {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(Routes.signInScreenKey, (route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        Routes.navigationBarScreenKey, (route) => false);
   }
   //_____________________________________________________________________________
 

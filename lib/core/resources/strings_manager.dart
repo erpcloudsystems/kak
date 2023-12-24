@@ -28,7 +28,10 @@ class StringsManager {
       'only $maxNumber items is what you can add to your meal';
   static const String noCartItemsMessage =
       'There is no items yet in your cart!';
-  static const String deleteAddressMessage = 'Your address deleted successfully';
+  static const String loginFirstMessage =
+      'You have to login first to make an order';
+  static const String deleteAddressMessage =
+      'Your address deleted successfully';
   static const String newAddressMessage = 'Your new address added successfully';
   static const String deleteItemMessage = 'Are you sure to delete this item?';
   static const String deleteAccountMessage = 'You have deleted your account';
