@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../resources/values_manager.dart';
 import '../resources/colors_manager.dart';
+import '../resources/values_manager.dart';
 
 class GeneralButton extends StatelessWidget {
   final String buttonText;
@@ -21,7 +21,6 @@ class GeneralButton extends StatelessWidget {
   }
 }
 
-
 class ColoredElevatedButton extends StatelessWidget {
   const ColoredElevatedButton({
     super.key,
@@ -37,12 +36,12 @@ class ColoredElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: ColorsManager.mainColor,
-        foregroundColor: Colors.white,
-        elevation: DoubleManager.d_8,
-      ),
+          backgroundColor: ColorsManager.mainColor,
+          foregroundColor: Colors.white,
+          elevation: DoubleManager.d_8,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(DoubleManager.d_12))),
       child: Text(buttonText),
     );
   }
 }
-

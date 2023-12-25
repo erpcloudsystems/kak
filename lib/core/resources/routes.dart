@@ -49,7 +49,7 @@ class Routes {
       transactionScreenKey: (_) => const TransactionScreen(),
       editProfileScreenKey: (_) => const EditProfileScreen(),
       addressScreenKey: (_) => const CreateAddressScreen(),
-      myOrdersScreenKey: (_) => const MyOrdersScreen(),
+      myOrdersScreenKey: (_) => const OrdersScreen(),
       checkoutScreenKey: (_) => const CheckoutScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
       splashScreenKey: (_) => const SplashScreen(),

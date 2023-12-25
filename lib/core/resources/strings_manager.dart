@@ -116,6 +116,7 @@ class StringsManager {
   static const String deleting = 'Deleting';
   static const String payWith = 'Pay with';
   static const String reorder = 'Reorder';
+  static const String status = 'Status: ';
   static const String profile = 'Profile';
   static const String version = 'Version';
   static const String seeAll = 'See all';
@@ -135,6 +136,7 @@ class StringsManager {
   static const String email = 'Email';
   static const String appName = 'Kak';
   static const String floor = 'Floor';
+  static const String date = 'Date: ';
   static const String phone = 'Phone';
   static const String cost = 'Cost:';
   static const String item = 'Items';

@@ -9,6 +9,7 @@ import '../../../../core/resources/strings_manager.dart';
 import '../widgets/unlogged_components/version_section.dart';
 import '../widgets/logged_components/user_name_section.dart';
 import '../widgets/unlogged_components/langauage_switch.dart';
+import '../../../Payment/presentation/bloc/payment_bloc.dart';
 import '../widgets/unlogged_components/contact_us_option.dart';
 import '../widgets/logged_components/delete_account_button.dart';
 import '../../../../core/utils/custom_scrolling_animated_template.dart';
@@ -51,11 +52,13 @@ final List loggedOptionsList = [
         Navigator.of(context).pushNamed(Routes.editProfileScreenKey),
   ),
   ProfileListElement(
-    icon: Icons.shopping_bag_outlined,
-    text: StringsManager.myOrders,
-    onTap: (context) =>
-        Navigator.of(context).pushNamed(Routes.myOrdersScreenKey),
-  ),
+      icon: Icons.shopping_bag_outlined,
+      text: StringsManager.myOrders,
+      onTap: (context) {
+        BlocProvider.of<PaymentBloc>(context, listen: false)
+            .add(GetOrdersListEvent());
+        Navigator.of(context).pushNamed(Routes.myOrdersScreenKey);
+      }),
   ProfileListElement(
     icon: Icons.payment_outlined,
     text: StringsManager.paymentMethod,
