@@ -97,6 +97,7 @@ class StringsManager {
   static const String popular = 'Popular Items';
   static const String categories = 'Categories';
   static const String firstName = 'First Name';
+  static const String contactUs = 'Contact us';
   static const String birthDate = 'Birth Date';
   static const String myAccount = 'My Account';
   static const String myAddress = 'My Address';
