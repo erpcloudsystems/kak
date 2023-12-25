@@ -1,9 +1,18 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
-import 'package:kak/core/resources/values_manager.dart';
 
-class VersionSection extends StatelessWidget {
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
+
+class VersionSection extends StatefulWidget {
   const VersionSection({super.key});
+
+  @override
+  State<VersionSection> createState() => _VersionSectionState();
+}
+
+class _VersionSectionState extends State<VersionSection> {
+  String versionNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +27,23 @@ class VersionSection extends StatelessWidget {
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(width: DoubleManager.d_20),
-          // TODO: Implement version logic.
-          Text('1.0.0', style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            versionNumber,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getPackageInfo();
+  }
+
+  Future<void> _getPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() => versionNumber = info.version);
   }
 }
