@@ -42,12 +42,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       AddCartItemEvent event, Emitter<CartState> emit) async {
     emit(state.copyWith(addCartItemState: RequestState.loading));
     try {
-      _cartItems.add(event.meal);
-      emit(state.copyWith(
-        addCartItemState: RequestState.success,
-        addCartItemMessage: StringsManager.cartAddedMessage,
-        totalPrice: calculateTotalPrice(),
-      ));
+      if (_cartItems.every((element) => element.id != event.meal.id)) {
+        _cartItems.add(event.meal);
+        emit(state.copyWith(
+          addCartItemState: RequestState.success,
+          addCartItemMessage: StringsManager.cartAddedMessage,
+          totalPrice: calculateTotalPrice(),
+        ));
+      } else {
+        emit(state.copyWith(
+          addCartItemState: RequestState.error,
+          addCartItemMessage: StringsManager.duplicationError,
+        ));
+      }
     } catch (e) {
       emit(state.copyWith(
         addCartItemState: RequestState.error,

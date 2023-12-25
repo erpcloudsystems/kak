@@ -32,6 +32,8 @@ class StringsManager {
       'You have to login first to make an order';
   static const String deleteAddressMessage =
       'Your address deleted successfully';
+  static const String duplicationError =
+      'Yor already added this item to ur cart';
   static const String newAddressMessage = 'Your new address added successfully';
   static const String deleteItemMessage = 'Are you sure to delete this item?';
   static const String deleteAccountMessage = 'You have deleted your account';
@@ -156,5 +158,4 @@ abstract class UnTranslatedStrings {
   static const String en = 'en';
   static const String english = 'English';
   static const String arabic = 'عربي';
-
 }
