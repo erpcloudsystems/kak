@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/custom_scrolling_animated_template.dart';
 
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../../meals/presentation/pages/home_page.dart';
+import '../../../../core/utils/custom_scrolling_animated_template.dart';
 import '../../../meals/presentation/widgets/featured_meals_section.dart';
 
 class MyOrdersScreen extends StatelessWidget {
@@ -18,7 +17,7 @@ class MyOrdersScreen extends StatelessWidget {
       body: const CustomScrollingAnimatedTemplate(children: [
         Padding(
           padding: EdgeInsets.only(top: DoubleManager.d_10),
-          child: FeaturedMeals(featuredMeals: dummyMealsData, isHome: false),
+          child: Center(child: Card()),
         ),
       ]),
     );

@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 
-
 import 'enums.dart';
 import '../resources/strings_manager.dart';
+
 extension ComponentTypeExtension on String {
   /// This extension to return the priority of every component.
   ComponentType checkComponentType() {
@@ -34,15 +34,35 @@ extension ThePaymentTypeName on PaymentType {
   }
 }
 
-
 extension DateTimeExtension on DateTime {
-    /// Formate date in [day - month - year].
+  /// Formate date in [day - month - year].
   String formatDate() {
     return DateFormat('dd-MM-yyyy').format(this);
   }
 
-    /// Formate date in [year - month - day].
+  /// Formate date in [year - month - day].
   String formatDateYMD() {
     return DateFormat('yyyy-MM-dd').format(this);
+  }
+}
+
+extension DoctypeStatusExtension on String {
+  /// This extension to return the status of the doctype.
+  DoctypeStatus checkDoctypeStatus() {
+    switch (this) {
+      case 'Draft':
+        return DoctypeStatus.draft;
+      case 'Cancelled':
+        return DoctypeStatus.cancelled;
+
+      case 'Paid':
+        return DoctypeStatus.paid;
+
+      case 'Submitted':
+        return DoctypeStatus.submitted;
+
+      default:
+        return DoctypeStatus.draft;
+    }
   }
 }

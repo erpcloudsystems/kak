@@ -23,3 +23,5 @@ class CreateOrderEvent extends PaymentEvent {
   @override
   List<Object> get props => [order];
 }
+
+class GetOrdersListEvent extends PaymentEvent {}

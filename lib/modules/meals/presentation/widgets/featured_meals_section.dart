@@ -31,10 +31,6 @@ class FeaturedMeals extends StatelessWidget {
           previous.addCartItemState != current.addCartItemState,
       listener: (context, state) {
         if (state.addCartItemState == RequestState.success) {
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //   Routes.cartScreenKey,
-          //   (route) => route.settings.name == Routes.navigationBarScreenKey,
-          // );
           SnackBarUtil().getSnackBar(
             context: context,
             message: state.addCartItemMessage,

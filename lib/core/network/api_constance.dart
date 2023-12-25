@@ -51,6 +51,7 @@ abstract class ApiConstance {
       );
 
   // Orders
+  static const String getOrdersListEndPoint = '/kak.general.get_sales_order';
   static const String createOrderEndPoint = '/kak.add.sales_order';
 
   // Paymob endpoints_______________________________________________________

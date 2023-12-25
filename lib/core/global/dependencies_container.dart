@@ -1,5 +1,4 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:kak/modules/Address/domain/usecases/delete_address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +12,9 @@ import '../../modules/Payment/domain/usecases/create_order.dart';
 import '../../modules/meals/domain/usecases/get_meals_groups.dart';
 import '../../modules/meals/domain/usecases/get_meal_details.dart';
 import '../../modules/Payment/presentation/bloc/payment_bloc.dart';
+import '../../modules/Address/domain/usecases/delete_address.dart';
 import '../../modules/meals/domain/usecases/get_offers_meals.dart';
+import '../../modules/Payment/domain/usecases/get_orders_list.dart';
 import '../../modules/meals/data/repositories/meals_repo_impl.dart';
 import '../../modules/meals/domain/usecases/get_featured_meals.dart';
 import '../../modules/meals/domain/repositories/meals_base_repo.dart';
@@ -69,7 +70,7 @@ Future<void> init() async {
   sl.registerFactory(() => AddressBloc(sl(), sl(), sl()));
 
   // Payment
-  sl.registerFactory(() => PaymentBloc(sl(), sl()));
+  sl.registerFactory(() => PaymentBloc(sl(), sl(), sl()));
 
   // Caching
   sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
@@ -109,6 +110,7 @@ Future<void> init() async {
   // Payment
   sl.registerLazySingleton(() => PayWithCardUseCase(sl()));
   sl.registerLazySingleton(() => CreateOrderUseCase(sl()));
+  sl.registerLazySingleton(() => GetOrdersListUseCase(sl()));
 
   // Repositories __________________________________________________________
 
