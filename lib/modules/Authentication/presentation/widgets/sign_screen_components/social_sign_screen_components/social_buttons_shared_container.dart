@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../../core/resources/fonts_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/resources/strings_manager.dart';
 
@@ -35,13 +34,8 @@ class SocialButtonsSharedContainer extends StatelessWidget {
           children: [
             Icon(icon, color: Colors.red),
             SizedBox(width: DoubleManager.d_3.w),
-            Text(
-              '${StringsManager.continueWith} $signType',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(fontSize: FontsSize.s14),
-            ),
+            Text('${StringsManager.continueWith} $signType',
+                style: Theme.of(context).textTheme.headlineMedium),
           ],
         ),
       ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/colors_manager.dart';
-import 'package:kak/core/resources/strings_manager.dart';
-import 'package:kak/core/resources/values_manager.dart';
-import 'package:kak/core/utils/general_button.dart';
-import 'package:kak/modules/Payment/domain/entities/orders_list_item.dart';
-import 'package:kak/modules/authentication/presentation/widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
+import 'package:kak/core/resources/routes.dart';
+
+import '../../../../../core/utils/general_button.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
+import '../../../../Payment/domain/entities/orders_list_item.dart';
+import '../../../../authentication/presentation/widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 
 class OrdersListCard extends StatelessWidget {
   const OrdersListCard({super.key, required this.item});
@@ -81,7 +83,7 @@ class OrdersListCard extends StatelessWidget {
                   alignment: AlignmentDirectional.topEnd,
                   child: Row(
                     children: [
-                       Text(item.price.toString()),
+                      Text(item.price.toString()),
                       const SizedBox(width: DoubleManager.d_5),
                       Text(
                         UnTranslatedStrings.egp,
@@ -97,7 +99,9 @@ class OrdersListCard extends StatelessWidget {
             // Button
             ColoredElevatedButton(
               // TODO: Add reorder logic
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.orderDetailsScreenKey);
+              },
               buttonText: StringsManager.reorder,
             ),
           ],

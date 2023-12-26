@@ -72,10 +72,12 @@ class StringsManager {
   static const String loading = 'Loading, Please wait!';
   static const String deleteAccount = 'Delete account';
   static const String paymentMethod = 'payment Method';
+  static const String orderDetails = 'Order details';
   static const String create = 'Create Your Account';
   static const String buildingName = 'Building name';
   static const String continueWith = 'Continue with';
   static const String addAddress = 'Add new address';
+  static const String floorOpt = 'Floor (optional)';
   static const String title = 'Your address title';
   static const String apartmentNumber = 'Apt. no.';
   static const String saveAddress = 'Save address';
@@ -86,7 +88,6 @@ class StringsManager {
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String placeOrder = 'Place order';
-  static const String floorOpt = 'Floor (optional)';
   static const String rememberMe = 'Remember me';
   static const String newAddress = 'New address';
   static const String creditCard = 'Credit Card';
@@ -139,7 +140,7 @@ class StringsManager {
   static const String date = 'Date: ';
   static const String phone = 'Phone';
   static const String cost = 'Cost:';
-  static const String item = 'Items';
+  static const String items = 'Items';
   static const String none = 'None';
   static const String area = 'Area';
   static const String cash = 'Cash';
@@ -152,6 +153,7 @@ class StringsManager {
   static const String home = 'Home';
   static const String all = 'All';
   static const String yes = 'Yes';
+  static const String tax = 'Tax';
   static const String or = 'Or';
   static const String no = 'No';
 }

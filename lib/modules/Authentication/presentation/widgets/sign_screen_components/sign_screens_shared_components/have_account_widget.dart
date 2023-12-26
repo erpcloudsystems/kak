@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/resources/fonts_manager.dart';
 
 class HaveAccountWidget extends StatelessWidget {
   final String question;
@@ -17,13 +16,7 @@ class HaveAccountWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          question,
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .copyWith(fontSize: FontsSize.s12),
-        ),
+        Text(question),
         TextButton(
           onPressed: () =>
               Navigator.of(context).pushReplacementNamed(routeName),

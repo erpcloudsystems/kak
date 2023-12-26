@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'choices_section.dart';
-import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
@@ -54,17 +53,14 @@ class MealDetailsSection extends StatelessWidget {
                       '${StringsManager.cost} ${widget.choicesList[index].price.toString()}',
                       style: Theme.of(context)
                           .textTheme
-                          .headlineSmall!
-                          .copyWith(
-                              fontSize: FontsSize.s14,
-                              color: ColorsManager.swatchRed),
+                          .headlineMedium!
+                          .copyWith(color: ColorsManager.swatchRed),
                     ),
                   ),
                 // Item quantity
                 Text(
                   '${StringsManager.quantity} ${widget.choicesList[index].quantity}',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        fontSize: FontsSize.s14,
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: ColorsManager.swatchRed,
                       ),
                 ),

@@ -23,7 +23,7 @@ abstract class AppTheme {
           centerTitle: true,
           titleTextStyle: getSemiBoldStyle(
             fontName: FontsName.headlinesFont,
-            fontSize: FontsSize.s25,
+            fontSize: FontsSize.s18,
             color: Colors.white,
           ),
         ),
@@ -40,7 +40,7 @@ abstract class AppTheme {
 
           // Headlines text
           headlineSmall: getRegularStyle(
-              fontName: FontsName.headlinesFont, fontSize: FontsSize.s16),
+              fontName: FontsName.headlinesFont, fontSize: FontsSize.s12),
           headlineMedium: getSemiBoldStyle(
               fontName: FontsName.headlinesFont, fontSize: FontsSize.s14),
           headlineLarge: getBoldStyle(

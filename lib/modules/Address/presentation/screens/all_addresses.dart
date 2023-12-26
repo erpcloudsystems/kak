@@ -5,7 +5,6 @@ import '../../../../core/utils/enums.dart';
 import '../bloc/address/address_bloc.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
-import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_floating_button.dart';
 import '../widgets/all_addresses/delivery_addresses_success_component.dart';
@@ -16,13 +15,7 @@ class AllAddressesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(StringsManager.deliveryAddresses),
-        titleTextStyle: Theme.of(context)
-            .appBarTheme
-            .titleTextStyle!
-            .copyWith(fontSize: FontsSize.s18),
-      ),
+      appBar: AppBar(title: const Text(StringsManager.deliveryAddresses)),
       body: BlocConsumer<AddressBloc, AddressState>(
         listenWhen: (previous, current) =>
             previous.getAllAddressesState != current.getAllAddressesState,

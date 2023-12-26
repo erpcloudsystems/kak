@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kak/core/utils/splash_screen.dart';
 import 'package:kak/modules/Address/presentation/screens/All_addresses.dart';
+import 'package:kak/modules/Payment/presentation/screens/order_details.dart';
 
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const String passwordResetScreenKey = '/password_reset';
   static const String navigationBarScreenKey = '/navigation-bar';
   static const String allAddressesScreenKey = '/all-addresses';
+  static const String orderDetailsScreenKey = '/order-details';
   static const String mealContentsScreenKey = '/meal-contents';
   static const String editProfileScreenKey = '/edit-profile';
   static const String transactionScreenKey = '/transaction';
@@ -46,12 +48,13 @@ class Routes {
       passwordResetScreenKey: (_) => const PasswordResetScreen(),
       mealContentsScreenKey: (_) => const MealsContentsScreen(),
       allAddressesScreenKey: (_) => const AllAddressesScreen(),
+      orderDetailsScreenKey: (_) => const OrderDetailsScreen(),
       transactionScreenKey: (_) => const TransactionScreen(),
       editProfileScreenKey: (_) => const EditProfileScreen(),
       addressScreenKey: (_) => const CreateAddressScreen(),
-      myOrdersScreenKey: (_) => const OrdersScreen(),
       checkoutScreenKey: (_) => const CheckoutScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
+      myOrdersScreenKey: (_) => const OrdersScreen(),
       splashScreenKey: (_) => const SplashScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),

@@ -70,8 +70,7 @@ class SocialSignScreen extends StatelessWidget {
                           StringsManager.signInWithPassword,
                           style: Theme.of(context)
                               .textTheme
-                              .headlineSmall!
-                              .copyWith(fontSize: FontsSize.s14),
+                              .headlineMedium,
                         ),
                       ),
                     ),
