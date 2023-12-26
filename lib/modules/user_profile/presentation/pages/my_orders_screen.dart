@@ -26,29 +26,29 @@ class OrdersScreen extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.getOrdersListState != current.getOrdersListState,
         builder: (context, state) {
-          if (state.getOrdersListState == RequestState.success) {
-            return OrdersList(items: state.getOrdersListData);
-          }
-          return const SizedBox();
+          return OrdersList(items: state.getOrdersListData);
         },
       ),
     );
   }
 
-  void getOrdersStateHandler(context, state) {
-        switch (state.getOrdersListState) {
-          case RequestState.loading:
-            LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-            break;
-  
-          case RequestState.error:
-            ErrorDialogUtils.displayErrorDialog(
-                context: context, errorMessage: state.getOrdersListMessage);
-            break;
-  
-          default:
-        }
-      }
+  void getOrdersStateHandler(BuildContext context, PaymentState state) {
+    switch (state.getOrdersListState) {
+      case RequestState.loading:
+        LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+        break;
+
+      case RequestState.success:
+        break;
+
+      case RequestState.error:
+        ErrorDialogUtils.displayErrorDialog(
+            context: context, errorMessage: state.getOrdersListMessage);
+        break;
+
+      default:
+    }
+  }
 }
 
 class OrdersList extends StatelessWidget {

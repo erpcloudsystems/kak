@@ -29,9 +29,6 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <intent>
-                <action android:name="android.support.customtabs.action.CustomTabsService" />
-        </intent>
         </activity>
         <meta-data
             android:name="flutterEmbedding"
