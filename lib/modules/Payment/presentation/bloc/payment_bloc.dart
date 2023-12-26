@@ -9,13 +9,16 @@ import '../../domain/usecases/create_order.dart';
 import '../../domain/usecases/get_orders_list.dart';
 import '../../../../core/global/base_use_case.dart';
 import '../../domain/entities/orders_list_item.dart';
+import '../../domain/usecases/get_order_details.dart';
 import '../../domain/entities/card_payment_entity.dart';
+import '../../domain/entities/received_order_entity.dart';
 import '../../domain/usecases/pay_with_card_use_case.dart';
 
 part 'payment_event.dart';
 part 'payment_state.dart';
 
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
+  final GetOrderDetailsUseCase _getOrderDetailsUseCase;
   final GetOrdersListUseCase _getOrdersListUseCase;
   final PayWithCardUseCase _payWithCardUseCase;
   final CreateOrderUseCase _createOrderUseCase;
@@ -23,10 +26,12 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     this._getOrdersListUseCase,
     this._createOrderUseCase,
     this._payWithCardUseCase,
+    this._getOrderDetailsUseCase,
   ) : super(const PaymentState()) {
     on<PayWithCardEvent>(payWithCard);
     on<CreateOrderEvent>(createOrder);
     on<GetOrdersListEvent>(getOrdersList);
+    on<GetOrderDetailsEvent>(getOrderDetails);
   }
 
   // Pay with card ______________________________________________________
@@ -79,6 +84,25 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       (data) => emit(state.copyWith(
         getOrdersListState: RequestState.success,
         getOrdersListData: data,
+      )),
+    );
+  }
+
+  // Get order details ________________________________________________________
+  FutureOr<void> getOrderDetails(
+      GetOrderDetailsEvent event, Emitter<PaymentState> emit) async {
+    emit(state.copyWith(getOrderDetailsState: RequestState.loading));
+
+    final result = await _getOrderDetailsUseCase(event.orderId);
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        getOrderDetailsState: RequestState.error,
+        getOrderDetailsMessage: failure.errorMessage,
+      )),
+      (order) => emit(state.copyWith(
+        getOrderDetailsState: RequestState.success,
+        getOrderDetailsData: order,
       )),
     );
   }

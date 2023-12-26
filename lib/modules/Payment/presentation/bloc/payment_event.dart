@@ -24,4 +24,12 @@ class CreateOrderEvent extends PaymentEvent {
   List<Object> get props => [order];
 }
 
+class GetOrderDetailsEvent extends PaymentEvent {
+  final String orderId;
+  const GetOrderDetailsEvent({required this.orderId});
+
+  @override
+  List<Object> get props => [orderId];
+}
+
 class GetOrdersListEvent extends PaymentEvent {}

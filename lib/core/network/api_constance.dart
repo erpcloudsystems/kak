@@ -51,6 +51,7 @@ abstract class ApiConstance {
       );
 
   // Orders
+  static const String getOrderDetailsEndPoint = '/kak.general.get_sales_order_details';
   static const String getOrdersListEndPoint = '/kak.general.get_sales_order';
   static const String createOrderEndPoint = '/kak.add.sales_order';
 

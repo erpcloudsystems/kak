@@ -8,6 +8,7 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/entities/orders_list_item.dart';
 import '../../domain/entities/card_payment_entity.dart';
 import '../../domain/repositories/payment_base_repo.dart';
+import '../../domain/entities/received_order_entity.dart';
 import '../../../../core/network/helper_network_methods.dart';
 
 class PaymentRepoImpl implements PaymentBaseRepo {
@@ -42,9 +43,16 @@ class PaymentRepoImpl implements PaymentBaseRepo {
     return response;
   }
 
-  // Get orders list _________________________________________________________________
+  // Get orders list _______________________________________________________________
   @override
   Future<Either<Failure, List<OrdersListItem>>> getOrdersList() async =>
-      await HelperNetworkMethods.commonApiResponseMethod(
+      await HelperNetworkMethods.commonApiResponseMethod<List<OrdersListItem>>(
           () async => await dataSource.getOrdersList(), networkInfo);
+
+  // Get order details ______________________________________________________________
+  @override
+  Future<Either<Failure, ReceivedOrderEntity>> getOrderDetails(
+          String orderId) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<ReceivedOrderEntity>(
+          () async => await dataSource.getOrderDetails(orderId), networkInfo);
 }

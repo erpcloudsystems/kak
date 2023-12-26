@@ -17,6 +17,7 @@ import '../../modules/meals/domain/usecases/get_offers_meals.dart';
 import '../../modules/Payment/domain/usecases/get_orders_list.dart';
 import '../../modules/meals/data/repositories/meals_repo_impl.dart';
 import '../../modules/meals/domain/usecases/get_featured_meals.dart';
+import '../../modules/Payment/domain/usecases/get_order_details.dart';
 import '../../modules/meals/domain/repositories/meals_base_repo.dart';
 import '../../modules/Address/domain/usecases/get_all_addresses.dart';
 import '../../modules/Address/domain/usecases/send_user_address.dart';
@@ -70,7 +71,7 @@ Future<void> init() async {
   sl.registerFactory(() => AddressBloc(sl(), sl(), sl()));
 
   // Payment
-  sl.registerFactory(() => PaymentBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => PaymentBloc(sl(), sl(), sl(), sl()));
 
   // Caching
   sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
@@ -111,6 +112,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => PayWithCardUseCase(sl()));
   sl.registerLazySingleton(() => CreateOrderUseCase(sl()));
   sl.registerLazySingleton(() => GetOrdersListUseCase(sl()));
+  sl.registerLazySingleton(() => GetOrderDetailsUseCase(sl()));
 
   // Repositories __________________________________________________________
 

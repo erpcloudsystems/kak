@@ -14,6 +14,11 @@ class PaymentState extends Equatable {
   final String getOrdersListMessage;
   final List<OrdersListItem> getOrdersListData;
 
+  // Get order details
+  final RequestState getOrderDetailsState;
+  final String getOrderDetailsMessage;
+  final ReceivedOrderEntity getOrderDetailsData;
+
   const PaymentState({
     // Pay with card
     this.payWithCardState = RequestState.stable,
@@ -28,6 +33,22 @@ class PaymentState extends Equatable {
     this.getOrdersListState = RequestState.stable,
     this.getOrdersListMessage = 'Get orders List initial message',
     this.getOrdersListData = const [],
+
+    // Get order details
+    this.getOrderDetailsState = RequestState.stable,
+    this.getOrderDetailsMessage = 'Get order details initial message',
+    this.getOrderDetailsData = const ReceivedOrderEntity(
+      customerAddress: '',
+      modeOfPayment: PaymentType.cash,
+      mobileNumber: '',
+      customerName: '',
+      delivery: 0.0,
+      price: 0.0,
+      items: [],
+      date: '',
+      tax: 0.0,
+      id: '',
+    ),
   });
 
   PaymentState copyWith({
@@ -44,6 +65,11 @@ class PaymentState extends Equatable {
     RequestState? getOrdersListState,
     String? getOrdersListMessage,
     List<OrdersListItem>? getOrdersListData,
+
+    // Get order details
+    RequestState? getOrderDetailsState,
+    String? getOrderDetailsMessage,
+    ReceivedOrderEntity? getOrderDetailsData,
   }) =>
       PaymentState(
         // Pay with card
@@ -59,6 +85,12 @@ class PaymentState extends Equatable {
         getOrdersListState: getOrdersListState ?? this.getOrdersListState,
         getOrdersListMessage: getOrdersListMessage ?? this.getOrdersListMessage,
         getOrdersListData: getOrdersListData ?? this.getOrdersListData,
+
+        // Get order details
+        getOrderDetailsState: getOrderDetailsState ?? this.getOrderDetailsState,
+        getOrderDetailsMessage:
+            getOrderDetailsMessage ?? this.getOrderDetailsMessage,
+        getOrderDetailsData: getOrderDetailsData ?? this.getOrderDetailsData,
       );
 
   @override
@@ -75,5 +107,10 @@ class PaymentState extends Equatable {
         getOrdersListState,
         getOrdersListMessage,
         getOrdersListData,
+
+        // Get order details
+        getOrderDetailsState,
+        getOrderDetailsMessage,
+        getOrderDetailsData,
       ];
 }
