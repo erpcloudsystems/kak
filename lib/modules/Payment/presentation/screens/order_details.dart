@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+import '../bloc/payment_bloc.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/resources/values_manager.dart';
-import '../../../meals/domain/entities/meal_entity.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_floating_button.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/order_details/customer_details_section.dart';
 import '../widgets/order_details/order_details_items_section.dart';
 import '../widgets/order_details/order_details_payment_summary.dart';
@@ -17,21 +20,47 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(StringsManager.orderDetails)),
-      body: Padding(
-        padding: const EdgeInsets.all(DoubleManager.d_8),
-        child: CustomScrollingAnimatedTemplate(children: [
-          // Customer details:
-          const CustomerDetailsSection(),
+      body: BlocConsumer<PaymentBloc, PaymentState>(
+          listenWhen: (previous, current) =>
+              previous.getOrderDetailsState != current.getOrderDetailsState,
+          listener: (context, state) {
+            switch (state.getOrderDetailsState) {
+              case RequestState.loading:
+                LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+                break;
 
-          // Items:
-          OrderDetailsItemsSection(meals: meals),
+              case RequestState.success:
+                break;
 
-          // Payment summary:
-          const OrderDetailsPaymentSummary(),
+              case RequestState.error:
+                ErrorDialogUtils.displayErrorDialog(
+                  context: context,
+                  errorMessage: state.getOrderDetailsMessage,
+                );
+                break;
+              default:
+            }
+          },
+          buildWhen: (previous, current) =>
+              previous.getOrderDetailsData != current.getOrderDetailsData,
+          builder: (context, state) {
+            final order = state.getOrderDetailsData;
+            return Padding(
+              padding: const EdgeInsets.all(DoubleManager.d_8),
+              child: CustomScrollingAnimatedTemplate(children: [
+                // Customer details:
+                CustomerDetailsSection(order: order),
 
-          const SizedBox(height: DoubleManager.d_50)
-        ]),
-      ),
+                // Items:
+                OrderDetailsItemsSection(meals: order.items),
+
+                // Payment summary:
+                OrderDetailsPaymentSummary(order: order),
+
+                const SizedBox(height: DoubleManager.d_50)
+              ]),
+            );
+          }),
       floatingActionButton: CustomFloatingButton(
         title: StringsManager.reorder,
         onPressed: () {},
@@ -39,27 +68,3 @@ class OrderDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-List<MealEntity> meals = [
-  const MealEntity(
-      description: '',
-      imageUrl: '',
-      price: 20,
-      name: 'Test',
-      id: '0',
-      quantity: 1),
-  const MealEntity(
-      description: '',
-      imageUrl: '',
-      price: 30,
-      name: 'Test2',
-      id: '0',
-      quantity: 2),
-  const MealEntity(
-      description: '',
-      imageUrl: '',
-      price: 22,
-      name: 'Test3',
-      id: '0',
-      quantity: 12),
-];

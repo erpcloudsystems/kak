@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kak/core/resources/routes.dart';
+import 'package:kak/modules/Payment/presentation/bloc/payment_bloc.dart';
 
 import '../../../../../core/utils/general_button.dart';
 import '../../../../../core/resources/colors_manager.dart';
@@ -100,6 +102,8 @@ class OrdersListCard extends StatelessWidget {
             ColoredElevatedButton(
               // TODO: Add reorder logic
               onPressed: () {
+                BlocProvider.of<PaymentBloc>(context)
+                    .add(GetOrderDetailsEvent(orderId: item.id));
                 Navigator.of(context).pushNamed(Routes.orderDetailsScreenKey);
               },
               buttonText: StringsManager.reorder,

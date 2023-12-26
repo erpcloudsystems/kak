@@ -2,27 +2,30 @@ import 'package:flutter/material.dart';
 
 import 'order_details_section.dart';
 import '../../../../../core/resources/fonts_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
+import '../../../domain/entities/received_order_entity.dart';
 
 class CustomerDetailsSection extends StatelessWidget {
-  const CustomerDetailsSection({
-    super.key,
-  });
+  const CustomerDetailsSection({super.key, required this.order});
+
+  final ReceivedOrderEntity order;
 
   @override
   Widget build(BuildContext context) {
     return OrderDetailsSection(
-        badgeText: 'Your details',
+        badgeText: StringsManager.urDetails,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // name:
-            const Text('Mohamed Mohamedy'),
+            Text(order.customerName),
 
             // Address
             ListTile(
-              contentPadding: const EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(DoubleManager.d_0),
               leading: const Icon(
                 Icons.location_on_sharp,
                 color: ColorsManager.swatchRed,
@@ -31,13 +34,12 @@ class CustomerDetailsSection extends StatelessWidget {
                   .textTheme
                   .bodySmall!
                   .copyWith(fontSize: FontsSize.s11),
-              subtitle: const Text(
-                  'this is a plceholder for address and we should remove it'),
+              subtitle: Text(order.customerAddress),
             ),
 
             // Date
             ListTile(
-              contentPadding: const EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(DoubleManager.d_0),
               leading: const Icon(
                 Icons.date_range_rounded,
                 color: ColorsManager.gGrey,
@@ -46,12 +48,12 @@ class CustomerDetailsSection extends StatelessWidget {
                   .textTheme
                   .bodySmall!
                   .copyWith(fontSize: FontsSize.s11),
-              title: const Text('26 - 12 - 2023'),
+              title: Text(order.date),
             ),
 
             // Mobile
             ListTile(
-              contentPadding: const EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(DoubleManager.d_0),
               leading: const Icon(
                 Icons.call,
                 color: ColorsManager.gGrey,
@@ -60,7 +62,7 @@ class CustomerDetailsSection extends StatelessWidget {
                   .textTheme
                   .bodySmall!
                   .copyWith(fontSize: FontsSize.s11),
-              title: const Text('+0201101265646'),
+              title: Text(order.mobileNumber),
             ),
           ],
         ));

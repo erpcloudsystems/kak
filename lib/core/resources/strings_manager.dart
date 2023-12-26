@@ -88,6 +88,7 @@ class StringsManager {
   static const String description = 'Description';
   static const String getStarted = 'Get started';
   static const String placeOrder = 'Place order';
+  static const String urDetails = 'Your details';
   static const String rememberMe = 'Remember me';
   static const String newAddress = 'New address';
   static const String creditCard = 'Credit Card';

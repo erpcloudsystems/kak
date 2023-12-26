@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:kak/core/resources/fonts_manager.dart';
 import 'package:kak/core/resources/strings_manager.dart';
+import 'package:kak/core/resources/values_manager.dart';
 import 'package:kak/modules/Payment/presentation/widgets/order_details/order_details_section.dart';
 
+import '../../../domain/entities/received_order_entity.dart';
+
 class OrderDetailsPaymentSummary extends StatelessWidget {
-  const OrderDetailsPaymentSummary({super.key});
+  const OrderDetailsPaymentSummary({super.key, required this.order});
+
+  final ReceivedOrderEntity order;
 
   @override
   Widget build(BuildContext context) {
     return OrderDetailsSection(
       badgeText: StringsManager.paymentSummary,
       child: Column(children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: DoubleManager.d_10),
         // SubTotal
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +29,8 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
                   .copyWith(fontSize: FontsSize.s12),
             ),
             Text(
-              '254 ${UnTranslatedStrings.egp}',
+              // TODO: ASK BACKEND FOR SUBTOAL IN THE ORDER DETAILS.
+              '${order.price} ${UnTranslatedStrings.egp}',
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
@@ -42,7 +48,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             Text(
-              '30 ${UnTranslatedStrings.egp}',
+              '${order.delivery} ${UnTranslatedStrings.egp}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -57,7 +63,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             Text(
-              '19 ${UnTranslatedStrings.egp}',
+              '${order.tax} ${UnTranslatedStrings.egp}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -69,11 +75,11 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Total',
+              StringsManager.total,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              '500 ${UnTranslatedStrings.egp}',
+              '${order.price} ${UnTranslatedStrings.egp}',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
