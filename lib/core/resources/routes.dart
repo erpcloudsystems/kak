@@ -54,7 +54,7 @@ class Routes {
       addressScreenKey: (_) => const CreateAddressScreen(),
       checkoutScreenKey: (_) => const CheckoutScreen(),
       paymentScreenKey: (_) => const PaymentScreen(),
-      myOrdersScreenKey: (_) => const OrdersScreen(),
+      myOrdersScreenKey: (_) => const MyOrdersScreen(),
       splashScreenKey: (_) => const SplashScreen(),
       signUpScreenKey: (_) => const SignUpScreen(),
       signInScreenKey: (_) => const SignInScreen(),

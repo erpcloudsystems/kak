@@ -100,13 +100,12 @@ class OrdersListCard extends StatelessWidget {
             const SizedBox(height: DoubleManager.d_40),
             // Button
             ColoredElevatedButton(
-              // TODO: Add reorder logic
+              buttonText: StringsManager.orderDetails,
               onPressed: () {
                 BlocProvider.of<PaymentBloc>(context)
                     .add(GetOrderDetailsEvent(orderId: item.id));
                 Navigator.of(context).pushNamed(Routes.orderDetailsScreenKey);
               },
-              buttonText: StringsManager.reorder,
             ),
           ],
         ),

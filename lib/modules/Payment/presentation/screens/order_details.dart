@@ -34,6 +34,7 @@ class OrderDetailsScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(DoubleManager.d_8),
               child: CustomScrollingAnimatedTemplate(children: [
+                const SizedBox(height: DoubleManager.d_10),
                 // Customer details:
                 CustomerDetailsSection(order: order),
 

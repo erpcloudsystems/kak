@@ -10,14 +10,14 @@ import '../../../Payment/presentation/bloc/payment_bloc.dart';
 import '../../../Payment/domain/entities/orders_list_item.dart';
 import '../../../../core/utils/custom_scrolling_animated_template.dart';
 
-class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({super.key});
+class MyOrdersScreen extends StatelessWidget {
+  const MyOrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(StringsManager.previousOrders),
+        title: const Text(StringsManager.myOrders),
       ),
       body: BlocConsumer<PaymentBloc, PaymentState>(
         listenWhen: (previous, current) =>
