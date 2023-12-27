@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
+import '../../../authentication/presentation/widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 
 class CartListTileImage extends StatelessWidget {
   final String imageUrl;
@@ -22,6 +23,7 @@ class CartListTileImage extends StatelessWidget {
             const LoadingIndicatorUtil(),
         imageUrl: imageUrl,
         fit: BoxFit.cover,
+        errorWidget: (context, url, error) => const MainLogo(),
       ),
     );
   }
