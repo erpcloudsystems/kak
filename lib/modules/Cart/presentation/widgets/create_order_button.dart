@@ -13,9 +13,7 @@ import '../../../Address/presentation/bloc/address/address_bloc.dart';
 import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 class CreateOrderSection extends StatelessWidget {
-  const CreateOrderSection({
-    super.key,
-  });
+  const CreateOrderSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,7 @@ class CreateOrderButton extends StatelessWidget {
   }
 
   /// Send an event to get the addresses of the user, if there isn't, it navigate to the map.
-  void checkForUserAddress(context, state) {
+  void checkForUserAddress(BuildContext context, AddressState state) {
     if (state.getAllAddressesState == RequestState.loading) {
       LoadingUtils.showLoadingDialog(context, LoadingType.circular);
     }

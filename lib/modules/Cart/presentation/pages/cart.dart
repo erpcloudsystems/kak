@@ -72,7 +72,8 @@ class _CartScreenState extends State<CartScreen> {
               previous.getCartItemsState != current.getCartItemsState ||
               previous.getCartItemsData != current.getCartItemsData,
           builder: (context, state) {
-            if (state.getCartItemsState == RequestState.error) {
+            if (state.getCartItemsState == RequestState.error ||
+                state.getCartItemsData.isEmpty) {
               return const NoDataWidget(
                 assetPath: ImagesPath.emptyCartPath,
                 text: StringsManager.noCartItemsMessage,

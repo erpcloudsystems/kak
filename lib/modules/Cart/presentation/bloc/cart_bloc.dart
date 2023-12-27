@@ -16,6 +16,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<UpdateCartItemEvent>(updateCartItem);
     on<GetCartItemsEvent>(getCartItems);
     on<AddCartItemEvent>(addCartItem);
+    on<EraseCartItemEvent>(eraseCartItems);
   }
 
   final List<MealEntity> _cartItems = [];
@@ -88,7 +89,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> eraseCartItems(
       EraseCartItemEvent event, Emitter<CartState> emit) {
     _cartItems.clear();
-    emit(state.copyWith(totalPrice: 0.0));
+    emit(
+      state.copyWith(
+        totalPrice: 0.0,
+        getCartItemsData: [],
+      ),
+    );
   }
   // ___________________________________ Update cart item ________________________________
 

@@ -10,9 +10,14 @@ import '../../../Payment/presentation/bloc/payment_bloc.dart';
 import '../../../Payment/domain/entities/orders_list_item.dart';
 import '../../../../core/utils/custom_scrolling_animated_template.dart';
 
-class MyOrdersScreen extends StatelessWidget {
+class MyOrdersScreen extends StatefulWidget {
   const MyOrdersScreen({super.key});
 
+  @override
+  State<MyOrdersScreen> createState() => _MyOrdersScreenState();
+}
+
+class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +37,12 @@ class MyOrdersScreen extends StatelessWidget {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    context.read<PaymentBloc>().add(GetOrdersListEvent());
+  }
+
   void getOrdersStateHandler(BuildContext context, PaymentState state) {
     switch (state.getOrdersListState) {
       case RequestState.loading:
@@ -39,9 +50,11 @@ class MyOrdersScreen extends StatelessWidget {
         break;
 
       case RequestState.success:
+      Navigator.of(context).pop();
         break;
 
       case RequestState.error:
+      Navigator.of(context).pop();
         ErrorDialogUtils.displayErrorDialog(
             context: context, errorMessage: state.getOrdersListMessage);
         break;
