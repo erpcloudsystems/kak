@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
 import '../bloc/payment_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../widgets/order_details/reorder_meal_btn.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/custom_floating_button.dart';
+import '../../domain/entities/received_order_entity.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/order_details/customer_details_section.dart';
 import '../widgets/order_details/order_details_items_section.dart';
@@ -18,33 +19,18 @@ class OrderDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ReceivedOrderEntity? receivedOrder;
     return Scaffold(
       appBar: AppBar(title: const Text(StringsManager.orderDetails)),
       body: BlocConsumer<PaymentBloc, PaymentState>(
           listenWhen: (previous, current) =>
               previous.getOrderDetailsState != current.getOrderDetailsState,
-          listener: (context, state) {
-            switch (state.getOrderDetailsState) {
-              case RequestState.loading:
-                LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-                break;
-
-              case RequestState.success:
-                break;
-
-              case RequestState.error:
-                ErrorDialogUtils.displayErrorDialog(
-                  context: context,
-                  errorMessage: state.getOrderDetailsMessage,
-                );
-                break;
-              default:
-            }
-          },
+          listener: orderDetailsStateHandler,
           buildWhen: (previous, current) =>
               previous.getOrderDetailsData != current.getOrderDetailsData,
           builder: (context, state) {
             final order = state.getOrderDetailsData;
+            receivedOrder = order;
             return Padding(
               padding: const EdgeInsets.all(DoubleManager.d_8),
               child: CustomScrollingAnimatedTemplate(children: [
@@ -61,10 +47,26 @@ class OrderDetailsScreen extends StatelessWidget {
               ]),
             );
           }),
-      floatingActionButton: CustomFloatingButton(
-        title: StringsManager.reorder,
-        onPressed: () {},
-      ),
+      floatingActionButton: ReorderMealBtn(receivedOrder: receivedOrder),
     );
+  }
+
+  void orderDetailsStateHandler(BuildContext context, PaymentState state) {
+    switch (state.getOrderDetailsState) {
+      case RequestState.loading:
+        LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+        break;
+
+      case RequestState.success:
+        break;
+
+      case RequestState.error:
+        ErrorDialogUtils.displayErrorDialog(
+          context: context,
+          errorMessage: state.getOrderDetailsMessage,
+        );
+        break;
+      default:
+    }
   }
 }
