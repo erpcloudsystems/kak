@@ -61,16 +61,16 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const MainLogo(),
-                      const SignTypeText(signSentence: StringsManager.create),
+                       SignTypeText(signSentence: StringsManager.create),
                       SignForm(
                         signEvent: signEvent,
                         buttonText: StringsManager.signUp,
                         isSignUp: true,
                       ),
-                      const AuthenticationDivider(
+                       AuthenticationDivider(
                           text: StringsManager.authenticationDividerText),
                       const SocialSignWidget(),
-                      const HaveAccountWidget(
+                       HaveAccountWidget(
                         buttonText: StringsManager.signIn,
                         question: StringsManager.alreadyHaveAnAccount,
                         routeName: Routes.signInScreenKey,

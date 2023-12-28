@@ -56,7 +56,7 @@ class OrdersListCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Text(StringsManager.date),
+                         Text(StringsManager.date),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.transactionDate,
@@ -67,7 +67,7 @@ class OrdersListCard extends StatelessWidget {
                     const SizedBox(height: DoubleManager.d_5),
                     Row(
                       children: [
-                        const Text(StringsManager.status),
+                         Text(StringsManager.status),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.status.name,

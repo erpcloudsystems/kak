@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(StringsManager.menu),
+        title:  Text(StringsManager.menu),
         titleTextStyle: Theme.of(context)
             .appBarTheme
             .titleTextStyle!

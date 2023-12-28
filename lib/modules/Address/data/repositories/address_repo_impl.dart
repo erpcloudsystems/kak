@@ -26,7 +26,7 @@ class AddressRepoImpl implements AddressBaseRepo {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw const PermissionDeniedException(StringsManager.enableLocation);
+      throw  PermissionDeniedException(StringsManager.enableLocation);
     }
 
     permission = await Geolocator.checkPermission();
@@ -34,12 +34,12 @@ class AddressRepoImpl implements AddressBaseRepo {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw const PermissionDeniedException(StringsManager.accessLocation);
+        throw  PermissionDeniedException(StringsManager.accessLocation);
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw const PermissionDeniedException(StringsManager.accessLocation);
+      throw  PermissionDeniedException(StringsManager.accessLocation);
     }
 
     try {

@@ -27,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorsManager.gWhite,
       appBar: AppBar(
-        title: const Text(StringsManager.checkout),
+        title:  Text(StringsManager.checkout),
       ),
       body: BlocListener<PaymentBloc, PaymentState>(
         listenWhen: (previous, current) =>

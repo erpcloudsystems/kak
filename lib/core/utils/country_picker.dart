@@ -33,15 +33,15 @@ class _CountryPickerState extends State<CountryPicker> {
             });
           }
         },
-        countryListTheme: const CountryListThemeData(
-          borderRadius: BorderRadius.only(
+        countryListTheme:  CountryListThemeData(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(DoubleManager.d_40),
             topRight: Radius.circular(DoubleManager.d_40),
           ),
           inputDecoration: InputDecoration(
             hintText: StringsManager.selectUrTerritory,
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.search),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.search),
           ),
         ),
       );
@@ -63,10 +63,10 @@ class _CountryPickerState extends State<CountryPicker> {
         }
         return null;
       },
-      decoration: const InputDecoration(
+      decoration:  InputDecoration(
         hintText: StringsManager.territory,
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(Icons.location_city),
+        border: const OutlineInputBorder(),
+        prefixIcon: const Icon(Icons.location_city),
       ),
     );
   }

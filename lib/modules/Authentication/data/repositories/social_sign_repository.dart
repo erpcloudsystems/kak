@@ -44,7 +44,7 @@ class SocialSignRepository implements BaseSocialSignRepository {
                   error.message ?? StringsManager.serverFailureMessage),
         );
       } catch (error) {
-        return const Left(
+        return Left(
             ServerFailure(errorMessage: StringsManager.serverFailureMessage));
       }
     } else {

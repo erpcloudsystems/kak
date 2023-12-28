@@ -100,7 +100,7 @@ class MapSnapshotSection extends StatelessWidget {
                   TextButton(
                       onPressed: () => Navigator.of(context)
                           .pushReplacementNamed(Routes.mapScreenKey),
-                      child: const Text(StringsManager.change))
+                      child: Text(StringsManager.change))
                 ],
               ),
             ),

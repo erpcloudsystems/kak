@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(StringsManager.profile)),
+      appBar: AppBar(title:  Text(StringsManager.profile)),
       body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         buildWhen: (previous, current) =>
             previous.isUserLoggedIn != current.isUserLoggedIn,

@@ -20,7 +20,7 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.cacheUser(userData);
       return const Right(unit);
     } catch (error) {
-      return const Left(
+      return  Left(
         UnknownCachingFailure(
           errorMessage: StringsManager.unknownCachingFailureMessage,
         ),
@@ -35,7 +35,7 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       final userData = await _localDataSource.getCachedUser();
       return Right(userData);
     } on EmptyCacheException {
-      return const Left(
+      return  Left(
         EmptyCacheFailure(
           errorMessage: StringsManager.emptyCacheFailureMessage,
         ),
@@ -50,7 +50,7 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.deleteUserCachedData();
       return const Right(unit);
     } on EmptyCacheException {
-      return const Left(EmptyCacheFailure(
+      return  Left(EmptyCacheFailure(
         errorMessage: StringsManager.emptyCacheFailureMessage,
       ));
     }

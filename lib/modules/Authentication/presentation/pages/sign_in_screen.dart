@@ -83,7 +83,7 @@ class SignInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         const MainLogo(),
-                        const SignTypeText(
+                         SignTypeText(
                             signSentence: StringsManager.loginToUrAccount),
                         SignForm(
                           signEvent: signEvent,
@@ -91,11 +91,11 @@ class SignInScreen extends StatelessWidget {
                           isSignUp: false,
                         ),
                         const ForgotPasswordComponent(),
-                        const AuthenticationDivider(
+                         AuthenticationDivider(
                           text: StringsManager.authenticationDividerText,
                         ),
                         const SocialSignWidget(),
-                        const HaveAccountWidget(
+                         HaveAccountWidget(
                           question: StringsManager.dontHaveAnAccount,
                           buttonText: StringsManager.signUp,
                           routeName: Routes.signUpScreenKey,

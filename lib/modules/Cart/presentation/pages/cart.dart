@@ -48,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
               LoadingUtils.showLoadingDialog(
                   context, LoadingType.linear, StringsManager.deleting);
             }
-
+    
             if (state.removeCartItemState == RequestState.success) {
               Navigator.of(context).pop();
               BlocProvider.of<CartBloc>(context).add(GetCartItemsEvent());
@@ -58,7 +58,7 @@ class _CartScreenState extends State<CartScreen> {
                 color: ColorsManager.gGreen,
               );
             }
-
+    
             if (state.removeCartItemState == RequestState.error) {
               Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
@@ -74,12 +74,12 @@ class _CartScreenState extends State<CartScreen> {
           builder: (context, state) {
             if (state.getCartItemsState == RequestState.error ||
                 state.getCartItemsData.isEmpty) {
-              return const NoDataWidget(
+              return NoDataWidget(
                 assetPath: ImagesPath.emptyCartPath,
                 text: StringsManager.noCartItemsMessage,
               );
             }
-
+    
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

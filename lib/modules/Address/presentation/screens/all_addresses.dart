@@ -15,7 +15,7 @@ class AllAddressesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(StringsManager.deliveryAddresses)),
+      appBar: AppBar(title:  Text(StringsManager.deliveryAddresses)),
       body: BlocConsumer<AddressBloc, AddressState>(
         listenWhen: (previous, current) =>
             previous.getAllAddressesState != current.getAllAddressesState,

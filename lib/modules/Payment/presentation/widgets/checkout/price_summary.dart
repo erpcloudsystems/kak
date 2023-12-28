@@ -28,15 +28,15 @@ class PriceSummary extends StatelessWidget {
             title: StringsManager.subtotal,
             amount: context.read<CartBloc>().state.totalPrice,
           ),
-          const PaymentSummaryComponent(
+           PaymentSummaryComponent(
             title: StringsManager.deliveryFee,
             amount: 30,
           ),
-          const PaymentSummaryComponent(
+           PaymentSummaryComponent(
             title: StringsManager.tax,
             amount: 30,
           ),
-          const PaymentSummaryComponent(
+           PaymentSummaryComponent(
             title: StringsManager.totalAmount,
             amount: 201,
           ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/splash_screen.dart';
-import 'package:kak/modules/Address/presentation/screens/All_addresses.dart';
-import 'package:kak/modules/Payment/presentation/screens/order_details.dart';
+import '../utils/splash_screen.dart';
 
 import '../utils/error_screen.dart';
 import '../utils/custom_navigation_bar.dart';
@@ -10,6 +8,8 @@ import '../../modules/Address/presentation/screens/map.dart';
 import '../../modules/meals/presentation/pages/home_page.dart';
 import '../../modules/Payment/presentation/screens/checkout.dart';
 import '../../modules/meals/presentation/pages/meal_group_items.dart';
+import '../../modules/Address/presentation/screens/All_addresses.dart';
+import '../../modules/Payment/presentation/screens/order_details.dart';
 import '../../modules/meals/presentation/pages/meal_content_page.dart';
 import '../../modules/Address/presentation/screens/create_address.dart';
 import '../../modules/Payment/presentation/screens/payment_screen.dart';

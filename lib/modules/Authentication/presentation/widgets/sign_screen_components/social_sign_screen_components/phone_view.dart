@@ -13,7 +13,7 @@ class SignScreenPhoneView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const SocialButtonsSharedContainer(
+         SocialButtonsSharedContainer(
             icon: FontAwesomeIcons.phone, signType: StringsManager.phone),
         ClipRRect(
           borderRadius: BorderRadius.circular(DoubleManager.d_10.sp),

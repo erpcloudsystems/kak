@@ -32,7 +32,7 @@ class PasswordResetScreen extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    content: const Text(
+                    content:  Text(
                       StringsManager.resetPasswordAlertMessage,
                       softWrap: true,
                     ),
@@ -40,7 +40,7 @@ class PasswordResetScreen extends StatelessWidget {
                       TextButton(
                           onPressed: () => Navigator.of(context)
                               .pushReplacementNamed(Routes.signInScreenKey),
-                          child: const Text(StringsManager.okay))
+                          child:  Text(StringsManager.okay))
                     ],
                   ));
         }

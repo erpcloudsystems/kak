@@ -28,7 +28,7 @@ class MealGroupItemsScreen extends StatelessWidget {
             previous.getMealGroupItemsData != current.getMealGroupItemsData,
         builder: (context, state) {
           if (state.getMealGroupItemsState == RequestState.error) {
-            return const Center(
+            return  Center(
                 child: NoDataWidget(
               assetPath: ImagesPath.errorPath,
               text: StringsManager.errorMessage,

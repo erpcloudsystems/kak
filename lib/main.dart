@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         child: Sizer(
           builder: (context, orientation, deviceType) => MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: StringsManager.appName,
+            title: UnTranslatedStrings.appName,
             theme: AppTheme.getApplicationLightTheme(),
             home: const SplashScreen(),
             routes: Routes.routes,

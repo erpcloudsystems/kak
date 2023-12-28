@@ -59,7 +59,7 @@ class SocialSignScreen extends StatelessWidget {
                     )),
                     SizedBox(height: DoubleManager.d_2.h),
 
-                    const AuthenticationDivider(text: StringsManager.or),
+                     AuthenticationDivider(text: StringsManager.or),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: DoubleManager.d_1.h),
@@ -74,7 +74,7 @@ class SocialSignScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const HaveAccountWidget(
+                     HaveAccountWidget(
                       question: StringsManager.dontHaveAnAccount,
                       buttonText: StringsManager.signUp,
                       routeName: Routes.signUpScreenKey,

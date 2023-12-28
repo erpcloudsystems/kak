@@ -42,17 +42,17 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     ProfilePage(),
   ];
 
-  static const List<BottomNavigationBarItem> navigationBarIcons = [
+  static  List<BottomNavigationBarItem> navigationBarIcons = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.shopping_cart),
+      icon: const Icon(Icons.shopping_cart),
       label: StringsManager.cart,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.home),
+      icon: const Icon(Icons.home),
       label: StringsManager.home,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.person),
+      icon: const Icon(Icons.person),
       label: StringsManager.profile,
     ),
   ];

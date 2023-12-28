@@ -1,168 +1,174 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class StringsManager {
-  static const String serverFailureMessage =
-      'There is Error with Server, Please try again later';
+  static String oneItemIsRequired(String itemClassification) {
+    final String translated = 'one is must be chosen'.tr();
+    return '$itemClassification $translated';
+  }
+
+  static String itemIsRequired(String itemClassification) {
+    final String translated = 'is required'.tr();
+    return '$itemClassification $translated';
+  }
+
+  static String maximumNumberError(String maxNumber) {
+    final String translated = 'max number'.tr();
+    return '$maxNumber $translated';
+  }
+
+  static String serverFailureMessage =
+      'There is Error with Server, Please try again later'.tr().tr();
   static const String offlineFailureMessage =
       'There is a problem with your internet connection';
-  static const String passwordLengthValidationMessage =
-      'password shouldn\'t be less than 6 characters';
-  static const String unknownCachingFailureMessage =
-      'There is a problem while caching user data';
-  static const String sendEmailMessage =
-      'Please, Enter your E-mail address So that we could send you an email to reset your password';
-  static const String resetPasswordAlertMessage =
-      'A reset password email is sent to your Email, Please rest your password and Try to sign in again';
-  static const String verifyEmailMessage =
-      'A verification email has been sent to your email address, Please open your inbox and verify your email';
-  static const String createdAccountSuccessfully =
-      'You have created your account successfully!';
-  static const String clickHereToDetermineYourOrderType =
-      'Click here to determine your order type';
-  static const String accessLocation =
-      'Kak needs to access your location to help find your address';
-  static const String emptyCacheFailureMessage = 'There is no cached user data';
-  static String oneItemIsRequired(String itemClassification) =>
-      'One Item of $itemClassification is must be chosen';
-  static String itemIsRequired(String itemClassification) =>
-      'A $itemClassification is must be chosen';
-  static String maximumNumberError(String maxNumber) =>
-      'only $maxNumber items is what you can add to your meal';
-  static const String noCartItemsMessage =
-      'There is no items yet in your cart!';
-  static const String loginFirstMessage =
-      'You have to login first to make an order';
-  static const String deleteAddressMessage =
-      'Your address deleted successfully';
-  static const String duplicationError =
-      'Yor already added this item to ur cart';
-  static const String newAddressMessage = 'Your new address added successfully';
-  static const String deleteItemMessage = 'Are you sure to delete this item?';
-  static const String deleteAccountMessage = 'You have deleted your account';
-  static const String removedFromCartMessage = 'Item removed from your cart';
-  static const String phoneNumberMessage = 'Please, enter your phone number';
-  static const String passwordValidateMessage = 'please enter your Password';
-  static const String enableLocation = 'Please open your location service';
-  static const String logoutMessage = 'You have logged out successfully';
-  static const String completeMealMessage = 'Please, complete your meal';
-  static const String additionalDir = 'Additional directions (optional)';
-  static const String alreadyHaveAnAccount = 'Already have an account?';
-  static const String emailValidateMessage = 'please enter your E-mail';
-  static const String orderCreated = 'Your order created successfully';
-  static const String emptyValidator = 'This field must have a value';
-  static const String unKnownErrorOccurred = 'Unknown Error Occurred';
-  static const String authenticationDividerText = 'or continue with';
-  static const String defaultAddress = 'Is this ur default address';
-  static const String dontHaveAnAccount = 'Don\'t have an account?';
-  static const String signInWithPassword = 'Sign in with password';
-  static const String selectUrTerritory = 'Select your territory';
-  static const String loginToUrAccount = 'Login To Your Account?';
-  static const String createOrderMessage = 'Creating your order';
-  static const String deliveryAddresses = 'Delivery addresses';
-  static const String cartAddedMessage = 'Added to your cart';
-  static const String deliveryLocation = 'Delivery location';
-  static const String errorMessage = 'Something went wrong!';
-  static const String forgotPassword = 'Forgot The Password';
-  static const String noAddressMessage = 'No Addresses yet!';
-  static const String chooseOrderType = 'Choose order type';
-  static const String savingAddress = 'Saving your address';
-  static const String enterCode = 'Please, Enter the code';
-  static const String apiSecretCachingKey = 'API-SECRET';
-  static const String productDetails = 'Product Details';
-  static const String previousOrders = 'Previous orders';
-  static const String paymentSummary = 'Payment summary';
-  static const String loading = 'Loading, Please wait!';
-  static const String deleteAccount = 'Delete account';
-  static const String paymentMethod = 'payment Method';
-  static const String reorderedMeal = 'Reordered meal';
-  static const String orderDetails = 'Order details';
-  static const String create = 'Create Your Account';
-  static const String buildingName = 'Building name';
-  static const String continueWith = 'Continue with';
-  static const String addAddress = 'Add new address';
-  static const String floorOpt = 'Floor (optional)';
-  static const String title = 'Your address title';
-  static const String apartmentNumber = 'Apt. no.';
-  static const String saveAddress = 'Save address';
-  static const String deliverHere = 'Deliver here';
-  static const String createOrder = 'Create Order';
-  static const String deliveryFee = 'Delivery Fee';
-  static const String totalAmount = 'Total amount';
-  static const String description = 'Description';
-  static const String getStarted = 'Get started';
-  static const String placeOrder = 'Place order';
-  static const String urDetails = 'Your details';
-  static const String rememberMe = 'Remember me';
-  static const String newAddress = 'New address';
-  static const String creditCard = 'Credit Card';
-  static const String sendEmail = 'Send E-mail';
-  static const String addToCart = 'Add to Cart';
-  static const String directions = 'Directions';
-  static const String catagories = 'Categories';
-  static const String popular = 'Popular Items';
-  static const String categories = 'Categories';
-  static const String firstName = 'First Name';
-  static const String contactUs = 'Contact us';
-  static const String birthDate = 'Birth Date';
-  static const String myAccount = 'My Account';
-  static const String myAddress = 'My Address';
-  static const String territory = 'Territory';
-  static const String myOrders = 'My Orders';
-  static const String lastName = 'Last Name';
-  static const String allItems = 'All Items';
-  static const String userName = 'User Name';
-  static const String quantity = 'Quantity:';
-  static const String total = 'Total Price';
-  static const String subtotal = 'Subtotal';
-  static const String register = 'Register';
-  static const String checkout = 'Checkout';
-  static const String password = 'Password';
-  static const String facebook = 'Facebook';
-  static const String deleting = 'Deleting';
-  static const String payWith = 'Pay with';
-  static const String reorder = 'Reorder';
-  static const String status = 'Status: ';
-  static const String profile = 'Profile';
-  static const String version = 'Version';
-  static const String seeAll = 'See all';
-  static const String signIn = 'Sign in';
-  static const String signUp = 'Sign up';
-  static const String street = 'Street';
-  static const String logout = 'Logout';
-  static const String change = 'Change';
-  static const String filter = 'Filter';
-  static const String female = 'Female';
-  static const String gender = 'Gender';
-  static const String google = 'Google';
-  static const String search = 'search';
-  static const String login = 'Login';
-  static const String guest = 'Guest';
-  static const String enter = 'Enter';
-  static const String email = 'Email';
-  static const String appName = 'Kak';
-  static const String floor = 'Floor';
-  static const String date = 'Date: ';
-  static const String phone = 'Phone';
-  static const String cost = 'Cost:';
-  static const String items = 'Items';
-  static const String none = 'None';
-  static const String area = 'Area';
-  static const String cash = 'Cash';
-  static const String sort = 'Sort';
-  static const String save = 'Save';
-  static const String okay = 'Okay';
-  static const String cart = 'Cart';
-  static const String menu = 'Menu';
-  static const String male = 'Male';
-  static const String home = 'Home';
-  static const String all = 'All';
-  static const String yes = 'Yes';
-  static const String tax = 'Tax';
-  static const String or = 'Or';
-  static const String no = 'No';
+  static  String passwordLengthValidationMessage =
+      'password shouldn\'t be less than 6 characters'.tr();
+  static  String unknownCachingFailureMessage =
+      'There is a problem while caching user data'.tr();
+  static  String sendEmailMessage =
+      'Please, Enter your E-mail address So that we could send you an email to reset your password'.tr();
+  static  String resetPasswordAlertMessage =
+      'A reset password email is sent to your Email, Please rest your password and Try to sign in again'.tr();
+  static  String createdAccountSuccessfully =
+      'You have created your account successfully!'.tr();
+  static  String clickHereToDetermineYourOrderType =
+      'Click here to determine your order type'.tr();
+  static  String accessLocation =
+      'Kak needs to access your location to help find your address'.tr();
+  static  String emptyCacheFailureMessage = 'There is no cached user data'.tr();
+  static  String noCartItemsMessage =
+      'There is no items yet in your cart!'.tr();
+  static  String loginFirstMessage =
+      'You have to login first to make an order'.tr();
+  static  String deleteAddressMessage =
+      'Your address deleted successfully'.tr();
+  static  String duplicationError =
+      'Yor already added this item to ur cart'.tr();
+  static  String newAddressMessage = 'Your new address added successfully'.tr();
+  static  String deleteItemMessage = 'Are you sure to delete this item?'.tr();
+  static  String deleteAccountMessage = 'You have deleted your account'.tr();
+  static  String removedFromCartMessage = 'Item removed from your cart'.tr();
+  static  String phoneNumberMessage = 'Please, enter your phone number'.tr();
+  static  String passwordValidateMessage = 'please enter your Password'.tr();
+  static  String enableLocation = 'Please open your location service'.tr();
+  static  String logoutMessage = 'You have logged out successfully'.tr();
+  static  String completeMealMessage = 'Please, complete your meal'.tr();
+  static  String additionalDir = 'Additional directions (optional)'.tr();
+  static  String alreadyHaveAnAccount = 'Already have an account?'.tr();
+  static  String emailValidateMessage = 'please enter your E-mail'.tr();
+  static  String orderCreated = 'Your order created successfully'.tr();
+  static  String emptyValidator = 'This field must have a value'.tr();
+  static  String unKnownErrorOccurred = 'Unknown Error Occurred'.tr();
+  static  String authenticationDividerText = 'or continue with'.tr();
+  static  String defaultAddress = 'Is this ur default address'.tr();
+  static  String dontHaveAnAccount = 'Don\'t have an account?'.tr();
+  static  String signInWithPassword = 'Sign in with password'.tr();
+  static  String selectUrTerritory = 'Select your territory'.tr();
+  static  String loginToUrAccount = 'Login To Your Account?'.tr();
+  static  String createOrderMessage = 'Creating your order'.tr();
+  static  String deliveryAddresses = 'Delivery addresses'.tr();
+  static  String cartAddedMessage = 'Added to your cart'.tr();
+  static  String deliveryLocation = 'Delivery location'.tr();
+  static  String errorMessage = 'Something went wrong!'.tr();
+  static  String forgotPassword = 'Forgot The Password'.tr();
+  static  String noAddressMessage = 'No Addresses yet!'.tr();
+  static  String chooseOrderType = 'Choose order type'.tr();
+  static  String savingAddress = 'Saving your address'.tr();
+  static  String productDetails = 'Product Details'.tr();
+  static  String previousOrders = 'Previous orders'.tr();
+  static  String paymentSummary = 'Payment summary'.tr();
+  static  String loading = 'Loading, Please wait!'.tr();
+  static  String deleteAccount = 'Delete account'.tr();
+  static  String paymentMethod = 'payment Method'.tr();
+  static  String reorderedMeal = 'Reordered meal'.tr();
+  static  String orderDetails = 'Order details'.tr();
+  static  String create = 'Create Your Account'.tr();
+  static  String buildingName = 'Building name'.tr();
+  static  String continueWith = 'Continue with'.tr();
+  static  String addAddress = 'Add new address'.tr();
+  static  String floorOpt = 'Floor (optional)'.tr();
+  static  String title = 'Your address title'.tr();
+  static  String apartmentNumber = 'Apt. no.'.tr();
+  static  String saveAddress = 'Save address'.tr();
+  static  String deliverHere = 'Deliver here'.tr();
+  static  String createOrder = 'Create Order'.tr();
+  static  String deliveryFee = 'Delivery Fee'.tr();
+  static  String totalAmount = 'Total amount'.tr();
+  static  String description = 'Description'.tr();
+  static  String getStarted = 'Get started'.tr();
+  static  String placeOrder = 'Place order'.tr();
+  static  String urDetails = 'Your details'.tr();
+  static  String rememberMe = 'Remember me'.tr();
+  static  String newAddress = 'New address'.tr();
+  static  String creditCard = 'Credit Card'.tr();
+  static  String addToCart = 'Add to Cart'.tr();
+  static  String directions = 'Directions'.tr();
+  static  String catagories = 'Categories'.tr();
+  static  String categories = 'Categories'.tr();
+  static  String firstName = 'First Name'.tr();
+  static  String contactUs = 'Contact us'.tr();
+  static  String birthDate = 'Birth Date'.tr();
+  static  String myAccount = 'My Account'.tr();
+  static  String myAddress = 'My Address'.tr();
+  static  String territory = 'Territory'.tr();
+  static  String myOrders = 'My Orders'.tr();
+  static  String lastName = 'Last Name'.tr();
+  static  String allItems = 'All Items'.tr();
+  static  String userName = 'User Name'.tr();
+  static  String quantity = 'Quantity:'.tr();
+  static  String total = 'Total Price'.tr();
+  static  String subtotal = 'Subtotal'.tr();
+  static  String register = 'Register'.tr();
+  static  String checkout = 'Checkout'.tr();
+  static  String password = 'Password'.tr();
+  static  String facebook = 'Facebook'.tr();
+  static  String deleting = 'Deleting'.tr();
+  static  String payWith = 'Pay with'.tr();
+  static  String reorder = 'Reorder'.tr();
+  static  String status = 'Status: '.tr();
+  static  String profile = 'Profile'.tr();
+  static  String sendEmail = 'Send Email'.tr();
+  static  String version = 'Version'.tr();
+  static  String seeAll = 'See all'.tr();
+  static  String signIn = 'Sign in'.tr();
+  static  String signUp = 'Sign up'.tr();
+  static  String street = 'Street'.tr();
+  static  String logout = 'Logout'.tr();
+  static  String change = 'Change'.tr();
+  static  String filter = 'Filter'.tr();
+  static  String female = 'Female'.tr();
+  static  String gender = 'Gender'.tr();
+  static  String google = 'Google'.tr();
+  static  String search = 'search'.tr();
+  static  String login = 'Login'.tr();
+  static  String guest = 'Guest'.tr();
+  static  String enter = 'Enter'.tr();
+  static  String email = 'Email'.tr();
+  static  String floor = 'Floor'.tr();
+  static  String date = 'Date: '.tr();
+  static  String phone = 'Phone'.tr();
+  static  String cost = 'Cost: '.tr();
+  static  String items = 'Items'.tr();
+  static  String none = 'None'.tr();
+  static  String area = 'Area'.tr();
+  static  String cash = 'Cash'.tr();
+  static  String sort = 'Sort'.tr();
+  static  String save = 'Save'.tr();
+  static  String okay = 'Okay'.tr();
+  static  String cart = 'Cart'.tr();
+  static  String menu = 'Menu'.tr();
+  static  String male = 'Male'.tr();
+  static  String home = 'Home'.tr();
+  static  String all = 'All'.tr();
+  static  String yes = 'Yes'.tr();
+  static  String tax = 'Tax'.tr();
+  static  String or = 'Or'.tr();
+  static  String no = 'No'.tr();
 }
 
 abstract class UnTranslatedStrings {
+  static const String english = 'English';
+  static const String appName = 'Kak';
+  static const String arabic = 'عربي';
   static const String egp = 'EGP';
   static const String en = 'en';
-  static const String english = 'English';
-  static const String arabic = 'عربي';
 }
