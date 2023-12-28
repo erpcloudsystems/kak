@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kak/modules/Cart/presentation/bloc/cart_bloc.dart';
 
 import '../../../../../core/resources/fonts_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
@@ -22,12 +24,22 @@ class PriceSummary extends StatelessWidget {
                 .headlineMedium!
                 .copyWith(fontSize: FontsSize.s16),
           ),
+          PaymentSummaryComponent(
+            title: StringsManager.subtotal,
+            amount: context.read<CartBloc>().state.totalPrice,
+          ),
           const PaymentSummaryComponent(
-              title: StringsManager.subtotal, amount: 171),
+            title: StringsManager.deliveryFee,
+            amount: 30,
+          ),
           const PaymentSummaryComponent(
-              title: StringsManager.deliveryFee, amount: 30),
+            title: StringsManager.tax,
+            amount: 30,
+          ),
           const PaymentSummaryComponent(
-              title: StringsManager.totalAmount, amount: 201),
+            title: StringsManager.totalAmount,
+            amount: 201,
+          ),
         ],
       ),
     );
