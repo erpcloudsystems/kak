@@ -36,10 +36,10 @@ class MapSnapshotSection extends StatelessWidget {
 
           // address details
           Positioned(
-            bottom: -DoubleManager.d_40,
+            bottom: -DoubleManager.d_20,
             child: Container(
               padding: const EdgeInsets.symmetric(
-                vertical: DoubleManager.d_8,
+                vertical: DoubleManager.d_3,
                 horizontal: DoubleManager.d_12,
               ),
               decoration: BoxDecoration(
@@ -96,17 +96,11 @@ class MapSnapshotSection extends StatelessWidget {
                     ),
                   ),
 
-                  // Button
-                  SizedBox(
-                    width: DoubleManager.d_15.w,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: TextButton(
-                          onPressed: () => Navigator.of(context)
-                              .pushReplacementNamed(Routes.mapScreenKey),
-                          child: const Text(StringsManager.change)),
-                    ),
-                  )
+                  // Change Button
+                  TextButton(
+                      onPressed: () => Navigator.of(context)
+                          .pushReplacementNamed(Routes.mapScreenKey),
+                      child: const Text(StringsManager.change))
                 ],
               ),
             ),

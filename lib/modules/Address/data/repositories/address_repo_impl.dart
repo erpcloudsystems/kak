@@ -78,8 +78,10 @@ class AddressRepoImpl implements AddressBaseRepo {
       addressTitle: address.addressTitle,
       longitude: address.longitude,
       latitude: address.latitude,
+      country: address.country,
       street: address.street,
       floor: address.floor,
+      city: address.city,
     );
 
     final addressId =
