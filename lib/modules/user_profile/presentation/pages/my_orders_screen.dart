@@ -50,11 +50,11 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         break;
 
       case RequestState.success:
-      Navigator.of(context).pop();
+        Navigator.of(context).pop();
         break;
 
       case RequestState.error:
-      Navigator.of(context).pop();
+        Navigator.of(context).pop();
         ErrorDialogUtils.displayErrorDialog(
             context: context, errorMessage: state.getOrdersListMessage);
         break;

@@ -14,9 +14,14 @@ import '../widgets/order_details/order_details_items_section.dart';
 import '../widgets/order_details/order_details_payment_summary.dart';
 import '../../../../core/utils/custom_scrolling_animated_template.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
+class OrderDetailsScreen extends StatefulWidget {
   const OrderDetailsScreen({super.key});
 
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     ReceivedOrderEntity? receivedOrder;
@@ -31,25 +36,20 @@ class OrderDetailsScreen extends StatelessWidget {
           builder: (context, state) {
             final order = state.getOrderDetailsData;
             receivedOrder = order;
-            return Padding(
-              padding: const EdgeInsets.all(DoubleManager.d_8),
-              child: CustomScrollingAnimatedTemplate(children: [
-                const SizedBox(height: DoubleManager.d_10),
-                // Customer details:
-                CustomerDetailsSection(order: order),
-
-                // Items:
-                OrderDetailsItemsSection(meals: order.items),
-
-                // Payment summary:
-                OrderDetailsPaymentSummary(order: order),
-
-                const SizedBox(height: DoubleManager.d_50)
-              ]),
-            );
+            return OrderDetailsSuccessWidget(order: order);
           }),
       floatingActionButton: ReorderMealBtn(receivedOrder: receivedOrder),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final orderId = ModalRoute.of(context)?.settings.arguments as String?;
+    final bloc = context.read<PaymentBloc>();
+    if (orderId != null) {
+      bloc.add(GetOrderDetailsEvent(orderId: orderId));
+    }
   }
 
   void orderDetailsStateHandler(BuildContext context, PaymentState state) {
@@ -59,9 +59,11 @@ class OrderDetailsScreen extends StatelessWidget {
         break;
 
       case RequestState.success:
+        Navigator.of(context).pop();
         break;
 
       case RequestState.error:
+        Navigator.of(context).pop();
         ErrorDialogUtils.displayErrorDialog(
           context: context,
           errorMessage: state.getOrderDetailsMessage,
@@ -69,5 +71,34 @@ class OrderDetailsScreen extends StatelessWidget {
         break;
       default:
     }
+  }
+}
+
+class OrderDetailsSuccessWidget extends StatelessWidget {
+  const OrderDetailsSuccessWidget({
+    super.key,
+    required this.order,
+  });
+
+  final ReceivedOrderEntity order;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(DoubleManager.d_8),
+      child: CustomScrollingAnimatedTemplate(children: [
+        const SizedBox(height: DoubleManager.d_10),
+        // Customer details:
+        CustomerDetailsSection(order: order),
+
+        // Items:
+        OrderDetailsItemsSection(meals: order.items),
+
+        // Payment summary:
+        OrderDetailsPaymentSummary(order: order),
+
+        const SizedBox(height: DoubleManager.d_50)
+      ]),
+    );
   }
 }
