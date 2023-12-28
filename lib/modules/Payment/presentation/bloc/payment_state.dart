@@ -38,8 +38,9 @@ class PaymentState extends Equatable {
     this.getOrderDetailsState = RequestState.stable,
     this.getOrderDetailsMessage = 'Get order details initial message',
     this.getOrderDetailsData = const ReceivedOrderEntity(
-      customerAddress: '',
       modeOfPayment: PaymentType.cash,
+      status: DoctypeStatus.draft,
+      customerAddress: '',
       mobileNumber: '',
       customerName: '',
       delivery: 0.0,

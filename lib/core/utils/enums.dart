@@ -10,4 +10,13 @@ enum ComponentType { atLeastOne, required, optional }
 
 enum PaymentType { creditCard, cash }
 
-enum DoctypeStatus { draft, submitted, paid, cancelled, delivered }
+enum DoctypeStatus {
+  draft,
+  onHold,
+  toDeliverAndBill,
+  toBill,
+  toDeliver,
+  completed,
+  cancelled,
+  closed,
+}

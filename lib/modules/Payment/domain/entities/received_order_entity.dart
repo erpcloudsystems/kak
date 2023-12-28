@@ -1,3 +1,4 @@
+import '../../../../core/utils/enums.dart';
 import 'order.dart';
 
 class ReceivedOrderEntity extends OrderEntity {
@@ -8,6 +9,7 @@ class ReceivedOrderEntity extends OrderEntity {
     required this.mobileNumber,
     required this.customerName,
     required this.delivery,
+    required this.status,
     required this.price,
     required this.date,
     required this.tax,
@@ -16,6 +18,7 @@ class ReceivedOrderEntity extends OrderEntity {
 
   final String id, customerName, date, mobileNumber;
   final double price, tax, delivery;
+  final DoctypeStatus status;
 
   @override
   List<Object?> get props => [
@@ -24,6 +27,7 @@ class ReceivedOrderEntity extends OrderEntity {
         customerName,
         mobileNumber,
         delivery,
+        status,
         price,
         items,
         date,

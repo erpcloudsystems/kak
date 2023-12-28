@@ -55,11 +55,23 @@ extension DoctypeStatusExtension on String {
       case 'Cancelled':
         return DoctypeStatus.cancelled;
 
-      case 'Paid':
-        return DoctypeStatus.paid;
+      case 'Completed':
+        return DoctypeStatus.completed;
 
-      case 'Submitted':
-        return DoctypeStatus.submitted;
+      case 'To Deliver':
+        return DoctypeStatus.toDeliver;
+
+      case 'Closed':
+        return DoctypeStatus.closed;
+
+      case 'To Bill':
+        return DoctypeStatus.toBill;
+
+      case 'To Deliver and Bill':
+        return DoctypeStatus.toDeliverAndBill;
+
+      case 'On Hold':
+        return DoctypeStatus.onHold;
 
       default:
         return DoctypeStatus.draft;

@@ -38,7 +38,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             receivedOrder = order;
             return OrderDetailsSuccessWidget(order: order);
           }),
-      floatingActionButton: ReorderMealBtn(receivedOrder: receivedOrder),
+      floatingActionButton: receivedOrder?.status == DoctypeStatus.completed
+          ? ReorderMealBtn(receivedOrder: receivedOrder)
+          : null,
     );
   }
 
