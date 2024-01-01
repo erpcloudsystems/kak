@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 import 'enums.dart';
@@ -24,12 +25,12 @@ extension ComponentTypeExtension on String {
 
 extension ThePaymentTypeName on PaymentType {
   /// This extension return the name of the payment type in readable way.
-  String get value {
+  String  value(BuildContext context) {
     switch (this) {
       case PaymentType.creditCard:
-        return StringsManager.creditCard;
+        return StringsManager.creditCard(context);
       case PaymentType.cash:
-        return StringsManager.cash;
+        return StringsManager.cash(context);
     }
   }
 }

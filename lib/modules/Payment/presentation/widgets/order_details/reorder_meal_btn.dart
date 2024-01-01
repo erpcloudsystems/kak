@@ -25,7 +25,7 @@ class ReorderMealBtn extends StatelessWidget {
           previous.addCartItemState != current.addCartItemState,
       listener: reorderBtnStateHandler,
       child: CustomFloatingButton(
-        title: StringsManager.reorder,
+        title: StringsManager.reorder(context),
         onPressed: () {
           context.read<CartBloc>().add(
                 AddCartItemEvent(
@@ -33,7 +33,7 @@ class ReorderMealBtn extends StatelessWidget {
                     description: '',
                     imageUrl: '',
                     id: const Uuid().v1(),
-                    name: StringsManager.reorderedMeal,
+                    name: StringsManager.reorderedMeal(context),
                     price: receivedOrder!.price,
                     components: receivedOrder!.items
                         .map(
@@ -63,7 +63,7 @@ class ReorderMealBtn extends StatelessWidget {
       case RequestState.success:
         SnackBarUtil().getSnackBar(
           context: context,
-          message: StringsManager.cartAddedMessage,
+          message: StringsManager.cartAddedMessage(context),
           color: ColorsManager.gGreen,
         );
         break;

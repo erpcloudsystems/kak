@@ -47,7 +47,7 @@ class AddressForm extends StatelessWidget {
               // Building name
               AddressFormField(
                 controller: buildingController,
-                hint: StringsManager.buildingName,
+                hint: StringsManager.buildingName(context),
               ),
 
               // Apt & Floor
@@ -58,7 +58,7 @@ class AddressForm extends StatelessWidget {
                   Expanded(
                     child: AddressFormField(
                       controller: apartmentNoController,
-                      hint: StringsManager.apartmentNumber,
+                      hint: StringsManager.apartmentNumber(context),
                     ),
                   ),
                   const SizedBox(width: DoubleManager.d_15),
@@ -67,7 +67,7 @@ class AddressForm extends StatelessWidget {
                   Expanded(
                     child: AddressFormField(
                       controller: floorController,
-                      hint: StringsManager.floorOpt,
+                      hint: StringsManager.floor(context),
                       optional: true,
                     ),
                   ),
@@ -77,19 +77,19 @@ class AddressForm extends StatelessWidget {
               // Street
               AddressFormField(
                 controller: streetController,
-                hint: StringsManager.street,
+                hint: StringsManager.street(context),
               ),
 
               // Title
               AddressFormField(
                 controller: titleController,
-                hint: StringsManager.title,
+                hint: StringsManager.title(context),
               ),
 
               // Additional info
               AddressFormField(
                 controller: additionalInfController,
-                hint: StringsManager.additionalDir,
+                hint: StringsManager.additionalDir(context),
                 optional: true,
               ),
 

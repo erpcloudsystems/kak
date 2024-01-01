@@ -17,7 +17,7 @@ abstract class UrlLauncherHelper {
         case false:
           SnackBarUtil().getSnackBar(
             context: context,
-            message: StringsManager.unKnownErrorOccurred,
+            message: StringsManager.unKnownErrorOccurred(context),
             color: ColorsManager.gRed,
           );
       }

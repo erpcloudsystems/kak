@@ -47,7 +47,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
           } else {
             SnackBarUtil().getSnackBar(
               context: context,
-              message: StringsManager.completeMealMessage,
+              message: StringsManager.completeMealMessage(context),
               color: ColorsManager.gRed,
             );
           }

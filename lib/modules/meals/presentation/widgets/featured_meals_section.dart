@@ -146,8 +146,8 @@ class FeaturedMealsElement extends StatelessWidget {
                                         .add(AddCartItemEvent(meal: meal)),
                                 child: Text(
                                     isHome
-                                        ? StringsManager.addToCart
-                                        : StringsManager.reorder,
+                                        ? StringsManager.addToCart(context)
+                                        : StringsManager.reorder(context),
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineMedium!

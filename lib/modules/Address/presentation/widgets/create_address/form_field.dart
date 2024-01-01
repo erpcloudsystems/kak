@@ -45,7 +45,7 @@ class _AddressFormFieldState extends State<AddressFormField> {
         ),
         validator: (value) {
           if (value == null || value.isEmpty && !widget.optional) {
-            return StringsManager.emptyValidator;
+            return StringsManager.emptyValidator(context);
           }
           return null;
         },

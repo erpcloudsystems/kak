@@ -33,7 +33,7 @@ class DeleteAccountButton extends StatelessWidget {
       },
       child: ProfileListElement(
         icon: Icons.delete_forever_outlined,
-        text: StringsManager.deleteAccount,
+        text: StringsManager.deleteAccount(context),
         onTap: (context) => BlocProvider.of<AuthenticationBloc>(context).add(
             DeleteUserAccountEvent(
                 email: context
@@ -62,7 +62,7 @@ class DeleteAccountButton extends StatelessWidget {
     Navigator.of(context).pop();
     SnackBarUtil().getSnackBar(
       context: context,
-      message: StringsManager.deleteAccountMessage,
+      message: StringsManager.deleteAccountMessage(context),
       color: Colors.green,
     );
     Navigator.of(context)

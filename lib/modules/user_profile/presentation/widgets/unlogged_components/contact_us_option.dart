@@ -14,7 +14,7 @@ class ContactUsOption extends StatelessWidget {
 
     return ProfileListElement(
       icon: Icons.facebook,
-      text: StringsManager.contactUs,
+      text: StringsManager.contactUs(context),
       onTap: (context) async =>
           await UrlLauncherHelper.urlLauncherMethod(context, kakFacebookPage),
     );

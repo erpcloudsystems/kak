@@ -16,8 +16,8 @@ abstract class AwesomeDialogUtils {
         context: context,
         type: QuickAlertType.confirm,
         text: confirmMessage,
-        confirmBtnText: StringsManager.yes,
-        cancelBtnText: StringsManager.no,
+        confirmBtnText: StringsManager.yes(context),
+        cancelBtnText: StringsManager.no(context),
         confirmBtnColor: ColorsManager.gWhite,
         backgroundColor: ColorsManager.gBlack,
         confirmBtnTextStyle: const TextStyle(

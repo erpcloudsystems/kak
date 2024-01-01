@@ -9,7 +9,6 @@ import '../datasources/address_data_source.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../domain/entities/google_address.dart';
 import '../../../../core/network/network_info.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../domain/repositories/address_base_repo.dart';
 import '../../../../core/network/helper_network_methods.dart';
 
@@ -26,7 +25,7 @@ class AddressRepoImpl implements AddressBaseRepo {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw  PermissionDeniedException(StringsManager.enableLocation);
+      throw  const PermissionDeniedException('Please, enable your location');
     }
 
     permission = await Geolocator.checkPermission();
@@ -34,12 +33,12 @@ class AddressRepoImpl implements AddressBaseRepo {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw  PermissionDeniedException(StringsManager.accessLocation);
+        throw  const PermissionDeniedException('We need to access your location to get your address');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw  PermissionDeniedException(StringsManager.accessLocation);
+      throw  const PermissionDeniedException('We need to access your location to get your address');
     }
 
     try {

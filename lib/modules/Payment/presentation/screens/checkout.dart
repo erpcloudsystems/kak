@@ -27,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorsManager.gWhite,
       appBar: AppBar(
-        title:  Text(StringsManager.checkout),
+        title:  Text(StringsManager.checkout(context)),
       ),
       body: BlocListener<PaymentBloc, PaymentState>(
         listenWhen: (previous, current) =>
@@ -65,7 +65,7 @@ class CheckoutScreen extends StatelessWidget {
         LoadingUtils.showLoadingDialog(
           context,
           LoadingType.linear,
-          StringsManager.createOrderMessage,
+          StringsManager.createOrderMessage(context),
         );
         break;
       case RequestState.error:
@@ -81,7 +81,7 @@ class CheckoutScreen extends StatelessWidget {
         SnackBarUtil().getSnackBar(
           context: context,
           color: ColorsManager.gGreen,
-          message: StringsManager.orderCreated,
+          message: StringsManager.orderCreated(context),
         );
         Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.myOrdersScreenKey,

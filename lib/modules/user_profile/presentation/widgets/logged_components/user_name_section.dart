@@ -22,7 +22,7 @@ class UserNameSection extends StatelessWidget {
               break;
 
             case false:
-              userName = StringsManager.guest;
+              userName = StringsManager.guest(context);
               break;
           }
           return Text(

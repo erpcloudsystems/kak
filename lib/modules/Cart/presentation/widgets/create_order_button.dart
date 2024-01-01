@@ -61,7 +61,7 @@ class CreateOrderButton extends StatelessWidget {
   void letTheUserLogin(BuildContext context) {
     ErrorDialogUtils.displayErrorDialog(
       context: context,
-      errorMessage: StringsManager.loginFirstMessage,
+      errorMessage: StringsManager.loginFirstMessage(context),
       onPressed: () => Navigator.of(context).pushNamed(
         Routes.signInScreenKey,
         arguments: {'fromCart': true}, //So we could navigate back here.

@@ -1,9 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:kak/core/resources/routes.dart';
 
+import '../../../../../core/global/global_varibles.dart';
 import '../../../../../core/resources/localizations.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../../generated/l10n.dart';
 
 class LanguageSwitch extends StatefulWidget {
   const LanguageSwitch({super.key});
@@ -16,11 +21,11 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (context.locale.languageCode == UnTranslatedStrings.en) {
-      AppLocal.isEnglish = true;
-    } else {
-      AppLocal.isEnglish = false;
-    }
+    // if (context.locale.languageCode == UnTranslatedStrings.en) {
+    //   AppLocal.isEnglish = true;
+    // } else {
+    //   AppLocal.isEnglish = false;
+    // }
   }
 
   @override
@@ -60,7 +65,29 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
             ),
           ),
         ),
+        IconButton(
+            onPressed: () {
+              Intl.getCurrentLocale() == 'ar_EG'
+                  ? S.load(const Locale('en'))
+                  : S.load(const Locale('ar_EG'));
+              getDeviceLanguage();
+              // Navigator.of(context).pushNamedAndRemoveUntil(
+              //     Routes.navigationBarScreenKey, (route) => false);
+            },
+            icon: const Icon(Icons.abc))
       ],
     );
+  }
+
+  // Get the device
+  void getDeviceLanguage() {
+    final gv = GlobalVariables();
+    final currentLocale = Intl.getCurrentLocale();
+    debugPrint(currentLocale);
+    if (currentLocale == 'ar_EG') {
+      gv.setDeviceLanguage = DeviceLanguage.arabic;
+    } else {
+      gv.setDeviceLanguage = DeviceLanguage.english;
+    }
   }
 }

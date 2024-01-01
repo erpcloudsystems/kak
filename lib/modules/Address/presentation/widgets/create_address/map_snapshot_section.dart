@@ -70,7 +70,7 @@ class MapSnapshotSection extends StatelessWidget {
                         children: [
                           // Area
                           Text(
-                            StringsManager.area,
+                            StringsManager.area(context),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -100,7 +100,7 @@ class MapSnapshotSection extends StatelessWidget {
                   TextButton(
                       onPressed: () => Navigator.of(context)
                           .pushReplacementNamed(Routes.mapScreenKey),
-                      child: Text(StringsManager.change))
+                      child: Text(StringsManager.change(context)))
                 ],
               ),
             ),

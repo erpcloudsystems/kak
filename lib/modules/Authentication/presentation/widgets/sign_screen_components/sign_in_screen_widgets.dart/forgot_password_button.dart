@@ -11,7 +11,7 @@ class ForgotPasswordComponent extends StatelessWidget {
     return Center(
       child: TextButton(
         onPressed: () => Navigator.of(context).pushNamed(Routes.passwordResetScreenKey),
-        child:  Text(StringsManager.forgotPassword),
+        child:  Text(StringsManager.forgotPassword(context)),
       ),
     );
   }

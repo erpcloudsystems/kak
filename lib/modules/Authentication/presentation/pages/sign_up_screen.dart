@@ -32,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
               Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
                   context: context,
-                  message: StringsManager.createdAccountSuccessfully,
+                  message: StringsManager.createdAccountSuccessfully(context),
                   color: Colors.green);
               Navigator.of(context)
                   .pushReplacementNamed(Routes.signInScreenKey);
@@ -61,18 +61,18 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const MainLogo(),
-                       SignTypeText(signSentence: StringsManager.create),
+                       SignTypeText(signSentence: StringsManager.create(context)),
                       SignForm(
                         signEvent: signEvent,
-                        buttonText: StringsManager.signUp,
+                        buttonText: StringsManager.signUp(context),
                         isSignUp: true,
                       ),
                        AuthenticationDivider(
-                          text: StringsManager.authenticationDividerText),
+                          text: StringsManager.authenticationDividerText(context)),
                       const SocialSignWidget(),
                        HaveAccountWidget(
-                        buttonText: StringsManager.signIn,
-                        question: StringsManager.alreadyHaveAnAccount,
+                        buttonText: StringsManager.signIn(context),
+                        question: StringsManager.alreadyHaveAnAccount(context),
                         routeName: Routes.signInScreenKey,
                       ),
                     ],

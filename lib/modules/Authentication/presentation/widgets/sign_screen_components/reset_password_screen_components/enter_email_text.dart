@@ -18,7 +18,7 @@ class EnterEmailText extends StatelessWidget {
         horizontal: DoubleManager.d_2.w,
         vertical: DoubleManager.d_2.h,
       ),
-      child: Text(StringsManager.sendEmailMessage,
+      child: Text(StringsManager.sendEmailMessage(context),
           style: Theme.of(context)
               .textTheme
               .headlineMedium!

@@ -31,7 +31,7 @@ class _RadioFormState extends State<PaymentTypeRadio> {
         children: [
           // Pay with
           Text(
-            StringsManager.payWith,
+            StringsManager.payWith(context),
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium!
@@ -92,7 +92,7 @@ class PaymentRadioComponent extends StatelessWidget {
             ),
             const SizedBox(width: DoubleManager.d_20),
             Text(
-              radioType.value,
+              radioType.value(context),
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!

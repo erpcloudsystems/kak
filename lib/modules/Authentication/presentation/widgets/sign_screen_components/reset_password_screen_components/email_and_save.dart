@@ -35,7 +35,7 @@ class EmailAndSaveButton extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: DoubleManager.d_2.h),
           child: ColoredElevatedButton(
-            buttonText: StringsManager.sendEmail,
+            buttonText: StringsManager.sendEmail(context),
             onPressed: saveForm,
           ),
         ),

@@ -14,7 +14,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OrderDetailsSection(
-      badgeText: StringsManager.paymentSummary,
+      badgeText: StringsManager.paymentSummary(context),
       child: Column(children: [
         const SizedBox(height: DoubleManager.d_10),
         // SubTotal
@@ -22,7 +22,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              StringsManager.subtotal,
+              StringsManager.subtotal(context),
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
@@ -44,7 +44,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              StringsManager.deliveryFee,
+              StringsManager.deliveryFee(context),
               style: Theme.of(context).textTheme.bodySmall,
             ),
             Text(
@@ -59,7 +59,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              StringsManager.tax,
+              StringsManager.tax(context),
               style: Theme.of(context).textTheme.bodySmall,
             ),
             Text(
@@ -75,7 +75,7 @@ class OrderDetailsPaymentSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              StringsManager.total,
+              StringsManager.total(context),
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(

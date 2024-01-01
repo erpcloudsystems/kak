@@ -48,18 +48,18 @@ class SocialSignScreen extends StatelessWidget {
                         facebookSignView: SocialSignScreenButtons(
                       signEvent: SignWithFacebookEvent(),
                       icon: FontAwesomeIcons.facebook,
-                      signType: StringsManager.facebook,
+                      signType: StringsManager.facebook(context),
                     )),
                     SizedBox(height: DoubleManager.d_2.h),
                     GoogleSignWidget(
                         googleSignView: SocialSignScreenButtons(
                       signEvent: SignWithGoogleEvent(),
                       icon: FontAwesomeIcons.google,
-                      signType: StringsManager.google,
+                      signType: StringsManager.google(context),
                     )),
                     SizedBox(height: DoubleManager.d_2.h),
 
-                     AuthenticationDivider(text: StringsManager.or),
+                     AuthenticationDivider(text: StringsManager.or(context)),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: DoubleManager.d_1.h),
@@ -67,7 +67,7 @@ class SocialSignScreen extends StatelessWidget {
                         onPressed: () => Navigator.of(context)
                             .pushNamed(Routes.signInScreenKey),
                         child: Text(
-                          StringsManager.signInWithPassword,
+                          StringsManager.signInWithPassword(context),
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium,
@@ -75,8 +75,8 @@ class SocialSignScreen extends StatelessWidget {
                       ),
                     ),
                      HaveAccountWidget(
-                      question: StringsManager.dontHaveAnAccount,
-                      buttonText: StringsManager.signUp,
+                      question: StringsManager.dontHaveAnAccount(context),
+                      buttonText: StringsManager.signUp(context),
                       routeName: Routes.signUpScreenKey,
                     ),
                   ],

@@ -34,7 +34,7 @@ class LogoutButton extends StatelessWidget {
       },
       child: ProfileListElement(
         icon: Icons.logout,
-        text: StringsManager.logout,
+        text: StringsManager.logout(context),
         onTap: (context) => BlocProvider.of<AuthenticationBloc>(context).add(
             LogoutEvent(
                 email: context
@@ -63,7 +63,7 @@ class LogoutButton extends StatelessWidget {
     Navigator.of(context).pop();
     SnackBarUtil().getSnackBar(
       context: context,
-      message: StringsManager.logoutMessage,
+      message: StringsManager.logoutMessage(context),
       color: ColorsManager.gGreen,
     );
     Navigator.of(context).pushNamedAndRemoveUntil(

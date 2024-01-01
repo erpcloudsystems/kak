@@ -32,7 +32,7 @@ class ErrorDialog extends StatelessWidget {
       actions: [
         TextButton(
             onPressed: onPressed ?? () => Navigator.of(context).pop(),
-            child: Text(StringsManager.okay)),
+            child: Text(StringsManager.okay(context))),
       ],
     );
   }

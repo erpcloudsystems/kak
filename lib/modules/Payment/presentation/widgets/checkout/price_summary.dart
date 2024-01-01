@@ -18,26 +18,26 @@ class PriceSummary extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            StringsManager.paymentSummary,
+            StringsManager.paymentSummary(context),
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium!
                 .copyWith(fontSize: FontsSize.s16),
           ),
           PaymentSummaryComponent(
-            title: StringsManager.subtotal,
+            title: StringsManager.subtotal(context),
             amount: context.read<CartBloc>().state.totalPrice,
           ),
            PaymentSummaryComponent(
-            title: StringsManager.deliveryFee,
+            title: StringsManager.deliveryFee(context),
             amount: 30,
           ),
            PaymentSummaryComponent(
-            title: StringsManager.tax,
+            title: StringsManager.tax(context),
             amount: 30,
           ),
            PaymentSummaryComponent(
-            title: StringsManager.totalAmount,
+            title: StringsManager.totalAmount(context),
             amount: 201,
           ),
         ],

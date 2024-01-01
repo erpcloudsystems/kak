@@ -48,7 +48,7 @@ class _MapSearchButtonState extends State<MapSearchButton> {
             types: [],
             strictbounds: false,
             decoration: InputDecoration(
-                hintText: StringsManager.search,
+                hintText: StringsManager.search(context),
                 hintStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -68,7 +68,8 @@ class _MapSearchButtonState extends State<MapSearchButton> {
   void onError(places.PlacesAutocompleteResponse response) {
     SnackBarUtil().getSnackBar(
         context: context,
-        message: response.errorMessage ?? StringsManager.unKnownErrorOccurred,
+        message: response.errorMessage ??
+            StringsManager.unKnownErrorOccurred(context),
         color: Colors.red);
   }
 

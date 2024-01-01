@@ -15,7 +15,7 @@ class CustomerDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OrderDetailsSection(
-        badgeText: StringsManager.urDetails,
+        badgeText: StringsManager.urDetails(context),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

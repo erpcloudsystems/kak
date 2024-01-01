@@ -26,7 +26,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   Widget build(BuildContext context) {
     ReceivedOrderEntity? receivedOrder;
     return Scaffold(
-      appBar: AppBar(title:  Text(StringsManager.orderDetails)),
+      appBar: AppBar(title:  Text(StringsManager.orderDetails(context))),
       body: BlocConsumer<PaymentBloc, PaymentState>(
           listenWhen: (previous, current) =>
               previous.getOrderDetailsState != current.getOrderDetailsState,

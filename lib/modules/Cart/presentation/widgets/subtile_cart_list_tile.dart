@@ -33,7 +33,7 @@ class _CartListTileSubtitleState extends State<CartListTileSubtitle> {
         children: [
           // cost
           Text(
-            StringsManager.cost,
+            StringsManager.cost(context),
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(width: DoubleManager.d_8),

@@ -31,7 +31,7 @@ class ChooseYourOrder extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                StringsManager.chooseOrderType,
+                StringsManager.chooseOrderType(context),
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -40,7 +40,7 @@ class ChooseYourOrder extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    StringsManager.clickHereToDetermineYourOrderType,
+                    StringsManager.clickHereToDetermineYourOrderType(context),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!

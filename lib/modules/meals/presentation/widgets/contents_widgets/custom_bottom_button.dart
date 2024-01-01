@@ -45,7 +45,7 @@ class MealCustomBottomButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      StringsManager.addToCart,
+                      StringsManager.addToCart(context),
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Colors.white, fontSize: FontsSize.s18),
                     ),

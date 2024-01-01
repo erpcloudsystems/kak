@@ -32,15 +32,15 @@ class PasswordResetScreen extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    content:  Text(
-                      StringsManager.resetPasswordAlertMessage,
+                    content: Text(
+                      StringsManager.resetPasswordAlertMessage(context),
                       softWrap: true,
                     ),
                     actions: [
                       TextButton(
                           onPressed: () => Navigator.of(context)
                               .pushReplacementNamed(Routes.signInScreenKey),
-                          child:  Text(StringsManager.okay))
+                          child: Text(StringsManager.okay(context)))
                     ],
                   ));
         }

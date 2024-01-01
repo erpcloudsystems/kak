@@ -56,7 +56,7 @@ class OrdersListCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                         Text(StringsManager.date),
+                         Text(StringsManager.date(context)),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.transactionDate,
@@ -67,7 +67,7 @@ class OrdersListCard extends StatelessWidget {
                     const SizedBox(height: DoubleManager.d_5),
                     Row(
                       children: [
-                         Text(StringsManager.status),
+                         Text(StringsManager.status(context)),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.status.name,
@@ -98,7 +98,7 @@ class OrdersListCard extends StatelessWidget {
             const SizedBox(height: DoubleManager.d_40),
             // Button
             ColoredElevatedButton(
-              buttonText: StringsManager.orderDetails,
+              buttonText: StringsManager.orderDetails(context),
               onPressed: () => Navigator.of(context)
                   .pushNamed(Routes.orderDetailsScreenKey, arguments: item.id),
             ),

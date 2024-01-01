@@ -52,7 +52,7 @@ class _DateFormPickerState extends State<DateFormPicker> {
       readOnly: true,
       validator: (value) {
         if (value == null) {
-          return StringsManager.emptyValidator;
+          return StringsManager.emptyValidator(context);
         }
         return null;
       },

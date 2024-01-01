@@ -4,7 +4,6 @@ import '../../../../core/global/type_def.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../authentication/data/models/user_model.dart';
 import '../../../authentication/domain/entities/logged_in_user_entity.dart';
 import '../../../authentication/domain/entities/user.dart';
@@ -31,7 +30,7 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
       }
     } else {
       return const Left(
-        OfflineFailure(errorMessage: StringsManager.offlineFailureMessage),
+        OfflineFailure(errorMessage: 'StringsManager.offlineFailureMessage'),
       );
     }
   }
@@ -78,7 +77,7 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
       }
     } else {
       return const Left(
-        OfflineFailure(errorMessage: StringsManager.offlineFailureMessage),
+        OfflineFailure(errorMessage: 'StringsManager.offlineFailureMessage'),
       );
     }
   }

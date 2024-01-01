@@ -67,12 +67,12 @@ class SignForm extends StatelessWidget {
                 CustomTextField(
                     controller: firstNameController,
                     icon: Icons.person,
-                    hint: StringsManager.firstName),
+                    hint: StringsManager.firstName(context)),
                 SizedBox(height: DoubleManager.d_2.h),
                 CustomTextField(
                     controller: lastNameController,
                     icon: Icons.person,
-                    hint: StringsManager.lastName),
+                    hint: StringsManager.lastName(context)),
                 SizedBox(height: DoubleManager.d_2.h),
                 PhoneNumberPicker(
                     phoneNumber: (String number) => phoneNumber = number),

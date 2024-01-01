@@ -23,7 +23,7 @@ class _VersionSectionState extends State<VersionSection> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            StringsManager.version,
+            StringsManager.version(context),
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(width: DoubleManager.d_20),

@@ -28,7 +28,7 @@ class CartItemDeleteIcon extends StatelessWidget {
             Navigator.of(context).pop();
           },
           onCancel: () => Navigator.of(context).pop(),
-          confirmMessage: StringsManager.deleteItemMessage,
+          confirmMessage: StringsManager.deleteItemMessage(context),
         );
       },
       icon: const Icon(

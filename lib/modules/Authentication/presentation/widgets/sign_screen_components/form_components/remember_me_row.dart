@@ -15,7 +15,7 @@ class RememberMeRow extends StatelessWidget {
       children: [
         RememberMeCheckBox(emailController: emailController),
         Text(
-          StringsManager.rememberMe,
+          StringsManager.rememberMe(context),
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 fontSize: FontsSize.s12,
               ),

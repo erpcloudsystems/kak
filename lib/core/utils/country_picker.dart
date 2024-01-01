@@ -39,7 +39,7 @@ class _CountryPickerState extends State<CountryPicker> {
             topRight: Radius.circular(DoubleManager.d_40),
           ),
           inputDecoration: InputDecoration(
-            hintText: StringsManager.selectUrTerritory,
+            hintText: StringsManager.selectUrTerritory(context),
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(Icons.search),
           ),
@@ -59,12 +59,12 @@ class _CountryPickerState extends State<CountryPicker> {
       readOnly: true,
       validator: (value) {
         if (value == null) {
-          return StringsManager.emptyValidator;
+          return StringsManager.emptyValidator(context);
         }
         return null;
       },
-      decoration:  InputDecoration(
-        hintText: StringsManager.territory,
+      decoration: InputDecoration(
+        hintText: StringsManager.territory(context),
         border: const OutlineInputBorder(),
         prefixIcon: const Icon(Icons.location_city),
       ),

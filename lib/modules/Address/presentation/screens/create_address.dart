@@ -27,7 +27,7 @@ class CreateAddressScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: ColorsManager.gWhite,
-        appBar: AppBar(title: Text(StringsManager.newAddress)),
+        appBar: AppBar(title: Text(StringsManager.newAddress(context))),
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(

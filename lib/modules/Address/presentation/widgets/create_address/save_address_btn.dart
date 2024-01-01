@@ -52,7 +52,7 @@ class SaveAddressBtn extends StatelessWidget {
               LoadingUtils.showLoadingDialog(
                 context,
                 LoadingType.linear,
-                StringsManager.savingAddress,
+                StringsManager.savingAddress(context),
               );
               break;
             case RequestState.success:
@@ -64,7 +64,7 @@ class SaveAddressBtn extends StatelessWidget {
               SnackBarUtil().getSnackBar(
                 context: context,
                 color: ColorsManager.gGreen,
-                message: StringsManager.newAddressMessage,
+                message: StringsManager.newAddressMessage(context),
               );
               break;
             case RequestState.error:
@@ -107,7 +107,7 @@ class SaveAddressBtn extends StatelessWidget {
                   .add(SendUserAddressEvent(address: address!));
             }
           },
-          buttonText: StringsManager.saveAddress,
+          buttonText: StringsManager.saveAddress(context),
         ),
       ),
     );

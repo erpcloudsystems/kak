@@ -93,32 +93,32 @@ class DeliveryAddressComponent extends StatelessWidget {
                 // Address details
                 if (address.street != null)
                   AddressField(
-                    title: StringsManager.street,
+                    title: StringsManager.street(context),
                     value: address.street!,
                   ),
 
                 if (address.buildingName != null)
                   AddressField(
-                    title: StringsManager.buildingName,
+                    title: StringsManager.buildingName(context),
                     value: address.buildingName!,
                   ),
 
                 if (address.apartmentNumber != null)
                   AddressField(
-                    title: StringsManager.apartmentNumber,
+                    title: StringsManager.apartmentNumber(context),
                     value: address.apartmentNumber!,
                   ),
 
                 if (address.floor != null && address.floor!.isNotEmpty)
                   AddressField(
-                    title: StringsManager.floor,
+                    title: StringsManager.floor(context),
                     value: address.floor!,
                   ),
 
                 if (address.additionalDirections != null &&
                     address.additionalDirections!.isNotEmpty)
                   AddressField(
-                    title: StringsManager.directions,
+                    title: StringsManager.directions(context),
                     value: address.additionalDirections!,
                   ),
 

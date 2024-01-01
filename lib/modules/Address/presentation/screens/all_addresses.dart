@@ -15,7 +15,7 @@ class AllAddressesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text(StringsManager.deliveryAddresses)),
+      appBar: AppBar(title: Text(StringsManager.deliveryAddresses(context))),
       body: BlocConsumer<AddressBloc, AddressState>(
         listenWhen: (previous, current) =>
             previous.getAllAddressesState != current.getAllAddressesState,
@@ -27,7 +27,7 @@ class AllAddressesScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: CustomFloatingButton(
-        title: StringsManager.addAddress,
+        title: StringsManager.addAddress(context),
         onPressed: () => Navigator.of(context).pushNamed(Routes.mapScreenKey),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -61,7 +61,7 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
     switch (state.deleteAddressState) {
       case RequestState.loading:
         LoadingUtils.showLoadingDialog(
-            context, LoadingType.linear, StringsManager.deleting);
+            context, LoadingType.linear, StringsManager.deleting(context));
         break;
       case RequestState.success:
         isDismissed = true;
@@ -71,7 +71,7 @@ class DeliveryAddressesSuccessComponent extends StatelessWidget {
         SnackBarUtil().getSnackBar(
           context: context,
           color: ColorsManager.gGreen,
-          message: StringsManager.deleteAddressMessage,
+          message: StringsManager.deleteAddressMessage(context),
         );
         break;
       case RequestState.error:

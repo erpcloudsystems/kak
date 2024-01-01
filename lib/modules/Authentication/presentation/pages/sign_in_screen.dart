@@ -84,20 +84,20 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         const MainLogo(),
                          SignTypeText(
-                            signSentence: StringsManager.loginToUrAccount),
+                            signSentence: StringsManager.loginToUrAccount(context)),
                         SignForm(
                           signEvent: signEvent,
-                          buttonText: StringsManager.signIn,
+                          buttonText: StringsManager.signIn(context),
                           isSignUp: false,
                         ),
                         const ForgotPasswordComponent(),
                          AuthenticationDivider(
-                          text: StringsManager.authenticationDividerText,
+                          text: StringsManager.authenticationDividerText(context),
                         ),
                         const SocialSignWidget(),
                          HaveAccountWidget(
-                          question: StringsManager.dontHaveAnAccount,
-                          buttonText: StringsManager.signUp,
+                          question: StringsManager.dontHaveAnAccount(context),
+                          buttonText: StringsManager.signUp(context),
                           routeName: Routes.signUpScreenKey,
                         ),
                       ],

@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/exceptions.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../domain/entities/user_caching_data_entity.dart';
 import '../datasources/authentication_local_data_source.dart';
 import '../../domain/repositories/base_caching_user_data_repository.dart';
@@ -20,9 +19,9 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.cacheUser(userData);
       return const Right(unit);
     } catch (error) {
-      return  Left(
+      return  const Left(
         UnknownCachingFailure(
-          errorMessage: StringsManager.unknownCachingFailureMessage,
+          errorMessage: 'StringsManager.unknownCachingFailureMessage',
         ),
       );
     }
@@ -35,9 +34,9 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       final userData = await _localDataSource.getCachedUser();
       return Right(userData);
     } on EmptyCacheException {
-      return  Left(
+      return  const Left(
         EmptyCacheFailure(
-          errorMessage: StringsManager.emptyCacheFailureMessage,
+          errorMessage: 'StringsManager.emptyCacheFailureMessage',
         ),
       );
     }
@@ -50,8 +49,8 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.deleteUserCachedData();
       return const Right(unit);
     } on EmptyCacheException {
-      return  Left(EmptyCacheFailure(
-        errorMessage: StringsManager.emptyCacheFailureMessage,
+      return  const Left(EmptyCacheFailure(
+        errorMessage: 'StringsManager.emptyCacheFailureMessage',
       ));
     }
   }

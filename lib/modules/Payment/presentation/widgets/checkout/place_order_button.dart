@@ -34,7 +34,7 @@ class PlaceOrderButton extends StatelessWidget {
                 ),
               ));
         },
-        buttonText: StringsManager.placeOrder,
+        buttonText: StringsManager.placeOrder(context),
       ),
     );
   }

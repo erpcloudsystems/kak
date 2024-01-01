@@ -36,7 +36,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               setState(() {
                 isLoading = true;
                 LoadingUtils.showLoadingDialog(
-                    context, LoadingType.linear, StringsManager.loading);
+                    context, LoadingType.linear, StringsManager.loading(context));
               });
             }
           },

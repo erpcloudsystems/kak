@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/global/type_def.dart';
 import '../../../../core/network/network_info.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../authentication/domain/entities/user.dart';
 import '../../domain/repositories/base_social_sign_repository.dart';
 import '../datasources/base_authentication_remote_data_source.dart';
@@ -41,15 +40,15 @@ class SocialSignRepository implements BaseSocialSignRepository {
         return Left(
           ServerFailure(
               errorMessage:
-                  error.message ?? StringsManager.serverFailureMessage),
+                  error.message ?? 'StringsManager.serverFailureMessage'),
         );
       } catch (error) {
-        return Left(
-            ServerFailure(errorMessage: StringsManager.serverFailureMessage));
+        return const Left(
+            ServerFailure(errorMessage: 'StringsManager.serverFailureMessage'));
       }
     } else {
       return const Left(
-          OfflineFailure(errorMessage: StringsManager.offlineFailureMessage));
+          OfflineFailure(errorMessage: 'StringsManager.offlineFailureMessage'));
     }
   }
 }

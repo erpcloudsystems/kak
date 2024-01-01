@@ -1,168 +1,211 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
+import '../../generated/l10n.dart';
 
 class StringsManager {
   static String oneItemIsRequired(String itemClassification) {
-    final String translated = 'one is must be chosen'.tr();
+    final String translated = 'one is must be chosen';
     return '$itemClassification $translated';
   }
 
   static String itemIsRequired(String itemClassification) {
-    final String translated = 'is required'.tr();
+    final String translated = 'is required';
     return '$itemClassification $translated';
   }
 
   static String maximumNumberError(String maxNumber) {
-    final String translated = 'max number'.tr();
+    final String translated = 'max number';
     return '$maxNumber $translated';
   }
 
-  static String serverFailureMessage =
-      'There is Error with Server, Please try again later'.tr().tr();
-  static const String offlineFailureMessage =
-      'There is a problem with your internet connection';
-  static  String passwordLengthValidationMessage =
-      'password shouldn\'t be less than 6 characters'.tr();
-  static  String unknownCachingFailureMessage =
-      'There is a problem while caching user data'.tr();
-  static  String sendEmailMessage =
-      'Please, Enter your E-mail address So that we could send you an email to reset your password'.tr();
-  static  String resetPasswordAlertMessage =
-      'A reset password email is sent to your Email, Please rest your password and Try to sign in again'.tr();
-  static  String createdAccountSuccessfully =
-      'You have created your account successfully!'.tr();
-  static  String clickHereToDetermineYourOrderType =
-      'Click here to determine your order type'.tr();
-  static  String accessLocation =
-      'Kak needs to access your location to help find your address'.tr();
-  static  String emptyCacheFailureMessage = 'There is no cached user data'.tr();
-  static  String noCartItemsMessage =
-      'There is no items yet in your cart!'.tr();
-  static  String loginFirstMessage =
-      'You have to login first to make an order'.tr();
-  static  String deleteAddressMessage =
-      'Your address deleted successfully'.tr();
-  static  String duplicationError =
-      'Yor already added this item to ur cart'.tr();
-  static  String newAddressMessage = 'Your new address added successfully'.tr();
-  static  String deleteItemMessage = 'Are you sure to delete this item?'.tr();
-  static  String deleteAccountMessage = 'You have deleted your account'.tr();
-  static  String removedFromCartMessage = 'Item removed from your cart'.tr();
-  static  String phoneNumberMessage = 'Please, enter your phone number'.tr();
-  static  String passwordValidateMessage = 'please enter your Password'.tr();
-  static  String enableLocation = 'Please open your location service'.tr();
-  static  String logoutMessage = 'You have logged out successfully'.tr();
-  static  String completeMealMessage = 'Please, complete your meal'.tr();
-  static  String additionalDir = 'Additional directions (optional)'.tr();
-  static  String alreadyHaveAnAccount = 'Already have an account?'.tr();
-  static  String emailValidateMessage = 'please enter your E-mail'.tr();
-  static  String orderCreated = 'Your order created successfully'.tr();
-  static  String emptyValidator = 'This field must have a value'.tr();
-  static  String unKnownErrorOccurred = 'Unknown Error Occurred'.tr();
-  static  String authenticationDividerText = 'or continue with'.tr();
-  static  String defaultAddress = 'Is this ur default address'.tr();
-  static  String dontHaveAnAccount = 'Don\'t have an account?'.tr();
-  static  String signInWithPassword = 'Sign in with password'.tr();
-  static  String selectUrTerritory = 'Select your territory'.tr();
-  static  String loginToUrAccount = 'Login To Your Account?'.tr();
-  static  String createOrderMessage = 'Creating your order'.tr();
-  static  String deliveryAddresses = 'Delivery addresses'.tr();
-  static  String cartAddedMessage = 'Added to your cart'.tr();
-  static  String deliveryLocation = 'Delivery location'.tr();
-  static  String errorMessage = 'Something went wrong!'.tr();
-  static  String forgotPassword = 'Forgot The Password'.tr();
-  static  String noAddressMessage = 'No Addresses yet!'.tr();
-  static  String chooseOrderType = 'Choose order type'.tr();
-  static  String savingAddress = 'Saving your address'.tr();
-  static  String productDetails = 'Product Details'.tr();
-  static  String previousOrders = 'Previous orders'.tr();
-  static  String paymentSummary = 'Payment summary'.tr();
-  static  String loading = 'Loading, Please wait!'.tr();
-  static  String deleteAccount = 'Delete account'.tr();
-  static  String paymentMethod = 'payment Method'.tr();
-  static  String reorderedMeal = 'Reordered meal'.tr();
-  static  String orderDetails = 'Order details'.tr();
-  static  String create = 'Create Your Account'.tr();
-  static  String buildingName = 'Building name'.tr();
-  static  String continueWith = 'Continue with'.tr();
-  static  String addAddress = 'Add new address'.tr();
-  static  String floorOpt = 'Floor (optional)'.tr();
-  static  String title = 'Your address title'.tr();
-  static  String apartmentNumber = 'Apt. no.'.tr();
-  static  String saveAddress = 'Save address'.tr();
-  static  String deliverHere = 'Deliver here'.tr();
-  static  String createOrder = 'Create Order'.tr();
-  static  String deliveryFee = 'Delivery Fee'.tr();
-  static  String totalAmount = 'Total amount'.tr();
-  static  String description = 'Description'.tr();
-  static  String getStarted = 'Get started'.tr();
-  static  String placeOrder = 'Place order'.tr();
-  static  String urDetails = 'Your details'.tr();
-  static  String rememberMe = 'Remember me'.tr();
-  static  String newAddress = 'New address'.tr();
-  static  String creditCard = 'Credit Card'.tr();
-  static  String addToCart = 'Add to Cart'.tr();
-  static  String directions = 'Directions'.tr();
-  static  String catagories = 'Categories'.tr();
-  static  String categories = 'Categories'.tr();
-  static  String firstName = 'First Name'.tr();
-  static  String contactUs = 'Contact us'.tr();
-  static  String birthDate = 'Birth Date'.tr();
-  static  String myAccount = 'My Account'.tr();
-  static  String myAddress = 'My Address'.tr();
-  static  String territory = 'Territory'.tr();
-  static  String myOrders = 'My Orders'.tr();
-  static  String lastName = 'Last Name'.tr();
-  static  String allItems = 'All Items'.tr();
-  static  String userName = 'User Name'.tr();
-  static  String quantity = 'Quantity:'.tr();
-  static  String total = 'Total Price'.tr();
-  static  String subtotal = 'Subtotal'.tr();
-  static  String register = 'Register'.tr();
-  static  String checkout = 'Checkout'.tr();
-  static  String password = 'Password'.tr();
-  static  String facebook = 'Facebook'.tr();
-  static  String deleting = 'Deleting'.tr();
-  static  String payWith = 'Pay with'.tr();
-  static  String reorder = 'Reorder'.tr();
-  static  String status = 'Status: '.tr();
-  static  String profile = 'Profile'.tr();
-  static  String sendEmail = 'Send Email'.tr();
-  static  String version = 'Version'.tr();
-  static  String seeAll = 'See all'.tr();
-  static  String signIn = 'Sign in'.tr();
-  static  String signUp = 'Sign up'.tr();
-  static  String street = 'Street'.tr();
-  static  String logout = 'Logout'.tr();
-  static  String change = 'Change'.tr();
-  static  String filter = 'Filter'.tr();
-  static  String female = 'Female'.tr();
-  static  String gender = 'Gender'.tr();
-  static  String google = 'Google'.tr();
-  static  String search = 'search'.tr();
-  static  String login = 'Login'.tr();
-  static  String guest = 'Guest'.tr();
-  static  String enter = 'Enter'.tr();
-  static  String email = 'Email'.tr();
-  static  String floor = 'Floor'.tr();
-  static  String date = 'Date: '.tr();
-  static  String phone = 'Phone'.tr();
-  static  String cost = 'Cost: '.tr();
-  static  String items = 'Items'.tr();
-  static  String none = 'None'.tr();
-  static  String area = 'Area'.tr();
-  static  String cash = 'Cash'.tr();
-  static  String sort = 'Sort'.tr();
-  static  String save = 'Save'.tr();
-  static  String okay = 'Okay'.tr();
-  static  String cart = 'Cart'.tr();
-  static  String menu = 'Menu'.tr();
-  static  String male = 'Male'.tr();
-  static  String home = 'Home'.tr();
-  static  String all = 'All'.tr();
-  static  String yes = 'Yes'.tr();
-  static  String tax = 'Tax'.tr();
-  static  String or = 'Or'.tr();
-  static  String no = 'No'.tr();
+  static String serverFailureMessage(BuildContext context) =>
+      S.of(context).serverFailureMessage;
+
+  static String offlineFailureMessage(BuildContext context) =>
+      S.of(context).noInternetConnection;
+  static String deleteAddressMessage(BuildContext context) =>
+      S.of(context).deleteAddressMessage;
+
+  static String noCartItemsMessage(BuildContext context) =>
+      S.of(context).noItems;
+  static String passwordLengthValidationMessage(BuildContext context) =>
+      S.of(context).passwordLengthError;
+  static String unknownCachingFailureMessage(BuildContext context) =>
+      S.of(context).cachingError;
+  static String sendEmailMessage(BuildContext context) =>
+      S.of(context).enterEmailMessage;
+  static String resetPasswordAlertMessage(BuildContext context) =>
+      S.of(context).resetEmailSent;
+  static String createdAccountSuccessfully(BuildContext context) =>
+      S.of(context).creationEmailSuccess;
+  static String clickHereToDetermineYourOrderType(BuildContext context) =>
+      S.of(context).clickToDetermine;
+  static String accessLocation(BuildContext context) =>
+      S.of(context).locationRequest;
+  static String loginFirstMessage(BuildContext context) =>
+      S.of(context).loginFirst;
+  static String duplicationError(BuildContext context) =>
+      S.of(context).duplicateItemError;
+  static String newAddressMessage(BuildContext context) =>
+      S.of(context).newAddressMessage;
+  static String deleteItemMessage(BuildContext context) =>
+      S.of(context).deleteItemMessage;
+  static String deleteAccountMessage(BuildContext context) =>
+      S.of(context).deleteAccountMessage;
+  static String removedFromCartMessage(BuildContext context) =>
+      S.of(context).removedFromCartMessage;
+  static String phoneNumberMessage(BuildContext context) =>
+      S.of(context).phoneNumberMessage;
+  static String passwordValidateMessage(BuildContext context) =>
+      S.of(context).passwordValidateMessage;
+  static String enableLocation(BuildContext context) =>
+      S.of(context).enableLocation;
+  static String logoutMessage(BuildContext context) =>
+      S.of(context).logoutMessage;
+  static String completeMealMessage(BuildContext context) =>
+      S.of(context).completeMealMessage;
+  static String additionalDir(BuildContext context) =>
+      S.of(context).additionalDir;
+  static String alreadyHaveAnAccount(BuildContext context) =>
+      S.of(context).alreadyHaveAnAccount;
+  static String emailValidateMessage(BuildContext context) =>
+      S.of(context).emailValidateMessage;
+  static String orderCreated(BuildContext context) =>
+      S.of(context).orderCreated;
+  static String emptyValidator(BuildContext context) =>
+      S.of(context).emptyValidator;
+  static String unKnownErrorOccurred(BuildContext context) =>
+      S.of(context).unKnownErrorOccurred;
+  static String authenticationDividerText(BuildContext context) =>
+      S.of(context).authenticationDividerText;
+  static String defaultAddress(BuildContext context) =>
+      S.of(context).defaultAddress;
+  static String dontHaveAnAccount(BuildContext context) =>
+      S.of(context).dontHaveAnAccount;
+  static String signInWithPassword(BuildContext context) =>
+      S.of(context).signInWithPassword;
+  static String selectUrTerritory(BuildContext context) =>
+      S.of(context).selectUrTerritory;
+  static String loginToUrAccount(BuildContext context) =>
+      S.of(context).loginToUrAccount;
+  static String createOrderMessage(BuildContext context) =>
+      S.of(context).createOrderMessage;
+  static String deliveryAddresses(BuildContext context) =>
+      S.of(context).deliveryAddresses;
+  static String cartAddedMessage(BuildContext context) =>
+      S.of(context).cartAddedMessage;
+  static String deliveryLocation(BuildContext context) =>
+      S.of(context).deliveryLocation;
+  static String errorMessage(BuildContext context) =>
+      S.of(context).errorMessage;
+  static String forgotPassword(BuildContext context) =>
+      S.of(context).forgotPassword;
+  static String noAddressMessage(BuildContext context) =>
+      S.of(context).noAddressMessage;
+  static String chooseOrderType(BuildContext context) =>
+      S.of(context).chooseOrderType;
+  static String savingAddress(BuildContext context) =>
+      S.of(context).savingAddress;
+  static String productDetails(BuildContext context) =>
+      S.of(context).productDetails;
+  static String previousOrders(BuildContext context) =>
+      S.of(context).previousOrders;
+  static String paymentSummary(BuildContext context) =>
+      S.of(context).paymentSummary;
+  static String loading(BuildContext context) => S.of(context).loading;
+  static String deleteAccount(BuildContext context) =>
+      S.of(context).deleteAccount;
+  static String paymentMethod(BuildContext context) =>
+      S.of(context).paymentMethod;
+  static String reorderedMeal(BuildContext context) =>
+      S.of(context).reorderedMeal;
+  static String orderDetails(BuildContext context) =>
+      S.of(context).orderDetails;
+  static String create(BuildContext context) => S.of(context).create;
+  static String buildingName(BuildContext context) =>
+      S.of(context).buildingName;
+  static String continueWith(BuildContext context) =>
+      S.of(context).continueWith;
+  static String addAddress(BuildContext context) => S.of(context).addAddress;
+  static String floorOpt(BuildContext context) => S.of(context).floorOpt;
+  static String title(BuildContext context) => S.of(context).title;
+  static String apartmentNumber(BuildContext context) =>
+      S.of(context).apartmentNumber;
+  static String saveAddress(BuildContext context) => S.of(context).saveAddress;
+  static String deliverHere(BuildContext context) => S.of(context).deliverHere;
+  static String createOrder(BuildContext context) => S.of(context).createOrder;
+  static String deliveryFee(BuildContext context) => S.of(context).deliveryFee;
+  static String totalAmount(BuildContext context) => S.of(context).totalAmount;
+  static String description(BuildContext context) => S.of(context).description;
+  static String getStarted(BuildContext context) => S.of(context).getStarted;
+  static String placeOrder(BuildContext context) => S.of(context).placeOrder;
+  static String urDetails(BuildContext context) => S.of(context).urDetails;
+  static String rememberMe(BuildContext context) => S.of(context).rememberMe;
+  static String newAddress(BuildContext context) => S.of(context).newAddress;
+  static String creditCard(BuildContext context) => S.of(context).creditCard;
+  static String addToCart(BuildContext context) => S.of(context).addToCart;
+  static String directions(BuildContext context) => S.of(context).directions;
+  static String catagories(BuildContext context) => S.of(context).catagories;
+  static String categories(BuildContext context) => S.of(context).categories;
+  static String firstName(BuildContext context) => S.of(context).firstName;
+  static String contactUs(BuildContext context) => S.of(context).contactUs;
+  static String birthDate(BuildContext context) => S.of(context).birthDate;
+  static String myAccount(BuildContext context) => S.of(context).myAccount;
+  static String myAddress(BuildContext context) => S.of(context).myAddress;
+  static String territory(BuildContext context) => S.of(context).territory;
+  static String myOrders(BuildContext context) => S.of(context).myOrders;
+  static String lastName(BuildContext context) => S.of(context).lastName;
+  static String allItems(BuildContext context) => S.of(context).allItems;
+  static String userName(BuildContext context) => S.of(context).userName;
+  static String quantity(BuildContext context) => S.of(context).quantity;
+  static String total(BuildContext context) => S.of(context).total;
+  static String subtotal(BuildContext context) => S.of(context).subtotal;
+  static String register(BuildContext context) => S.of(context).register;
+  static String checkout(BuildContext context) => S.of(context).checkout;
+  static String password(BuildContext context) => S.of(context).password;
+  static String facebook(BuildContext context) => S.of(context).facebook;
+  static String deleting(BuildContext context) => S.of(context).deleting;
+  static String payWith(BuildContext context) => S.of(context).payWith;
+  static String reorder(BuildContext context) => S.of(context).reorder;
+  static String status(BuildContext context) => S.of(context).status;
+  static String profile(BuildContext context) => S.of(context).profile;
+  static String sendEmail(BuildContext context) => S.of(context).sendEmail;
+  static String version(BuildContext context) => S.of(context).version;
+  static String seeAll(BuildContext context) => S.of(context).seeAll;
+  static String signIn(BuildContext context) => S.of(context).signIn;
+  static String signUp(BuildContext context) => S.of(context).signUp;
+  static String street(BuildContext context) => S.of(context).street;
+  static String logout(BuildContext context) => S.of(context).logout;
+  static String change(BuildContext context) => S.of(context).change;
+  static String filter(BuildContext context) => S.of(context).filter;
+  static String female(BuildContext context) => S.of(context).female;
+  static String gender(BuildContext context) => S.of(context).gender;
+  static String google(BuildContext context) => S.of(context).google;
+  static String search(BuildContext context) => S.of(context).search;
+  static String login(BuildContext context) => S.of(context).login;
+  static String guest(BuildContext context) => S.of(context).guest;
+  static String enter(BuildContext context) => S.of(context).enter;
+  static String email(BuildContext context) => S.of(context).email;
+  static String floor(BuildContext context) => S.of(context).floor;
+  static String date(BuildContext context) => S.of(context).date;
+  static String phone(BuildContext context) => S.of(context).phone;
+  static String cost(BuildContext context) => S.of(context).cost;
+  static String items(BuildContext context) => S.of(context).items;
+  static String none(BuildContext context) => S.of(context).none;
+  static String area(BuildContext context) => S.of(context).area;
+  static String cash(BuildContext context) => S.of(context).cash;
+  static String sort(BuildContext context) => S.of(context).sort;
+  static String save(BuildContext context) => S.of(context).save;
+  static String okay(BuildContext context) => S.of(context).okay;
+  static String cart(BuildContext context) => S.of(context).cart;
+  static String male(BuildContext context) => S.of(context).male;
+  static String home(BuildContext context) => S.of(context).home;
+  static String menu(BuildContext context) => S.of(context).menu;
+  static String all(BuildContext context) => S.of(context).all;
+  static String yes(BuildContext context) => S.of(context).yes;
+  static String tax(BuildContext context) => S.of(context).tax;
+  static String or(BuildContext context) => S.of(context).or;
+  static String no(BuildContext context) => S.of(context).no;
 }
 
 abstract class UnTranslatedStrings {

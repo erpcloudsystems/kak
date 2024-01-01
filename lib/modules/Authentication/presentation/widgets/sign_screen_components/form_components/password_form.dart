@@ -22,7 +22,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        hintText: StringsManager.password,
+        hintText: StringsManager.password(context),
         prefixIcon: Icon(Icons.lock, size: Theme.of(context).iconTheme.size),
         suffixIcon: IconButton(
           onPressed: () {
@@ -39,9 +39,9 @@ class _PasswordFormState extends State<PasswordForm> {
       controller: widget.passwordController,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return StringsManager.passwordValidateMessage;
+          return StringsManager.passwordValidateMessage(context);
         } else if (value.length < IntManager.i_6) {
-          return StringsManager.passwordLengthValidationMessage;
+          return StringsManager.passwordLengthValidationMessage(context);
         }
         return null;
       },

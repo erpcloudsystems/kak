@@ -33,7 +33,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            StringsManager.cart,
+            StringsManager.cart(context),
             style: Theme.of(context)
                 .appBarTheme
                 .titleTextStyle!
@@ -45,10 +45,10 @@ class _CartScreenState extends State<CartScreen> {
               previous.removeCartItemState != current.removeCartItemState,
           listener: (context, state) {
             if (state.removeCartItemState == RequestState.loading) {
-              LoadingUtils.showLoadingDialog(
-                  context, LoadingType.linear, StringsManager.deleting);
+              LoadingUtils.showLoadingDialog(context, LoadingType.linear,
+                  StringsManager.deleting(context));
             }
-    
+
             if (state.removeCartItemState == RequestState.success) {
               Navigator.of(context).pop();
               BlocProvider.of<CartBloc>(context).add(GetCartItemsEvent());
@@ -58,7 +58,7 @@ class _CartScreenState extends State<CartScreen> {
                 color: ColorsManager.gGreen,
               );
             }
-    
+
             if (state.removeCartItemState == RequestState.error) {
               Navigator.of(context).pop();
               SnackBarUtil().getSnackBar(
@@ -74,12 +74,12 @@ class _CartScreenState extends State<CartScreen> {
           builder: (context, state) {
             if (state.getCartItemsState == RequestState.error ||
                 state.getCartItemsData.isEmpty) {
-              return NoDataWidget(
+              return  NoDataWidget(
                 assetPath: ImagesPath.emptyCartPath,
-                text: StringsManager.noCartItemsMessage,
+                text: StringsManager.noCartItemsMessage(context),
               );
             }
-    
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

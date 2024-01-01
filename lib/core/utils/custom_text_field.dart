@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.controller,
     required this.hint,
-     this.icon,
+    this.icon,
     super.key,
   });
 
@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.name,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return StringsManager.emptyValidator;
+          return StringsManager.emptyValidator(context);
         }
         return null;
       },

@@ -56,7 +56,7 @@ class SuccessWidget extends StatelessWidget {
           alignment: Alignment.topLeft,
           margin: const EdgeInsets.symmetric(vertical: DoubleManager.d_20),
           child: Text(
-            StringsManager.deliveryLocation,
+            StringsManager.deliveryLocation(context),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
@@ -97,7 +97,7 @@ class SuccessWidget extends StatelessWidget {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(DoubleManager.d_20)),
             child: Text(
-              StringsManager.deliverHere,
+              StringsManager.deliverHere(context),
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     color: Colors.white,
                     fontSize: FontsSize.s18,

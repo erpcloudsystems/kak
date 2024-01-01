@@ -17,12 +17,12 @@ class EmailForm extends StatelessWidget {
       controller: emailController,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.email, size: Theme.of(context).iconTheme.size),
-        hintText: StringsManager.email,
+        hintText: StringsManager.email(context),
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value == null || !value.isEmailValid()) {
-          return StringsManager.emailValidateMessage;
+          return StringsManager.emailValidateMessage(context);
         }
         return null;
       },

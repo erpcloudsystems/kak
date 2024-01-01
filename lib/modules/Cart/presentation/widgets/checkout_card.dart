@@ -24,7 +24,7 @@ class TotalCard extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(bottom: DoubleManager.d_8),
         child: Text(
-          StringsManager.total,
+          StringsManager.total(context),
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
@@ -48,7 +48,7 @@ class TotalCard extends StatelessWidget {
               shape: const ContinuousRectangleBorder(
                   borderRadius:
                       BorderRadius.all(Radius.circular(DoubleManager.d_20)))),
-          child: Text(StringsManager.createOrder,
+          child: Text(StringsManager.createOrder(context),
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: FontsSize.s13,
                     color: ColorsManager.gWhite,

@@ -108,7 +108,7 @@ class _OffersSectionState extends State<OffersSection> {
 //           fontName: FontsName.detailsFont, fontSize: FontsSize.s16),
 //       validator: (value) {
 //         if (value == null) {
-//           return StringsManager.emptyValidator;
+//           return StringsManager.emptyValidator(context);
 //         }
 //         return null;
 //       },

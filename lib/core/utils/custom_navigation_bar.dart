@@ -22,7 +22,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: navigationBarIcons,
+        items: navigationBarIcons(context),
         type: BottomNavigationBarType.shifting,
         currentIndex: _selectedIndex,
         selectedItemColor: ColorsManager.mainColor,
@@ -42,18 +42,18 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     ProfilePage(),
   ];
 
-  static  List<BottomNavigationBarItem> navigationBarIcons = [
+  static List<BottomNavigationBarItem> navigationBarIcons(BuildContext context) => [
     BottomNavigationBarItem(
       icon: const Icon(Icons.shopping_cart),
-      label: StringsManager.cart,
+      label: StringsManager.cart(context),
     ),
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: const Icon(Icons.home),
-      label: StringsManager.home,
+      label: StringsManager.home(context),
     ),
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: const Icon(Icons.person),
-      label: StringsManager.profile,
+      label: StringsManager.profile(context),
     ),
   ];
 }

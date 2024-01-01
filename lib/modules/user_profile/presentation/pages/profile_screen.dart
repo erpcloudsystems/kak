@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text(StringsManager.profile)),
+      appBar: AppBar(title: Text(StringsManager.profile(context))),
       body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         buildWhen: (previous, current) =>
             previous.isUserLoggedIn != current.isUserLoggedIn,
@@ -30,8 +30,8 @@ class ProfilePage extends StatelessWidget {
               const UserPhotoWidget(),
               const UserNameSection(),
               state.isUserLoggedIn
-                  ? OptionsList(options: loggedOptionsList)
-                  : OptionsList(options: guestOptionsList),
+                  ? OptionsList(options: loggedOptionsList(context))
+                  : OptionsList(options: guestOptionsList(context)),
               const LanguageSwitch(),
               const VersionSection(),
             ],
@@ -43,40 +43,42 @@ class ProfilePage extends StatelessWidget {
 }
 
 /// We use this list if there is an user logged in.
-final List loggedOptionsList = [
-  ProfileListElement(
-    icon: Icons.person_2_outlined,
-    text: StringsManager.myAccount,
-    onTap: (context) =>
-        Navigator.of(context).pushNamed(Routes.editProfileScreenKey),
-  ),
-  ProfileListElement(
-      icon: Icons.shopping_bag_outlined,
-      text: StringsManager.myOrders,
-      onTap: (context) =>
-          Navigator.of(context).pushNamed(Routes.myOrdersScreenKey)),
-  ProfileListElement(
-    icon: Icons.payment_outlined,
-    text: StringsManager.paymentMethod,
-    onTap: (context) =>
-        Navigator.of(context).pushNamed(Routes.paymentScreenKey),
-  ),
-  const LogoutButton(),
-  const DeleteAccountButton(),
-  const ContactUsOption(),
-];
+List loggedOptionsList(BuildContext context) => [
+      ProfileListElement(
+        icon: Icons.person_2_outlined,
+        text: StringsManager.myAccount(context),
+        onTap: (context) =>
+            Navigator.of(context).pushNamed(Routes.editProfileScreenKey),
+      ),
+      ProfileListElement(
+          icon: Icons.shopping_bag_outlined,
+          text: StringsManager.myOrders(context),
+          onTap: (context) =>
+              Navigator.of(context).pushNamed(Routes.myOrdersScreenKey)),
+      ProfileListElement(
+        icon: Icons.payment_outlined,
+        text: StringsManager.paymentMethod(context),
+        onTap: (context) =>
+            Navigator.of(context).pushNamed(Routes.paymentScreenKey),
+      ),
+      const LogoutButton(),
+      const DeleteAccountButton(),
+      const ContactUsOption(),
+    ];
 
 // We use this list in the guest and no user logged in case.
-final List guestOptionsList = [
-  ProfileListElement(
-    icon: Icons.login_rounded,
-    text: StringsManager.login,
-    onTap: (context) => Navigator.of(context).pushNamed(Routes.signInScreenKey),
-  ),
-  ProfileListElement(
-    icon: Icons.app_registration_rounded,
-    text: StringsManager.register,
-    onTap: (context) => Navigator.of(context).pushNamed(Routes.signUpScreenKey),
-  ),
-  const ContactUsOption(),
-];
+List guestOptionsList(BuildContext context) => [
+      ProfileListElement(
+        icon: Icons.login_rounded,
+        text: StringsManager.login(context),
+        onTap: (context) =>
+            Navigator.of(context).pushNamed(Routes.signInScreenKey),
+      ),
+      ProfileListElement(
+        icon: Icons.app_registration_rounded,
+        text: StringsManager.register(context),
+        onTap: (context) =>
+            Navigator.of(context).pushNamed(Routes.signUpScreenKey),
+      ),
+      const ContactUsOption(),
+    ];

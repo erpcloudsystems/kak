@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/utils/enums.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../meals/domain/entities/meal_entity.dart';
 
 part 'cart_event.dart';
@@ -28,7 +27,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (_cartItems.isEmpty) {
       emit(state.copyWith(
         getCartItemsState: RequestState.error,
-        getCartItemsMessage: StringsManager.noCartItemsMessage,
+        getCartItemsMessage: 'There is no cart items yet',
       ));
     } else {
       emit(state.copyWith(
@@ -47,19 +46,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         _cartItems.add(event.meal);
         emit(state.copyWith(
           addCartItemState: RequestState.success,
-          addCartItemMessage: StringsManager.cartAddedMessage,
           totalPrice: calculateTotalPrice(),
         ));
       } else {
         emit(state.copyWith(
           addCartItemState: RequestState.error,
-          addCartItemMessage: StringsManager.duplicationError,
+          addCartItemMessage: 'This Item is already on the cart ',
         ));
       }
     } catch (e) {
       emit(state.copyWith(
         addCartItemState: RequestState.error,
-        addCartItemMessage: StringsManager.errorMessage,
+        addCartItemMessage: 'errorMessage',
       ));
     }
   }
@@ -73,13 +71,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _cartItems.removeWhere((element) => element.id == event.meal.id);
       emit(state.copyWith(
         removeCartItemState: RequestState.success,
-        removeCartItemMessage: StringsManager.removedFromCartMessage,
+        removeCartItemMessage: 'Removed Successfully',
         totalPrice: calculateTotalPrice(),
       ));
     } catch (e) {
       emit(state.copyWith(
         removeCartItemState: RequestState.error,
-        removeCartItemMessage: StringsManager.errorMessage,
+        removeCartItemMessage: 'errorMessage',
       ));
     }
   }

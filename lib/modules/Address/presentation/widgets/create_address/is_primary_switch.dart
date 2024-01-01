@@ -4,7 +4,6 @@ import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
 
-
 class IsPrimarySwitch extends StatefulWidget {
   const IsPrimarySwitch({super.key, required this.toggleSwitch});
 
@@ -27,7 +26,7 @@ class _IsPrimarySwitchState extends State<IsPrimarySwitch> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                StringsManager.defaultAddress,
+                StringsManager.defaultAddress(context),
                 style: Theme.of(context)
                     .textTheme
                     .headlineMedium!

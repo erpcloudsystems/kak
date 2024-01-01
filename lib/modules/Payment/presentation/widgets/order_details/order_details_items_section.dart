@@ -15,7 +15,7 @@ class OrderDetailsItemsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OrderDetailsSection(
-        badgeText: StringsManager.items,
+        badgeText: StringsManager.items(context),
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

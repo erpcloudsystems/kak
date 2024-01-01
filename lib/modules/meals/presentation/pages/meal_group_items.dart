@@ -31,7 +31,7 @@ class MealGroupItemsScreen extends StatelessWidget {
             return  Center(
                 child: NoDataWidget(
               assetPath: ImagesPath.errorPath,
-              text: StringsManager.errorMessage,
+              text: StringsManager.errorMessage(context),
             ));
           }
           if (state.getMealGroupItemsState == RequestState.success) {
