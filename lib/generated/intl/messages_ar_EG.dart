@@ -54,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرجاء استكمال وجبتك"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "continueWith": MessageLookupByLibrary.simpleMessage("متابعة مع"),
-        "cost": MessageLookupByLibrary.simpleMessage("التكلفة: "),
+        "cost": MessageLookupByLibrary.simpleMessage("التكلفة : "),
         "create": MessageLookupByLibrary.simpleMessage("إنشاء حسابك"),
         "createOrder": MessageLookupByLibrary.simpleMessage("إنشاء الطلب"),
         "createOrderMessage":
@@ -165,7 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الطلبيات السابقة"),
         "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
-        "quantity": MessageLookupByLibrary.simpleMessage("الكمية:"),
+        "quantity": MessageLookupByLibrary.simpleMessage("الكمية :"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
         "removedFromCartMessage": MessageLookupByLibrary.simpleMessage(

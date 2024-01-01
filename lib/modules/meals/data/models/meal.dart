@@ -1,4 +1,3 @@
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/network/api_constance.dart';
 import '../../domain/entities/meal_entity.dart';
 import 'meal_component.dart';
@@ -16,15 +15,12 @@ class MealModel extends MealEntity {
   });
 
   factory MealModel.fromJson(Map<String, dynamic> json) => MealModel(
-      description: json['custom_arabic_description'] ??
-          json['description'] ??
-          StringsManager.none,
-      name: json['custom_item_name_arabic'] ??
-          json['item_name'] ??
-          StringsManager.none,
+      description:
+          json['custom_arabic_description'] ?? json['description'] ?? 'none',
+      name: json['custom_item_name_arabic'] ?? json['item_name'] ?? 'none',
       imageUrl: '${ApiConstance.kakUrl}${json['image']}',
       price: double.tryParse(json['rate'].toString()) ?? 0.0,
-      id: json['name'] ?? StringsManager.none,
+      id: json['name'] ?? 'none',
       priceAfterDiscount:
           double.tryParse(json['custom_price_after_offer'].toString()) ?? 0.0,
       components: (json['details'] != null)

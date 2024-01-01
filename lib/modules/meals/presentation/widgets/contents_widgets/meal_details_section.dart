@@ -48,9 +48,10 @@ class MealDetailsSection extends StatelessWidget {
               children: [
                 if (widget.choicesList[index].price > DoubleManager.d_0)
                   Padding(
-                    padding: const EdgeInsets.only(right: DoubleManager.d_30),
+                    padding: const EdgeInsetsDirectional.only(
+                        end: DoubleManager.d_30),
                     child: Text(
-                      '${StringsManager.cost} ${widget.choicesList[index].price.toString()}',
+                      '${StringsManager.cost(context)} ${widget.choicesList[index].price.toString()}',
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium!
@@ -59,7 +60,7 @@ class MealDetailsSection extends StatelessWidget {
                   ),
                 // Item quantity
                 Text(
-                  '${StringsManager.quantity} ${widget.choicesList[index].quantity}',
+                  '${StringsManager.quantity(context)} ${widget.choicesList[index].quantity}',
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: ColorsManager.swatchRed,
                       ),

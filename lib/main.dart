@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/utils/enums.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
@@ -31,15 +32,20 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: StateManagement.providers,
       child: Sizer(
-        builder: (context, orientation, deviceType) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: UnTranslatedStrings.appName,
-          theme: AppTheme.getApplicationLightTheme(),
-          home: const SplashScreen(),
-          locale: const Locale('ar'),
-          routes: Routes.routes,
-          localizationsDelegates: AppLocal.localizationsDelegates,
-          supportedLocales: AppLocal.supportLocals,
+        builder: (context, orientation, deviceType) => ValueListenableBuilder(
+          valueListenable: AppLocal.languageNotifier,
+          builder: (context, value, child) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: UnTranslatedStrings.appName,
+            theme: AppTheme.getApplicationLightTheme(),
+            home: const SplashScreen(),
+            locale: value == DeviceLanguage.arabic
+                ? const Locale('ar')
+                : const Locale('en'),
+            routes: Routes.routes,
+            localizationsDelegates: AppLocal.localizationsDelegates,
+            supportedLocales: AppLocal.supportLocals,
+          ),
         ),
       ),
     );

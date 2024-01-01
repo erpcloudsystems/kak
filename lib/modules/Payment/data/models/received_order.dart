@@ -21,14 +21,14 @@ class ReceivedOrderModel extends ReceivedOrderEntity {
 
   factory ReceivedOrderModel.fromJson(Map<String, dynamic> json) =>
       ReceivedOrderModel(
-        customerAddress: json['address_display'] ?? StringsManager.none,
-        mobileNumber: json['contact_mobile'] ?? StringsManager.none,
-        customerName: json['customer_name'] ?? StringsManager.none,
+        customerAddress: json['address_display'] ?? 'none',
+        mobileNumber: json['contact_mobile'] ?? 'none',
+        customerName: json['customer_name'] ?? 'none',
         status: json['status'].toString().checkDoctypeStatus(),
-        date: json['transaction_date'] ?? StringsManager.none,
+        date: json['transaction_date'] ?? 'none',
         delivery: json['taxes'][0]['tax_amount'] ?? 0.0,
         tax: json['taxes'][1]['tax_amount'] ?? 0.0,
-        id: json['name'] ?? StringsManager.none,
+        id: json['name'] ?? 'none',
         price: json['grand_total'] ?? 0.0,
         modeOfPayment: PaymentType.cash,
         items: json['items'] != null

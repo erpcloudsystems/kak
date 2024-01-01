@@ -22,18 +22,16 @@ class MealComponentModel extends MealComponentEntity {
         maxRequired: json['max_required'] ?? 0,
         quantity: json['qty'] ?? 0,
         price: json['rate'] ?? 0.0,
-        itemName: json['item_name'] ??
-            json['item_name_arabic'] ??
-            StringsManager.none,
+        itemName: json['item_name'] ?? json['item_name_arabic'] ?? 'none',
         itemClassification: json['item_classification'] ??
             json['item_classification_arabic'] ??
-            StringsManager.none,
+            'none',
       );
 
   Map<String, dynamic> toJson() => {
-    'item_classification': itemClassification,
-    'item_name': itemName,
-    'qty': quantity,
-    'rate': price,
-  };    
+        'item_classification': itemClassification,
+        'item_name': itemName,
+        'qty': quantity,
+        'rate': price,
+      };
 }
