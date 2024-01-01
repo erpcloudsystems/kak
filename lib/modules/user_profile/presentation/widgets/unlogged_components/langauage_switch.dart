@@ -37,9 +37,9 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
             leading: Radio<bool>(
               value: true,
               groupValue: AppLocal.isEnglish,
-              onChanged: (bool? value) {
+              onChanged: (bool? value) async {
                 AppLocal.isEnglish = value!;
-                AppLocal.toggleBetweenLocales(context);
+                await AppLocal.toggleBetweenLocales(context);
                 setState(() {});
               },
             ),
@@ -52,9 +52,9 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
             leading: Radio<bool>(
               value: false,
               groupValue: AppLocal.isEnglish,
-              onChanged: (bool? value) {
+              onChanged: (bool? value) async {
                 AppLocal.isEnglish = value!;
-                AppLocal.toggleBetweenLocales(context);
+                await AppLocal.toggleBetweenLocales(context);
                 setState(() {});
               },
             ),
