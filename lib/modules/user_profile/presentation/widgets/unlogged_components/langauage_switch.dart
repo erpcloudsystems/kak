@@ -7,6 +7,7 @@ import '../../../../../core/global/global_varibles.dart';
 import '../../../../../core/resources/localizations.dart';
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/strings_manager.dart';
+import '../../../../meals/presentation/bloc/meals_bloc.dart';
 import '../../../../authentication/presentation/bloc/caching_user_data/caching_user_data_bloc.dart';
 
 class LanguageSwitch extends StatefulWidget {
@@ -29,7 +30,6 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    final gv = GlobalVariables();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -44,10 +44,8 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
               groupValue: AppLocal.isEnglish,
               onChanged: (bool? value) async {
                 AppLocal.isEnglish = value!;
-                await AppLocal.toggleBetweenLocales(context);
-                gv.setDeviceLanguage = DeviceLanguage.english;
-                context.read<CachingUserDataBloc>().add(
-                    ChangeAppLanguageEvent(language: DeviceLanguage.english));
+                AppLocal.toggleBetweenLocales(context);
+                _changeGlobalLanguage(DeviceLanguage.english);
                 setState(() {});
               },
             ),
@@ -62,10 +60,8 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
               groupValue: AppLocal.isEnglish,
               onChanged: (bool? value) async {
                 AppLocal.isEnglish = value!;
-                await AppLocal.toggleBetweenLocales(context);
-                gv.setDeviceLanguage = DeviceLanguage.arabic;
-                context.read<CachingUserDataBloc>().add(
-                    ChangeAppLanguageEvent(language: DeviceLanguage.arabic));
+                AppLocal.toggleBetweenLocales(context);
+                _changeGlobalLanguage(DeviceLanguage.arabic);
                 setState(() {});
               },
             ),
@@ -73,5 +69,18 @@ class _LanguageStateSwitch extends State<LanguageSwitch> {
         ),
       ],
     );
+  }
+
+  /// this method cache the new choosed language, and change the call of the endpoint to
+  /// the new language, and add new events with the new language.
+  void _changeGlobalLanguage(DeviceLanguage language) {
+    final gv = GlobalVariables();
+    gv.setDeviceLanguage = language;
+    context
+        .read<CachingUserDataBloc>()
+        .add(ChangeAppLanguageEvent(language: language));
+    context.read<MealsBloc>().add(GetOffersEvent());
+    context.read<MealsBloc>().add(GetFeaturedEvent());
+    context.read<MealsBloc>().add(GetMealsGroupsEvent());
   }
 }

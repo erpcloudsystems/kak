@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/enums.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
+import 'core/utils/enums.dart';
 import 'core/resources/routes.dart';
 import 'core/utils/splash_screen.dart';
 import 'core/global/bloc_observer.dart';
@@ -18,7 +18,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await EasyLocalization.ensureInitialized();
   await di.init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());

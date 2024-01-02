@@ -1,7 +1,7 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/enums.dart';
 
+import '../utils/enums.dart';
 import '../../generated/l10n.dart';
 
 class AppLocal {
@@ -19,7 +19,7 @@ class AppLocal {
   ];
 
   // switch locals
-  static Future<void> toggleBetweenLocales(BuildContext context) async {
+  static void toggleBetweenLocales(BuildContext context) {
     if (isEnglish!) {
       AppLocal.languageNotifier.value = DeviceLanguage.english;
     } else {
