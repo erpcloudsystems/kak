@@ -6,7 +6,6 @@ import '../models/address.dart';
 import '../../domain/entities/address.dart';
 import '../../../../core/network/failure.dart';
 import '../datasources/address_data_source.dart';
-import '../../../../core/network/exceptions.dart';
 import '../../domain/entities/google_address.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/address_base_repo.dart';
@@ -25,7 +24,7 @@ class AddressRepoImpl implements AddressBaseRepo {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw  const PermissionDeniedException('Please, enable your location');
+      throw const PermissionDeniedException('Please, enable your location');
     }
 
     permission = await Geolocator.checkPermission();
@@ -33,12 +32,14 @@ class AddressRepoImpl implements AddressBaseRepo {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw  const PermissionDeniedException('We need to access your location to get your address');
+        throw const PermissionDeniedException(
+            'We need to access your location to get your address');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw  const PermissionDeniedException('We need to access your location to get your address');
+      throw const PermissionDeniedException(
+          'We need to access your location to get your address');
     }
 
     try {
@@ -52,18 +53,10 @@ class AddressRepoImpl implements AddressBaseRepo {
 // _______________________ Current Address __________________________
   @override
   Future<Either<Failure, GoogleAddressEntity>> getAddress(
-      LatLng coordinates) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final address = await addressBaseDataSource.getAddress(coordinates);
-        return Right(address);
-      } on PrimaryServerException catch (error) {
-        return Left(ServerFailure(errorMessage: error.message));
-      }
-    } else {
-      return const Left(OfflineFailure());
-    }
-  }
+          LatLng coordinates) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<GoogleAddressEntity>(
+          () async => await addressBaseDataSource.getAddress(coordinates),
+          networkInfo);
 
 // _______________________ Send user Address _________________________
   @override

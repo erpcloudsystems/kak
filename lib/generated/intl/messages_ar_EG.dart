@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterEmailMessage": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال عنوان بريدك الإلكتروني حتى نتمكن من إرسال بريد إلكتروني لإعادة تعيين كلمة المرور"),
         "errorMessage": MessageLookupByLibrary.simpleMessage("حدث خطأ!"),
+        "existedItemInCart": MessageLookupByLibrary.simpleMessage(
+            "هذا المنتج موجود بالفعل في السلة"),
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
         "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
@@ -143,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا توجد عناصر في عربة التسوق الخاصة بك حتى الآن!"),
         "none": MessageLookupByLibrary.simpleMessage("لا شيء"),
         "okay": MessageLookupByLibrary.simpleMessage("حسنًا"),
+        "oneChosen": MessageLookupByLibrary.simpleMessage(
+            "يجب اختيار علي الاقل ١ عنصر من"),
         "oneMust":
             MessageLookupByLibrary.simpleMessage("يجب اختيار واحد على الأقل"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),

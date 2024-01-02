@@ -16,8 +16,7 @@ class ServerFailure extends Failure {
 }
 
 class OfflineFailure extends Failure {
-  const OfflineFailure(
-      {super.errorMessage = 'Check your internet'});
+  const OfflineFailure({required super.errorMessage});
   @override
   List<Object> get props => [errorMessage];
 }

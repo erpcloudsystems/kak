@@ -3,6 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'failure.dart';
 import 'exceptions.dart';
 import 'network_info.dart';
+import '../utils/extensions.dart';
+import '../resources/strings_manager.dart';
 
 abstract class HelperNetworkMethods {
 
@@ -21,7 +23,7 @@ abstract class HelperNetworkMethods {
         );
       }
     } else {
-      return const Left(OfflineFailure());
+      return Left(OfflineFailure(errorMessage: StringsWithNoCtx.offlineFailureMessage.tr()));
     }
   }
 }

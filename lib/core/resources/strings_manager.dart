@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/extensions.dart';
 
+import '../utils/extensions.dart';
 import '../../generated/l10n.dart';
-import '../../core/global/dependencies_container.dart' as di;
 
 class StringsManager {
-
-  static String removedFromCartMessage = 'removedFromCartMessage'.tr();
-
   static String oneItemIsRequired(String itemClassification) {
-    const String translated = 'one is must be chosen';
-    return '$itemClassification $translated';
+    String translated = 'oneChosen'.tr();
+    return '$translated $itemClassification ';
   }
 
   static String itemIsRequired(String itemClassification) {
-    const String translated = 'is required';
+    String translated = 'isRequired'.tr();
     return '$itemClassification $translated';
   }
 
   static String maximumNumberError(String maxNumber) {
-    const String translated = 'max number';
+    String translated = 'maxNumber'.tr();
     return '$maxNumber $translated';
   }
 
   static String serverFailureMessage(BuildContext context) =>
       S.of(context).serverFailureMessage;
 
-  static String offlineFailureMessage(BuildContext context) =>
-      S.of(context).noInternetConnection;
   static String deleteAddressMessage(BuildContext context) =>
       S.of(context).deleteAddressMessage;
 
@@ -100,8 +94,6 @@ class StringsManager {
       S.of(context).cartAddedMessage;
   static String deliveryLocation(BuildContext context) =>
       S.of(context).deliveryLocation;
-  static String errorMessage(BuildContext context) =>
-      S.of(context).errorMessage;
   static String forgotPassword(BuildContext context) =>
       S.of(context).forgotPassword;
   static String noAddressMessage(BuildContext context) =>
@@ -210,6 +202,14 @@ class StringsManager {
   static String tax(BuildContext context) => S.of(context).tax;
   static String or(BuildContext context) => S.of(context).or;
   static String no(BuildContext context) => S.of(context).no;
+}
+
+// These Strings used in places that have no context so we use translation extension with it.
+abstract class StringsWithNoCtx {
+  static const String removedFromCartMessage = 'removedFromCartMessage';
+  static String offlineFailureMessage = 'noInternetConnection';
+  static const String existedItemInCart = 'existedItemInCart';
+  static const String errorMessage = 'errorMessage';
 }
 
 abstract class UnTranslatedStrings {

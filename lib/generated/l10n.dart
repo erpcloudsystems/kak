@@ -50,36 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `There is Error with Server Please try again later`
-  String get serverFailureMessage {
-    return Intl.message(
-      'There is Error with Server Please try again later',
-      name: 'serverFailureMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `password shouldn"t be less than 6 characters`
-  String get passwordLengthError {
-    return Intl.message(
-      'password shouldn"t be less than 6 characters',
-      name: 'passwordLengthError',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `There is a problem while caching user data`
-  String get cachingError {
-    return Intl.message(
-      'There is a problem while caching user data',
-      name: 'cachingError',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Please Enter your E-mail address So that we could send you an email to reset your password`
   String get enterEmailMessage {
     return Intl.message(
@@ -100,26 +70,6 @@ class S {
     );
   }
 
-  /// `You have created your account successfully!`
-  String get creationEmailSuccess {
-    return Intl.message(
-      'You have created your account successfully!',
-      name: 'creationEmailSuccess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Click here to determine your order type`
-  String get clickToDetermine {
-    return Intl.message(
-      'Click here to determine your order type',
-      name: 'clickToDetermine',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Kak needs to access your location to help find your address`
   String get locationRequest {
     return Intl.message(
@@ -130,21 +80,41 @@ class S {
     );
   }
 
-  /// `is must be chosen, at least 1`
-  String get oneMust {
+  /// `There is Error with Server Please try again later`
+  String get serverFailureMessage {
     return Intl.message(
-      'is must be chosen, at least 1',
-      name: 'oneMust',
+      'There is Error with Server Please try again later',
+      name: 'serverFailureMessage',
       desc: '',
       args: [],
     );
   }
 
-  /// `is must be chosen`
-  String get isRequired {
+  /// `'There is a problem with your internet connection`
+  String get noInternetConnection {
     return Intl.message(
-      'is must be chosen',
-      name: 'isRequired',
+      '\'There is a problem with your internet connection',
+      name: 'noInternetConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password shouldn"t be less than 6 characters`
+  String get passwordLengthError {
+    return Intl.message(
+      'password shouldn"t be less than 6 characters',
+      name: 'passwordLengthError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have created your account successfully!`
+  String get creationEmailSuccess {
+    return Intl.message(
+      'You have created your account successfully!',
+      name: 'creationEmailSuccess',
       desc: '',
       args: [],
     );
@@ -170,31 +140,21 @@ class S {
     );
   }
 
-  /// `There is no items yet in your cart!`
-  String get noItems {
+  /// `Click here to determine your order type`
+  String get clickToDetermine {
     return Intl.message(
-      'There is no items yet in your cart!',
-      name: 'noItems',
+      'Click here to determine your order type',
+      name: 'clickToDetermine',
       desc: '',
       args: [],
     );
   }
 
-  /// `You have to login first to make an order`
-  String get loginFirst {
+  /// `There is a problem while caching user data`
+  String get cachingError {
     return Intl.message(
-      'You have to login first to make an order',
-      name: 'loginFirst',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your new address added successfully`
-  String get newAddressMessage {
-    return Intl.message(
-      'Your new address added successfully',
-      name: 'newAddressMessage',
+      'There is a problem while caching user data',
+      name: 'cachingError',
       desc: '',
       args: [],
     );
@@ -210,11 +170,21 @@ class S {
     );
   }
 
-  /// `'There is a problem with your internet connection`
-  String get noInternetConnection {
+  /// `Your new address added successfully`
+  String get newAddressMessage {
     return Intl.message(
-      '\'There is a problem with your internet connection',
-      name: 'noInternetConnection',
+      'Your new address added successfully',
+      name: 'newAddressMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have to login first to make an order`
+  String get loginFirst {
+    return Intl.message(
+      'You have to login first to make an order',
+      name: 'loginFirst',
       desc: '',
       args: [],
     );
@@ -235,6 +205,16 @@ class S {
     return Intl.message(
       'You have deleted your account',
       name: 'deleteAccountMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This Item is already on the cart`
+  String get existedItemInCart {
+    return Intl.message(
+      'This Item is already on the cart',
+      name: 'existedItemInCart',
       desc: '',
       args: [],
     );
@@ -350,6 +330,16 @@ class S {
     );
   }
 
+  /// `There is no items yet in your cart!`
+  String get noItems {
+    return Intl.message(
+      'There is no items yet in your cart!',
+      name: 'noItems',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unknown Error Occurred`
   String get unKnownErrorOccurred {
     return Intl.message(
@@ -425,6 +415,16 @@ class S {
     return Intl.message(
       'Creating your order',
       name: 'createOrderMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `is must be chosen, at least 1`
+  String get oneMust {
+    return Intl.message(
+      'is must be chosen, at least 1',
+      name: 'oneMust',
       desc: '',
       args: [],
     );
@@ -510,6 +510,16 @@ class S {
     );
   }
 
+  /// `one is must be chosen`
+  String get oneChosen {
+    return Intl.message(
+      'one is must be chosen',
+      name: 'oneChosen',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Product Details`
   String get productDetails {
     return Intl.message(
@@ -545,6 +555,16 @@ class S {
     return Intl.message(
       'Loading, Please wait!',
       name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `is must be chosen`
+  String get isRequired {
+    return Intl.message(
+      'is must be chosen',
+      name: 'isRequired',
       desc: '',
       args: [],
     );

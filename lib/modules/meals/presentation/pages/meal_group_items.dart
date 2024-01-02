@@ -5,6 +5,7 @@ import '../bloc/meals_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/no_data.dart';
 import '../../../../core/resources/routes.dart';
+import '../../../../core/utils/extensions.dart';
 import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/values_manager.dart';
@@ -31,7 +32,7 @@ class MealGroupItemsScreen extends StatelessWidget {
             return  Center(
                 child: NoDataWidget(
               assetPath: ImagesPath.errorPath,
-              text: StringsManager.errorMessage(context),
+              text: StringsWithNoCtx.errorMessage.tr(),
             ));
           }
           if (state.getMealGroupItemsState == RequestState.success) {

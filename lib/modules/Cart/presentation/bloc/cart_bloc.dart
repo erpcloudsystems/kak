@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kak/core/resources/strings_manager.dart';
-import 'package:kak/core/utils/extensions.dart';
 
 import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/extensions.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../meals/domain/entities/meal_entity.dart';
 
 part 'cart_event.dart';
@@ -15,9 +15,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(const CartState()) {
     on<RemoveCartItemEvent>(removeCartItem);
     on<UpdateCartItemEvent>(updateCartItem);
+    on<EraseCartItemEvent>(eraseCartItems);
     on<GetCartItemsEvent>(getCartItems);
     on<AddCartItemEvent>(addCartItem);
-    on<EraseCartItemEvent>(eraseCartItems);
   }
 
   final List<MealEntity> _cartItems = [];
@@ -29,7 +29,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (_cartItems.isEmpty) {
       emit(state.copyWith(
         getCartItemsState: RequestState.error,
-        getCartItemsMessage: 'There is no cart items yet',
       ));
     } else {
       emit(state.copyWith(
@@ -53,13 +52,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       } else {
         emit(state.copyWith(
           addCartItemState: RequestState.error,
-          addCartItemMessage: 'This Item is already on the cart ',
+          addCartItemMessage: StringsWithNoCtx.existedItemInCart.tr(),
         ));
       }
     } catch (e) {
       emit(state.copyWith(
         addCartItemState: RequestState.error,
-        addCartItemMessage: 'errorMessage',
+        addCartItemMessage: StringsWithNoCtx.errorMessage.tr(),
       ));
     }
   }
@@ -73,13 +72,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _cartItems.removeWhere((element) => element.id == event.meal.id);
       emit(state.copyWith(
         removeCartItemState: RequestState.success,
-        removeCartItemMessage: 'removedFromCartMessage'.tr(),
+        removeCartItemMessage: StringsWithNoCtx.removedFromCartMessage.tr(),
         totalPrice: calculateTotalPrice(),
       ));
     } catch (e) {
       emit(state.copyWith(
         removeCartItemState: RequestState.error,
-        removeCartItemMessage: 'errorMessage',
+        removeCartItemMessage: StringsWithNoCtx.errorMessage.tr(),
       ));
     }
   }

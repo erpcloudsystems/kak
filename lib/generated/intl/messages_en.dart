@@ -97,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please Enter your E-mail address So that we could send you an email to reset your password"),
         "errorMessage":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "existedItemInCart": MessageLookupByLibrary.simpleMessage(
+            "This Item is already on the cart"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "filter": MessageLookupByLibrary.simpleMessage("Filter"),
@@ -144,6 +146,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "There is no items yet in your cart!"),
         "none": MessageLookupByLibrary.simpleMessage("None"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
+        "oneChosen":
+            MessageLookupByLibrary.simpleMessage("one is must be chosen"),
         "oneMust": MessageLookupByLibrary.simpleMessage(
             "is must be chosen, at least 1"),
         "or": MessageLookupByLibrary.simpleMessage("Or"),
