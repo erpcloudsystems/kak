@@ -33,7 +33,7 @@ class FeaturedMeals extends StatelessWidget {
         if (state.addCartItemState == RequestState.success) {
           SnackBarUtil().getSnackBar(
             context: context,
-            message: state.addCartItemMessage,
+            message: StringsManager.cartAddedMessage(context),
             color: ColorsManager.gGreen,
           );
         }
@@ -144,17 +144,20 @@ class FeaturedMealsElement extends StatelessWidget {
                                 onPressed: () =>
                                     BlocProvider.of<CartBloc>(context)
                                         .add(AddCartItemEvent(meal: meal)),
-                                child: Text(
-                                    isHome
-                                        ? StringsManager.addToCart(context)
-                                        : StringsManager.reorder(context),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                          fontSize: FontsSize.s12,
-                                          color: Colors.white,
-                                        )),
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                      isHome
+                                          ? StringsManager.addToCart(context)
+                                          : StringsManager.reorder(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                            fontSize: FontsSize.s12,
+                                            color: Colors.white,
+                                          )),
+                                ),
                               ),
                             ),
                             const SizedBox(width: DoubleManager.d_15),
