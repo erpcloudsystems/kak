@@ -1,5 +1,4 @@
 import '../../domain/entities/received_order_entity.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../meals/data/models/meal.dart';
 import '../../../../core/utils/enums.dart';

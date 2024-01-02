@@ -15,3 +15,10 @@ class CacheUserDataEvent extends CachingUserDataEvent {
 class GetCachedUserDataEvent extends CachingUserDataEvent {}
 
 class DeleteCachedUserDataEvent extends CachingUserDataEvent {}
+
+class GetCachedLanguageEvent extends CachingUserDataEvent {}
+
+class ChangeAppLanguageEvent extends CachingUserDataEvent {
+  final DeviceLanguage language;
+  const ChangeAppLanguageEvent({required this.language});
+}

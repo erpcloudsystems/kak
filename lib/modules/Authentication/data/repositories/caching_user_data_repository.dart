@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:kak/core/utils/enums.dart';
 
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/exceptions.dart';
@@ -19,7 +20,7 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.cacheUser(userData);
       return const Right(unit);
     } catch (error) {
-      return  const Left(
+      return const Left(
         UnknownCachingFailure(
           errorMessage: 'StringsManager.unknownCachingFailureMessage',
         ),
@@ -34,7 +35,7 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       final userData = await _localDataSource.getCachedUser();
       return Right(userData);
     } on EmptyCacheException {
-      return  const Left(
+      return const Left(
         EmptyCacheFailure(
           errorMessage: 'StringsManager.emptyCacheFailureMessage',
         ),
@@ -49,9 +50,40 @@ class CachingUserDataRepository implements BaseCachingUserDataRepository {
       await _localDataSource.deleteUserCachedData();
       return const Right(unit);
     } on EmptyCacheException {
-      return  const Left(EmptyCacheFailure(
+      return const Left(EmptyCacheFailure(
         errorMessage: 'StringsManager.emptyCacheFailureMessage',
       ));
+    }
+  }
+
+  //______________________________ Cache user language ________________________________
+  @override
+  Future<Either<Failure, Unit>> cacheUserLanguage(
+      DeviceLanguage language) async {
+    try {
+      await _localDataSource.cachingAppLanguage(language);
+      return const Right(unit);
+    } catch (error) {
+      return const Left(
+        UnknownCachingFailure(
+          errorMessage: 'StringsManager.unknownCachingFailureMessage',
+        ),
+      );
+    }
+  }
+
+  //______________________________ Get cached user language ________________________________
+  @override
+  Future<Either<Failure, DeviceLanguage>> getCachedUserLanguage() async {
+    try {
+      final cachedLang = await _localDataSource.getCachedAppLanguage();
+      return Right(cachedLang);
+    } on EmptyCacheException {
+      return const Left(
+        EmptyCacheFailure(
+          errorMessage: 'StringsManager.emptyCacheFailureMessage',
+        ),
+      );
     }
   }
 }

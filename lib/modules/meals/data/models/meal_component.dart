@@ -2,7 +2,6 @@ import 'package:kak/core/utils/extensions.dart';
 
 import '../../domain/entities/meal_component.dart';
 import '../../../../core/network/api_constance.dart';
-import '../../../../core/resources/strings_manager.dart';
 
 class MealComponentModel extends MealComponentEntity {
   const MealComponentModel({

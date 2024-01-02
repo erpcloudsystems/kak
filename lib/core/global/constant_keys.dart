@@ -7,6 +7,7 @@ abstract class ConstantKeys {
   static const String serverMapsKey = 'AIzaSyD6Wk1n40RpbWPrS3xf6lNPSTkwbAQqwZ0';
 
   // Caching keys_________________________________________________________________
+  static const String languageCachingKey = 'Language key';
   static const String userEmailCachingKey = 'User email caching key';
   static const String userPasswordCachingKey = 'User password caching key';
   

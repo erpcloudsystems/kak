@@ -14,6 +14,11 @@ class CachingUserDataState extends Equatable {
   final RequestState deleteCacheUserDataState;
   final String deleteCacheUserDataMessage;
 
+  // Language
+  final RequestState getCachedLanguageState;
+  final RequestState cacheLanguageState;
+  final DeviceLanguage language;
+
   const CachingUserDataState({
     this.cacheUserDataState = RequestState.loading,
     this.cacheUserDataMessage = '',
@@ -22,6 +27,9 @@ class CachingUserDataState extends Equatable {
     this.userCachedData = const UserCachingDataEntity(email: '', password: ''),
     this.deleteCacheUserDataState = RequestState.stable,
     this.deleteCacheUserDataMessage = '',
+    this.language = DeviceLanguage.english,
+    this.getCachedLanguageState = RequestState.stable,
+    this.cacheLanguageState = RequestState.stable,
   });
 
   CachingUserDataState copyWith({
@@ -37,6 +45,11 @@ class CachingUserDataState extends Equatable {
     // delete cached user state
     RequestState? deleteCacheUserDataState,
     String? deleteCacheUserDataMessage,
+
+    // Language
+    RequestState? getCachedLanguageState,
+    RequestState? cacheLanguageState,
+    DeviceLanguage? language,
   }) {
     return CachingUserDataState(
       cacheUserDataState: cacheUserDataState ?? this.cacheUserDataState,
@@ -45,11 +58,15 @@ class CachingUserDataState extends Equatable {
           getCacheUserDataState ?? this.getCacheUserDataState,
       getCacheUserDataMessage:
           getCacheUserDataMessage ?? this.getCacheUserDataMessage,
-          userCachedData: userCachedData ?? this.userCachedData,
+      userCachedData: userCachedData ?? this.userCachedData,
       deleteCacheUserDataState:
           deleteCacheUserDataState ?? this.deleteCacheUserDataState,
       deleteCacheUserDataMessage:
           deleteCacheUserDataMessage ?? this.deleteCacheUserDataMessage,
+      getCachedLanguageState:
+          getCachedLanguageState ?? this.getCachedLanguageState,
+      cacheLanguageState: cacheLanguageState ?? this.cacheLanguageState,
+      language: language ?? this.language,
     );
   }
 
@@ -62,5 +79,8 @@ class CachingUserDataState extends Equatable {
         userCachedData,
         deleteCacheUserDataState,
         deleteCacheUserDataMessage,
+        language,
+        getCachedLanguageState,
+        cacheLanguageState,
       ];
 }

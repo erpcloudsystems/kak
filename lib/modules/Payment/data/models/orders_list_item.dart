@@ -1,4 +1,3 @@
-import '../../../../core/resources/strings_manager.dart';
 import '../../domain/entities/orders_list_item.dart';
 import '../../../../core/utils/extensions.dart';
 

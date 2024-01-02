@@ -1,4 +1,6 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kak/modules/authentication/domain/usecases/cache_device_language.dart';
+import 'package:kak/modules/authentication/domain/usecases/get_cached_language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -74,7 +76,7 @@ Future<void> init() async {
   sl.registerFactory(() => PaymentBloc(sl(), sl(), sl(), sl()));
 
   // Caching
-  sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Cart
   sl.registerFactory(() => CartBloc());
@@ -92,6 +94,8 @@ Future<void> init() async {
   // Caching
   sl.registerLazySingleton(() => CacheUserUseCase(sl()));
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
+  sl.registerLazySingleton(() => CacheAppLanguageUseCase(sl()));
+  sl.registerLazySingleton(() => GetCachedLanguageUseCase(sl()));
   sl.registerLazySingleton(() => DeleteUserCachedDataUseCase(sl()));
 
   // Meals

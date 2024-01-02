@@ -1,9 +1,7 @@
 import 'dart:async';
 
-// import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,6 +9,7 @@ import 'enums.dart';
 import 'error_dialog.dart';
 import '../resources/assetss_path.dart';
 import '../global/global_varibles.dart';
+import '../resources/localizations.dart';
 import '../resources/values_manager.dart';
 import '../../../../core/resources/routes.dart';
 import '../../modules/authentication/domain/entities/user.dart';
@@ -44,7 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _whenVideoIntroEnd() {
     if (_controller.value.position >= _controller.value.duration) {
-      getDeviceLanguage();
+      BlocProvider.of<CachingUserDataBloc>(context)
+          .add(GetCachedLanguageEvent());
       BlocProvider.of<CachingUserDataBloc>(context)
           .add(GetCachedUserDataEvent());
     }
@@ -87,6 +87,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Scaffold(
           body: BlocListener<CachingUserDataBloc, CachingUserDataState>(
             listener: (context, state) {
+              if (state.getCachedLanguageState == RequestState.success) {
+                _handleLanguageCaching(state.language);
+              }
               if (state.getCacheUserDataState == RequestState.success) {
                 _handleCacheSuccess(state.userCachedData);
               }
@@ -133,17 +136,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.of(context).pushNamedAndRemoveUntil(
         Routes.navigationBarScreenKey, (route) => false);
   }
-  //_____________________________________________________________________________
 
-  // Get the device
-  void getDeviceLanguage() {
-    final gv = GlobalVariables();
-    final currentLocale = Intl.getCurrentLocale();
-    debugPrint(currentLocale);
-    if (currentLocale == 'ar_EG') {
-      gv.setDeviceLanguage = DeviceLanguage.arabic;
-    } else {
-      gv.setDeviceLanguage = DeviceLanguage.english;
-    }
+  /// this method to handle cached language to determine the language of the endpoints.
+  void _handleLanguageCaching(DeviceLanguage language) {
+    GlobalVariables().setDeviceLanguage = language;
+    AppLocal.languageNotifier.value = language;
   }
 }
