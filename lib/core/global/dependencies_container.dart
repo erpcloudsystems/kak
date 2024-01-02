@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../generated/l10n.dart';
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
 import '../../modules/Cart/presentation/bloc/cart_bloc.dart';
@@ -163,6 +164,7 @@ Future<void> init() async {
   // External ______________________________________________________________
   final sharedPref = await SharedPreferences.getInstance();
 
+  sl.registerLazySingleton(() => S());
   sl.registerLazySingleton(() => FirebaseAuth);
   sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
   sl.registerLazySingleton(() => InternetConnectionChecker());

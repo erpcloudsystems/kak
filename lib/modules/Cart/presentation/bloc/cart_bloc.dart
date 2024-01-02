@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kak/core/resources/strings_manager.dart';
+import 'package:kak/core/utils/extensions.dart';
 
 import '../../../../core/utils/enums.dart';
 import '../../../meals/domain/entities/meal_entity.dart';
@@ -71,7 +73,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _cartItems.removeWhere((element) => element.id == event.meal.id);
       emit(state.copyWith(
         removeCartItemState: RequestState.success,
-        removeCartItemMessage: 'Removed Successfully',
+        removeCartItemMessage: 'removedFromCartMessage'.tr(),
         totalPrice: calculateTotalPrice(),
       ));
     } catch (e) {

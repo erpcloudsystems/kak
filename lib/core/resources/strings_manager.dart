@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:kak/core/utils/extensions.dart';
 
 import '../../generated/l10n.dart';
+import '../../core/global/dependencies_container.dart' as di;
 
 class StringsManager {
+
+  static String removedFromCartMessage = 'removedFromCartMessage'.tr();
+
   static String oneItemIsRequired(String itemClassification) {
-    final String translated = 'one is must be chosen';
+    const String translated = 'one is must be chosen';
     return '$itemClassification $translated';
   }
 
   static String itemIsRequired(String itemClassification) {
-    final String translated = 'is required';
+    const String translated = 'is required';
     return '$itemClassification $translated';
   }
 
   static String maximumNumberError(String maxNumber) {
-    final String translated = 'max number';
+    const String translated = 'max number';
     return '$maxNumber $translated';
   }
 
@@ -52,8 +57,7 @@ class StringsManager {
       S.of(context).deleteItemMessage;
   static String deleteAccountMessage(BuildContext context) =>
       S.of(context).deleteAccountMessage;
-  static String removedFromCartMessage(BuildContext context) =>
-      S.of(context).removedFromCartMessage;
+
   static String phoneNumberMessage(BuildContext context) =>
       S.of(context).phoneNumberMessage;
   static String passwordValidateMessage(BuildContext context) =>

@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 import 'enums.dart';
+import '../../generated/l10n.dart';
 import '../resources/strings_manager.dart';
+import '../global/dependencies_container.dart' as di;
 
 extension ComponentTypeExtension on String {
   /// This extension to return the priority of every component.
@@ -25,7 +27,7 @@ extension ComponentTypeExtension on String {
 
 extension ThePaymentTypeName on PaymentType {
   /// This extension return the name of the payment type in readable way.
-  String  value(BuildContext context) {
+  String value(BuildContext context) {
     switch (this) {
       case PaymentType.creditCard:
         return StringsManager.creditCard(context);
@@ -78,4 +80,21 @@ extension DoctypeStatusExtension on String {
         return DoctypeStatus.draft;
     }
   }
+}
+
+// Extension to add translate method to S class as it is auto generated.
+extension STranslation on S {
+  String translate(String key) {
+    return Intl.message(
+      key,
+      name: key,
+      desc: '',
+      args: [],
+    );
+  }
+}
+
+extension Translate on String {
+  /// Using this translation extension for translating strings which have no context.
+  String tr() => di.sl<S>().translate(this);
 }

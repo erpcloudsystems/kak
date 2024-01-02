@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kak/core/utils/extensions.dart';
 
 import '../widgets/offers.dart';
 import '../widgets/featured_meals.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(StringsManager.menu(context)),
+        title: Text('menu'.tr()),
         titleTextStyle: Theme.of(context)
             .appBarTheme
             .titleTextStyle!
