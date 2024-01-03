@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/resources/routes.dart';
@@ -32,22 +31,23 @@ class ReorderMealBtn extends StatelessWidget {
                   meal: MealEntity(
                     description: '',
                     imageUrl: '',
-                    id: const Uuid().v1(),
+                    id: receivedOrder!.id,
                     name: StringsManager.reorderedMeal(context),
                     price: receivedOrder!.price,
-                    components: receivedOrder!.items
-                        .map(
-                          (e) => MealComponentEntity(
-                            itemClassification: '',
-                            componentType: ComponentType.optional,
-                            maxRequired: 1,
-                            quantity: e.quantity ?? 1,
-                            itemName: e.name,
-                            image: e.imageUrl,
-                            price: e.price,
-                          ),
-                        )
-                        .toList(),
+                    components: receivedOrder?.items
+                            .map(
+                              (e) => MealComponentEntity(
+                                itemClassification: '',
+                                componentType: ComponentType.optional,
+                                maxRequired: 1,
+                                quantity: e.quantity ?? 1,
+                                itemName: e.name,
+                                image: e.imageUrl,
+                                price: e.price,
+                              ),
+                            )
+                            .toList() ??
+                        [],
                     quantity: 1,
                   ),
                 ),

@@ -178,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تمت إزالة العنصر من عربة التسوق الخاصة بك"),
         "reorder": MessageLookupByLibrary.simpleMessage("إعادة الطلب"),
         "reorderedMeal":
-            MessageLookupByLibrary.simpleMessage("تم إعادة طلب الوجبة"),
+            MessageLookupByLibrary.simpleMessage("وجبة معاد طلبها"),
         "resetEmailSent": MessageLookupByLibrary.simpleMessage(
             "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني. يرجى إعادة تعيين كلمة المرور والتسجيل الدخول مرة أخرى"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),

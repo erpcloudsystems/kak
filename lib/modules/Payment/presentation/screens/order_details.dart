@@ -24,23 +24,24 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    ReceivedOrderEntity? receivedOrder;
-    return Scaffold(
-      appBar: AppBar(title:  Text(StringsManager.orderDetails(context))),
-      body: BlocConsumer<PaymentBloc, PaymentState>(
-          listenWhen: (previous, current) =>
-              previous.getOrderDetailsState != current.getOrderDetailsState,
-          listener: orderDetailsStateHandler,
-          buildWhen: (previous, current) =>
-              previous.getOrderDetailsData != current.getOrderDetailsData,
-          builder: (context, state) {
-            final order = state.getOrderDetailsData;
-            receivedOrder = order;
-            return OrderDetailsSuccessWidget(order: order);
-          }),
-      floatingActionButton: receivedOrder?.status == DoctypeStatus.completed
-          ? ReorderMealBtn(receivedOrder: receivedOrder)
-          : null,
+    return BlocConsumer<PaymentBloc, PaymentState>(
+      listenWhen: (previous, current) =>
+          previous.getOrderDetailsState != current.getOrderDetailsState,
+      listener: orderDetailsStateHandler,
+      buildWhen: (previous, current) =>
+          previous.getOrderDetailsData != current.getOrderDetailsData,
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(title: Text(StringsManager.orderDetails(context))),
+          body: state.getOrderDetailsState == RequestState.success
+              ? OrderDetailsSuccessWidget(order: state.getOrderDetailsData)
+              : const SizedBox(),
+          floatingActionButton:
+              state.getOrderDetailsData.status == DoctypeStatus.completed
+                  ? ReorderMealBtn(receivedOrder: state.getOrderDetailsData)
+                  : null,
+        );
+      },
     );
   }
 
