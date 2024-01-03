@@ -15,14 +15,9 @@ import '../../../../core/utils/custom_cached_image.dart';
 import '../../../../core/resources/strings_manager.dart';
 
 class FeaturedMeals extends StatelessWidget {
-  const FeaturedMeals({
-    super.key,
-    this.isHome = true,
-    required this.featuredMeals,
-  });
+  const FeaturedMeals({super.key, required this.featuredMeals});
 
   final List<MealEntity> featuredMeals;
-  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
@@ -48,28 +43,21 @@ class FeaturedMeals extends StatelessWidget {
       },
       child: ListView.separated(
         shrinkWrap: true,
-        physics: isHome
-            ? const NeverScrollableScrollPhysics()
-            : const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: featuredMeals.length,
         separatorBuilder: (context, index) =>
             const SizedBox(height: DoubleManager.d_20),
         itemBuilder: (context, index) =>
-            FeaturedMealsElement(meal: featuredMeals[index], isHome: isHome),
+            FeaturedMealsElement(meal: featuredMeals[index]),
       ),
     );
   }
 }
 
 class FeaturedMealsElement extends StatelessWidget {
-  const FeaturedMealsElement({
-    super.key,
-    required this.meal,
-    required this.isHome,
-  });
+  const FeaturedMealsElement({super.key, required this.meal});
 
   final MealEntity meal;
-  final bool isHome;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -101,7 +89,7 @@ class FeaturedMealsElement extends StatelessWidget {
                       SizedBox(
                           width: DoubleManager.d_50.w,
                           child: FittedBox(
-                            alignment: AlignmentDirectional.centerEnd,
+                            alignment: AlignmentDirectional.centerStart,
                             fit: BoxFit.scaleDown,
                             child: Text(meal.name),
                           )),
@@ -146,10 +134,7 @@ class FeaturedMealsElement extends StatelessWidget {
                                         .add(AddCartItemEvent(meal: meal)),
                                 child: FittedBox(
                                   fit: BoxFit.scaleDown,
-                                  child: Text(
-                                      isHome
-                                          ? StringsManager.addToCart(context)
-                                          : StringsManager.reorder(context),
+                                  child: Text(StringsManager.addToCart(context),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineMedium!
