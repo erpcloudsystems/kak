@@ -13,7 +13,7 @@ class UserProfileMainWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(children: [
       //_________________________User Image and Name______________________
-      const Center(child: UserPhotoWidget()),
+      Center(child: UserPhotoWidget(imageUrl: user.image)),
       //_________________________User Image and Name______________________
       UserProfileCard(
         title: StringsManager.userName(context),

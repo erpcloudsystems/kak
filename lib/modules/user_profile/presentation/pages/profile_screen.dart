@@ -66,7 +66,7 @@ List loggedOptionsList(BuildContext context) => [
       const ContactUsOption(),
     ];
 
-// We use this list in the guest and no user logged in case.
+/// We use this list in the guest and no user logged in case.
 List guestOptionsList(BuildContext context) => [
       ProfileListElement(
         icon: Icons.login_rounded,

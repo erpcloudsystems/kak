@@ -12,8 +12,9 @@ import '../../../../../core/utils/custom_cached_image.dart';
 import '../../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 
 class UserPhotoWidget extends StatefulWidget {
-  const UserPhotoWidget({super.key});
+  const UserPhotoWidget({super.key, this.imageUrl});
 
+  final String? imageUrl;
   @override
   State<UserPhotoWidget> createState() => _UserPhotoWidgetState();
 }
@@ -21,22 +22,6 @@ class UserPhotoWidget extends StatefulWidget {
 class _UserPhotoWidgetState extends State<UserPhotoWidget> {
   String? fileName;
   XFile? pickedImage;
-
-  Future<void> pickAnImage() async {
-    final picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery);
-
-    setState(() => pickedImage = image);
-
-    // Giving the name of the image and if it's greater than 140
-    // we make another uuid because Frappe only accept 140 characters.
-    final filePath = image!.path;
-    fileName = filePath.length <= 140 ? filePath : '${const Uuid().v1()}.jpg';
-
-    // Convert the image to Base64 to send it to the Backend.
-    // final imageBytes = await image.readAsBytes();
-    // final images64 = base64Encode(imageBytes);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +37,29 @@ class _UserPhotoWidgetState extends State<UserPhotoWidget> {
                 child: ClipOval(
                   child: pickedImage != null
                       ? Image(image: FileImage(File(pickedImage!.path)))
-                      : const CustomCachedImage(url: userTestImage),
+                      : CustomCachedImage(
+                          url: widget.imageUrl ?? userTestImage),
                 )),
             if (context.read<AuthenticationBloc>().state.isUserLoggedIn)
               ImagePickerButton(onPressed: () => pickAnImage()),
           ]),
     );
+  }
+
+  Future<void> pickAnImage() async {
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() => pickedImage = image);
+
+    // Giving the name of the image and if it's greater than 140
+    // we make another uuid because Frappe only accept 140 characters.
+    final filePath = image!.path;
+    fileName = filePath.length <= 140 ? filePath : '${const Uuid().v1()}.jpg';
+
+    // Convert the image to Base64 to send it to the Backend.
+    // final imageBytes = await image.readAsBytes();
+    // final images64 = base64Encode(imageBytes);
   }
 }
 
