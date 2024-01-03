@@ -550,6 +550,16 @@ class S {
     );
   }
 
+  /// `Default address`
+  String get primaryAddress {
+    return Intl.message(
+      'Default address',
+      name: 'primaryAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading, Please wait!`
   String get loading {
     return Intl.message(

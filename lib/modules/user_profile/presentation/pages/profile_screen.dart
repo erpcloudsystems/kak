@@ -48,7 +48,7 @@ List loggedOptionsList(BuildContext context) => [
         icon: Icons.person_2_outlined,
         text: StringsManager.myAccount(context),
         onTap: (context) =>
-            Navigator.of(context).pushNamed(Routes.editProfileScreenKey),
+            Navigator.of(context).pushNamed(Routes.userProfileScreenKey),
       ),
       ProfileListElement(
           icon: Icons.shopping_bag_outlined,

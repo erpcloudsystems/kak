@@ -54,6 +54,7 @@
     "deleteAccount": "حذف الحساب",
     "paymentMethod": "طريقة الدفع",
     "reorderedMeal": "تم إعادة طلب الوجبة",
+    "primaryAddress": "العنوان الرئيسي",
     "orderDetails": "تفاصيل الطلب",
     "create": "إنشاء حسابك",
     "buildingName": "اسم المبنى",

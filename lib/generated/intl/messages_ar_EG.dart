@@ -167,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "placeOrder": MessageLookupByLibrary.simpleMessage("تقديم الطلب"),
         "previousOrders":
             MessageLookupByLibrary.simpleMessage("الطلبيات السابقة"),
+        "primaryAddress":
+            MessageLookupByLibrary.simpleMessage("العنوان الرئيسي"),
         "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "quantity": MessageLookupByLibrary.simpleMessage("الكمية :"),

@@ -14,11 +14,11 @@ class UserProfileDataSourceByDio implements UserProfileBaseDataSource {
 
   @override
   Future<UserProfileModel> getUserProfile() async {
-    final response =
-        await dio.get(endPoint: ApiConstance.getUserProfileEndPoint) as Response;
+    final response = await dio.get(
+        endPoint: ApiConstance.getUserProfileEndPoint) as Response;
 
-    final data = UserProfileModel.fromJson(response.data['message']);
+    final data = UserProfileModel.fromJson(response.data['message'][0]);
 
-    return data;    
+    return data;
   }
 }

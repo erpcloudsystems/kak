@@ -169,6 +169,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
         "previousOrders":
             MessageLookupByLibrary.simpleMessage("Previous orders"),
+        "primaryAddress":
+            MessageLookupByLibrary.simpleMessage("Default address"),
         "productDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),

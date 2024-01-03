@@ -49,6 +49,7 @@
     "productDetails": "Product Details",
     "previousOrders": "Previous orders",
     "paymentSummary": "Payment summary",
+    "primaryAddress": "Default address",
     "loading": "Loading, Please wait!",
     "isRequired": "is must be chosen",
     "deleteAccount": "Delete account",

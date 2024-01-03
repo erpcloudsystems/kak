@@ -127,6 +127,7 @@ class StringsManager {
   static String title(BuildContext context) => S.of(context).title;
   static String apartmentNumber(BuildContext context) =>
       S.of(context).apartmentNumber;
+  static String primaryAddress(BuildContext context) => S.of(context).primaryAddress;
   static String saveAddress(BuildContext context) => S.of(context).saveAddress;
   static String deliverHere(BuildContext context) => S.of(context).deliverHere;
   static String createOrder(BuildContext context) => S.of(context).createOrder;
