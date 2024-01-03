@@ -23,9 +23,12 @@ class CartListTileTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
-                  child: Text(
-                meal.name,
-                overflow: TextOverflow.ellipsis,
+                  child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  meal.name,
+                  overflow: TextOverflow.ellipsis,
+                ),
               )),
               Flexible(
                 child: Text(
