@@ -187,7 +187,6 @@ class StringsManager {
   static String phone(BuildContext context) => S.of(context).phone;
   static String cost(BuildContext context) => S.of(context).cost;
   static String items(BuildContext context) => S.of(context).items;
-  static String none(BuildContext context) => S.of(context).none;
   static String area(BuildContext context) => S.of(context).area;
   static String cash(BuildContext context) => S.of(context).cash;
   static String sort(BuildContext context) => S.of(context).sort;
@@ -207,9 +206,10 @@ class StringsManager {
 // These Strings used in places that have no context so we use translation extension with it.
 abstract class StringsWithNoCtx {
   static const String removedFromCartMessage = 'removedFromCartMessage';
-  static String offlineFailureMessage = 'noInternetConnection';
+  static const String offlineFailureMessage = 'noInternetConnection';
   static const String existedItemInCart = 'existedItemInCart';
   static const String errorMessage = 'errorMessage';
+  static const String none = 'none';
 }
 
 abstract class UnTranslatedStrings {

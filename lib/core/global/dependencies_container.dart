@@ -1,6 +1,4 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:kak/modules/authentication/domain/usecases/cache_device_language.dart';
-import 'package:kak/modules/authentication/domain/usecases/get_cached_language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -25,21 +23,28 @@ import '../../modules/meals/domain/repositories/meals_base_repo.dart';
 import '../../modules/Address/domain/usecases/get_all_addresses.dart';
 import '../../modules/Address/domain/usecases/send_user_address.dart';
 import '../../modules/meals/domain/usecases/get_meal_group_items.dart';
+import '../../modules/user_profile/data/datasources/user_profile.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';
 import '../../modules/Payment/data/repositories/payment_repo_impl.dart';
 import '../../modules/Address/domain/usecases/get_address_use_case.dart';
 import '../../modules/Address/data/datasources/address_data_source.dart';
 import '../../modules/Payment/data/datasources/payment_data_source.dart';
+import '../../modules/user_profile/domain/usecases/get_user_profile.dart';
 import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/Payment/domain/repositories/payment_base_repo.dart';
 import '../../modules/Address/presentation/bloc/address/address_bloc.dart';
 import '../../modules/authentication/domain/usecases/logout_use_case.dart';
 import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
+import '../../modules/user_profile/data/repositories/user_pofile_impl.dart';
 import '../../modules/authentication/domain/usecases/sign_with_google.dart';
 import '../../modules/authentication/domain/usecases/sign_in_use_case.dart';
 import '../../modules/authentication/domain/usecases/sign_up_use_case.dart';
 import '../../modules/Address/presentation/bloc/location/location_bloc.dart';
+import '../../modules/user_profile/presentation/bloc/user_profile_bloc.dart';
 import '../../modules/authentication/domain/usecases/cache_user_use_case.dart';
+import '../../modules/user_profile/domain/repositories/user_profile_base.dart';
+import '../../modules/authentication/domain/usecases/get_cached_language.dart';
+import '../../modules/authentication/domain/usecases/cache_device_language.dart';
 import '../../modules/Address/domain/usecases/get_current_location_use_case.dart';
 import '../../modules/authentication/domain/usecases/delete_account_use_case.dart';
 import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
@@ -82,6 +87,9 @@ Future<void> init() async {
   // Cart
   sl.registerFactory(() => CartBloc());
 
+  // User profile
+  sl.registerFactory(() => UserProfileBloc(sl()));
+
   // Use cases ____________________________________________________________
 
   // Authentication
@@ -119,6 +127,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetOrdersListUseCase(sl()));
   sl.registerLazySingleton(() => GetOrderDetailsUseCase(sl()));
 
+  // User profile
+  sl.registerLazySingleton(() => GetUserProfileUseCase(sl()));
+
   // Repositories __________________________________________________________
 
   // Authentication
@@ -140,6 +151,10 @@ Future<void> init() async {
   // Payment
   sl.registerLazySingleton<PaymentBaseRepo>(() => PaymentRepoImpl(sl(), sl()));
 
+  // User profile
+  sl.registerLazySingleton<UserProfileBaseRepo>(
+      () => UserProfileRepoImpl(sl(), sl()));
+
   // Data sources __________________________________________________________
 
   // Authentication
@@ -160,6 +175,10 @@ Future<void> init() async {
   // Payment
   sl.registerLazySingleton<PaymentBaseDataSource>(
       () => PaymentDataSourceImplByDio(sl()));
+
+  // User profile
+  sl.registerLazySingleton<UserProfileBaseDataSource>(
+      () => UserProfileDataSourceByDio(sl()));
 
   // External ______________________________________________________________
   final sharedPref = await SharedPreferences.getInstance();

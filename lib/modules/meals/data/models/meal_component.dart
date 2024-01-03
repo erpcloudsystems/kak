@@ -1,7 +1,8 @@
-import 'package:kak/core/utils/extensions.dart';
-
-import '../../domain/entities/meal_component.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/network/api_constance.dart';
+import '../../domain/entities/meal_component.dart';
+import '../../../../core/utils/extensions.dart';
+
 
 class MealComponentModel extends MealComponentEntity {
   const MealComponentModel({
@@ -21,10 +22,12 @@ class MealComponentModel extends MealComponentEntity {
         maxRequired: json['max_required'] ?? 0,
         quantity: json['qty'] ?? 0,
         price: json['rate'] ?? 0.0,
-        itemName: json['item_name'] ?? json['item_name_arabic'] ?? 'none',
+        itemName: json['item_name'] ??
+            json['item_name_arabic'] ??
+            StringsWithNoCtx.none.tr(),
         itemClassification: json['item_classification'] ??
             json['item_classification_arabic'] ??
-            'none',
+            StringsWithNoCtx.none.tr(),
       );
 
   Map<String, dynamic> toJson() => {

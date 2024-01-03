@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "هناك مشكلة في اتصالك بالإنترنت"),
         "noItems": MessageLookupByLibrary.simpleMessage(
             "لا توجد عناصر في عربة التسوق الخاصة بك حتى الآن!"),
-        "none": MessageLookupByLibrary.simpleMessage("لا شيء"),
+        "none": MessageLookupByLibrary.simpleMessage("لا يوجد"),
         "okay": MessageLookupByLibrary.simpleMessage("حسنًا"),
         "oneChosen": MessageLookupByLibrary.simpleMessage(
             "يجب اختيار علي الاقل ١ عنصر من"),

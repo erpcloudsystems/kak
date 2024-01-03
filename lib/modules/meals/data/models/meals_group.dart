@@ -1,4 +1,6 @@
+import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/network/api_constance.dart';
+import '../../../../core/utils/extensions.dart';
 import '../../domain/entities/meal_group.dart';
 
 class MealsGroupModel extends MealsGroupEntity {
@@ -9,6 +11,6 @@ class MealsGroupModel extends MealsGroupEntity {
         imageUrl: '${ApiConstance.kakUrl}${json['image']}',
         name: json['item_group_name'] ??
             json['custom_item_group_arabic'] ??
-            'None',
+            StringsWithNoCtx.none.tr(),
       );
 }

@@ -17,6 +17,16 @@ abstract class ApiConstance {
   static const String loginEndPoint = '/kak.api.login';
   static const String logoutEndPoint = '/logout';
 
+  // User profile 
+  static const String getUserProfileEndPoint = '/kak.general.user_info';
+
+
+  // Orders
+  static const String getOrderDetailsEndPoint =
+      '/kak.general.get_sales_order_details';
+  static const String getOrdersListEndPoint = '/kak.general.get_sales_order';
+  static const String createOrderEndPoint = '/kak.add.sales_order';
+
   // Address
   static const String getAllAddressesEndpoint =
       '/kak.general.get_user_addresses';
@@ -49,11 +59,6 @@ abstract class ApiConstance {
         en: '/kak.general.get_meals_details_english',
         ar: '/kak.general.get_meals_details_arabic',
       );
-
-  // Orders
-  static const String getOrderDetailsEndPoint = '/kak.general.get_sales_order_details';
-  static const String getOrdersListEndPoint = '/kak.general.get_sales_order';
-  static const String createOrderEndPoint = '/kak.add.sales_order';
 
   // Paymob endpoints_______________________________________________________
   static const String paymobBaseUrl = 'https://accept.paymob.com/api';
