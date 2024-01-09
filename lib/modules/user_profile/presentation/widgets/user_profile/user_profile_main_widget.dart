@@ -17,7 +17,7 @@ class UserProfileMainWidget extends StatelessWidget {
       //_________________________User Image and Name______________________
       UserProfileCard(
         title: StringsManager.userName(context),
-        subtitle: user.name,
+        subtitle: '${user.firstName} ${user.lastName}',
         icon: Icons.person,
       ),
       // ________________________________User Email________________________________

@@ -22,7 +22,8 @@ class UserProfileState extends Equatable {
       mobileNo: 'mobileNo',
       address: 'address',
       email: 'email',
-      name: 'name',
+      firstName: 'name',
+      lastName: 'name',
       image: null,
     ),
   });
@@ -56,7 +57,7 @@ class UserProfileState extends Equatable {
         getUserProfileMessage,
         getUserProfileState,
         getUserProfileData,
-        
+
         // edit user profile
         editUserProfileMessage,
         editUserProfileState,
