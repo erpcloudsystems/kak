@@ -33,3 +33,5 @@ class GetOrderDetailsEvent extends PaymentEvent {
 }
 
 class GetOrdersListEvent extends PaymentEvent {}
+
+class GetTaxesEvent extends PaymentEvent {}

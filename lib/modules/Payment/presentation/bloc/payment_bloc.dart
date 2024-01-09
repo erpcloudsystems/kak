@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kak/modules/Payment/domain/usecases/get_taxes.dart';
 
+import '../../domain/entities/taxes.dart';
 import '../../domain/entities/order.dart';
 import '../../../../core/utils/enums.dart';
 import '../../domain/usecases/create_order.dart';
@@ -22,16 +24,19 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   final GetOrdersListUseCase _getOrdersListUseCase;
   final PayWithCardUseCase _payWithCardUseCase;
   final CreateOrderUseCase _createOrderUseCase;
+  final GetTaxesUseCase _getTaxesUseCase;
   PaymentBloc(
+    this._getOrderDetailsUseCase,
     this._getOrdersListUseCase,
     this._createOrderUseCase,
     this._payWithCardUseCase,
-    this._getOrderDetailsUseCase,
+    this._getTaxesUseCase,
   ) : super(const PaymentState()) {
+    on<GetOrderDetailsEvent>(getOrderDetails);
+    on<GetOrdersListEvent>(getOrdersList);
     on<PayWithCardEvent>(payWithCard);
     on<CreateOrderEvent>(createOrder);
-    on<GetOrdersListEvent>(getOrdersList);
-    on<GetOrderDetailsEvent>(getOrderDetails);
+    on<GetTaxesEvent>(getTaxes);
   }
 
   // Pay with card ______________________________________________________
@@ -89,6 +94,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   }
 
   // Get order details ________________________________________________________
+  // Get order details ________________________________________________________
   FutureOr<void> getOrderDetails(
       GetOrderDetailsEvent event, Emitter<PaymentState> emit) async {
     emit(state.copyWith(getOrderDetailsState: RequestState.loading));
@@ -103,6 +109,25 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       (order) => emit(state.copyWith(
         getOrderDetailsState: RequestState.success,
         getOrderDetailsData: order,
+      )),
+    );
+  }
+
+  // Get taxes ________________________________________________________
+  FutureOr<void> getTaxes(
+      GetTaxesEvent event, Emitter<PaymentState> emit) async {
+    emit(state.copyWith(getTaxesState: RequestState.loading));
+
+    final result = await _getTaxesUseCase(const NoParameters());
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        getTaxesState: RequestState.error,
+        getTaxesMessage: failure.errorMessage,
+      )),
+      (taxes) => emit(state.copyWith(
+        getTaxesState: RequestState.success,
+        getTaxesData: taxes,
       )),
     );
   }

@@ -7,6 +7,7 @@ import '../../generated/l10n.dart';
 import '../network/dio_helper.dart';
 import '../network/network_info.dart';
 import '../../modules/Cart/presentation/bloc/cart_bloc.dart';
+import '../../modules/Payment/domain/usecases/get_taxes.dart';
 import '../../modules/meals/presentation/bloc/meals_bloc.dart';
 import '../../modules/meals/data/datasources/meals_remote.dart';
 import '../../modules/Payment/domain/usecases/create_order.dart';
@@ -79,7 +80,7 @@ Future<void> init() async {
   sl.registerFactory(() => AddressBloc(sl(), sl(), sl()));
 
   // Payment
-  sl.registerFactory(() => PaymentBloc(sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => PaymentBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Caching
   sl.registerFactory(() => CachingUserDataBloc(sl(), sl(), sl(), sl(), sl()));
@@ -122,6 +123,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCurrentLocationUseCase(sl()));
 
   // Payment
+  sl.registerLazySingleton(() => GetTaxesUseCase(sl()));
   sl.registerLazySingleton(() => PayWithCardUseCase(sl()));
   sl.registerLazySingleton(() => CreateOrderUseCase(sl()));
   sl.registerLazySingleton(() => GetOrdersListUseCase(sl()));

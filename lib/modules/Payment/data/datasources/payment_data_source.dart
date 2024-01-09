@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../models/taxes.dart';
 import '../models/order.dart';
 import 'pay_by_paymob_gateway.dart';
 import '../models/received_order.dart';
@@ -13,6 +14,7 @@ abstract class PaymentBaseDataSource {
   Future<String> payWithCard(CardPaymentEntity paymentData);
   Future<List<OrdersListItemModel>> getOrdersList();
   Future<Unit> createOrder(OrderModel order);
+  Future<TaxesModel> getTaxes();
 }
 
 class PaymentDataSourceImplByDio extends PayByPaymobGateway
@@ -55,5 +57,16 @@ class PaymentDataSourceImplByDio extends PayByPaymobGateway
     final order = ReceivedOrderModel.fromJson(response.data['message'][0]);
 
     return order;
+  }
+
+  // Get taxes _______________________________________________________
+  @override
+  Future<TaxesModel> getTaxes() async {
+    final response =
+        await dio.get(endPoint: ApiConstance.getTaxesEndPoint) as Response;
+
+    final taxes = TaxesModel.fromJson(response.data);
+
+    return taxes;
   }
 }

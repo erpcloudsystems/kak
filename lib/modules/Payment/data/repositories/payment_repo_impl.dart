@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:kak/modules/Payment/domain/entities/taxes.dart';
 
 import '../models/order.dart';
 import '../../domain/entities/order.dart';
@@ -55,4 +56,12 @@ class PaymentRepoImpl implements PaymentBaseRepo {
           String orderId) async =>
       await HelperNetworkMethods.commonApiResponseMethod<ReceivedOrderEntity>(
           () async => await dataSource.getOrderDetails(orderId), networkInfo);
+
+  // Get taxes ______________________________________________________________
+  @override
+  Future<Either<Failure, TaxesEntity>> getTaxes() async =>
+      await HelperNetworkMethods.commonApiResponseMethod<TaxesEntity>(
+        () async => await dataSource.getTaxes(),
+        networkInfo,
+      );
 }

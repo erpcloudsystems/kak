@@ -19,6 +19,11 @@ class PaymentState extends Equatable {
   final String getOrderDetailsMessage;
   final ReceivedOrderEntity getOrderDetailsData;
 
+  // Get taxes
+  final RequestState getTaxesState;
+  final String getTaxesMessage;
+  final TaxesEntity getTaxesData;
+
   const PaymentState({
     // Pay with card
     this.payWithCardState = RequestState.stable,
@@ -33,6 +38,11 @@ class PaymentState extends Equatable {
     this.getOrdersListState = RequestState.stable,
     this.getOrdersListMessage = 'Get orders List initial message',
     this.getOrdersListData = const [],
+
+    // Get getTaxes
+    this.getTaxesState = RequestState.stable,
+    this.getTaxesMessage = 'Get taxes initial message',
+    this.getTaxesData = const TaxesEntity(deliverFee: 0.0, taxes: 0.0),
 
     // Get order details
     this.getOrderDetailsState = RequestState.stable,
@@ -71,6 +81,11 @@ class PaymentState extends Equatable {
     RequestState? getOrderDetailsState,
     String? getOrderDetailsMessage,
     ReceivedOrderEntity? getOrderDetailsData,
+
+    // Get taxes
+    RequestState? getTaxesState,
+    String? getTaxesMessage,
+    TaxesEntity? getTaxesData,
   }) =>
       PaymentState(
         // Pay with card
@@ -86,6 +101,11 @@ class PaymentState extends Equatable {
         getOrdersListState: getOrdersListState ?? this.getOrdersListState,
         getOrdersListMessage: getOrdersListMessage ?? this.getOrdersListMessage,
         getOrdersListData: getOrdersListData ?? this.getOrdersListData,
+
+        // Get taxes
+        getTaxesState: getTaxesState ?? this.getTaxesState,
+        getTaxesMessage: getTaxesMessage ?? this.getTaxesMessage,
+        getTaxesData: getTaxesData ?? this.getTaxesData,
 
         // Get order details
         getOrderDetailsState: getOrderDetailsState ?? this.getOrderDetailsState,
@@ -113,5 +133,10 @@ class PaymentState extends Equatable {
         getOrderDetailsState,
         getOrderDetailsMessage,
         getOrderDetailsData,
+
+        // Get taxes
+        getTaxesState,
+        getTaxesMessage,
+        getTaxesData,
       ];
 }
