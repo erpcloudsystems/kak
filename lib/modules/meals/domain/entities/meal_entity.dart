@@ -9,8 +9,12 @@ class MealEntity extends Equatable {
   final int? quantity;
   final double price;
 
+  // This flag to check if it is a main meal or a component one.
+  final bool isMainMeal;
+
   const MealEntity({
     required this.description,
+    this.isMainMeal = true,
     this.priceAfterDiscount,
     required this.imageUrl,
     required this.price,
@@ -25,6 +29,7 @@ class MealEntity extends Equatable {
         priceAfterDiscount,
         description,
         components,
+        isMainMeal,
         imageUrl,
         quantity,
         price,

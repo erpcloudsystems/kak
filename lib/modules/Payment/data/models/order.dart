@@ -12,6 +12,36 @@ class OrderModel extends OrderEntity {
 
   Map<String, dynamic> toJson() {
     final date = DateTime.now().formatDateYMD();
+    List<Map<String, dynamic>> flattenedItems = [];
+
+    // Extract every component and put it as a meal.
+    for (var meal in items) {
+      if (meal.components != null && meal.components!.isNotEmpty) {
+        for (var component in meal.components!) {
+          MealModel componentMeal = MealModel(
+            description: component.itemName,
+            imageUrl: component.image,
+            quantity: component.quantity,
+            price: component.price,
+            name: component.itemName,
+            id: component.itemName,
+            isMainMeal: false,
+          );
+          flattenedItems.add(componentMeal.toJson());
+        }
+      }
+      MealModel originalMeal = MealModel(
+        priceAfterDiscount: meal.priceAfterDiscount,
+        description: meal.description,
+        isMainMeal: true,
+        imageUrl: meal.imageUrl,
+        quantity: meal.quantity,
+        price: meal.price,
+        name: meal.name,
+        id: meal.id,
+      );
+      flattenedItems.add(originalMeal.toJson());
+    }
     return {
       'data': {
         'transaction_date': date,
@@ -20,19 +50,7 @@ class OrderModel extends OrderEntity {
         'mode_of_payment': modeOfPayment == PaymentType.creditCard
             ? 'Credit Card'
             : 'Cash On Delivery',
-        'items': items.map((e) {
-          MealModel meal = MealModel(
-            priceAfterDiscount: e.priceAfterDiscount,
-            description: e.description,
-            components: e.components,
-            imageUrl: e.imageUrl,
-            quantity: e.quantity,
-            price: e.price,
-            name: e.name,
-            id: e.id,
-          );
-          return meal.toJson();
-        }).toList(),
+        'items': flattenedItems,
       }
     };
   }

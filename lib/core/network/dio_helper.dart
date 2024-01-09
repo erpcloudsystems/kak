@@ -45,6 +45,7 @@ class DioHelper implements BaseDioHelper {
       baseUrl: ApiConstance.baseUrl,
       receiveDataWhenStatusError: true,
       connectTimeout: const Duration(seconds: IntManager.i_30),
+      validateStatus: (status) => true,
     ),
   );
 
