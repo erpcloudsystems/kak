@@ -41,7 +41,7 @@ class CustomAnimatedGridChild extends StatelessWidget {
                   child: IconButton(
                       onPressed: () => context
                           .read<CartBloc>()
-                          .add(AddCartItemEvent(meal: meal)),
+                          .add(AddCartItemEvent(meal: meal.copyWith(cartId: meal.id))),
                       icon: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,

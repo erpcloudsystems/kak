@@ -129,9 +129,10 @@ class FeaturedMealsElement extends StatelessWidget {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(
                                                 DoubleManager.d_20)))),
-                                onPressed: () =>
-                                    BlocProvider.of<CartBloc>(context)
-                                        .add(AddCartItemEvent(meal: meal)),
+                                onPressed: () => BlocProvider.of<CartBloc>(
+                                        context)
+                                    .add(AddCartItemEvent(
+                                        meal: meal.copyWith(cartId: meal.id))),
                                 child: FittedBox(
                                   fit: BoxFit.scaleDown,
                                   child: Text(StringsManager.addToCart(context),

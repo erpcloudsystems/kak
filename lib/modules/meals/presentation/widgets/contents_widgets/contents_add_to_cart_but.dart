@@ -37,7 +37,8 @@ class ContentMealAddToCartBut extends StatelessWidget {
               imageUrl: theMeal!.imageUrl,
               price: price.value * quantity.value,
               name: theMeal!.name,
-              id: const Uuid().v1(),
+              cartId: const Uuid().v1(),
+              id: theMeal!.id,
               components: List<MealComponentEntity>.from(gv.getChosenList),
               quantity: quantity.value,
             );

@@ -32,6 +32,7 @@ class ReorderMealBtn extends StatelessWidget {
                     description: '',
                     imageUrl: '',
                     id: receivedOrder!.id,
+                    cartId: receivedOrder!.id,
                     name: StringsManager.reorderedMeal(context),
                     price: receivedOrder!.price,
                     components: receivedOrder?.items

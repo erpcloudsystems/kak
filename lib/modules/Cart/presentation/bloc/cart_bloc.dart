@@ -43,7 +43,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       AddCartItemEvent event, Emitter<CartState> emit) async {
     emit(state.copyWith(addCartItemState: RequestState.loading));
     try {
-      if (_cartItems.every((element) => element.id != event.meal.id)) {
+      if (_cartItems.every((element) => element.cartId != event.meal.cartId)) {
         _cartItems.add(event.meal);
         emit(state.copyWith(
           addCartItemState: RequestState.success,
@@ -69,7 +69,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       RemoveCartItemEvent event, Emitter<CartState> emit) async {
     emit(state.copyWith(removeCartItemState: RequestState.loading));
     try {
-      _cartItems.removeWhere((element) => element.id == event.meal.id);
+      _cartItems.removeWhere((element) => element.cartId == event.meal.cartId);
       emit(state.copyWith(
         removeCartItemState: RequestState.success,
         removeCartItemMessage: StringsWithNoCtx.removedFromCartMessage.tr(),
@@ -100,7 +100,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> updateCartItem(
       UpdateCartItemEvent event, Emitter<CartState> emit) async {
     final index =
-        _cartItems.indexWhere((element) => element.id == event.meal.id);
+        _cartItems.indexWhere((element) => element.cartId == event.meal.cartId);
 
     if (index != -1) {
       _cartItems[index] = event.meal;

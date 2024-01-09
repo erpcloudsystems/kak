@@ -27,7 +27,8 @@ class MealAddToCartBut extends StatelessWidget {
             imageUrl: meal.imageUrl,
             price: meal.priceAfterDiscount!,
             name: meal.name,
-            id: const Uuid().v4(),
+            cartId: const Uuid().v4(),
+            id: meal.id,
             quantity: quantity.value,
             components: const [],
           )));

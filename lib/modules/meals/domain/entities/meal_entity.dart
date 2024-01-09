@@ -11,6 +11,7 @@ class MealEntity extends Equatable {
 
   // This flag to check if it is a main meal or a component one.
   final bool isMainMeal;
+  final String? cartId;
 
   const MealEntity({
     required this.description,
@@ -22,7 +23,33 @@ class MealEntity extends Equatable {
     required this.id,
     this.components,
     this.quantity,
+    this.cartId ,
   });
+
+  MealEntity copyWith({
+    String? imageUrl,
+    name,
+    description,
+    id,
+    cartId,
+    List<MealComponentEntity>? components,
+    int? quantity,
+    double? price,
+    isMainMeal,
+    priceAfterDiscount,
+  }) =>
+      MealEntity(
+        priceAfterDiscount: priceAfterDiscount ?? priceAfterDiscount,
+        description: description ?? this.description,
+        isMainMeal: isMainMeal ?? this.isMainMeal,
+        components: components ?? this.components,
+        quantity: quantity ?? this.quantity,
+        imageUrl: imageUrl ?? this.imageUrl,
+        cartId: cartId ?? this.cartId,
+        price: price ?? this.price,
+        name: name ?? this.name,
+        id: id ?? this.id,
+      );
 
   @override
   List<Object?> get props => [
@@ -32,6 +59,7 @@ class MealEntity extends Equatable {
         isMainMeal,
         imageUrl,
         quantity,
+        cartId,
         price,
         name,
         id,
