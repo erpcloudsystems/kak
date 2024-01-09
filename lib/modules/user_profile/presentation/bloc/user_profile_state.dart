@@ -11,7 +11,12 @@ class UserProfileState extends Equatable {
     this.getUserProfileMessage = 'get user profile initial message',
     this.getUserProfileState = RequestState.stable,
     this.getUserProfileData = const UserProfileEntity(
-        mobileNo: 'mobileNo', email: 'email', name: 'name', image: null),
+      mobileNo: 'mobileNo',
+      address: 'address',
+      email: 'email',
+      name: 'name',
+      image: null,
+    ),
   });
 
   UserProfileState copyWith({

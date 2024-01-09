@@ -5,6 +5,7 @@ import '../../../../core/utils/extensions.dart';
 class UserProfileModel extends UserProfileEntity {
   const UserProfileModel({
     required super.mobileNo,
+    required super.address,
     required super.email,
     required super.image,
     required super.name,
@@ -13,8 +14,9 @@ class UserProfileModel extends UserProfileEntity {
   factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
       UserProfileModel(
         mobileNo: json['mobile_no'] ?? StringsWithNoCtx.none.tr(),
-        email: json['first_name'] ?? StringsWithNoCtx.none.tr,
-        name: json['email'] ?? StringsWithNoCtx.none.tr,
+        address: json['addresses'] ?? StringsWithNoCtx.none.tr(),
+        name: json['first_name'] ?? StringsWithNoCtx.none.tr(),
+        email: json['email'] ?? StringsWithNoCtx.none.tr(),
         image: json['user_image'],
       );
 }

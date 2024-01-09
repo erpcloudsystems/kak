@@ -37,7 +37,7 @@ class UserProfileMainWidget extends StatelessWidget {
       //________________________ Default address ______________________________
       UserProfileCard(
         title: StringsManager.primaryAddress(context),
-        subtitle: 'Default address placeholder',
+        subtitle: user.address,
         icon: Icons.location_city_rounded,
       ),
     ]);
