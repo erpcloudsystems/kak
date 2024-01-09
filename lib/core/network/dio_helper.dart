@@ -22,6 +22,19 @@ abstract class BaseDioHelper {
     dynamic query,
     bool useCookies = false,
   });
+  
+  Future<dynamic> patch({
+    ProgressCallback? progressCallback,
+    required String endPoint,
+    CancelToken? cancelToken,
+    bool isMultiPart = false,
+    Duration? timeOut,
+    String? base,
+    String? token,
+    dynamic data,
+    dynamic query,
+    bool useCookies = true,
+  });
 
   Future<dynamic> get({
     required String endPoint,
@@ -136,6 +149,52 @@ class DioHelper implements BaseDioHelper {
 
     return await request(
         call: () async => await dio.post(
+              endPoint,
+              data: data,
+              queryParameters: query,
+              onSendProgress: progressCallback,
+              cancelToken: cancelToken,
+            ));
+  }
+
+  @override
+  Future patch({
+    ProgressCallback? progressCallback,
+    required String endPoint,
+    CancelToken? cancelToken,
+    bool isMultiPart = false,
+    bool useCookies = true,
+    Duration? timeOut,
+    String? base,
+    String? token,
+    data,
+    query,
+  }) async {
+    if (base != null) {
+      dio.options.baseUrl = base;
+    } else {
+      dio.options.baseUrl = ApiConstance.baseUrl;
+    }
+
+    if (timeOut != null) {
+      dio.options.connectTimeout = timeOut;
+    }
+
+    dio.options.headers = {
+      if (isMultiPart) 'Content-Type': 'multipart/form-data',
+      if (!isMultiPart) 'Content-Type': 'application/json',
+      if (!isMultiPart) 'Accept': 'application/json',
+      if (token != null) 'token': token,
+      if (useCookies) 'Cookie': 'sid=${globalVariable.getSid}'
+    };
+
+    log('URL => ${dio.options.baseUrl + endPoint}');
+    log('Header => ${dio.options.headers.toString()}');
+    log('Body => $data');
+    log('Query => $query');
+
+    return await request(
+        call: () async => await dio.patch(
               endPoint,
               data: data,
               queryParameters: query,

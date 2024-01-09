@@ -19,4 +19,11 @@ class UserProfileModel extends UserProfileEntity {
         email: json['email'] ?? StringsWithNoCtx.none.tr(),
         image: json['user_image'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'first_name': '',
+        'last_name': '',
+        'mobile_no': '',
+        'image_content': '',
+      };
 }

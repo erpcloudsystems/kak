@@ -34,6 +34,7 @@ import '../../modules/user_profile/domain/usecases/get_user_profile.dart';
 import '../../modules/Address/domain/repositories/address_base_repo.dart';
 import '../../modules/Payment/domain/repositories/payment_base_repo.dart';
 import '../../modules/Address/presentation/bloc/address/address_bloc.dart';
+import '../../modules/user_profile/domain/usecases/edit_user_profile.dart';
 import '../../modules/authentication/domain/usecases/logout_use_case.dart';
 import '../../modules/Payment/domain/usecases/pay_with_card_use_case.dart';
 import '../../modules/user_profile/data/repositories/user_pofile_impl.dart';
@@ -89,7 +90,7 @@ Future<void> init() async {
   sl.registerFactory(() => CartBloc());
 
   // User profile
-  sl.registerFactory(() => UserProfileBloc(sl()));
+  sl.registerFactory(() => UserProfileBloc(sl(), sl()));
 
   // Use cases ____________________________________________________________
 
@@ -131,6 +132,7 @@ Future<void> init() async {
 
   // User profile
   sl.registerLazySingleton(() => GetUserProfileUseCase(sl()));
+  sl.registerLazySingleton(() => EditUserProfileUseCase(sl()));
 
   // Repositories __________________________________________________________
 

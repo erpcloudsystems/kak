@@ -6,7 +6,15 @@ class UserProfileState extends Equatable {
   final RequestState getUserProfileState;
   final String getUserProfileMessage;
 
+  // Edit user profile
+  final RequestState editUserProfileState;
+  final String editUserProfileMessage;
+
   const UserProfileState({
+    // Edit user profile
+    this.editUserProfileMessage = 'edit user profile initial message',
+    this.editUserProfileState = RequestState.stable,
+
     // Get user profile
     this.getUserProfileMessage = 'get user profile initial message',
     this.getUserProfileState = RequestState.stable,
@@ -24,6 +32,10 @@ class UserProfileState extends Equatable {
     UserProfileEntity? getUserProfileData,
     RequestState? getUserProfileState,
     String? getUserProfileMessage,
+
+    // Edit user profile
+    RequestState? editUserProfileState,
+    String? editUserProfileMessage,
   }) =>
       UserProfileState(
         // Get user profile
@@ -31,6 +43,11 @@ class UserProfileState extends Equatable {
         getUserProfileData: getUserProfileData ?? this.getUserProfileData,
         getUserProfileMessage:
             getUserProfileMessage ?? this.getUserProfileMessage,
+
+        // Edit user profile
+        editUserProfileState: editUserProfileState ?? this.editUserProfileState,
+        editUserProfileMessage:
+            editUserProfileMessage ?? this.editUserProfileMessage,
       );
 
   @override
@@ -39,5 +56,9 @@ class UserProfileState extends Equatable {
         getUserProfileMessage,
         getUserProfileState,
         getUserProfileData,
+        
+        // edit user profile
+        editUserProfileMessage,
+        editUserProfileState,
       ];
 }

@@ -5,4 +5,5 @@ import '../../../../core/network/failure.dart';
 
 abstract class UserProfileBaseRepo {
 Future<Either<Failure, UserProfileEntity>> getUserProfile();
+Future<Either<Failure, Unit>> editUserProfile(UserProfileEntity user);
 }

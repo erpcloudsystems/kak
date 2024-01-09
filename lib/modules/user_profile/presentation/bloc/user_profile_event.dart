@@ -8,3 +8,11 @@ abstract class UserProfileEvent extends Equatable {
 }
 
 class GetUserProfileEvent extends UserProfileEvent {}
+
+class EditUserProfileEvent extends UserProfileEvent {
+  final UserProfileEntity user;
+  const EditUserProfileEvent({required this.user});
+
+  @override
+  List<UserProfileEntity> get props => [user];
+}

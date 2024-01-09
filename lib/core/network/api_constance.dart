@@ -19,6 +19,7 @@ abstract class ApiConstance {
 
   // User profile 
   static const String getUserProfileEndPoint = '/kak.general.user_info';
+  static const String editUserProfileEndPoint = '/kak.general.update_user_profile';
 
 
   // Orders
