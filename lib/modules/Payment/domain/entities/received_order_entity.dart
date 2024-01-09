@@ -5,19 +5,20 @@ class ReceivedOrderEntity extends OrderEntity {
   const ReceivedOrderEntity({
     required super.customerAddress,
     required super.modeOfPayment,
-    required super.items,
     required this.mobileNumber,
     required this.customerName,
     required this.delivery,
+    required this.subTotal,
+    required super.items,
     required this.status,
-    required this.price,
+    required this.total,
     required this.date,
     required this.tax,
     required this.id,
   });
 
   final String id, customerName, date, mobileNumber;
-  final double price, tax, delivery;
+  final double total, tax, delivery, subTotal;
   final DoctypeStatus status;
 
   @override
@@ -27,8 +28,9 @@ class ReceivedOrderEntity extends OrderEntity {
         customerName,
         mobileNumber,
         delivery,
+        subTotal,
         status,
-        price,
+        total,
         items,
         date,
         tax,

@@ -34,7 +34,7 @@ class ReorderMealBtn extends StatelessWidget {
                     id: receivedOrder!.id,
                     cartId: receivedOrder!.id,
                     name: StringsManager.reorderedMeal(context),
-                    price: receivedOrder!.price,
+                    price: receivedOrder!.total,
                     components: receivedOrder?.items
                             .map(
                               (e) => MealComponentEntity(

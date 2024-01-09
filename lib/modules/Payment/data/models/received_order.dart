@@ -10,10 +10,11 @@ class ReceivedOrderModel extends ReceivedOrderEntity {
     required super.modeOfPayment,
     required super.customerName,
     required super.mobileNumber,
+    required super.subTotal,
     required super.delivery,
     required super.status,
     required super.items,
-    required super.price,
+    required super.total,
     required super.date,
     required super.tax,
     required super.id,
@@ -29,7 +30,8 @@ class ReceivedOrderModel extends ReceivedOrderEntity {
         delivery: json['taxes'][0]['tax_amount'] ?? 0.0,
         tax: json['taxes'][1]['tax_amount'] ?? 0.0,
         id: json['name'] ?? StringsWithNoCtx.none.tr(),
-        price: json['grand_total'] ?? 0.0,
+        total: json['grand_total'] ?? 0.0,
+        subTotal: json['total'] ?? 0.0,
         modeOfPayment: PaymentType.cash,
         items: json['items'] != null
             ? List.from(json['items'])
