@@ -82,8 +82,8 @@ class EditUserProfileMainScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: DoubleManager.d_10),
                   child: PhoneNumberPicker(
-                      initialValue:
-                          userOldData.mobileNo.replaceFirst(RegExp(r'0'), ''),
+                      initialValue: userOldData.mobileNo
+                          .replaceFirst(RegExp(r'^(\+20|0)'), ''),
                       phoneNumber: (String number) => phoneNumber = number),
                 ),
               ],

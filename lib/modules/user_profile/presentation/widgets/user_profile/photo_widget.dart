@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kak/core/network/api_constance.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../../core/resources/values_manager.dart';
@@ -82,8 +83,9 @@ class UserPhotoWidget extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: radius,
-          backgroundImage:
-              image ?? NetworkImage(currentUser.image ?? userTestImage),
+          backgroundImage: image ??
+              NetworkImage('${ApiConstance.kakUrl}${currentUser.image}' ??
+                  userTestImage),
         ),
         sideWidget,
       ],

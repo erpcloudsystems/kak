@@ -30,6 +30,7 @@ class UserProfileRepoImpl implements UserProfileBaseRepo {
       image: user.image,
       firstName: user.firstName,
       lastName: user.lastName,
+      fileName: user.fileName,
     );
     return await HelperNetworkMethods.commonApiResponseMethod<Unit>(
       () async => await dataSource.editUserProfile(userModel),
