@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'choose_ur_order.dart';
 import 'dots_indicator.dart';
 import '../bloc/meals_bloc.dart';
 import 'offers/bottom_sheet.dart';
@@ -69,7 +68,8 @@ class _OffersSectionState extends State<OffersSection> {
                 imageUrl: widget.offersList[index].imageUrl),
           ),
         ),
-        const ChooseYourOrder(),
+        // TODO: ADD CHOOSE YOUR MEAL OPTION SECTION.
+        // const ChooseYourOrder(),
         OfferDotsIndicator(
           currentSliderIndex: currentSliderIndex,
           offersList: widget.offersList,

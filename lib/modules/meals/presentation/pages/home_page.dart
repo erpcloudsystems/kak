@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(StringsManager.menu(context)),
+        title: Text(StringsManager.menu(context)),
         titleTextStyle: Theme.of(context)
             .appBarTheme
             .titleTextStyle!
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
       body: const CustomScrollingAnimatedTemplate(
         children: [
           Offers(),
-          SizedBox(height: DoubleManager.d_60),
+          SizedBox(height: DoubleManager.d_20),
           MealsGroups(),
           FeaturedMealsSection(),
         ],
