@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 
-import '../../../authentication/data/models/logged_user_entity.dart';
+import '../models/logged_user.dart';
 import '../../../authentication/data/models/user_model.dart';
 import 'social_sign_data_source.dart';
 import 'regular_sign_data_source.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'user_profile_card.dart';
-import '../logged_components/photo_widget.dart';
 import '../../../domain/entities/user_profile.dart';
+import '../logged_components/user_profile_photo.dart';
 import '../../../../../core/resources/strings_manager.dart';
 
 class UserProfileMainWidget extends StatelessWidget {
@@ -13,7 +13,7 @@ class UserProfileMainWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(children: [
       //_________________________User Image and Name______________________
-      Center(child: UserPhotoWidget(imageUrl: user.image)),
+      Center(child: UserProfilePhotoWidget(imageUrl: user.image)),
       //_________________________User Image and Name______________________
       UserProfileCard(
         title: StringsManager.userName(context),

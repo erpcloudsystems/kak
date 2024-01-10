@@ -18,7 +18,7 @@ class UserNameSection extends StatelessWidget {
           String userName;
           switch (state.isUserLoggedIn) {
             case true:
-              userName = state.loggedInUser.name!;
+              userName = state.loggedInUser.fullName ?? state.loggedInUser.name!;
               break;
 
             case false:

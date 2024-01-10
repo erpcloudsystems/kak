@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kak/core/network/api_constance.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
+import 'user_photo_widget.dart';
 import '../../../../../core/resources/values_manager.dart';
-import '../../bloc/user_profile_bloc.dart';
-import '../logged_components/photo_widget.dart';
 
 class UserPhotoInEditingScreen extends StatefulWidget {
   final Function fileName;
@@ -59,36 +56,5 @@ class _UserPhotoInEditingScreenState extends State<UserPhotoInEditingScreen> {
             : FileImage(
                 File(pickedImage!.path),
               ));
-  }
-}
-
-class UserPhotoWidget extends StatelessWidget {
-  const UserPhotoWidget({
-    super.key,
-    required this.sideWidget,
-    required this.radius,
-    this.image,
-  });
-
-  final Widget sideWidget;
-  final double radius;
-  final ImageProvider? image;
-
-  @override
-  Widget build(BuildContext context) {
-    final bloc = context.watch<UserProfileBloc>();
-    final currentUser = bloc.state.getUserProfileData;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CircleAvatar(
-          radius: radius,
-          backgroundImage: image ??
-              NetworkImage('${ApiConstance.kakUrl}${currentUser.image}' ??
-                  userTestImage),
-        ),
-        sideWidget,
-      ],
-    );
   }
 }

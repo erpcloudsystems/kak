@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/resources/routes.dart';
 import '../widgets/logged_components/options_list.dart';
-import '../widgets/logged_components/photo_widget.dart';
 import '../widgets/logged_components/logout_button.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../widgets/unlogged_components/version_section.dart';
 import '../widgets/logged_components/user_name_section.dart';
 import '../widgets/unlogged_components/langauage_switch.dart';
+import '../widgets/logged_components/user_profile_photo.dart';
 import '../widgets/unlogged_components/contact_us_option.dart';
 import '../widgets/logged_components/delete_account_button.dart';
 import '../../../../core/utils/custom_scrolling_animated_template.dart';
@@ -27,7 +27,10 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) {
           return CustomScrollingAnimatedTemplate(
             children: [
-              const UserPhotoWidget(),
+              UserProfilePhotoWidget(
+                imageUrl:
+                    state.isUserLoggedIn ? state.loggedInUser.image : null,
+              ),
               const UserNameSection(),
               state.isUserLoggedIn
                   ? OptionsList(options: loggedOptionsList(context))

@@ -15,19 +15,17 @@ class LoggedInUserModel extends LoggedInUserEntity {
     super.sid,
   });
 
-  factory LoggedInUserModel.fromJson(Map<String, dynamic> json) => LoggedInUserModel(
+  factory LoggedInUserModel.fromJson(Map<String, dynamic> json) =>
+      LoggedInUserModel(
         role: List<String>.from(json["role"].map((x) => x)),
-        // apiSecret: json["api_secret"]["api_secret"] ?? '',
-        fullName: json["full_name"],
+        phoneNumber: json["phone_number"],
+        fullName: '${json["first_name"]} ${json["last_name"]}',
         userType: json["user_type"],
         username: json["username"],
+        image: json["user_image"],
         apiKey: json["api_key"],
         email: json["email"],
         name: json["name"],
         sid: json["sid"],
-        
-        // TODO: Not ready yet, check after finishing.
-        image: json["image"],
-        phoneNumber: json["phone_number"],
       );
 }
