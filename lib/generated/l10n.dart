@@ -260,6 +260,16 @@ class S {
     );
   }
 
+  /// `Your profile updated successfully`
+  String get profileUpdated {
+    return Intl.message(
+      'Your profile updated successfully',
+      name: 'profileUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You have logged out successfully`
   String get logoutMessage {
     return Intl.message(
@@ -420,6 +430,16 @@ class S {
     );
   }
 
+  /// `Change your photo`
+  String get changePhoto {
+    return Intl.message(
+      'Change your photo',
+      name: 'changePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `is must be chosen, at least 1`
   String get oneMust {
     return Intl.message(
@@ -445,6 +465,16 @@ class S {
     return Intl.message(
       'Added to your cart',
       name: 'cartAddedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updating your profile`
+  String get updatingYourProfile {
+    return Intl.message(
+      'Updating your profile',
+      name: 'updatingYourProfile',
       desc: '',
       args: [],
     );
@@ -825,6 +855,16 @@ class S {
     return Intl.message(
       'Directions',
       name: 'directions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit profile',
+      name: 'editProfile',
       desc: '',
       args: [],
     );

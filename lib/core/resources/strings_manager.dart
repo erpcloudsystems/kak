@@ -127,13 +127,17 @@ class StringsManager {
   static String title(BuildContext context) => S.of(context).title;
   static String apartmentNumber(BuildContext context) =>
       S.of(context).apartmentNumber;
+  static String updatingYourProfile(BuildContext context) => S.of(context).updatingYourProfile;
+  static String profileUpdated(BuildContext context) => S.of(context).profileUpdated;
   static String primaryAddress(BuildContext context) => S.of(context).primaryAddress;
   static String saveAddress(BuildContext context) => S.of(context).saveAddress;
+  static String changePhoto(BuildContext context) => S.of(context).changePhoto;
   static String deliverHere(BuildContext context) => S.of(context).deliverHere;
   static String createOrder(BuildContext context) => S.of(context).createOrder;
   static String deliveryFee(BuildContext context) => S.of(context).deliveryFee;
   static String totalAmount(BuildContext context) => S.of(context).totalAmount;
   static String description(BuildContext context) => S.of(context).description;
+  static String editProfile(BuildContext context) => S.of(context).editProfile;
   static String getStarted(BuildContext context) => S.of(context).getStarted;
   static String placeOrder(BuildContext context) => S.of(context).placeOrder;
   static String urDetails(BuildContext context) => S.of(context).urDetails;

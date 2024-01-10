@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "catagories": MessageLookupByLibrary.simpleMessage("Categories"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
+        "changePhoto":
+            MessageLookupByLibrary.simpleMessage("Change your photo"),
         "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "chooseOrderType":
             MessageLookupByLibrary.simpleMessage("Choose order type"),
@@ -85,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\"t have an account?"),
         "duplicateItemError": MessageLookupByLibrary.simpleMessage(
             "You already added this item to ur cart"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailValidateMessage":
             MessageLookupByLibrary.simpleMessage("please enter your E-mail"),
@@ -174,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "productDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "profileUpdated": MessageLookupByLibrary.simpleMessage(
+            "Your profile updated successfully"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantity:"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
@@ -209,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAmount": MessageLookupByLibrary.simpleMessage("Total amount"),
         "unKnownErrorOccurred":
             MessageLookupByLibrary.simpleMessage("Unknown Error Occurred"),
+        "updatingYourProfile":
+            MessageLookupByLibrary.simpleMessage("Updating your profile"),
         "urDetails": MessageLookupByLibrary.simpleMessage("Your details"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),

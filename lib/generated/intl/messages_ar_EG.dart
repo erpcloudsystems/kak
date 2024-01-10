@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "catagories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
+        "changePhoto": MessageLookupByLibrary.simpleMessage("تحديث صورتك"),
         "checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "chooseOrderType":
             MessageLookupByLibrary.simpleMessage("اختر نوع الطلب"),
@@ -85,6 +86,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "duplicateItemError": MessageLookupByLibrary.simpleMessage(
             "هذا العنصر موجود بالفعل في السلة"),
+        "editProfile":
+            MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailValidateMessage": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال عنوان بريد إلكتروني"),
@@ -171,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العنوان الرئيسي"),
         "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "profileUpdated":
+            MessageLookupByLibrary.simpleMessage("تم تحديث بياناتك بنجاح"),
         "quantity": MessageLookupByLibrary.simpleMessage("الكمية :"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
@@ -207,6 +212,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAmount": MessageLookupByLibrary.simpleMessage("المبلغ الإجمالي"),
         "unKnownErrorOccurred":
             MessageLookupByLibrary.simpleMessage("حدث خطأ غير معروف"),
+        "updatingYourProfile":
+            MessageLookupByLibrary.simpleMessage("جاري تحديث بياناتك"),
         "urDetails": MessageLookupByLibrary.simpleMessage("تفاصيلك"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),

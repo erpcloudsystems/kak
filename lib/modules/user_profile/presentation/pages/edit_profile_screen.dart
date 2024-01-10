@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kak/core/resources/colors_manager.dart';
-import 'package:kak/core/resources/routes.dart';
-import 'package:kak/core/utils/enums.dart';
-import 'package:kak/core/utils/error_dialog.dart';
-import 'package:kak/core/utils/loading_indicator_util.dart';
-import 'package:kak/core/utils/snack_bar_util.dart';
+import 'package:flutter/material.dart';
 
 import '../bloc/user_profile_bloc.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/resources/routes.dart';
+import '../../../../core/utils/error_dialog.dart';
+import '../../../../core/utils/snack_bar_util.dart';
+import '../../../../core/resources/colors_manager.dart';
+import '../../../../core/resources/strings_manager.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/user_profile/edit_profile_main_screen.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit profile')),
+      appBar: AppBar(title: Text(StringsManager.editProfile(context))),
       body: BlocConsumer<UserProfileBloc, UserProfileState>(
         listenWhen: (previous, current) =>
             previous.editUserProfileState != current.editUserProfileState,
@@ -24,12 +25,15 @@ class EditProfileScreen extends StatelessWidget {
           switch (state.editUserProfileState) {
             case RequestState.loading:
               LoadingUtils.showLoadingDialog(
-                  context, LoadingType.linear, 'Updating your profile');
+                context,
+                LoadingType.linear,
+                StringsManager.updatingYourProfile(context),
+              );
               break;
             case RequestState.success:
               SnackBarUtil().getSnackBar(
                   context: context,
-                  message: 'Your profile updated successfully',
+                  message: StringsManager.profileUpdated(context),
                   color: ColorsManager.gGreen);
               context.read<UserProfileBloc>().add(GetUserProfileEvent());
               Navigator.of(context).popUntil(

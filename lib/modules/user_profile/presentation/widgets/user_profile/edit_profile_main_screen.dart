@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/resources/strings_manager.dart';
 import 'photo_widget.dart';
 import 'user_profile_text_field.dart';
 import '../../bloc/user_profile_bloc.dart';
@@ -59,12 +60,12 @@ class EditUserProfileMainScreen extends StatelessWidget {
             //_________________________First Name______________________
             UserProfileTextField(
               controller: firstNameController,
-              fieldName: 'First name',
+              fieldName: StringsManager.firstName(context),
             ),
             //__________________________Last Name______________________
             UserProfileTextField(
               controller: lastNameController,
-              fieldName: 'Last name',
+              fieldName: StringsManager.lastName(context),
             ),
             //__________________________Phone number______________________
             Column(
@@ -72,7 +73,7 @@ class EditUserProfileMainScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Phone number',
+                  StringsManager.phone(context),
                   style: Theme.of(context)
                       .textTheme
                       .headlineMedium!
@@ -92,7 +93,7 @@ class EditUserProfileMainScreen extends StatelessWidget {
             //_______________________Save Button________________________
             ColoredElevatedButton(
               onPressed: saveFunction,
-              buttonText: 'Save',
+              buttonText: StringsManager.save(context),
             ),
           ],
         ),

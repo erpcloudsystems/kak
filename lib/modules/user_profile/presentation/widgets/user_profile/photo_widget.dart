@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:kak/core/resources/strings_manager.dart';
 import 'package:uuid/uuid.dart';
 
 import 'user_photo_widget.dart';
@@ -50,7 +51,7 @@ class _UserPhotoInEditingScreenState extends State<UserPhotoInEditingScreen> {
         radius: DoubleManager.d_40,
         sideWidget: OutlinedButton(
             onPressed: () => pickAnImage(),
-            child: const Text('Change your photo')),
+            child: Text(StringsManager.changePhoto(context))),
         image: pickedImage == null
             ? null
             : FileImage(
