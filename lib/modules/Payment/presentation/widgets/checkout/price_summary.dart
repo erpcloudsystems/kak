@@ -60,7 +60,8 @@ class PaymentSummarySuccessWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double subtotal = context.read<CartBloc>().state.totalPrice;
-    final double theTaxes = taxes / 100 * subtotal;
+    final double theTaxes =
+        double.parse((taxes / 100 * subtotal).toStringAsFixed(2));
     final double theTotal = (taxes / 100 * subtotal) + (subtotal + deliveryFee);
     return Padding(
       padding: const EdgeInsets.symmetric(
