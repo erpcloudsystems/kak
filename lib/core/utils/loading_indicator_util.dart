@@ -38,10 +38,8 @@ abstract class LoadingUtils {
               borderRadius: BorderRadius.circular(DoubleManager.d_15)),
           backgroundColor: Colors.white,
           insetPadding: const EdgeInsets.all(DoubleManager.d_12),
-          child: WillPopScope(
-            onWillPop: () async {
-              return false;
-            },
+          child: PopScope(
+            canPop: false,
             child: Padding(
               padding: const EdgeInsets.all(DoubleManager.d_8),
               child: loadingType == LoadingType.linear
