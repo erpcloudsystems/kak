@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Your default address changed successfully`
+  String get primaryAddressChanged {
+    return Intl.message(
+      'Your default address changed successfully',
+      name: 'primaryAddressChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` is what you can add to your meal from this item`
   String get maxNumber {
     return Intl.message(
@@ -285,6 +295,16 @@ class S {
     return Intl.message(
       'Please, complete your meal',
       name: 'completeMealMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changing your default address`
+  String get changingAddress {
+    return Intl.message(
+      'Changing your default address',
+      name: 'changingAddress',
       desc: '',
       args: [],
     );

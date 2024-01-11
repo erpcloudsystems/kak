@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "change": MessageLookupByLibrary.simpleMessage("Change"),
         "changePhoto":
             MessageLookupByLibrary.simpleMessage("Change your photo"),
+        "changingAddress": MessageLookupByLibrary.simpleMessage(
+            "Changing your default address"),
         "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "chooseOrderType":
             MessageLookupByLibrary.simpleMessage("Choose order type"),
@@ -174,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Previous orders"),
         "primaryAddress":
             MessageLookupByLibrary.simpleMessage("Default address"),
+        "primaryAddressChanged": MessageLookupByLibrary.simpleMessage(
+            "Your default address changed successfully"),
         "productDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),

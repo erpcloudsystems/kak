@@ -17,10 +17,10 @@ abstract class ApiConstance {
   static const String loginEndPoint = '/kak.api.login';
   static const String logoutEndPoint = '/logout';
 
-  // User profile 
+  // User profile
   static const String getUserProfileEndPoint = '/kak.general.user_info';
-  static const String editUserProfileEndPoint = '/kak.general.update_user_profile';
-
+  static const String editUserProfileEndPoint =
+      '/kak.general.update_user_profile';
 
   // Orders
   static const String getOrderDetailsEndPoint =
@@ -32,6 +32,8 @@ abstract class ApiConstance {
   // Address
   static const String getAllAddressesEndpoint =
       '/kak.general.get_user_addresses';
+  static const String setPrimaryAddressEndPoint =
+      '/kak.add.set_primary_address';
   static const String deleteAddress = '/kak.add.delete_address';
   static const String sendUserAddress = '/kak.add.add_address';
 

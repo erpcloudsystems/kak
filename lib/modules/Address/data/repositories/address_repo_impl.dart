@@ -100,4 +100,12 @@ class AddressRepoImpl implements AddressBaseRepo {
         () async => await addressBaseDataSource.deleteAddress(addressId),
         networkInfo,
       );
+
+// _______________________ Set primary address ________________________
+  @override
+  Future<Either<Failure, Unit>> setPrimaryAddress(String addressId) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+        () async => await addressBaseDataSource.setPrimaryAddress(addressId),
+        networkInfo,
+      );
 }

@@ -46,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
         "changePhoto": MessageLookupByLibrary.simpleMessage("تحديث صورتك"),
+        "changingAddress":
+            MessageLookupByLibrary.simpleMessage("جاري تغيير عنوانك الرئيسي"),
         "checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "chooseOrderType":
             MessageLookupByLibrary.simpleMessage("اختر نوع الطلب"),
@@ -172,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الطلبيات السابقة"),
         "primaryAddress":
             MessageLookupByLibrary.simpleMessage("العنوان الرئيسي"),
+        "primaryAddressChanged": MessageLookupByLibrary.simpleMessage(
+            "لقد تم تغيير عنوانك الرئيسي بنجاح"),
         "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profileUpdated":

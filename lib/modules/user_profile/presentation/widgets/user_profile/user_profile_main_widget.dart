@@ -35,12 +35,11 @@ class UserProfileMainWidget extends StatelessWidget {
       ),
 
       //________________________ Default address ______________________________
-      // TODO: LINK WITH USER ADDRESS.
-      // UserProfileCard(
-      //   title: StringsManager.primaryAddress(context),
-      //   subtitle: user.address,
-      //   icon: Icons.location_city_rounded,
-      // ),
+      UserProfileCard(
+        title: StringsManager.primaryAddress(context),
+        subtitle: user.address,
+        icon: Icons.location_city_rounded,
+      ),
     ]);
   }
 }

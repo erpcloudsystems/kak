@@ -30,3 +30,8 @@ class SaveAddressIdEvent extends AddressEvent {
   final String addressId;
   const SaveAddressIdEvent({required this.addressId});
 }
+
+class SetPrimaryAddressEvent extends AddressEvent {
+  final String addressId;
+  const SetPrimaryAddressEvent({required this.addressId});
+}

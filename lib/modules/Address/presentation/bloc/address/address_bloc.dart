@@ -9,20 +9,24 @@ import '../../../domain/usecases/delete_address.dart';
 import '../../../../../core/global/base_use_case.dart';
 import '../../../domain/usecases/get_all_addresses.dart';
 import '../../../domain/usecases/send_user_address.dart';
+import '../../../domain/usecases/set_primary_address.dart';
 
 part 'address_event.dart';
 part 'address_state.dart';
 
 class AddressBloc extends Bloc<AddressEvent, AddressState> {
+  final SetPrimaryAddressUseCase _setPrimaryAddressUseCase;
   final GetAllAddressesUseCase _getAllAddressesUseCase;
   final SendUserAddressUseCase sendUserAddressUseCase;
   final DeleteAddressUseCase _deleteAddressUseCase;
 
   AddressBloc(
-    this.sendUserAddressUseCase,
+    this._setPrimaryAddressUseCase,
     this._getAllAddressesUseCase,
+    this.sendUserAddressUseCase,
     this._deleteAddressUseCase,
   ) : super(const AddressState()) {
+    on<SetPrimaryAddressEvent>(setPrimaryAddress);
     on<SendUserAddressEvent>(sendUserAddress);
     on<GetAllAddressesEvent>(getAllAddresses);
     on<DeleteAddressEvent>(deleteAddress);
@@ -87,5 +91,23 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
   FutureOr<void> saveAddressId(
       SaveAddressIdEvent event, Emitter<AddressState> emit) {
     emit(state.copyWith(userAddressId: event.addressId));
+  }
+
+  // Set primary address ____________________________________________________
+  FutureOr<void> setPrimaryAddress(
+      SetPrimaryAddressEvent event, Emitter<AddressState> emit) async {
+    emit(state.copyWith(setPrimaryAddressState: RequestState.loading));
+
+    final result = await _setPrimaryAddressUseCase(event.addressId);
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        setPrimaryAddressState: RequestState.error,
+        setPrimaryAddressMessage: failure.errorMessage,
+      )),
+      (_) => emit(state.copyWith(
+        setPrimaryAddressState: RequestState.success,
+      )),
+    );
   }
 }

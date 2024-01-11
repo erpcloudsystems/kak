@@ -9,11 +9,12 @@ import '../../domain/entities/google_address.dart';
 import '../../../../core/network/api_constance.dart';
 
 abstract class AddressBaseDataSource {
-  Future<LatLng> getCurrentLocation();
-  Future<Unit> deleteAddress(String addressId);
   Future<GoogleAddressEntity> getAddress(LatLng coordinates);
-  Future<List<AddressEntity>> getAllAddresses();
   Future<String> sendUserAddress(AddressModel address);
+  Future<Unit> setPrimaryAddress(String addressId);
+  Future<List<AddressEntity>> getAllAddresses();
+  Future<Unit> deleteAddress(String addressId);
+  Future<LatLng> getCurrentLocation();
 }
 
 class AddressDataSourceImpl extends LocationServiceClass
@@ -47,7 +48,7 @@ class AddressDataSourceImpl extends LocationServiceClass
     return data;
   }
 
-  // Delete addresses _________________________________________________
+  // Delete address ___________________________________________________
   @override
   Future<Unit> deleteAddress(String addressId) async {
     await dio.post(
@@ -55,6 +56,18 @@ class AddressDataSourceImpl extends LocationServiceClass
       query: {'address_name': addressId},
       useCookies: true,
     ) as Response;
+
+    return Future.value(unit);
+  }
+
+  // set primary address _______________________________________________
+  @override
+  Future<Unit> setPrimaryAddress(String addressId) async {
+    await dio.post(
+      endPoint: ApiConstance.setPrimaryAddressEndPoint,
+      useCookies: true,
+      query: {'address_name': addressId},
+    );
 
     return Future.value(unit);
   }

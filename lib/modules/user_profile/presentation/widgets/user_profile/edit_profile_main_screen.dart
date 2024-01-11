@@ -1,15 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/strings_manager.dart';
 import 'photo_widget.dart';
+import 'default_address_form.dart';
 import 'user_profile_text_field.dart';
 import '../../bloc/user_profile_bloc.dart';
 import '../../../domain/entities/user_profile.dart';
 import '../../../../../core/utils/general_button.dart';
-import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/utils/phone_number_Picker.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class EditUserProfileMainScreen extends StatelessWidget {
   final UserProfileEntity userOldData;
@@ -28,7 +29,6 @@ class EditUserProfileMainScreen extends StatelessWidget {
       if (formKey.currentState!.validate()) {
         final newUserData = UserProfileEntity(
           mobileNo: phoneNumber ?? userOldData.mobileNo,
-          // TODO: REPLACE WITH DROPDOWN FOR ADDRESS.
           address: userOldData.address,
           email: userOldData.address,
           firstName: firstNameController.text.trim(),
@@ -67,6 +67,8 @@ class EditUserProfileMainScreen extends StatelessWidget {
               controller: lastNameController,
               fieldName: StringsManager.lastName(context),
             ),
+            //_____________________ Address form________________________
+            const DefaultAddressForm(),
             //__________________________Phone number______________________
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

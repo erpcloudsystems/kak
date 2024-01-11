@@ -9,6 +9,10 @@ class AddressState extends Equatable {
   final RequestState deleteAddressState;
   final String deleteAddressMessage;
 
+  // Set primary Address
+  final RequestState setPrimaryAddressState;
+  final String setPrimaryAddressMessage;
+
   // Get all addresses
   final RequestState getAllAddressesState;
   final String getAllAddressesMessage;
@@ -22,6 +26,9 @@ class AddressState extends Equatable {
     // delete address
     this.deleteAddressState = RequestState.stable,
     this.deleteAddressMessage = 'Delete address initial message',
+    // Set primary address
+    this.setPrimaryAddressState = RequestState.stable,
+    this.setPrimaryAddressMessage = 'Set primary address initial message',
     // Get all addresses
     this.getAllAddressesState = RequestState.stable,
     this.getAllAddressesMessage = 'Get All Addresses initial message',
@@ -36,6 +43,9 @@ class AddressState extends Equatable {
     // Delete address
     RequestState? deleteAddressState,
     String? deleteAddressMessage,
+    // Set primary address
+    RequestState? setPrimaryAddressState,
+    String? setPrimaryAddressMessage,
     // Get all addresses
     RequestState? getAllAddressesState,
     String? getAllAddressesMessage,
@@ -50,6 +60,9 @@ class AddressState extends Equatable {
         // Delete address
         deleteAddressState: deleteAddressState ?? this.deleteAddressState,
         deleteAddressMessage: deleteAddressMessage ?? this.deleteAddressMessage,
+        // Set primary address
+        setPrimaryAddressState: setPrimaryAddressState ?? this.setPrimaryAddressState,
+        setPrimaryAddressMessage: setPrimaryAddressMessage ?? this.setPrimaryAddressMessage,
         // Get all addresses
         getAllAddressesState: getAllAddressesState ?? this.getAllAddressesState,
         getAllAddressesMessage:
@@ -66,6 +79,9 @@ class AddressState extends Equatable {
         // Delete address
         deleteAddressState,
         deleteAddressMessage,
+        // Set primary address
+        setPrimaryAddressState,
+        setPrimaryAddressMessage,
         // Get all addresses
         getAllAddressesState,
         getAllAddressesMessage,

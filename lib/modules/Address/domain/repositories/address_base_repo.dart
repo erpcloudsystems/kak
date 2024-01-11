@@ -8,6 +8,7 @@ import '../../../../core/network/failure.dart';
 abstract class AddressBaseRepo {
   Future<Either<Failure, GoogleAddressEntity>> getAddress(LatLng coordinates);
   Future<Either<Failure, String>> sendUserAddress(AddressEntity address);
+  Future<Either<Failure, Unit>> setPrimaryAddress(String addressId);
   Future<Either<Failure, List<AddressEntity>>> getAllAddresses();
   Future<Either<Failure, Unit>> deleteAddress(String addressId);
   Future<Either<Failure, LatLng>> getCurrentLocation();
