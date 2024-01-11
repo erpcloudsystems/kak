@@ -39,8 +39,8 @@ class EditUserProfileMainScreen extends StatelessWidget {
         context
             .read<UserProfileBloc>()
             .add(EditUserProfileEvent(user: newUserData));
-
-        // formKey.currentState!.save();
+            
+        formKey.currentState!.save();
       }
     }
 
