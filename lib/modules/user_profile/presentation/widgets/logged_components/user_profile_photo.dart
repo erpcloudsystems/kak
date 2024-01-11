@@ -14,12 +14,15 @@ class UserProfilePhotoWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: DoubleManager.d_20),
       child: UserPhotoWidget(
-        child: ClipOval(
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(DoubleManager.d_50),
+            clipBehavior: Clip.antiAlias,
             child: CustomCachedImage(
-          url: imageUrl != null
-              ? '${ApiConstance.kakUrl}$imageUrl'
-              : userTestImage,
-        )),
+              height: DoubleManager.d_80,
+              url: imageUrl != null
+                  ? '${ApiConstance.kakUrl}$imageUrl'
+                  : userTestImage,
+            )),
       ),
     );
   }

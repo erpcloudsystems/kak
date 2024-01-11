@@ -28,7 +28,9 @@ class UserPhotoWidget extends StatelessWidget {
         CircleAvatar(
           radius: radius ?? DoubleManager.d_40,
           backgroundImage: image ??
-              NetworkImage('${ApiConstance.kakUrl}${currentUser.image}'),
+              (currentUser.image != null
+                  ? NetworkImage('${ApiConstance.kakUrl}${currentUser.image}')
+                  : null),
           child: child,
         ),
         if (sideWidget != null) (sideWidget!),
