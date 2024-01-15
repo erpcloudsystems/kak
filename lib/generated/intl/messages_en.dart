@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buildingName": MessageLookupByLibrary.simpleMessage("Building name"),
         "cachingError": MessageLookupByLibrary.simpleMessage(
             "There is a problem while caching user data"),
+        "cancelledLoginWithFace": MessageLookupByLibrary.simpleMessage(
+            "You cancelled login with Facebook"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cartAddedMessage":
             MessageLookupByLibrary.simpleMessage("Added to your cart"),
@@ -100,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter": MessageLookupByLibrary.simpleMessage("Enter"),
         "enterEmailMessage": MessageLookupByLibrary.simpleMessage(
             "Please Enter your E-mail address So that we could send you an email to reset your password"),
+        "errorLoginWithFace": MessageLookupByLibrary.simpleMessage(
+            "There is error while login with Facebook"),
         "errorMessage":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "existedItemInCart": MessageLookupByLibrary.simpleMessage(
@@ -211,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("Status: "),
         "street": MessageLookupByLibrary.simpleMessage("Street"),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
+        "successLoginWithFace": MessageLookupByLibrary.simpleMessage(
+            "You logged in successfully with Facebook"),
         "tax": MessageLookupByLibrary.simpleMessage("Tax"),
         "territory": MessageLookupByLibrary.simpleMessage("Territory"),
         "title": MessageLookupByLibrary.simpleMessage("Your address title"),

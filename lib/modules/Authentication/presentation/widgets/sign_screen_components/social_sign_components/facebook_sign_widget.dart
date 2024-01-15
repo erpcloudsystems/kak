@@ -1,13 +1,13 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import '../../../../../../core/resources/colors_manager.dart';
-// import '../../../../../../core/resources/routes.dart';
-// import '../../../../../../core/utils/loading_indicator_util.dart';
-// import '../../../../../../core/utils/request_state.dart';
-// import '../../../../../../core/utils/snack_bar_util.dart';
-// import '../../../bloc/caching_user_data/caching_user_data_bloc.dart';
-// import '../../../bloc/social_sign/social_sign_bloc.dart';
+import '../../../../../../core/utils/enums.dart';
+import '../../../bloc/social_sign/social_sign_bloc.dart';
+import '../../../../../../core/utils/snack_bar_util.dart';
+import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/resources/colors_manager.dart';
+import '../../../../../../core/resources/strings_manager.dart';
+import '../../../../../../core/utils/loading_indicator_util.dart';
 
 class FacebookSignWidget extends StatelessWidget {
   final Widget facebookSignView;
@@ -15,35 +15,40 @@ class FacebookSignWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    //  BlocConsumer<SocialSignBloc, SocialSignState>(
-    //   listenWhen: (previous, current) =>
-    //       previous.facebookSignState != current.facebookSignState,
-    //   listener: (context, state) {
-    //     if (state.facebookSignState == RequestState.error) {
-    //       return SnackBarUtil().getSnackBar(
-    //         context: context,
-    //         message: state.facebookSignMessage,
-    //         color: Colors.red,
-    //       );
-    //     }
-    //     if (state.facebookSignState == RequestState.success) {
-    //       BlocProvider.of<CachingUserDataBloc>(context).add(
-    //         CacheUserDataEvent(userEmail: state.facebookUserData.email),
-    //       );
-    //       Navigator.of(context).pushNamedAndRemoveUntil(
-    //           Routes.onBoardingScreenKey, (route) => false);
-    //     }
-    //   },
-    //   buildWhen: (previous, current) =>
-    //       previous.facebookSignState != current.facebookSignState,
-    //   builder: (context, state) {
-    //     if (state.facebookSignState == RequestState.loading) {
-    //       return const LoadingIndicatorUtil();
-    //     }
-    //     return 
-        facebookSignView;
-    //   },
-    // );
+    return BlocConsumer<SocialSignBloc, SocialSignState>(
+      listenWhen: (previous, current) =>
+          previous.facebookSignState != current.facebookSignState,
+      listener: (context, state) {
+        if (state.facebookSignState == RequestState.error) {
+          SnackBarUtil().getSnackBar(
+            context: context,
+            color: ColorsManager.gGreen,
+            message: state.facebookSignMessage,
+          );
+        }
+        if (state.facebookSignState == RequestState.success) {
+          SnackBarUtil().getSnackBar(
+            message: StringsManager.successLoginWithFace(context),
+            color: ColorsManager.gGreen,
+            context: context,
+          );
+
+        // GlobalVariables().setUserDecision = true;
+          
+        // context.read<AuthenticationBloc>().add(SignInEvent(user: user))  
+        }
+      },
+      buildWhen: (previous, current) =>
+          previous.facebookSignState != current.facebookSignState,
+      builder: (context, state) {
+        if (state.facebookSignState == RequestState.loading) {
+          return const SizedBox.square(
+            dimension: DoubleManager.d_40,
+            child: LoadingIndicatorUtil(),
+          );
+        }
+        return facebookSignView;
+      },
+    );
   }
 }

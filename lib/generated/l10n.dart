@@ -130,6 +130,26 @@ class S {
     );
   }
 
+  /// `You logged in successfully with Facebook`
+  String get successLoginWithFace {
+    return Intl.message(
+      'You logged in successfully with Facebook',
+      name: 'successLoginWithFace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is error while login with Facebook`
+  String get errorLoginWithFace {
+    return Intl.message(
+      'There is error while login with Facebook',
+      name: 'errorLoginWithFace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` is what you can add to your meal from this item`
   String get maxNumber {
     return Intl.message(
@@ -145,6 +165,16 @@ class S {
     return Intl.message(
       'You already added this item to ur cart',
       name: 'duplicateItemError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cancelled login with Facebook`
+  String get cancelledLoginWithFace {
+    return Intl.message(
+      'You cancelled login with Facebook',
+      name: 'cancelledLoginWithFace',
       desc: '',
       args: [],
     );
@@ -400,6 +430,16 @@ class S {
     );
   }
 
+  /// `Updating your profile`
+  String get updatingYourProfile {
+    return Intl.message(
+      'Updating your profile',
+      name: 'updatingYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don"t have an account?`
   String get dontHaveAnAccount {
     return Intl.message(
@@ -450,16 +490,6 @@ class S {
     );
   }
 
-  /// `Change your photo`
-  String get changePhoto {
-    return Intl.message(
-      'Change your photo',
-      name: 'changePhoto',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `is must be chosen, at least 1`
   String get oneMust {
     return Intl.message(
@@ -485,16 +515,6 @@ class S {
     return Intl.message(
       'Added to your cart',
       name: 'cartAddedMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Updating your profile`
-  String get updatingYourProfile {
-    return Intl.message(
-      'Updating your profile',
-      name: 'updatingYourProfile',
       desc: '',
       args: [],
     );
@@ -565,6 +585,16 @@ class S {
     return Intl.message(
       'one is must be chosen',
       name: 'oneChosen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change your photo`
+  String get changePhoto {
+    return Intl.message(
+      'Change your photo',
+      name: 'changePhoto',
       desc: '',
       args: [],
     );
@@ -790,6 +820,16 @@ class S {
     );
   }
 
+  /// `Edit profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Description`
   String get description {
     return Intl.message(
@@ -880,16 +920,6 @@ class S {
     );
   }
 
-  /// `Edit profile`
-  String get editProfile {
-    return Intl.message(
-      'Edit profile',
-      name: 'editProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Categories`
   String get catagories {
     return Intl.message(
@@ -935,6 +965,16 @@ class S {
     return Intl.message(
       'Birth Date',
       name: 'birthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Email`
+  String get sendEmail {
+    return Intl.message(
+      'Send Email',
+      name: 'sendEmail',
       desc: '',
       args: [],
     );
@@ -1125,16 +1165,6 @@ class S {
     return Intl.message(
       'Profile',
       name: 'profile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send Email`
-  String get sendEmail {
-    return Intl.message(
-      'Send Email',
-      name: 'sendEmail',
       desc: '',
       args: [],
     );

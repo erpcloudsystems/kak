@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buildingName": MessageLookupByLibrary.simpleMessage("اسم المبنى"),
         "cachingError": MessageLookupByLibrary.simpleMessage(
             "حدثت مشكلة أثناء حفظ بيانات المستخدم"),
+        "cancelledLoginWithFace":
+            MessageLookupByLibrary.simpleMessage("لقد الغيت التسجيل بفيسبوك"),
         "cart": MessageLookupByLibrary.simpleMessage("العربة"),
         "cartAddedMessage": MessageLookupByLibrary.simpleMessage(
             "تمت إضافتها إلى عربة التسوق الخاصة بك"),
@@ -100,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter": MessageLookupByLibrary.simpleMessage("دخول"),
         "enterEmailMessage": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال عنوان بريدك الإلكتروني حتى نتمكن من إرسال بريد إلكتروني لإعادة تعيين كلمة المرور"),
+        "errorLoginWithFace": MessageLookupByLibrary.simpleMessage(
+            "هناك خطأ اثناء التسجيل بفيسبوك"),
         "errorMessage": MessageLookupByLibrary.simpleMessage("حدث خطأ!"),
         "existedItemInCart": MessageLookupByLibrary.simpleMessage(
             "هذا المنتج موجود بالفعل في السلة"),
@@ -209,6 +213,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("الحالة: "),
         "street": MessageLookupByLibrary.simpleMessage("الشارع"),
         "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
+        "successLoginWithFace": MessageLookupByLibrary.simpleMessage(
+            "لقد سجلت دخول من خلال الفيسبوك بنجاح"),
         "tax": MessageLookupByLibrary.simpleMessage("الضريبة"),
         "territory": MessageLookupByLibrary.simpleMessage("الإقليم"),
         "title": MessageLookupByLibrary.simpleMessage("عنوانك"),

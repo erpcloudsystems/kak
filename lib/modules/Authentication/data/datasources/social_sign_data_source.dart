@@ -1,31 +1,34 @@
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/utils/extensions.dart';
+import '../../../../core/network/exceptions.dart';
+import '../../../../core/resources/strings_manager.dart';
 import '../../../authentication/data/models/user_model.dart';
-
 
 mixin SocialSignDataSource {
   final fireAuth = FirebaseAuth.instance;
   String? userVerificationId;
   int? userForceResendingToken;
   //_______________________________Sign with facebook__________________________
-  // Future<UserModel> socialSignWithFacebook() async {
-  //   final LoginResult result = await FacebookAuth.instance.login();
-
-  //   final Map<String, dynamic> userData =
-  //       await FacebookAuth.instance.getUserData(fields: 'name,email');
-  //   final userDataConverted = FacebookUserModel.fromMap(userData);
-  //   final userModel = UserModel(
-  //     email: userDataConverted.email!,
-  //     password: userDataConverted.name!,
-  //   );
-
-  //   final OAuthCredential credential =
-  //       FacebookAuthProvider.credential(result.accessToken!.token);
-  //   await fireAuth.signInWithCredential(credential);
-
-  //   return Future.value(userModel);
-  // }
+  Future<UserModel> signWithFacebook() async {
+    final LoginResult result = await FacebookAuth.instance.login();
+    switch (result.status) {
+      case LoginStatus.success:
+        final Map<String, dynamic> userData = await FacebookAuth.instance
+            .getUserData(
+                fields: 'first_name, last_name, email,picture.width(200)');
+        final userModel = UserModel.fromFacebookMap(userData);
+        return Future.value(userModel);
+      case LoginStatus.cancelled:
+        throw FacebookException(
+            message: StringsWithNoCtx.cancelledLoginWithFace.tr());
+      default:
+        throw FacebookException(
+            message: StringsWithNoCtx.cancelledLoginWithFace.tr());
+    }
+  }
 
   //_______________________________Sign with Google______________________________
   Future<UserModel> signWithGoogle() async {

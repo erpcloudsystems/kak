@@ -2,9 +2,9 @@ part of 'social_sign_bloc.dart';
 
 class SocialSignState extends Equatable {
   // Sign with Facebook state
-  // final RequestState facebookSignState;
-  // final String facebookSignMessage;
-  // final UserEntity facebookUserData;
+  final RequestState facebookSignState;
+  final String facebookSignMessage;
+  final UserEntity facebookUserData;
 
   // Sign with Google state
   final RequestState googleSignState;
@@ -12,14 +12,16 @@ class SocialSignState extends Equatable {
   final UserEntity googleUserData;
 
   const SocialSignState({
-    // this.facebookSignState = RequestState.stable,
-    // this.facebookSignMessage = '',
-    // this.facebookUserData = const UserEntity(email: '', password: ''),
-   
+    // Sign with Facebook state
+    this.facebookSignState = RequestState.stable,
+    this.facebookSignMessage = '',
+    this.facebookUserData = const UserEntity(email: '', password: ''),
+
+    // Sign with Google state
     this.googleSignState = RequestState.stable,
     this.googleSignMessage = '',
-    this.googleUserData = const UserEntity(email: '', password: '', firstName: '', lastName: '', phoneNumber: ''),
-    
+    this.googleUserData = const UserEntity(
+        email: '', password: '', firstName: '', lastName: '', phoneNumber: ''),
   });
   SocialSignState copyWith({
     // Sign with Facebook
@@ -31,30 +33,30 @@ class SocialSignState extends Equatable {
     RequestState? googleSignState,
     String? googleSignMessage,
     UserEntity? googleUserData,
-
-
   }) {
     return SocialSignState(
-      // facebookSignState: facebookSignState ?? this.facebookSignState,
-      // facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
-      // facebookUserData: facebookUserData ?? this.facebookUserData,
-    
+      // Sign with Facebook state
+      facebookSignState: facebookSignState ?? this.facebookSignState,
+      facebookSignMessage: facebookSignMessage ?? this.facebookSignMessage,
+      facebookUserData: facebookUserData ?? this.facebookUserData,
+
+      // Sign with Google state
       googleSignState: googleSignState ?? this.googleSignState,
       googleSignMessage: googleSignMessage ?? this.googleSignMessage,
       googleUserData: googleUserData ?? this.googleUserData,
-
     );
   }
 
   @override
   List<Object> get props => [
-        // facebookSignState,
-        // facebookSignMessage,
-        // facebookUserData,
-      
+        // Sign with Facebook state
+        facebookSignState,
+        facebookSignMessage,
+        facebookUserData,
+
+        // Sign with Google state
         googleSignState,
         googleSignMessage,
         googleUserData,
-      
       ];
 }

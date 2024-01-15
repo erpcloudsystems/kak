@@ -15,8 +15,7 @@ abstract class BaseAuthenticationRemoteDataSource {
   Future<Unit> logout(String email);
 
   Future<UserModel> signWithGoogle();
-
-  // Future<UserModel> signWithFacebook();
+  Future<UserModel> signWithFacebook();
 }
 
 class AuthenticationRemoteDataSource extends RegularSignDataSource

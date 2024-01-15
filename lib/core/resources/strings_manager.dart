@@ -19,9 +19,6 @@ class StringsManager {
     return '$maxNumber $translated';
   }
 
-  static String serverFailureMessage(BuildContext context) =>
-      S.of(context).serverFailureMessage;
-
   static String deleteAddressMessage(BuildContext context) =>
       S.of(context).deleteAddressMessage;
 
@@ -122,16 +119,20 @@ class StringsManager {
       S.of(context).buildingName;
   static String continueWith(BuildContext context) =>
       S.of(context).continueWith;
-  static String addAddress(BuildContext context) => S.of(context).addAddress;
-  static String floorOpt(BuildContext context) => S.of(context).floorOpt;
-  static String title(BuildContext context) => S.of(context).title;
   static String apartmentNumber(BuildContext context) =>
       S.of(context).apartmentNumber;
-  static String primaryAddressChanged(BuildContext context) => S.of(context).primaryAddressChanged;
-  static String updatingYourProfile(BuildContext context) => S.of(context).updatingYourProfile;
-  static String changingAddress(BuildContext context) => S.of(context).changingAddress;
-  static String profileUpdated(BuildContext context) => S.of(context).profileUpdated;
-  static String primaryAddress(BuildContext context) => S.of(context).primaryAddress;
+  static String primaryAddressChanged(BuildContext context) =>
+      S.of(context).primaryAddressChanged;
+  static String updatingYourProfile(BuildContext context) =>
+      S.of(context).updatingYourProfile;
+  static String changingAddress(BuildContext context) =>
+      S.of(context).changingAddress;
+  static String profileUpdated(BuildContext context) =>
+      S.of(context).profileUpdated;
+  static String primaryAddress(BuildContext context) =>
+      S.of(context).primaryAddress;
+  static String successLoginWithFace(BuildContext context) =>
+      S.of(context).successLoginWithFace;
   static String saveAddress(BuildContext context) => S.of(context).saveAddress;
   static String changePhoto(BuildContext context) => S.of(context).changePhoto;
   static String deliverHere(BuildContext context) => S.of(context).deliverHere;
@@ -140,28 +141,30 @@ class StringsManager {
   static String totalAmount(BuildContext context) => S.of(context).totalAmount;
   static String description(BuildContext context) => S.of(context).description;
   static String editProfile(BuildContext context) => S.of(context).editProfile;
+  static String addAddress(BuildContext context) => S.of(context).addAddress;
   static String getStarted(BuildContext context) => S.of(context).getStarted;
   static String placeOrder(BuildContext context) => S.of(context).placeOrder;
-  static String urDetails(BuildContext context) => S.of(context).urDetails;
   static String rememberMe(BuildContext context) => S.of(context).rememberMe;
   static String newAddress(BuildContext context) => S.of(context).newAddress;
   static String creditCard(BuildContext context) => S.of(context).creditCard;
-  static String addToCart(BuildContext context) => S.of(context).addToCart;
   static String directions(BuildContext context) => S.of(context).directions;
   static String catagories(BuildContext context) => S.of(context).catagories;
   static String categories(BuildContext context) => S.of(context).categories;
+  static String addToCart(BuildContext context) => S.of(context).addToCart;
   static String firstName(BuildContext context) => S.of(context).firstName;
   static String contactUs(BuildContext context) => S.of(context).contactUs;
   static String birthDate(BuildContext context) => S.of(context).birthDate;
   static String myAccount(BuildContext context) => S.of(context).myAccount;
   static String myAddress(BuildContext context) => S.of(context).myAddress;
   static String territory(BuildContext context) => S.of(context).territory;
+  static String urDetails(BuildContext context) => S.of(context).urDetails;
+  static String sendEmail(BuildContext context) => S.of(context).sendEmail;
+  static String floorOpt(BuildContext context) => S.of(context).floorOpt;
   static String myOrders(BuildContext context) => S.of(context).myOrders;
   static String lastName(BuildContext context) => S.of(context).lastName;
   static String allItems(BuildContext context) => S.of(context).allItems;
   static String userName(BuildContext context) => S.of(context).userName;
   static String quantity(BuildContext context) => S.of(context).quantity;
-  static String total(BuildContext context) => S.of(context).total;
   static String subtotal(BuildContext context) => S.of(context).subtotal;
   static String register(BuildContext context) => S.of(context).register;
   static String checkout(BuildContext context) => S.of(context).checkout;
@@ -170,10 +173,8 @@ class StringsManager {
   static String deleting(BuildContext context) => S.of(context).deleting;
   static String payWith(BuildContext context) => S.of(context).payWith;
   static String reorder(BuildContext context) => S.of(context).reorder;
-  static String status(BuildContext context) => S.of(context).status;
-  static String profile(BuildContext context) => S.of(context).profile;
-  static String sendEmail(BuildContext context) => S.of(context).sendEmail;
   static String version(BuildContext context) => S.of(context).version;
+  static String profile(BuildContext context) => S.of(context).profile;
   static String seeAll(BuildContext context) => S.of(context).seeAll;
   static String signIn(BuildContext context) => S.of(context).signIn;
   static String signUp(BuildContext context) => S.of(context).signUp;
@@ -185,15 +186,18 @@ class StringsManager {
   static String gender(BuildContext context) => S.of(context).gender;
   static String google(BuildContext context) => S.of(context).google;
   static String search(BuildContext context) => S.of(context).search;
+  static String status(BuildContext context) => S.of(context).status;
+  static String title(BuildContext context) => S.of(context).title;
+  static String total(BuildContext context) => S.of(context).total;
   static String login(BuildContext context) => S.of(context).login;
   static String guest(BuildContext context) => S.of(context).guest;
   static String enter(BuildContext context) => S.of(context).enter;
   static String email(BuildContext context) => S.of(context).email;
   static String floor(BuildContext context) => S.of(context).floor;
-  static String date(BuildContext context) => S.of(context).date;
   static String phone(BuildContext context) => S.of(context).phone;
-  static String cost(BuildContext context) => S.of(context).cost;
   static String items(BuildContext context) => S.of(context).items;
+  static String date(BuildContext context) => S.of(context).date;
+  static String cost(BuildContext context) => S.of(context).cost;
   static String area(BuildContext context) => S.of(context).area;
   static String cash(BuildContext context) => S.of(context).cash;
   static String sort(BuildContext context) => S.of(context).sort;
@@ -210,10 +214,13 @@ class StringsManager {
   static String no(BuildContext context) => S.of(context).no;
 }
 
-// These Strings used in places that have no context so we use translation extension with it.
+/// These Strings used in places that have no context so we use translation extension with it.
 abstract class StringsWithNoCtx {
+  static const String cancelledLoginWithFace = 'cancelledLoginWithFace';
   static const String removedFromCartMessage = 'removedFromCartMessage';
   static const String offlineFailureMessage = 'noInternetConnection';
+  static const String serverFailureMessage = 'serverFailureMessage';
+  static const String errorLoginWithFace = 'errorLoginWithFace';
   static const String existedItemInCart = 'existedItemInCart';
   static const String errorMessage = 'errorMessage';
   static const String none = 'none';

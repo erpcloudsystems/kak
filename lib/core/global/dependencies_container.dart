@@ -53,6 +53,7 @@ import '../../modules/authentication/domain/usecases/delete_account_use_case.dar
 import '../../modules/authentication/domain/usecases/reset_password_use_case.dart';
 import '../../modules/authentication/data/repositories/social_sign_repository.dart';
 import '../../modules/authentication/domain/usecases/get_cached_user_use_case.dart';
+import '../../modules/authentication/domain/usecases/sign_with_facebook_use_case.dart';
 import '../../modules/authentication/data/repositories/caching_user_data_repository.dart';
 import '../../modules/authentication/presentation/bloc/social_sign/social_sign_bloc.dart';
 import '../../modules/authentication/domain/repositories/base_social_sign_repository.dart';
@@ -71,7 +72,7 @@ Future<void> init() async {
   // BLOCs ________________________________________________________________
 
   // Authentication
-  sl.registerFactory(() => SocialSignBloc(sl()));
+  sl.registerFactory(() => SocialSignBloc(sl(), sl()));
   sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl()));
 
   // Meals
@@ -102,6 +103,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DeleteAccountUseCase(sl()));
   sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));
+  sl.registerLazySingleton(() => SignWithFacebookUseCase(sl()));
 
   // Caching
   sl.registerLazySingleton(() => CacheUserUseCase(sl()));

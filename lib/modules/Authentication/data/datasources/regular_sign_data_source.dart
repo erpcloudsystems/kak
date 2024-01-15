@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../models/logged_user.dart';
 import '../../../../core/network/dio_helper.dart';
 import '../../../../core/network/api_constance.dart';
-import '../models/logged_user.dart';
 import '../../../authentication/data/models/user_model.dart';
 
 class RegularSignDataSource {
