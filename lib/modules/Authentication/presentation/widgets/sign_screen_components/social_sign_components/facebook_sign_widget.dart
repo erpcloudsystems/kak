@@ -28,8 +28,8 @@ class FacebookSignWidget extends StatelessWidget {
           );
         }
         if (state.facebookSignState == RequestState.success) {
-          // Here we save the user password in the global variables to use it with auto-login
-          // and make the choice be true to be remembered, and then call the event.
+          /* Here we save the user password in the global variables to use it with auto-login
+          and make the choice be true to be remembered, and then call the event.*/
           final gv = GlobalVariables();
           final user = state.facebookUserData;
           gv.setGlobalUserPassword = state.facebookUserData.password;

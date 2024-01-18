@@ -26,52 +26,13 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final globalVariables = GlobalVariables();
-
-    // Here we check if the user has navigated from cart screen so we pop back to it.
-    final Map<String, dynamic>? args =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    bool fromCart = args?['fromCart'] ?? false;
-
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (previous, current) =>
               previous.signInState != current.signInState,
-          listener: (context, state) {
-            if (state.signInState == RequestState.success) {
-              if (globalVariables.getUserDecision == true) {
-                BlocProvider.of<CachingUserDataBloc>(context)
-                    .add(CacheUserDataEvent(
-                        userData: UserCachingDataEntity(
-                  email: state.loggedInUser.email!,
-                  password: globalVariables.getGlobalUserPassword!,
-                )));
-              }
-              globalVariables.setSid = state.loggedInUser.sid!;
-              Navigator.of(context).pop();
-
-              fromCart
-                  ? Navigator.of(context).popUntil((route) =>
-                      route.settings.name == Routes.navigationBarScreenKey)
-                  : Navigator.of(context).pushNamedAndRemoveUntil(
-                      Routes.navigationBarScreenKey, (route) => false);
-            }
-
-            if (state.signInState == RequestState.error) {
-              Navigator.of(context).pop();
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => ErrorDialog(
-                  errorMessage: state.signInMessage,
-                ),
-              );
-            }
-            if (state.signInState == RequestState.loading) {
-              LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-            }
-          },
+          listener: loginHandlerMethod,
           child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
@@ -114,4 +75,35 @@ class SignInScreen extends StatelessWidget {
 
   // this is the function used in the form helping widget that needs an Authentication event.
   SignInEvent signEvent(UserEntity user) => SignInEvent(user: user);
+
+  /// This method to listen to the login state changes as we use it although with the social sign.
+  static void loginHandlerMethod(
+      BuildContext context, AuthenticationState state) {
+    final gv = GlobalVariables();
+    if (state.signInState == RequestState.success) {
+      if (gv.getUserDecision == true) {
+        BlocProvider.of<CachingUserDataBloc>(context).add(CacheUserDataEvent(
+            userData: UserCachingDataEntity(
+          email: state.loggedInUser.email!,
+          password: gv.getGlobalUserPassword!,
+        )));
+      }
+      gv.setSid = state.loggedInUser.sid!;
+      Navigator.of(context).popUntil(
+          (route) => route.settings.name == Routes.navigationBarScreenKey);
+    }
+
+    if (state.signInState == RequestState.error) {
+      Navigator.of(context).pop();
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => ErrorDialog(
+          errorMessage: state.signInMessage,
+        ),
+      );
+    }
+    if (state.signInState == RequestState.loading) {
+      LoadingUtils.showLoadingDialog(context, LoadingType.circular);
+    }
+  }
 }

@@ -7,15 +7,15 @@ import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/utils/snack_bar_util.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
 import '../../../authentication/domain/entities/user.dart';
-import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
+import '../../../authentication/presentation/bloc/regular_sign/authentication_bloc.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/main_logo.dart';
 import '../widgets/sign_screen_components/social_sign_components/social_sign_widget.dart';
+import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/sign_type_text.dart';
 import '../widgets/sign_screen_components/sign_screens_shared_components/have_account_widget.dart';
-import '../widgets/sign_screen_components/sign_screens_shared_components/authentication_divider.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -61,16 +61,18 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const MainLogo(),
-                       SignTypeText(signSentence: StringsManager.create(context)),
+                      SignTypeText(
+                          signSentence: StringsManager.create(context)),
                       SignForm(
                         signEvent: signEvent,
                         buttonText: StringsManager.signUp(context),
                         isSignUp: true,
                       ),
-                       AuthenticationDivider(
-                          text: StringsManager.authenticationDividerText(context)),
+                      AuthenticationDivider(
+                        text: StringsManager.authenticationDividerText(context),
+                      ),
                       const SocialSignWidget(),
-                       HaveAccountWidget(
+                      HaveAccountWidget(
                         buttonText: StringsManager.signIn(context),
                         question: StringsManager.alreadyHaveAnAccount(context),
                         routeName: Routes.signInScreenKey,
