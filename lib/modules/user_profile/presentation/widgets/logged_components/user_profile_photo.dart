@@ -20,7 +20,9 @@ class UserProfilePhotoWidget extends StatelessWidget {
             child: CustomCachedImage(
               height: DoubleManager.d_80,
               url: imageUrl != null
-                  ? '${ApiConstance.kakUrl}$imageUrl'
+                  ? imageUrl!.startsWith('https://')
+                      ? imageUrl!
+                      : '${ApiConstance.kakUrl}$imageUrl'
                   : userTestImage,
             )),
       ),

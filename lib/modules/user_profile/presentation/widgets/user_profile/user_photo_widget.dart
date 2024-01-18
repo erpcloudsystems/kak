@@ -29,7 +29,10 @@ class UserPhotoWidget extends StatelessWidget {
           radius: radius ?? DoubleManager.d_40,
           backgroundImage: image ??
               (currentUser.image != null
-                  ? NetworkImage('${ApiConstance.kakUrl}${currentUser.image}')
+                  ? currentUser.image!.startsWith('https://')
+                      ? NetworkImage(currentUser.image!)
+                      : NetworkImage(
+                          '${ApiConstance.kakUrl}${currentUser.image}')
                   : null),
           child: child,
         ),
