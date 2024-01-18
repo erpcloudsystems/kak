@@ -1,9 +1,10 @@
 part of 'authentication_bloc.dart';
 
 class AuthenticationState extends Equatable {
-  // Sign in state
   final LoggedInUserEntity loggedInUser;
   final RequestState signInState;
+
+  // Sign in state
   final String signInMessage;
   final bool isUserLoggedIn;
 
@@ -90,8 +91,10 @@ class AuthenticationState extends Equatable {
       logoutMessage: logoutMessage ?? this.logoutMessage,
 
       // Delete user account
-      deleteUserAccountState: deleteUserAccountState ?? this.deleteUserAccountState,
-      deleteUserAccountMessage: deleteUserAccountMessage ?? this.deleteUserAccountMessage,
+      deleteUserAccountState:
+          deleteUserAccountState ?? this.deleteUserAccountState,
+      deleteUserAccountMessage:
+          deleteUserAccountMessage ?? this.deleteUserAccountMessage,
     );
   }
 

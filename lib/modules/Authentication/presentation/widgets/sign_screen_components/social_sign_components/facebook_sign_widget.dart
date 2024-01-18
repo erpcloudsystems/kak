@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/utils/enums.dart';
 import '../../../bloc/social_sign/social_sign_bloc.dart';
 import '../../../../../../core/utils/snack_bar_util.dart';
+import '../../../../../../core/global/global_varibles.dart';
+import '../../../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
-import '../../../../../../core/resources/strings_manager.dart';
 import '../../../../../../core/utils/loading_indicator_util.dart';
 
 class FacebookSignWidget extends StatelessWidget {
@@ -22,20 +23,18 @@ class FacebookSignWidget extends StatelessWidget {
         if (state.facebookSignState == RequestState.error) {
           SnackBarUtil().getSnackBar(
             context: context,
-            color: ColorsManager.gGreen,
+            color: ColorsManager.gRed,
             message: state.facebookSignMessage,
           );
         }
         if (state.facebookSignState == RequestState.success) {
-          SnackBarUtil().getSnackBar(
-            message: StringsManager.successLoginWithFace(context),
-            color: ColorsManager.gGreen,
-            context: context,
-          );
-
-        // GlobalVariables().setUserDecision = true;
-          
-        // context.read<AuthenticationBloc>().add(SignInEvent(user: user))  
+          // Here we save the user password in the global variables to use it with auto-login
+          // and make the choice be true to be remembered, and then call the event.
+          final gv = GlobalVariables();
+          final user = state.facebookUserData;
+          gv.setGlobalUserPassword = state.facebookUserData.password;
+          gv.setUserDecision = true;
+          context.read<AuthenticationBloc>().add(SignBySocialEvent(user: user));
         }
       },
       buildWhen: (previous, current) =>

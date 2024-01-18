@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/utils/enums.dart';
+import '../../../domain/usecases/social_sign.dart';
 import '../../../domain/usecases/logout_use_case.dart';
 import '../../../domain/usecases/sign_up_use_case.dart';
 import '../../../domain/usecases/sign_in_use_case.dart';
@@ -17,21 +18,24 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final ResetPasswordUseCase resetPassword;
-  final DeleteAccountUseCase deleteAccount;
-  final SignUpUseCase signUp;
-  final LogoutUseCase logout;
-  final SignInUseCase signIn;
+  final ResetPasswordUseCase _resetPasswordUseCase;
+  final DeleteAccountUseCase _deleteAccountUseCase;
+  final SocialSignUseCase _socialSignUseCase;
+  final SignUpUseCase _signUpUseCase;
+  final LogoutUseCase _logoutUseCase;
+  final SignInUseCase _signInUseCase;
 
   AuthenticationBloc(
-    this.resetPassword,
-    this.deleteAccount,
-    this.logout,
-    this.signUp,
-    this.signIn,
+    this._resetPasswordUseCase,
+    this._deleteAccountUseCase,
+    this._socialSignUseCase,
+    this._logoutUseCase,
+    this._signUpUseCase,
+    this._signInUseCase,
   ) : super(const AuthenticationState()) {
     on<DeleteUserAccountEvent>(_deleteUserAccount);
     on<ResetPasswordEvent>(_resetPassword);
+    on<SignBySocialEvent>(_socialSign);
     on<LogoutEvent>(_logout);
     on<SignUpEvent>(_signUp);
     on<SignInEvent>(_signIn);
@@ -40,7 +44,7 @@ class AuthenticationBloc
   FutureOr<void> _signIn(
       SignInEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(signInState: RequestState.loading));
-    final result = await signIn(event.user);
+    final result = await _signInUseCase(event.user);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -59,7 +63,7 @@ class AuthenticationBloc
       SignUpEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(signUpState: RequestState.loading));
 
-    final result = await signUp(event.user);
+    final result = await _signUpUseCase(event.user);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -76,7 +80,7 @@ class AuthenticationBloc
   FutureOr<void> _resetPassword(
       ResetPasswordEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(resetPasswordState: RequestState.loading));
-    final result = await resetPassword(event.email);
+    final result = await _resetPasswordUseCase(event.email);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -93,7 +97,7 @@ class AuthenticationBloc
   FutureOr<void> _deleteUserAccount(
       DeleteUserAccountEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(deleteUserAccountState: RequestState.loading));
-    final result = await deleteAccount(event.email);
+    final result = await _deleteAccountUseCase(event.email);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -110,7 +114,7 @@ class AuthenticationBloc
   FutureOr<void> _logout(
       LogoutEvent event, Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(logoutState: RequestState.loading));
-    final result = await logout(event.email);
+    final result = await _logoutUseCase(event.email);
 
     result.fold(
       (failure) => emit(state.copyWith(
@@ -120,6 +124,26 @@ class AuthenticationBloc
       (_) => emit(state.copyWith(
         logoutState: RequestState.success,
         isUserLoggedIn: false,
+      )),
+    );
+  }
+
+  //__________________________ Social sign _______________________________________
+  FutureOr<void> _socialSign(
+      SignBySocialEvent event, Emitter<AuthenticationState> emit) async {
+    emit(state.copyWith(signInState: RequestState.loading));
+
+    final result = await _socialSignUseCase(event.user);
+
+    result.fold(
+      (failure) => emit(state.copyWith(
+        signInState: RequestState.error,
+        signInMessage: failure.errorMessage,
+      )),
+      (user) => emit(state.copyWith(
+        signInState: RequestState.success,
+        isUserLoggedIn: true,
+        loggedInUser: user,
       )),
     );
   }

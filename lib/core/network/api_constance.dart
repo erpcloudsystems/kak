@@ -11,6 +11,7 @@ abstract class ApiConstance {
   static const String kakUrl = 'https://kak.erpcloud.systems';
 
   // Authentication
+  static const String socialSignEndPoint = '/kak.api.log_in_with_social_media';
   static const String resetPasswordEndPoint = '/kak.api.resetPassword';
   static const String deleteUserEndPoint = '/kak.api.delete_user';
   static const String signUpEndPoint = '/kak.api.sign_up';

@@ -1,4 +1,5 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kak/modules/authentication/domain/usecases/social_sign.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -73,7 +74,8 @@ Future<void> init() async {
 
   // Authentication
   sl.registerFactory(() => SocialSignBloc(sl(), sl()));
-  sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl(), sl()));
+  sl.registerFactory(
+      () => AuthenticationBloc(sl(), sl(), sl(), sl(), sl(), sl()));
 
   // Meals
   sl.registerFactory(() => MealsBloc(sl(), sl(), sl(), sl(), sl()));
@@ -97,9 +99,10 @@ Future<void> init() async {
   // Use cases ____________________________________________________________
 
   // Authentication
-  sl.registerLazySingleton(() => SignUpUseCase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(sl()));
   sl.registerLazySingleton(() => LogoutUseCase(sl()));
+  sl.registerLazySingleton(() => SignUpUseCase(sl()));
+  sl.registerLazySingleton(() => SocialSignUseCase(sl()));
   sl.registerLazySingleton(() => DeleteAccountUseCase(sl()));
   sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
   sl.registerLazySingleton(() => SignWithGoogleUseCase(sl()));

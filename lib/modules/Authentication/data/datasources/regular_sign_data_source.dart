@@ -63,4 +63,15 @@ class RegularSignDataSource {
 
     return Future.value(unit);
   }
+
+  //_______________________________ Social sign ________________________________
+  Future<LoggedInUserModel> socialSign(UserModel user) async {
+    final response = await _dio.post(
+      endPoint: ApiConstance.socialSignEndPoint,
+      data: user.toSocialSignJson(),
+    ) as Response;
+
+    final returnedUser = LoggedInUserModel.fromJson(response.data['message']);
+    return returnedUser;
+  }
 }

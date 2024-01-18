@@ -18,6 +18,15 @@ class UserModel extends UserEntity {
         password: data['id'],
       );
 
+  factory UserModel.fromUserEntity(UserEntity user) => UserModel(
+        phoneNumber: user.phoneNumber,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        image: user.image,
+      );
+
   Map<String, dynamic> toJsonSignIn() => {
         'usr': email,
         'pwd': password,
@@ -29,5 +38,13 @@ class UserModel extends UserEntity {
         'mobile': phoneNumber,
         'first_name': firstName,
         'last_name': lastName,
+      };
+
+  Map<String, dynamic> toSocialSignJson() => {
+        'first_name': firstName,
+        'last_name': lastName,
+        'id': password,
+        'email': email,
+        'image': image,
       };
 }

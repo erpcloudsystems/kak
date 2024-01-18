@@ -12,6 +12,11 @@ class SignInEvent extends AuthenticationEvent {
   const SignInEvent({required this.user});
 }
 
+class SignBySocialEvent extends AuthenticationEvent {
+  final UserEntity user;
+  const SignBySocialEvent({required this.user});
+}
+
 class SignUpEvent extends AuthenticationEvent {
   final UserEntity user;
   const SignUpEvent({required this.user});

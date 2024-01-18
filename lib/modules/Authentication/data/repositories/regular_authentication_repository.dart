@@ -1,13 +1,10 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/global/type_def.dart';
 import '../../../../core/network/failure.dart';
-import '../../../../core/utils/extensions.dart';
-import '../../../../core/network/exceptions.dart';
 import '../../../../core/network/network_info.dart';
-import '../../../../core/resources/strings_manager.dart';
 import '../../../authentication/domain/entities/user.dart';
 import '../../../authentication/data/models/user_model.dart';
+import '../../../../core/network/helper_network_methods.dart';
 import '../datasources/base_authentication_remote_data_source.dart';
 import '../../../authentication/domain/entities/logged_in_user_entity.dart';
 import '../../domain/repositories/base_regular_authentication_repository.dart';
@@ -20,69 +17,48 @@ class AuthenticationRepository implements BaseRegularAuthenticationRepository {
   //_____________________________Sign in___________________________________
   @override
   Future<Either<Failure, LoggedInUserEntity>> signIn(UserEntity user) async {
-    UserModel userModel = UserModel(email: user.email, password: user.password);
-    if (await _deviceStatus.isConnected) {
-      try {
-        final returnedUser = await _dataSource.signIn(userModel);
-        return Right(returnedUser);
-      } on PrimaryServerException catch (error) {
-        return Left(
-          ServerFailure(errorMessage: error.message),
-        );
-      }
-    } else {
-      return Left(
-        OfflineFailure(
-            errorMessage: StringsWithNoCtx.offlineFailureMessage.tr()),
-      );
-    }
+    final userModel = UserModel.fromUserEntity(user);
+    return await HelperNetworkMethods.commonApiResponseMethod<
+            LoggedInUserEntity>(
+        () async => await _dataSource.signIn(userModel), _deviceStatus);
   }
 
   //____________________________Sign up_____________________________________
   @override
   Future<Either<Failure, Unit>> signUp(UserEntity user) async {
-    UserModel userModel = UserModel(
-      email: user.email,
-      password: user.password,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      phoneNumber: user.phoneNumber,
-      image: user.image,
-    );
-    return await _signMethod(() => _dataSource.signUp(userModel));
+    final userModel = UserModel.fromUserEntity(user);
+    return await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+        () async => await _dataSource.signUp(userModel), _deviceStatus);
   }
 
   //____________________________Reset password_____________________________________
   @override
   Future<Either<Failure, Unit>> resetPassword(String email) async =>
-      await _signMethod(() => _dataSource.resetPassword(email));
+      await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+          () async => await _dataSource.resetPassword(email), _deviceStatus);
 
   //_________________________ Delete user account __________________________________
   @override
   Future<Either<Failure, Unit>> deleteAccount(String email) async =>
-      await _signMethod(() => _dataSource.deleteUserAccount(email));
+      await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+          () async => await _dataSource.deleteUserAccount(email),
+          _deviceStatus);
 
   //_______________________________ Logout _________________________________________
   @override
   Future<Either<Failure, Unit>> logout(String email) async =>
-      await _signMethod(() => _dataSource.logout(email));
+      await HelperNetworkMethods.commonApiResponseMethod<Unit>(
+          () async => await _dataSource.logout(email), _deviceStatus);
 
-  //_________________________common returning Unit method___________________________
-  Future<Either<Failure, Unit>> _signMethod(FutureFunction wantedMethod) async {
-    if (await _deviceStatus.isConnected) {
-      try {
-        await wantedMethod();
-        return const Right(unit);
-      } on PrimaryServerException catch (error) {
-        return Left(
-          ServerFailure(errorMessage: error.message),
-        );
-      }
-    } else {
-      return Left(
-        OfflineFailure(
-            errorMessage: StringsWithNoCtx.offlineFailureMessage.tr()),
+  //___________________________ Social sign________________________________________
+  @override
+  Future<Either<Failure, LoggedInUserEntity>> socialSign(
+          UserEntity user) async =>
+      await HelperNetworkMethods.commonApiResponseMethod<LoggedInUserEntity>(
+        () async {
+          final userModel = UserModel.fromUserEntity(user);
+          return await _dataSource.socialSign(userModel);
+        },
+        _deviceStatus,
       );
-    }
-  }
 }

@@ -8,9 +8,6 @@ import '../../../../core/resources/strings_manager.dart';
 import '../../../authentication/data/models/user_model.dart';
 
 mixin SocialSignDataSource {
-  final fireAuth = FirebaseAuth.instance;
-  String? userVerificationId;
-  int? userForceResendingToken;
   //_______________________________Sign with facebook__________________________
   Future<UserModel> signWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance.login();
@@ -32,6 +29,9 @@ mixin SocialSignDataSource {
 
   //_______________________________Sign with Google______________________________
   Future<UserModel> signWithGoogle() async {
+    final fireAuth = FirebaseAuth.instance;
+    // String? userVerificationId;
+    // int? userForceResendingToken;
     final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
     final googleSignInAccount = await googleSignIn.signIn();
     final googleSignInAuthentication =

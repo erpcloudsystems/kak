@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 
 import '../models/logged_user.dart';
-import '../../../authentication/data/models/user_model.dart';
 import 'social_sign_data_source.dart';
 import 'regular_sign_data_source.dart';
+import '../../../authentication/data/models/user_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<LoggedInUserModel> signIn(UserModel user);
@@ -16,10 +16,12 @@ abstract class BaseAuthenticationRemoteDataSource {
 
   Future<UserModel> signWithGoogle();
   Future<UserModel> signWithFacebook();
+  Future<LoggedInUserModel> socialSign(UserModel user);
 }
 
 class AuthenticationRemoteDataSource extends RegularSignDataSource
     with SocialSignDataSource
     implements BaseAuthenticationRemoteDataSource {
   AuthenticationRemoteDataSource(super.dio);
+  
 }
