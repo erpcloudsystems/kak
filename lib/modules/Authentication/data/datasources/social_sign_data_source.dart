@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,24 +31,61 @@ mixin SocialSignDataSource {
 
   //_______________________________Sign with Google______________________________
   Future<UserModel> signWithGoogle() async {
-    final fireAuth = FirebaseAuth.instance;
-    // String? userVerificationId;
-    // int? userForceResendingToken;
-    final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
-    final googleSignInAccount = await googleSignIn.signIn();
-    final googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
-    final credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken);
-    await fireAuth.signInWithCredential(credential);
-    final UserModel user = UserModel(
-      email: googleSignInAccount.email,
-      password: googleSignInAccount.id,
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-    );
-    return Future.value(user);
+    try {
+      // final fireAuth = FirebaseAuth.instance;
+      // String? userVerificationId;
+      // int? userForceResendingToken;
+      final GoogleSignIn googleSignIn =
+          GoogleSignIn(scopes: ['email', 'profile']);
+      final googleSignInAccount = await googleSignIn.signIn();
+      // // final googleSignInAuthentication =
+      // //     await googleSignInAccount!.authentication;
+      // // final credential = GoogleAuthProvider.credential(
+      // //     accessToken: googleSignInAuthentication.accessToken,
+      // //     idToken: googleSignInAuthentication.idToken);
+      // // await fireAuth.signInWithCredential(credential);
+      // log(googleSignInAccount?.displayName ?? 'none');
+      // log(googleSignInAccount?.photoUrl ?? 'none');
+      // final UserModel user = UserModel(
+      //   email: googleSignInAccount?.email ?? 'none',
+      //   password: googleSignInAccount?.id ?? 'none',
+      //   firstName: '',
+      //   lastName: '',
+      //   phoneNumber: '',
+      // );
+      // return Future.value(user);
+      if (googleSignInAccount != null) {
+        log('Google Sign-In successful');
+        log('User Display Name: ${googleSignInAccount.displayName}');
+        log('User Photo URL: ${googleSignInAccount.photoUrl}');
+        //  final googleSignInAuthentication =
+      //     await googleSignInAccount!.authentication;
+      // final credential = GoogleAuthProvider.credential(
+      //     accessToken: googleSignInAuthentication.accessToken,
+      //     idToken: googleSignInAuthentication.idToken);
+      // await fireAuth.signInWithCredential(credential);
+        final UserModel user = UserModel(
+          email: googleSignInAccount.email ?? 'none',
+          password: googleSignInAccount.id ?? 'none',
+          firstName: '',
+          lastName: '',
+          phoneNumber: '',
+        );
+        return Future.value(user);
+      } else {
+        log('Google Sign-In canceled by user');
+        throw PrimaryServerException(
+          error: 'null',
+          code: 100,
+          message: 'Google Sign-In canceled by user',
+        );
+      }
+    } catch (error) {
+      throw PrimaryServerException(
+        error: 'null',
+        code: 100,
+        message: error.toString(),
+      );
+    }
   }
 }

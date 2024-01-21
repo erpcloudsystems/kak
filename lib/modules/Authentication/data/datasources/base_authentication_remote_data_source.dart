@@ -8,6 +8,7 @@ import 'regular_sign_data_source.dart';
 import '../../../authentication/data/models/user_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
+  Future<LoggedInUserModel> socialSign(UserModel user);
   Future<LoggedInUserModel> signIn(UserModel user);
   Future<Unit> deleteUserAccount(String email);
   Future<Unit> resetPassword(String email);
@@ -16,7 +17,6 @@ abstract class BaseAuthenticationRemoteDataSource {
 
   Future<UserModel> signWithGoogle();
   Future<UserModel> signWithFacebook();
-  Future<LoggedInUserModel> socialSign(UserModel user);
 }
 
 class AuthenticationRemoteDataSource extends RegularSignDataSource

@@ -40,11 +40,9 @@ class SocialSignRepository implements BaseSocialSignRepository {
         final response = await socialSignFunction();
         return Right(response);
       } on FirebaseAuthException catch (error) {
-        return Left(
-          ServerFailure(
-              errorMessage:
-                  error.message ?? StringsWithNoCtx.serverFailureMessage.tr()),
-        );
+        return Left(ServerFailure(
+            errorMessage:
+                error.message ?? StringsWithNoCtx.serverFailureMessage.tr()));
       } on FacebookException catch (e) {
         return Left(ServerFailure(errorMessage: e.message));
       } catch (error) {

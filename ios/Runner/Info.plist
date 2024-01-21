@@ -23,9 +23,10 @@
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Kas needs access to your photo library to allow you to select and upload photos for your profile photo.</string>
+		<string>Kas needs access to your photo library to allow you to select and upload photos for
+			your profile photo.</string>
 		<key>LSRequiresIPhoneOS</key>
-		<true/>
+		<true />
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
@@ -53,43 +54,33 @@
 			<string>ar</string>
 		</array>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true/>
+		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true/>
+		<true />
 		<key>io.flutter.embedded_views_preview </key>
-		<true/>
+		<true />
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>http</string>
+			<string>https</string>
+		</array>
+		<key>UIStatusBarHidden</key>
+		<false />
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
-				<key>CFBundleTypeRole</key>
-				<string>Editor</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
+					<string>fb3552110931695071</string>
 					<string>com.googleusercontent.apps.984173260563-ue2d9thqfrfik0uh0tqrnmoul6pc9b2k</string>
 				</array>
 			</dict>
 		</array>
-		<key>LSApplicationQueriesSchemes</key>
-		<array>
-    		<string>http</string>
-   		 	<string>https</string>
-		</array>
-		<key>UIStatusBarHidden</key>
-		<false/>
-		<key>CFBundleURLTypes</key>
-		<array>
-		    <dict>
-		        <key>CFBundleURLSchemes</key>
-		        <array>
-		            <string>fb3552110931695071</string>
-		        </array>
-		    </dict>
-		</array>
 		<key>FacebookAppID</key>
 		<string>3552110931695071</string>
 		<key>FacebookClientToken</key>
-		<string>858348c092a7968c09383f1e8c31c9be</string>	
+		<string>858348c092a7968c09383f1e8c31c9be</string>
 		<key>FacebookDisplayName</key>
-		<string>Kak</string>		
+		<string>Kak</string>
 	</dict>
 </plist>
