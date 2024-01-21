@@ -1,7 +1,6 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:kak/modules/authentication/domain/usecases/social_sign.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../generated/l10n.dart';
@@ -195,7 +194,6 @@ Future<void> init() async {
   final sharedPref = await SharedPreferences.getInstance();
 
   sl.registerLazySingleton(() => S());
-  sl.registerLazySingleton(() => FirebaseAuth);
   sl.registerLazySingleton<BaseDioHelper>(() => DioHelper());
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);

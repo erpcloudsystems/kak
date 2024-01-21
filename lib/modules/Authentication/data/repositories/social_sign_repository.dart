@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/network/failure.dart';
@@ -39,10 +38,6 @@ class SocialSignRepository implements BaseSocialSignRepository {
       try {
         final response = await socialSignFunction();
         return Right(response);
-      } on FirebaseAuthException catch (error) {
-        return Left(ServerFailure(
-            errorMessage:
-                error.message ?? StringsWithNoCtx.serverFailureMessage.tr()));
       } on FacebookException catch (e) {
         return Left(ServerFailure(errorMessage: e.message));
       } catch (error) {
