@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:kak/core/global/base_use_case.dart';
-import 'package:kak/core/network/failure.dart';
-import 'package:kak/core/utils/enums.dart';
+
+import '../../../../core/utils/enums.dart';
+import '../../../../core/network/failure.dart';
+import '../../../../core/global/base_use_case.dart';
 
 import '../repositories/base_caching_user_data_repository.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
+import 'package:mumo/core/resources/strings_manager.dart';
 
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/error_dialog.dart';
@@ -96,8 +96,8 @@ class _DefaultAddressFormState extends State<DefaultAddressForm> {
   void setPrimaryAddressStateHandler(BuildContext context, AddressState state) {
     switch (state.setPrimaryAddressState) {
       case RequestState.loading:
-        LoadingUtils.showLoadingDialog(
-            context, LoadingType.linear, StringsManager.changingAddress(context));
+        LoadingUtils.showLoadingDialog(context, LoadingType.linear,
+            StringsManager.changingAddress(context));
         break;
       case RequestState.success:
         SnackBarUtil().getSnackBar(

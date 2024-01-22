@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/utils/enums.dart';
-import 'package:kak/modules/meals/domain/entities/meal_component.dart';
+
+import '../utils/enums.dart';
+import '../../modules/meals/domain/entities/meal_component.dart';
 
 class GlobalVariables {
   static final GlobalVariables _globalVariables = GlobalVariables._internal();

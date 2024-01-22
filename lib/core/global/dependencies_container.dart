@@ -1,5 +1,4 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:kak/modules/authentication/domain/usecases/social_sign.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,6 +22,7 @@ import '../../modules/Payment/domain/usecases/get_order_details.dart';
 import '../../modules/meals/domain/repositories/meals_base_repo.dart';
 import '../../modules/Address/domain/usecases/get_all_addresses.dart';
 import '../../modules/Address/domain/usecases/send_user_address.dart';
+import '../../modules/authentication/domain/usecases/social_sign.dart';
 import '../../modules/meals/domain/usecases/get_meal_group_items.dart';
 import '../../modules/user_profile/data/datasources/user_profile.dart';
 import '../../modules/Address/data/repositories/address_repo_impl.dart';

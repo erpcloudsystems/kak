@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Kak needs to access your location to help find your address`
+  /// `Mumo needs to access your location to help find your address`
   String get locationRequest {
     return Intl.message(
-      'Kak needs to access your location to help find your address',
+      'Mumo needs to access your location to help find your address',
       name: 'locationRequest',
       desc: '',
       args: [],

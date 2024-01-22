@@ -9,14 +9,14 @@ class ContactUsOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String kakFacebookPage =
+    const String mumoFacebookPage =
         'https://www.facebook.com/profile.php?id=61552647353722';
 
     return ProfileListElement(
       icon: Icons.facebook,
       text: StringsManager.contactUs(context),
       onTap: (context) async =>
-          await UrlLauncherHelper.urlLauncherMethod(context, kakFacebookPage),
+          await UrlLauncherHelper.urlLauncherMethod(context, mumoFacebookPage),
     );
   }
 }

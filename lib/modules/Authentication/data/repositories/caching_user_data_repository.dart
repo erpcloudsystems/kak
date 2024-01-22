@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:kak/core/utils/enums.dart';
 
+import '../../../../core/utils/enums.dart';
 import '../../../../core/network/failure.dart';
 import '../../../../core/network/exceptions.dart';
 import '../../domain/entities/user_caching_data_entity.dart';

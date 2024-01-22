@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:kak/modules/user_profile/data/models/user_profile.dart';
 
+import '../models/user_profile.dart';
 import '../datasources/user_profile.dart';
 import '../../../../core/network/failure.dart';
 import '../../domain/entities/user_profile.dart';

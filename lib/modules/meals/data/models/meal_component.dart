@@ -3,7 +3,6 @@ import '../../../../core/network/api_constance.dart';
 import '../../domain/entities/meal_component.dart';
 import '../../../../core/utils/extensions.dart';
 
-
 class MealComponentModel extends MealComponentEntity {
   const MealComponentModel({
     required super.itemClassification,
@@ -18,7 +17,7 @@ class MealComponentModel extends MealComponentEntity {
   factory MealComponentModel.fromJson(Map<String, dynamic> json) =>
       MealComponentModel(
         componentType: (json['state'].toString()).checkComponentType(),
-        image: '${ApiConstance.kakUrl}${json['image']}',
+        image: '${ApiConstance.mumoUrl}${json['image']}',
         maxRequired: json['max_required'] ?? 0,
         quantity: json['qty'] ?? 0,
         price: json['rate'] ?? 0.0,

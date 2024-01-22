@@ -8,7 +8,7 @@ import '../../modules/Address/presentation/screens/map.dart';
 abstract class ApiConstance {
   // System endpoints_______________________________________________________
   static const String baseUrl = 'https://kak.erpcloud.systems/api/method';
-  static const String kakUrl = 'https://kak.erpcloud.systems';
+  static const String mumoUrl = 'https://kak.erpcloud.systems';
 
   // Authentication
   static const String socialSignEndPoint = '/kak.api.log_in_with_social_media';

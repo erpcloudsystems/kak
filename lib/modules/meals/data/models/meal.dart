@@ -25,7 +25,7 @@ class MealModel extends MealEntity {
         name: json['custom_item_name_arabic'] ??
             json['item_name'] ??
             StringsWithNoCtx.none.tr(),
-        imageUrl: '${ApiConstance.kakUrl}${json['image']}',
+        imageUrl: '${ApiConstance.mumoUrl}${json['image']}',
         price: double.tryParse(json['rate'].toString()) ?? 0.0,
         id: json['name'] ?? StringsWithNoCtx.none.tr(),
         priceAfterDiscount:

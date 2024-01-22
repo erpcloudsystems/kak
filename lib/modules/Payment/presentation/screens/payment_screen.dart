@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kak/core/resources/routes.dart';
-import 'package:kak/core/utils/enums.dart';
-import 'package:kak/modules/Payment/domain/entities/card_payment_entity.dart';
-import 'package:kak/modules/Payment/presentation/bloc/payment_bloc.dart';
-import 'package:kak/modules/authentication/domain/entities/user.dart';
+import 'package:mumo/core/resources/routes.dart';
+import 'package:mumo/core/utils/enums.dart';
+import 'package:mumo/modules/Payment/domain/entities/card_payment_entity.dart';
+import 'package:mumo/modules/Payment/presentation/bloc/payment_bloc.dart';
+import 'package:mumo/modules/authentication/domain/entities/user.dart';
 
 import '../../../../core/utils/general_button.dart';
 
@@ -20,11 +20,10 @@ class PaymentScreen extends StatelessWidget {
           Center(
             child: BlocConsumer<PaymentBloc, PaymentState>(
               listener: (context, state) {
-                if (state.payWithCardState == RequestState.success){
+                if (state.payWithCardState == RequestState.success) {
                   Navigator.of(context).pushNamed(Routes.transactionScreenKey);
                 }
               },
-              
               builder: (context, state) {
                 switch (state.payWithCardState) {
                   case RequestState.loading:

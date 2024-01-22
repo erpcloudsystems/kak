@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/routes.dart';
 
+import '../../../../../core/resources/routes.dart';
 import '../../../../../core/utils/general_button.dart';
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
@@ -56,7 +56,7 @@ class OrdersListCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                         Text(StringsManager.date(context)),
+                        Text(StringsManager.date(context)),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.transactionDate,
@@ -67,7 +67,7 @@ class OrdersListCard extends StatelessWidget {
                     const SizedBox(height: DoubleManager.d_5),
                     Row(
                       children: [
-                         Text(StringsManager.status(context)),
+                        Text(StringsManager.status(context)),
                         const SizedBox(width: DoubleManager.d_5),
                         Text(
                           item.status.name,

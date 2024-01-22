@@ -22,7 +22,7 @@ class UserProfilePhotoWidget extends StatelessWidget {
               url: imageUrl != null
                   ? imageUrl!.startsWith('https://')
                       ? imageUrl!
-                      : '${ApiConstance.kakUrl}$imageUrl'
+                      : '${ApiConstance.mumoUrl}$imageUrl'
                   : userTestImage,
             )),
       ),

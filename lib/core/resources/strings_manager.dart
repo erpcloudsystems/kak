@@ -228,7 +228,7 @@ abstract class StringsWithNoCtx {
 
 abstract class UnTranslatedStrings {
   static const String english = 'English';
-  static const String appName = 'Kak';
+  static const String appName = 'Mumo';
   static const String arabic = 'عربي';
   static const String egp = 'EGP';
   static const String en = 'en';

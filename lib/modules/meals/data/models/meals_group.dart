@@ -8,7 +8,7 @@ class MealsGroupModel extends MealsGroupEntity {
 
   factory MealsGroupModel.fromJson(Map<String, dynamic> json) =>
       MealsGroupModel(
-        imageUrl: '${ApiConstance.kakUrl}${json['image']}',
+        imageUrl: '${ApiConstance.mumoUrl}${json['image']}',
         name: json['item_group_name'] ??
             json['custom_item_group_arabic'] ??
             StringsWithNoCtx.none.tr(),

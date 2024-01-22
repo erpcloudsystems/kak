@@ -32,7 +32,7 @@ class UserPhotoWidget extends StatelessWidget {
                   ? currentUser.image!.startsWith('https://')
                       ? NetworkImage(currentUser.image!)
                       : NetworkImage(
-                          '${ApiConstance.kakUrl}${currentUser.image}')
+                          '${ApiConstance.mumoUrl}${currentUser.image}')
                   : null),
           child: child,
         ),

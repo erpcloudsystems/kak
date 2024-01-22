@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kak/modules/Payment/domain/usecases/get_taxes.dart';
+import 'package:mumo/modules/Payment/domain/usecases/get_taxes.dart';
 
 import '../../domain/entities/taxes.dart';
 import '../../domain/entities/order.dart';

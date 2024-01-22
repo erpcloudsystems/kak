@@ -127,7 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading":
             MessageLookupByLibrary.simpleMessage("Loading, Please wait!"),
         "locationRequest": MessageLookupByLibrary.simpleMessage(
-            "Kak needs to access your location to help find your address"),
+            "Mumo needs to access your location to help find your address"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginFirst": MessageLookupByLibrary.simpleMessage(
             "You have to login first to make an order"),

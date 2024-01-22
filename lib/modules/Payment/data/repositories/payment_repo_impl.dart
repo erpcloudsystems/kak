@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:kak/modules/Payment/domain/entities/taxes.dart';
+import 'package:mumo/modules/Payment/domain/entities/taxes.dart';
 
 import '../models/order.dart';
 import '../../domain/entities/order.dart';

@@ -1,7 +1,7 @@
 {
     "enterEmailMessage": "Please Enter your E-mail address So that we could send you an email to reset your password",
     "resetEmailSent": "A reset password email is sent to your Email Please rest your password and Try to sign in again",
-    "locationRequest": "Kak needs to access your location to help find your address",
+    "locationRequest": "Mumo needs to access your location to help find your address",
     "serverFailureMessage": "There is Error with Server Please try again later",
     "noInternetConnection": "'There is a problem with your internet connection",
     "passwordLengthError": "password shouldn\"t be less than 6 characters",

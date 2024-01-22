@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/strings_manager.dart';
+import 'package:mumo/core/resources/strings_manager.dart';
 import 'package:uuid/uuid.dart';
 
 import 'user_photo_widget.dart';

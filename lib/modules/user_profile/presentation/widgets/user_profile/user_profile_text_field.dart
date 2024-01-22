@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kak/core/resources/colors_manager.dart';
+import 'package:mumo/core/resources/colors_manager.dart';
 
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/utils/custom_text_field.dart';

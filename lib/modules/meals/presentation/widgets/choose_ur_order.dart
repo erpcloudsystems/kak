@@ -1,4 +1,4 @@
-import 'package:kak/core/resources/strings_manager.dart';
+import 'package:mumo/core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/fonts_manager.dart';
