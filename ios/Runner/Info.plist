@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Kak</string>
+		<string>Mumo</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>kak</string>
+		<string>Mumo</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -32,9 +32,9 @@
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Kak needs location permission to choose delivery point</string>
+		<string>Mumo needs location permission to choose delivery point</string>
 		<key>NSLocationAlwaysUsageDescription</key>
-		<string>Kak needs access to location when in the background to track your orders.</string>
+		<string>Mumo needs access to location when in the background to track your orders.</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -81,6 +81,6 @@
 		<key>FacebookClientToken</key>
 		<string>858348c092a7968c09383f1e8c31c9be</string>
 		<key>FacebookDisplayName</key>
-		<string>Kak</string>
+		<string>Mumo</string>
 	</dict>
 </plist>
