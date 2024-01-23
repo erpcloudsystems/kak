@@ -1,13 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:mumo/core/resources/strings_manager.dart';
 
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/error_dialog.dart';
 import '../../../../../core/utils/snack_bar_util.dart';
 import '../../../../Address/domain/entities/address.dart';
-import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 import '../../../../../core/utils/loading_indicator_util.dart';
 import '../../../../Address/presentation/bloc/address/address_bloc.dart';
 
@@ -49,6 +50,8 @@ class _DefaultAddressFormState extends State<DefaultAddressForm> {
 
       case RequestState.success:
         final List<AddressEntity> addressesList = state.getAllAddressesData;
+        final primaryAddress = addressesList
+            .firstWhereOrNull((element) => element.isDefaultAddress == true);
 
         return addressesList.isEmpty
             ? const SizedBox()
@@ -67,8 +70,7 @@ class _DefaultAddressFormState extends State<DefaultAddressForm> {
                     padding: const EdgeInsets.symmetric(
                         vertical: DoubleManager.d_10),
                     child: DropdownButtonFormField<AddressEntity>(
-                      value: addressesList.firstWhere(
-                          (element) => element.isDefaultAddress == true),
+                      value: primaryAddress ?? addressesList.first,
                       items: addressesList
                           .map((value) => DropdownMenuItem<AddressEntity>(
                                 value: value,
