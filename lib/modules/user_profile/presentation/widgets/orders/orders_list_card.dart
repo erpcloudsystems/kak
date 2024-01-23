@@ -45,7 +45,7 @@ class OrdersListCard extends StatelessWidget {
                       borderRadius: const BorderRadiusDirectional.all(
                           Radius.circular(DoubleManager.d_12))),
                   child: const FittedBox(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     child: MainLogo(),
                   ),
                 ),
