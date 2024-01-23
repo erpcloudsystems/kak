@@ -49,44 +49,48 @@ class _DefaultAddressFormState extends State<DefaultAddressForm> {
 
       case RequestState.success:
         final List<AddressEntity> addressesList = state.getAllAddressesData;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              StringsManager.primaryAddress(context),
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: ColorsManager.mainColor),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: DoubleManager.d_10),
-              child: DropdownButtonFormField<AddressEntity>(
-                value: addressesList
-                    .firstWhere((element) => element.isDefaultAddress == true),
-                items: addressesList
-                    .map((value) => DropdownMenuItem<AddressEntity>(
-                          value: value,
-                          child: Text(
-                            value.addressTitle!,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  context
-                      .read<AddressBloc>()
-                      .add(SetPrimaryAddressEvent(addressId: value!.id!));
-                },
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsetsDirectional.only(start: DoubleManager.d_45),
-                ),
-              ),
-            ),
-          ],
-        );
+
+        return addressesList.isEmpty
+            ? const SizedBox()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    StringsManager.primaryAddress(context),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(color: ColorsManager.mainColor),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: DoubleManager.d_10),
+                    child: DropdownButtonFormField<AddressEntity>(
+                      value: addressesList.firstWhere(
+                          (element) => element.isDefaultAddress == true),
+                      items: addressesList
+                          .map((value) => DropdownMenuItem<AddressEntity>(
+                                value: value,
+                                child: Text(
+                                  value.addressTitle!,
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        context
+                            .read<AddressBloc>()
+                            .add(SetPrimaryAddressEvent(addressId: value!.id!));
+                      },
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsetsDirectional.only(
+                            start: DoubleManager.d_45),
+                      ),
+                    ),
+                  ),
+                ],
+              );
       default:
         return const SizedBox();
     }
