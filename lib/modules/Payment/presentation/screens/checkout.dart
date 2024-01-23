@@ -10,6 +10,7 @@ import '../../../../core/utils/snack_bar_util.dart';
 import '../widgets/checkout/payment_type_radio.dart';
 import '../widgets/checkout/place_order_button.dart';
 import '../../../Address/domain/entities/address.dart';
+import '../../../../core/resources/values_manager.dart';
 import '../../../Cart/presentation/bloc/cart_bloc.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -27,7 +28,7 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorsManager.gWhite,
       appBar: AppBar(
-        title:  Text(StringsManager.checkout(context)),
+        title: Text(StringsManager.checkout(context)),
       ),
       body: BlocListener<PaymentBloc, PaymentState>(
         listenWhen: (previous, current) =>
@@ -43,7 +44,7 @@ class CheckoutScreen extends StatelessWidget {
             ),
 
             // Delivery time
-            const DeliveryTime(deliveryTime: 30),
+            const DeliveryTime(deliveryTime: IntManager.i_30),
 
             // Payment Type
             PaymentTypeRadio(paymentType: paymentType),

@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxNumber": MessageLookupByLibrary.simpleMessage(
             " هو الحد الأقصى للعناصر التي يمكنك إضافتها إلى وجبتك"),
         "menu": MessageLookupByLibrary.simpleMessage("القائمة"),
+        "minutes": MessageLookupByLibrary.simpleMessage("دقيقة"),
         "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
         "myAddress": MessageLookupByLibrary.simpleMessage("عنواني"),
         "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
@@ -227,6 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "urDetails": MessageLookupByLibrary.simpleMessage("تفاصيلك"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
+        "within": MessageLookupByLibrary.simpleMessage("في خلال"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }

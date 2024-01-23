@@ -19,6 +19,12 @@ class StringsManager {
     return '$maxNumber $translated';
   }
 
+  static String deliveryTime(int duration) {
+    String within = 'within'.tr();
+    String minutes = 'minutes'.tr();
+    return '$within $duration $minutes';
+  }
+
   static String deleteAddressMessage(BuildContext context) =>
       S.of(context).deleteAddressMessage;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/resources/values_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/strings_manager.dart';
 
 class DeliveryTime extends StatelessWidget {
   const DeliveryTime({
@@ -25,7 +26,7 @@ class DeliveryTime extends StatelessWidget {
       child: Row(children: [
         const Icon(Icons.motorcycle_rounded),
         const SizedBox(width: DoubleManager.d_10),
-        Text('Within $deliveryTime minutes'),
+        Text(StringsManager.deliveryTime(deliveryTime)),
       ]),
     );
   }

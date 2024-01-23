@@ -1160,6 +1160,16 @@ class S {
     );
   }
 
+  /// `minutes`
+  String get minutes {
+    return Intl.message(
+      'minutes',
+      name: 'minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Profile`
   String get profile {
     return Intl.message(
@@ -1285,6 +1295,16 @@ class S {
     return Intl.message(
       'search',
       name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `within`
+  String get within {
+    return Intl.message(
+      'within',
+      name: 'within',
       desc: '',
       args: [],
     );

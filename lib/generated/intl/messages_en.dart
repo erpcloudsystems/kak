@@ -140,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxNumber": MessageLookupByLibrary.simpleMessage(
             " is what you can add to your meal from this item"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
+        "minutes": MessageLookupByLibrary.simpleMessage("minutes"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myAddress": MessageLookupByLibrary.simpleMessage("My Address"),
         "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
@@ -229,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "urDetails": MessageLookupByLibrary.simpleMessage("Your details"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "within": MessageLookupByLibrary.simpleMessage("within"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
