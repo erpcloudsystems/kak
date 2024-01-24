@@ -70,7 +70,7 @@ class _DefaultAddressFormState extends State<DefaultAddressForm> {
                     padding: const EdgeInsets.symmetric(
                         vertical: DoubleManager.d_10),
                     child: DropdownButtonFormField<AddressEntity>(
-                      value: primaryAddress ?? addressesList.first,
+                      value: primaryAddress,
                       items: addressesList
                           .map((value) => DropdownMenuItem<AddressEntity>(
                                 value: value,
