@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان جديد"),
+        "addMobileMessage": MessageLookupByLibrary.simpleMessage(
+            "من فضلك اكمل بياناتك واضف رقم هاتفك لكي تتمكن من اتمام الطلب"),
         "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى العربة"),
         "additionalDir":
             MessageLookupByLibrary.simpleMessage("توجيهات إضافية (اختياري)"),
@@ -126,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading":
             MessageLookupByLibrary.simpleMessage("جار التحميل، يرجى الانتظار!"),
         "locationRequest": MessageLookupByLibrary.simpleMessage(
-            "تحتاج كاك إلى الوصول إلى موقعك للمساعدة في العثور على عنوانك"),
+            "تحتاج مامو إلى الوصول إلى موقعك للمساعدة في العثور على عنوانك"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "loginFirst": MessageLookupByLibrary.simpleMessage(
             "يجب عليك تسجيل الدخول أولاً لتقديم طلب"),

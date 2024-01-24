@@ -37,7 +37,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             previous.getUserProfileState != current.getUserProfileState,
         listener: userProfileStatesHandler,
         builder: (context, state) {
-          if (state.getUserProfileState == RequestState.success) {
+          if (state.getUserProfileState == RequestState.loading) {
+            return const LoadingIndicatorUtil();
+          } else if (state.getUserProfileState == RequestState.success) {
             return UserProfileMainWidget(user: state.getUserProfileData);
           } else {
             return const SizedBox();
@@ -54,21 +56,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   void userProfileStatesHandler(context, UserProfileState state) {
-    switch (state.getUserProfileState) {
-      case RequestState.loading:
-        LoadingUtils.showLoadingDialog(context, LoadingType.circular);
-        break;
-      case RequestState.success:
-        Navigator.of(context).pop();
-        break;
-      case RequestState.error:
-        Navigator.of(context).pop();
-        ErrorDialogUtils.displayErrorDialog(
-          context: context,
-          errorMessage: state.getUserProfileMessage,
-        );
-        break;
-      default:
+    if (state.getUserProfileState == RequestState.error) {
+      ErrorDialogUtils.displayErrorDialog(
+        context: context,
+        errorMessage: state.getUserProfileMessage,
+      );
     }
   }
 }

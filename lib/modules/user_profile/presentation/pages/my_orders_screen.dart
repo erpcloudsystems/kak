@@ -22,7 +22,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(StringsManager.myOrders(context)),
+        title: Text(StringsManager.myOrders(context)),
       ),
       body: BlocConsumer<PaymentBloc, PaymentState>(
         listenWhen: (previous, current) =>

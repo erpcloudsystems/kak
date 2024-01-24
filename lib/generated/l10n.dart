@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Please complete your profile and add your mobile number to complete ypur order`
+  String get addMobileMessage {
+    return Intl.message(
+      'Please complete your profile and add your mobile number to complete ypur order',
+      name: 'addMobileMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Mumo needs to access your location to help find your address`
   String get locationRequest {
     return Intl.message(

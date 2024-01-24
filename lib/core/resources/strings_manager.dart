@@ -139,6 +139,8 @@ class StringsManager {
       S.of(context).primaryAddress;
   static String successLoginWithFace(BuildContext context) =>
       S.of(context).successLoginWithFace;
+  static String addMobileMessage(BuildContext context) =>
+      S.of(context).addMobileMessage;
   static String saveAddress(BuildContext context) => S.of(context).saveAddress;
   static String changePhoto(BuildContext context) => S.of(context).changePhoto;
   static String deliverHere(BuildContext context) => S.of(context).deliverHere;
