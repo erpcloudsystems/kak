@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addAddress": MessageLookupByLibrary.simpleMessage("Add new address"),
         "addMobileMessage": MessageLookupByLibrary.simpleMessage(
-            "Please complete your profile and add your mobile number to complete ypur order"),
+            "Please complete your profile and add your mobile number to complete your order"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
         "additionalDir": MessageLookupByLibrary.simpleMessage(
             "Additional directions (optional)"),

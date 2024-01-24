@@ -5,6 +5,7 @@ import 'photo_widget.dart';
 import 'default_address_form.dart';
 import 'user_profile_text_field.dart';
 import '../../bloc/user_profile_bloc.dart';
+import '../../../../../core/utils/extensions.dart';
 import '../../../domain/entities/user_profile.dart';
 import '../../../../../core/utils/general_button.dart';
 import '../../../../../core/resources/values_manager.dart';
@@ -39,7 +40,7 @@ class EditUserProfileMainScreen extends StatelessWidget {
         context
             .read<UserProfileBloc>()
             .add(EditUserProfileEvent(user: newUserData));
-            
+
         formKey.currentState!.save();
       }
     }
@@ -85,8 +86,11 @@ class EditUserProfileMainScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: DoubleManager.d_10),
                   child: PhoneNumberPicker(
-                      initialValue: userOldData.mobileNo
-                          .replaceFirst(RegExp(r'^(\+20|0)'), ''),
+                      initialValue:
+                          userOldData.mobileNo == StringsWithNoCtx.none.tr()
+                              ? null
+                              : userOldData.mobileNo
+                                  .replaceFirst(RegExp(r'^(\+20|0)'), ''),
                       phoneNumber: (String number) => phoneNumber = number),
                 ),
               ],

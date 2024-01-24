@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Please complete your profile and add your mobile number to complete ypur order`
+  /// `Please complete your profile and add your mobile number to complete your order`
   String get addMobileMessage {
     return Intl.message(
-      'Please complete your profile and add your mobile number to complete ypur order',
+      'Please complete your profile and add your mobile number to complete your order',
       name: 'addMobileMessage',
       desc: '',
       args: [],
