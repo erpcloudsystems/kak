@@ -25,7 +25,6 @@ class _CartListTileSubtitleState extends State<CartListTileSubtitle> {
 
   @override
   Widget build(BuildContext context) {
-    calculateNewQuantity(context);
     return Padding(
       padding: const EdgeInsets.only(top: DoubleManager.d_8),
       child: Row(
@@ -62,15 +61,14 @@ class _CartListTileSubtitleState extends State<CartListTileSubtitle> {
   @override
   void initState() {
     super.initState();
-    quantity = ValueNotifier<int>(widget.meal.quantity ?? IntManager.i_1);
     timer = Timer(const Duration(seconds: 2), () {});
+    quantity = ValueNotifier<int>(widget.meal.quantity ?? IntManager.i_1)
+      ..addListener(calculateNewQuantity);
   }
 
   /// We use this method to listen to quantity changes and update the total price.
-  void calculateNewQuantity(BuildContext context) {
-    return quantity.addListener(() {
+  void calculateNewQuantity() {
     timer.cancel();
-
     timer = Timer(const Duration(seconds: 2), () {
       BlocProvider.of<CartBloc>(context).add(UpdateCartItemEvent(
         meal: MealEntity(
@@ -86,7 +84,6 @@ class _CartListTileSubtitleState extends State<CartListTileSubtitle> {
         ),
       ));
     });
-  });
   }
 
   @override

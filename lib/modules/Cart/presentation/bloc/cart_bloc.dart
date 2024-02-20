@@ -100,7 +100,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> updateCartItem(
       UpdateCartItemEvent event, Emitter<CartState> emit) async {
     final index =
-        _cartItems.indexWhere((element) => element.cartId == event.meal.cartId);
+        _cartItems.indexWhere((element) => element.id == event.meal.id);
 
     if (index != -1) {
       _cartItems[index] = event.meal;
