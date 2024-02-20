@@ -40,12 +40,12 @@ extension ThePaymentTypeName on PaymentType {
 extension DateTimeExtension on DateTime {
   /// Formate date in [day - month - year].
   String formatDate() {
-    return DateFormat('dd-MM-yyyy').format(this);
+    return DateFormat('dd-MM-yyyy', 'en_US').format(this);
   }
 
   /// Formate date in [year - month - day].
   String formatDateYMD() {
-    return DateFormat('yyyy-MM-dd').format(this);
+    return DateFormat('yyyy-MM-dd', 'en_US').format(this);
   }
 }
 
