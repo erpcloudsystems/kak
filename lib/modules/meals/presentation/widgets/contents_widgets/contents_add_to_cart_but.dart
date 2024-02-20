@@ -35,7 +35,7 @@ class ContentMealAddToCartBut extends StatelessWidget {
             final meal = MealEntity(
               description: theMeal!.description,
               imageUrl: theMeal!.imageUrl,
-              price: price.value * quantity.value,
+              price: price.value,
               name: theMeal!.name,
               cartId: const Uuid().v1(),
               id: theMeal!.id,
