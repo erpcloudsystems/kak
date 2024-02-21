@@ -1,5 +1,3 @@
-const String lottiePath = 'assets/lottie';
-const String videosPath = 'assets/videos';
 const String imagePath = 'assets/images';
 
 class ImagesPath {
@@ -15,12 +13,4 @@ class ImagesPath {
   static const String logoPath = '$imagePath/logo.png';
   static const String verificationSuccessPath =
       '$imagePath/verification_success.png';
-}
-
-class LottiePaths {
-  // static const String splashPath = '$lottiePath/splash.json';
-}
-
-class VideosPaths {
-  static const String splashPath = '$videosPath/splash.mp4';
 }

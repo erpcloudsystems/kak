@@ -1,16 +1,15 @@
-import 'dart:async';
-
-import 'package:video_player/video_player.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mumo/core/utils/loading_indicator_util.dart';
+import 'package:sizer/sizer.dart';
 
+import '../resources/values_manager.dart';
 import 'enums.dart';
 import 'error_dialog.dart';
+import 'general_background.dart';
 import '../resources/assetss_path.dart';
 import '../global/global_varibles.dart';
 import '../resources/localizations.dart';
-import '../resources/values_manager.dart';
 import '../../../../core/resources/routes.dart';
 import '../../modules/authentication/domain/entities/user.dart';
 import '../../modules/authentication/domain/entities/user_caching_data_entity.dart';
@@ -25,51 +24,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  late VideoPlayerController _controller;
-  bool _visible = false;
-
-  void _initializeVideoController() async {
-    _controller = VideoPlayerController.asset(VideosPaths.splashPath);
-    await _controller.initialize();
-    _controller.setLooping(false);
-
-    Timer(
-        const Duration(milliseconds: IntManager.i_200),
-        () => setState(() {
-              _controller.play();
-              _visible = true;
-            }));
-  }
-
-  void _whenVideoIntroEnd() {
-    if (_controller.value.position >= _controller.value.duration) {
-      BlocProvider.of<CachingUserDataBloc>(context)
-          .add(GetCachedLanguageEvent());
-      BlocProvider.of<CachingUserDataBloc>(context)
-          .add(GetCachedUserDataEvent());
-    }
-  }
-
   @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    _initializeVideoController();
-    _controller.addListener(_whenVideoIntroEnd);
+  void didChangeDependencies() {
+    BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedLanguageEvent());
+    BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedUserDataEvent());
+    super.didChangeDependencies();
   }
-
-  Widget _buildVideoPlayer() => AnimatedOpacity(
-        opacity: _visible ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: IntManager.i_200),
-        child: VideoPlayer(_controller),
-      );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+  
   @override
   Widget build(BuildContext context) =>
       BlocListener<AuthenticationBloc, AuthenticationState>(
@@ -97,9 +58,19 @@ class _SplashScreenState extends State<SplashScreen> {
                 _navigateToSignInScreen();
               }
             },
-            child: Center(
-              child: Stack(
-                children: [_buildVideoPlayer()],
+            child: GeneralBackground(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Center(child: Image.asset(ImagesPath.logoPath)),
+                  SizedBox(
+                    height: DoubleManager.d_20.h,
+                    child: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: LoadingIndicatorUtil(),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
