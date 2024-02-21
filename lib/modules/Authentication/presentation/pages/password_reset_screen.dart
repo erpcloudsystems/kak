@@ -6,6 +6,7 @@ import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/snack_bar_util.dart';
 import '../bloc/regular_sign/authentication_bloc.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/top_screen_back_arrow.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
@@ -54,30 +55,32 @@ class PasswordResetScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: DoubleManager.d_15,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TopScreenBackArrow(
-                          navigateFunction: () => Navigator.of(context)
-                              .pushReplacementNamed(Routes.signInScreenKey)),
-                      const ResetImage(),
-                      const EnterEmailText(),
-                      EmailAndSaveButton(emailController: emailController),
-                    ],
+        body: GeneralBackground(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: DoubleManager.d_15,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TopScreenBackArrow(
+                            navigateFunction: () => Navigator.of(context)
+                                .pushReplacementNamed(Routes.signInScreenKey)),
+                        const ResetImage(),
+                        const EnterEmailText(),
+                        EmailAndSaveButton(emailController: emailController),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

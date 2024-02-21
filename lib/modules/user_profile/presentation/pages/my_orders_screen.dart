@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/enums.dart';
 import '../widgets/orders/orders_list_card.dart';
 import '../../../../core/utils/error_dialog.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 import '../../../Payment/presentation/bloc/payment_bloc.dart';
@@ -24,15 +25,17 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
       appBar: AppBar(
         title: Text(StringsManager.myOrders(context)),
       ),
-      body: BlocConsumer<PaymentBloc, PaymentState>(
-        listenWhen: (previous, current) =>
-            previous.getOrdersListState != current.getOrdersListState,
-        listener: getOrdersStateHandler,
-        buildWhen: (previous, current) =>
-            previous.getOrdersListState != current.getOrdersListState,
-        builder: (context, state) {
-          return OrdersList(items: state.getOrdersListData);
-        },
+      body: GeneralBackground(
+        child: BlocConsumer<PaymentBloc, PaymentState>(
+          listenWhen: (previous, current) =>
+              previous.getOrdersListState != current.getOrdersListState,
+          listener: getOrdersStateHandler,
+          buildWhen: (previous, current) =>
+              previous.getOrdersListState != current.getOrdersListState,
+          builder: (context, state) {
+            return OrdersList(items: state.getOrdersListData);
+          },
+        ),
       ),
     );
   }

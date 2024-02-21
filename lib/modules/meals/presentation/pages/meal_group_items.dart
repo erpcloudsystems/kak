@@ -7,6 +7,7 @@ import '../../../../core/utils/no_data.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/resources/assetss_path.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
@@ -23,24 +24,27 @@ class MealGroupItemsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(groupName),
       ),
-      body: BlocBuilder<MealsBloc, MealsState>(
-        buildWhen: (previous, current) =>
-            previous.getMealGroupItemsState != current.getMealGroupItemsState ||
-            previous.getMealGroupItemsData != current.getMealGroupItemsData,
-        builder: (context, state) {
-          if (state.getMealGroupItemsState == RequestState.error) {
-            return  Center(
-                child: NoDataWidget(
-              assetPath: ImagesPath.errorPath,
-              text: StringsWithNoCtx.errorMessage.tr(),
-            ));
-          }
-          if (state.getMealGroupItemsState == RequestState.success) {
-            return CustomAnimatedGrid(items: state.getMealGroupItemsData);
-          }
+      body: GeneralBackground(
+        child: BlocBuilder<MealsBloc, MealsState>(
+          buildWhen: (previous, current) =>
+              previous.getMealGroupItemsState !=
+                  current.getMealGroupItemsState ||
+              previous.getMealGroupItemsData != current.getMealGroupItemsData,
+          builder: (context, state) {
+            if (state.getMealGroupItemsState == RequestState.error) {
+              return Center(
+                  child: NoDataWidget(
+                assetPath: ImagesPath.errorPath,
+                text: StringsWithNoCtx.errorMessage.tr(),
+              ));
+            }
+            if (state.getMealGroupItemsState == RequestState.success) {
+              return CustomAnimatedGrid(items: state.getMealGroupItemsData);
+            }
 
-          return Container();
-        },
+            return Container();
+          },
+        ),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: DoubleManager.d_30),

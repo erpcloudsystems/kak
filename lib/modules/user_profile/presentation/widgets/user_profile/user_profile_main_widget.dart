@@ -14,7 +14,7 @@ class UserProfileMainWidget extends StatelessWidget {
     return ListView(children: [
       //_________________________User Image and Name______________________
       Center(child: UserProfilePhotoWidget(imageUrl: user.image)),
-      //_________________________User Image and Name______________________
+      //_________________________User Name________________________________
       UserProfileCard(
         title: StringsManager.userName(context),
         subtitle: '${user.firstName} ${user.lastName}',

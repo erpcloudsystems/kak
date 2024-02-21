@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/general_background.dart';
 import '../bloc/user_profile_bloc.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/resources/routes.dart';
@@ -32,19 +33,21 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
         ],
       ),
-      body: BlocConsumer<UserProfileBloc, UserProfileState>(
-        listenWhen: (previous, current) =>
-            previous.getUserProfileState != current.getUserProfileState,
-        listener: userProfileStatesHandler,
-        builder: (context, state) {
-          if (state.getUserProfileState == RequestState.loading) {
-            return const LoadingIndicatorUtil();
-          } else if (state.getUserProfileState == RequestState.success) {
-            return UserProfileMainWidget(user: state.getUserProfileData);
-          } else {
-            return const SizedBox();
-          }
-        },
+      body: GeneralBackground(
+        child: BlocConsumer<UserProfileBloc, UserProfileState>(
+          listenWhen: (previous, current) =>
+              previous.getUserProfileState != current.getUserProfileState,
+          listener: userProfileStatesHandler,
+          builder: (context, state) {
+            if (state.getUserProfileState == RequestState.loading) {
+              return const LoadingIndicatorUtil();
+            } else if (state.getUserProfileState == RequestState.success) {
+              return UserProfileMainWidget(user: state.getUserProfileData);
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
       ),
     );
   }

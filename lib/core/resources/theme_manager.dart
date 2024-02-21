@@ -129,7 +129,7 @@ abstract class AppTheme {
         ),
 
         // Cards
-        cardColor: Colors.white,
+        cardColor: ColorsManager.scaffoldColor,
 
         // List tile
         listTileTheme: const ListTileThemeData(tileColor: Colors.white),

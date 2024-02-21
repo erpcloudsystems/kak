@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
 
 class UserProfileCard extends StatelessWidget {
@@ -15,6 +16,7 @@ class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: ColorsManager.scaffoldColor,
       margin: const EdgeInsets.all(DoubleManager.d_15),
       elevation: DoubleManager.d_10,
       shape: const RoundedRectangleBorder(

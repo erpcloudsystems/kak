@@ -5,7 +5,7 @@ class ColorsManager {
   static const Color mainColor = Color(0xffc13721);
 
   // Scaffold background
-  static const Color scaffoldColor = Color(0xffedd9c2);
+  static const Color scaffoldColor = Color(0xffe9e9e9);
 
   // General
   static const Color gWhite = Colors.white;

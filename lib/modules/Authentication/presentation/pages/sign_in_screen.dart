@@ -5,11 +5,11 @@ import '../../../../core/utils/enums.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
 import '../../../../core/global/global_varibles.dart';
-
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/resources/strings_manager.dart';
-import '../../../../core/utils/loading_indicator_util.dart';
 import '../../../authentication/domain/entities/user.dart';
+import '../../../../core/utils/loading_indicator_util.dart';
 import '../../domain/entities/user_caching_data_entity.dart';
 import '../bloc/caching_user_data/caching_user_data_bloc.dart';
 import '../widgets/sign_screen_components/form_components/sign_form.dart';
@@ -29,45 +29,47 @@ class SignInScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listenWhen: (previous, current) =>
-              previous.signInState != current.signInState,
-          listener: loginHandlerMethod,
-          child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
-              child: CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const MainLogo(),
-                        SignTypeText(
-                            signSentence:
-                                StringsManager.loginToUrAccount(context)),
-                        SignForm(
-                          signEvent: signEvent,
-                          buttonText: StringsManager.signIn(context),
-                          isSignUp: false,
-                        ),
-                        const ForgotPasswordComponent(),
-                        AuthenticationDivider(
-                          text:
-                              StringsManager.authenticationDividerText(context),
-                        ),
-                        const SocialSignWidget(),
-                        HaveAccountWidget(
-                          question: StringsManager.dontHaveAnAccount(context),
-                          buttonText: StringsManager.signUp(context),
-                          routeName: Routes.signUpScreenKey,
-                        ),
-                      ],
+        body: GeneralBackground(
+          child: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listenWhen: (previous, current) =>
+                previous.signInState != current.signInState,
+            listener: loginHandlerMethod,
+            child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: DoubleManager.d_16),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const MainLogo(),
+                          SignTypeText(
+                              signSentence:
+                                  StringsManager.loginToUrAccount(context)),
+                          SignForm(
+                            signEvent: signEvent,
+                            buttonText: StringsManager.signIn(context),
+                            isSignUp: false,
+                          ),
+                          const ForgotPasswordComponent(),
+                          AuthenticationDivider(
+                            text:
+                                StringsManager.authenticationDividerText(context),
+                          ),
+                          const SocialSignWidget(),
+                          HaveAccountWidget(
+                            question: StringsManager.dontHaveAnAccount(context),
+                            buttonText: StringsManager.signUp(context),
+                            routeName: Routes.signUpScreenKey,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              )),
+                  ],
+                )),
+          ),
         ),
       ),
     );

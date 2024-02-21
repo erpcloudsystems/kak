@@ -5,6 +5,7 @@ import '../../../../core/utils/enums.dart';
 import '../bloc/address/address_bloc.dart';
 import '../../../../core/resources/routes.dart';
 import '../../../../core/utils/error_dialog.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/custom_floating_button.dart';
 import '../widgets/all_addresses/delivery_addresses_success_component.dart';
@@ -16,14 +17,16 @@ class AllAddressesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(StringsManager.deliveryAddresses(context))),
-      body: BlocConsumer<AddressBloc, AddressState>(
-        listenWhen: (previous, current) =>
-            previous.getAllAddressesState != current.getAllAddressesState,
-        listener: handleGetAddressStates,
-        buildWhen: (previous, current) =>
-            previous.getAllAddressesData != current.getAllAddressesData,
-        builder: (context, state) => DeliveryAddressesSuccessComponent(
-          addresses: state.getAllAddressesData,
+      body: GeneralBackground(
+        child: BlocConsumer<AddressBloc, AddressState>(
+          listenWhen: (previous, current) =>
+              previous.getAllAddressesState != current.getAllAddressesState,
+          listener: handleGetAddressStates,
+          buildWhen: (previous, current) =>
+              previous.getAllAddressesData != current.getAllAddressesData,
+          builder: (context, state) => DeliveryAddressesSuccessComponent(
+            addresses: state.getAllAddressesData,
+          ),
         ),
       ),
       floatingActionButton: CustomFloatingButton(

@@ -11,6 +11,7 @@ import '../../../../core/resources/assetss_path.dart';
 import '../../../../core/resources/fonts_manager.dart';
 import '../../../../core/resources/colors_manager.dart';
 import '../../../../core/resources/values_manager.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/strings_manager.dart';
 import '../../../../core/utils/loading_indicator_util.dart';
 
@@ -40,56 +41,58 @@ class _CartScreenState extends State<CartScreen> {
                 .copyWith(fontSize: FontsSize.s20),
           ),
         ),
-        body: BlocConsumer<CartBloc, CartState>(
-          listenWhen: (previous, current) =>
-              previous.removeCartItemState != current.removeCartItemState,
-          listener: (context, state) {
-            if (state.removeCartItemState == RequestState.loading) {
-              LoadingUtils.showLoadingDialog(context, LoadingType.linear,
-                  StringsManager.deleting(context));
-            }
+        body: GeneralBackground(
+          child: BlocConsumer<CartBloc, CartState>(
+            listenWhen: (previous, current) =>
+                previous.removeCartItemState != current.removeCartItemState,
+            listener: (context, state) {
+              if (state.removeCartItemState == RequestState.loading) {
+                LoadingUtils.showLoadingDialog(context, LoadingType.linear,
+                    StringsManager.deleting(context));
+              }
 
-            if (state.removeCartItemState == RequestState.success) {
-              Navigator.of(context).pop();
-              BlocProvider.of<CartBloc>(context).add(GetCartItemsEvent());
-              SnackBarUtil().getSnackBar(
-                message: state.removeCartItemMessage,
-                context: context,
-                color: ColorsManager.gGreen,
-              );
-            }
+              if (state.removeCartItemState == RequestState.success) {
+                Navigator.of(context).pop();
+                BlocProvider.of<CartBloc>(context).add(GetCartItemsEvent());
+                SnackBarUtil().getSnackBar(
+                  message: state.removeCartItemMessage,
+                  context: context,
+                  color: ColorsManager.gGreen,
+                );
+              }
 
-            if (state.removeCartItemState == RequestState.error) {
-              Navigator.of(context).pop();
-              SnackBarUtil().getSnackBar(
-                message: state.removeCartItemMessage,
-                context: context,
-                color: ColorsManager.gRed,
-              );
-            }
-          },
-          buildWhen: (previous, current) =>
-              previous.getCartItemsState != current.getCartItemsState ||
-              previous.getCartItemsData != current.getCartItemsData,
-          builder: (context, state) {
-            if (state.getCartItemsState == RequestState.error ||
-                state.getCartItemsData.isEmpty) {
-              return  NoDataWidget(
-                assetPath: ImagesPath.emptyCartPath,
-                text: StringsManager.noCartItemsMessage(context),
-              );
-            }
+              if (state.removeCartItemState == RequestState.error) {
+                Navigator.of(context).pop();
+                SnackBarUtil().getSnackBar(
+                  message: state.removeCartItemMessage,
+                  context: context,
+                  color: ColorsManager.gRed,
+                );
+              }
+            },
+            buildWhen: (previous, current) =>
+                previous.getCartItemsState != current.getCartItemsState ||
+                previous.getCartItemsData != current.getCartItemsData,
+            builder: (context, state) {
+              if (state.getCartItemsState == RequestState.error ||
+                  state.getCartItemsData.isEmpty) {
+                return NoDataWidget(
+                  assetPath: ImagesPath.emptyCartPath,
+                  text: StringsManager.noCartItemsMessage(context),
+                );
+              }
 
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                    flex: IntManager.i_5,
-                    child: CartList(cartItems: state.getCartItemsData)),
-                const CreateOrderSection(),
-              ],
-            );
-          },
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                      flex: IntManager.i_5,
+                      child: CartList(cartItems: state.getCartItemsData)),
+                  const CreateOrderSection(),
+                ],
+              );
+            },
+          ),
         ));
   }
 }

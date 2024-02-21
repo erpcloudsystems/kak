@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/resources/routes.dart';
 import '../widgets/logged_components/options_list.dart';
-import '../widgets/logged_components/logout_button.dart';
+import '../../../../core/utils/general_background.dart';
 import '../../../../core/resources/strings_manager.dart';
+import '../widgets/logged_components/logout_button.dart';
 import '../widgets/unlogged_components/version_section.dart';
 import '../widgets/logged_components/user_name_section.dart';
 import '../widgets/unlogged_components/langauage_switch.dart';
@@ -21,25 +22,27 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(StringsManager.profile(context))),
-      body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        buildWhen: (previous, current) =>
-            previous.isUserLoggedIn != current.isUserLoggedIn,
-        builder: (context, state) {
-          return CustomScrollingAnimatedTemplate(
-            children: [
-              UserProfilePhotoWidget(
-                imageUrl:
-                    state.isUserLoggedIn ? state.loggedInUser.image : null,
-              ),
-              const UserNameSection(),
-              state.isUserLoggedIn
-                  ? OptionsList(options: loggedOptionsList(context))
-                  : OptionsList(options: guestOptionsList(context)),
-              const LanguageSwitch(),
-              const VersionSection(),
-            ],
-          );
-        },
+      body: GeneralBackground(
+        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          buildWhen: (previous, current) =>
+              previous.isUserLoggedIn != current.isUserLoggedIn,
+          builder: (context, state) {
+            return CustomScrollingAnimatedTemplate(
+              children: [
+                UserProfilePhotoWidget(
+                  imageUrl:
+                      state.isUserLoggedIn ? state.loggedInUser.image : null,
+                ),
+                const UserNameSection(),
+                state.isUserLoggedIn
+                    ? OptionsList(options: loggedOptionsList(context))
+                    : OptionsList(options: guestOptionsList(context)),
+                const LanguageSwitch(),
+                const VersionSection(),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
