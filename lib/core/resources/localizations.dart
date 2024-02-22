@@ -9,7 +9,7 @@ class AppLocal {
   static const List<Locale> supportLocals = [Locale('en'), Locale('ar', 'EG')];
 
   static ValueNotifier<DeviceLanguage> languageNotifier =
-      ValueNotifier(DeviceLanguage.arabic);
+      ValueNotifier(DeviceLanguage.english);
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = [
     S.delegate,

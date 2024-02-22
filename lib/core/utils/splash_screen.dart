@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mumo/core/utils/loading_indicator_util.dart';
 import 'package:sizer/sizer.dart';
 
-import '../resources/values_manager.dart';
 import 'enums.dart';
 import 'error_dialog.dart';
 import 'general_background.dart';
+import 'loading_indicator_util.dart';
 import '../resources/assetss_path.dart';
 import '../global/global_varibles.dart';
 import '../resources/localizations.dart';
+import '../resources/values_manager.dart';
 import '../../../../core/resources/routes.dart';
 import '../../modules/authentication/domain/entities/user.dart';
 import '../../modules/authentication/domain/entities/user_caching_data_entity.dart';
@@ -26,9 +26,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
     BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedLanguageEvent());
     BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedUserDataEvent());
-    super.didChangeDependencies();
   }
   
   @override
