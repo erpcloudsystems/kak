@@ -6,8 +6,8 @@ import 'package:sizer/sizer.dart';
 import 'firebase_options.dart';
 import 'core/utils/enums.dart';
 import 'core/resources/routes.dart';
-import 'core/utils/splash_screen.dart';
 import 'core/global/bloc_observer.dart';
+import 'core/utils/animated_splash.dart';
 import 'core/resources/localizations.dart';
 import 'core/global/state_management.dart';
 import 'core/resources/theme_manager.dart';
@@ -16,7 +16,6 @@ import 'core/global/dependencies_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
   Bloc.observer = MyBlocObserver();
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: UnTranslatedStrings.appName,
             theme: AppTheme.getApplicationLightTheme(),
-            home: const SplashScreen(),
+            home: const AnimatedSplash(),
             locale: value == DeviceLanguage.arabic
                 ? const Locale('ar')
                 : const Locale('en'),

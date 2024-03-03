@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedLanguageEvent());
     BlocProvider.of<CachingUserDataBloc>(context).add(GetCachedUserDataEvent());
   }
-  
+
   @override
   Widget build(BuildContext context) =>
       BlocListener<AuthenticationBloc, AuthenticationState>(
