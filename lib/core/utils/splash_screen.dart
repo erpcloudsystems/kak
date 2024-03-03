@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Center(child: Image.asset(ImagesPath.logoPath)),
+                  Center(child: Image.asset(ImagesPath.splashIconPath)),
                   SizedBox(
                     height: DoubleManager.d_20.h,
                     child: const FittedBox(
