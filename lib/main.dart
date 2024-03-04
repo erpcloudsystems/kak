@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:mumo/core/utils/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
 import 'core/utils/enums.dart';
 import 'core/resources/routes.dart';
 import 'core/global/bloc_observer.dart';
-import 'core/utils/animated_splash.dart';
 import 'core/resources/localizations.dart';
 import 'core/global/state_management.dart';
 import 'core/resources/theme_manager.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: UnTranslatedStrings.appName,
             theme: AppTheme.getApplicationLightTheme(),
-            home: const AnimatedSplash(),
+            home: const SplashScreen(),
             locale: value == DeviceLanguage.arabic
                 ? const Locale('ar')
                 : const Locale('en'),

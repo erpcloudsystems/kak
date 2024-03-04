@@ -1,4 +1,5 @@
 const String imagePath = 'assets/images';
+const String videoPath = 'assets/videos';
 
 class ImagesPath {
   static const String splashBackgroundPath = '$imagePath/splash_background.png';
@@ -14,4 +15,8 @@ class ImagesPath {
   static const String logoPath = '$imagePath/logo.png';
   static const String verificationSuccessPath =
       '$imagePath/verification_success.png';
+}
+
+class VideosPath {
+  static const String introVideoPath = '$videoPath/intro.mp4';
 }
