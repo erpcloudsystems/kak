@@ -61,12 +61,15 @@ List loggedOptionsList(BuildContext context) => [
           text: StringsManager.myOrders(context),
           onTap: (context) =>
               Navigator.of(context).pushNamed(Routes.myOrdersScreenKey)),
-      ProfileListElement(
-        icon: Icons.payment_outlined,
-        text: StringsManager.paymentMethod(context),
-        onTap: (context) =>
-            Navigator.of(context).pushNamed(Routes.paymentScreenKey),
-      ),
+      // __________________ Pay with credit card section _________________________
+      // Hide payment with credit card option until make the integration with it
+      // ProfileListElement(
+      //   icon: Icons.payment_outlined,
+      //   text: StringsManager.paymentMethod(context),
+      //   onTap: (context) =>
+      //       Navigator.of(context).pushNamed(Routes.paymentScreenKey),
+      // ),
+      // __________________________________________________________________________
       const LogoutButton(),
       const DeleteAccountButton(),
       const ContactUsOption(),
