@@ -38,15 +38,20 @@ class _RadioFormState extends State<PaymentTypeRadio> {
                 .copyWith(fontSize: FontsSize.s16),
           ),
           const SizedBox(height: DoubleManager.d_8),
+
+          // __________________ Pay with credit card section _________________________
+          // Hide payment with credit card option until make the integration with it.
+          
           // Credit card
-          PaymentRadioComponent(
-            radioType: PaymentType.creditCard,
-            selectedRadio: selectedRadio,
-            onChanged: (value) => setState(() {
-              selectedRadio = value!;
-              widget.paymentType.value = selectedRadio;
-            }),
-          ),
+          // PaymentRadioComponent(
+          //   radioType: PaymentType.creditCard,
+          //   selectedRadio: selectedRadio,
+          //   onChanged: (value) => setState(() {
+          //     selectedRadio = value!;
+          //     widget.paymentType.value = selectedRadio;
+          //   }),
+          // ),
+          // __________________________________________________________________________
           const SizedBox(height: DoubleManager.d_10),
 
           // Cash
